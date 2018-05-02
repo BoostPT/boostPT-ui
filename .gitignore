@@ -1,0 +1,11 @@
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+bundle.js
+
+.DS_Store
