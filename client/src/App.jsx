@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import LandingPage from './components/landingPage/index.jsx';
 
@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <main>
           <Switch>
-            <Route exact path='/' component={LandingPage}></Route>
+            <Route exact path='/' component={LandingPage} />
           </Switch>
         </main>
       </div>
