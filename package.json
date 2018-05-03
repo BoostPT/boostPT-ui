@@ -1,9 +1,20 @@
 {
-  "name": "",
+  "name": "boostPT-ui",
   "version": "1.0.0",
   "scripts": {
     "test": "echo test",
-    "build": ""
+    "setup": "npm-run-all -s setup:server setup:client",
+    "start:server": "cd server && npm run start",
+    "setup:server": "cd server && npm install",
+    "setup:client": "cd client && npm install",
+    "build": "cd client && npm install",
+    "buildEnv": "node bin/buildEnv.js"
+  },
 
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "env": "^0.0.2",
+    "lodash": "^4.17.4",
+    "npm-run-all": "^4.1.2"
   }
 }
