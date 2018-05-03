@@ -4,11 +4,11 @@
   "scripts": {
     "test": "echo test",
     "setup": "npm-run-all -s setup:server setup:client",
-    "start:server": "cd server && npm run start",
     "setup:server": "cd server && npm install",
     "setup:client": "cd client && npm install",
-    "build": "cd client && npm install",
-    "buildEnv": "node bin/buildEnv.js"
+    "start:server": "cd server && npm run start",
+    "buildEnv": "node bin/buildEnv.js",
+    "build": "cd client && npm run dev"
   },
   "dependencies": {
     "dotenv": "^5.0.1",
