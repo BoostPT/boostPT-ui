@@ -10,7 +10,6 @@
     "build": "cd client && npm install",
     "buildEnv": "node bin/buildEnv.js"
   },
-
   "dependencies": {
     "dotenv": "^5.0.1",
     "env": "^0.0.2",
