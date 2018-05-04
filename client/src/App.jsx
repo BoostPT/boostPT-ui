@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 
 import LandingPage from './components/landingPage/index.jsx';
+import Signup from './components/signUp.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path='/' component={LandingPage} />
-              
+              <Route exact path='/signup' component={Signup} />
             </Switch>
           </main>
         </div>
