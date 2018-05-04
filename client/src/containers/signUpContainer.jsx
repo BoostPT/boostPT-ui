@@ -8,12 +8,13 @@ class SignupContainer extends Component {
     this.state = {
         email: '',
         password: '',
-        displayName: '',
+        username: '',
         isTrainer: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleToggleButtonChange = this.handleToggleButtonChange.bind(this);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
   }
 
   handleChange(e) {
@@ -24,9 +25,9 @@ class SignupContainer extends Component {
     this.setState({ isTrainer: isChecked });
   }
 
-  handleSignupClick() {
-    // send email and password to server
-    // axios.post('');
+  handleSignupClick() { // send user sign up info to server
+    const body = Object.assign({}, this.state);
+    axios.post(`http://localhost:8000/api/auth/signup`, body);
   }
 
   render() {

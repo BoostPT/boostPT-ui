@@ -17,9 +17,9 @@ class Signup extends Component {
       <div>
         <h1>Sign Up</h1>
         <div>
-          <TextField name="email" hintText="user@gmail.com" floatingLabelText="Email" onChange={this.props.handleChange}/><br/>
+          <TextField name="email" floatingLabelText="Email" onChange={this.props.handleChange}/><br/>
           <TextField name="password" hintText="" floatingLabelText="Password" onChange={this.props.handleChange}/><br/>
-          <TextField name="displayName" hintText="" floatingLabelText="Display Name"/>
+          <TextField name="username" hintText="" floatingLabelText="Display Name" onChange={this.props.handleChange}/>
         </div>
         <div>
           <Toggle 
