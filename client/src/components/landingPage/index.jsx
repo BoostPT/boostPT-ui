@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
@@ -15,15 +15,15 @@ class LandingPage extends Component {
     }
     
     return (
-      //this toolbar may need to 
+      //this toolbar may need to be a separate component
       <Toolbar style={toolbarStyle} className="landingPageToolBar">
         <ToolbarGroup firstChild={true}>
           <ToolbarTitle style={toolbarTitleStyle} text="BoostPT"/>
         </ToolbarGroup>
 
         <ToolbarGroup>
-          <RaisedButton label="Login" />
           <Link to="/signup"><RaisedButton label="Signup" /></Link>
+          <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
     )
