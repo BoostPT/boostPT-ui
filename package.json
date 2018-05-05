@@ -8,7 +8,7 @@
     "setup:client": "cd client && npm install",
     "start:server": "cd server && npm run start",
     "buildEnv": "node bin/buildEnv.js",
-    "build": "cd client && npm run dev"
+    "build": "cd client && npm run build"
   },
   "dependencies": {
     "dotenv": "^5.0.1",

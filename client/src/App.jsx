@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
-
+import LoginPageContainer from './containers/loginPageContainer.jsx';
 import LandingPage from './components/landingPage/index.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -14,12 +14,12 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path='/' component={LandingPage} />
-              
+              <Route exact path='/login' component={LoginPageContainer}/>
             </Switch>
           </main>
         </div>
       </MuiThemeProvider>
-    )
+    );
   }
 }
 
