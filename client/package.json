@@ -20,6 +20,7 @@
   "homepage": "https://github.com/BoostPT/boostPT-ui#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "material-ui": "^0.20.0",
     "moment": "^2.22.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

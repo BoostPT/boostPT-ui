@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
-
+import LoginPageContainer from './containers/loginPageContainer.jsx';
 import LandingPage from './components/landingPage/index.jsx';
+import SignupContainer from './containers/signUpContainer.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
   render() {
     return (
-      <div>
-        <main>
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-          </Switch>
-        </main>
-      </div>
-    )
+      <MuiThemeProvider>
+        <div>
+          <main>
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route exact path='/signup' component={SignupContainer} />
+              <Route exact path='/login' component={LoginPageContainer}/>
+            </Switch>
+          </main>
+        </div>
+      </MuiThemeProvider>
+    );
   }
 }
 

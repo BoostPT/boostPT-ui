@@ -6,7 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
 import reduxPromise from 'redux-promise';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
+
 
 import App from './App.jsx';
 
