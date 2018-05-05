@@ -15,11 +15,8 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path='/' component={LandingPage} />
-<<<<<<< HEAD
               <Route exact path='/signup' component={SignupContainer} />
-=======
               <Route exact path='/login' component={LoginPageContainer}/>
->>>>>>> dcb6aca201442d4d8464e05fc4c21c40ac257188
             </Switch>
           </main>
         </div>

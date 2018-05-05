@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Signup from '../components/signUp.jsx';
+import { setAuthUser } from '../actions/index.js';
 import axios from 'axios';
 
 class SignupContainer extends Component {
@@ -25,9 +27,9 @@ class SignupContainer extends Component {
     this.setState({ isTrainer: isChecked });
   }
 
-  handleSignupClick() { // send user sign up info to server
+  handleSignupClick() {
     const body = Object.assign({}, this.state);
-    axios.post(`http://localhost:8000/api/auth/signup`, body);
+    this.props.setAuthUser(body);
   }
 
   render() {
@@ -40,5 +42,4 @@ class SignupContainer extends Component {
   }
 }
 
-
-export default SignupContainer;
+export default connect(null, { setAuthUser })(SignupContainer);

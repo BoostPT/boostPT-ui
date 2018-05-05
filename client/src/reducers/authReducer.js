@@ -9,6 +9,7 @@ export default function(state = {}, action) {
       return Object.assign({}, state, { authenticated: false, user: undefined });
     case AUTH_USER:
       return Object.assign({}, state, action.payload);
+      break;
   }
   return state;
 }

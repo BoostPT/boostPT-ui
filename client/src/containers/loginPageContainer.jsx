@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import LoginPage from '../components/loginPage.jsx';
-import {setAuthUser} from '../actions/index.js';
+import { loginUser } from '../actions/index.js';
 import authReducer from '../reducers/authReducer';
 
 class LoginPageContainer extends Component {
@@ -30,17 +30,10 @@ class LoginPageContainer extends Component {
     };
 
     try {
-      const result = await axios.post('http://localhost:8000/api/auth/login', payload);
-
-      if (result){
-        this.props.setAuthUser(result.data);
-        console.log(this.props.user);
-      } else {
-        this.setState({
-          showError: true
-        });
-      }
-
+        await this.props.loginUser(payload);
+        // this.setState({
+        //   showError: true
+        // });
     } catch (err) {
       console.log(err.message);
     }
@@ -54,10 +47,4 @@ class LoginPageContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.authReducer,
-  };
-};
-
-export default connect(mapStateToProps, {setAuthUser,})(LoginPageContainer);
+export default connect(null, {loginUser,})(LoginPageContainer);
