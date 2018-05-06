@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Signup from '../components/signUp.jsx';
-import { setAuthUser } from '../actions/index.js';
+import { signUpUser } from '../actions/index.js';
 import axios from 'axios';
 
 class SignupContainer extends Component {
@@ -29,7 +29,7 @@ class SignupContainer extends Component {
 
   handleSignupClick() {
     const body = Object.assign({}, this.state);
-    this.props.setAuthUser(body);
+    this.props.signUpUser(body);
   }
 
   render() {
@@ -42,4 +42,4 @@ class SignupContainer extends Component {
   }
 }
 
-export default connect(null, { setAuthUser })(SignupContainer);
+export default connect(null, { signUpUser })(SignupContainer);
