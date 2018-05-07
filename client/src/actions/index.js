@@ -18,7 +18,7 @@ export const loginUser = async (user) => {
       payload: result.data
     };
   } catch (err) {
-    console.log(new Error(err));
+    return(err);
   }
 }
 
@@ -30,6 +30,6 @@ export const signUpUser = async (user) => {
       payload: { username: user.username, isTrainer: user.isTrainer }
     };
   } catch (err) {
-    console.log(new Error(err));
+    return(err);
   }
 }

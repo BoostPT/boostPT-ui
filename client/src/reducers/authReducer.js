@@ -8,7 +8,10 @@ export default function(state = {}, action) {
     case LOGOUT_USER:
       return Object.assign({}, state, { authenticated: false, user: undefined });
     case AUTH_USER:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state, {
+        authenticated: true, 
+        user: action.payload 
+      });
       break;
   }
   return state;
