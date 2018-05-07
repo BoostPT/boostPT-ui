@@ -18,6 +18,7 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
+
 const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
   // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
   return (
@@ -35,9 +36,34 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
   )
 };
 
+const renderTextField = (hintText, floatingLabelText, multiLine = false, rowsMax = 1) => {
+  return (
+    <TextField
+      hintText={hintText}
+      floatingLabelText={floatingLabelText}
+      floatingLabelStyle={exerciseFormFloatStyle}
+      floatingLabelFixed={true}
+      multiLine={multiLine}
+      rowsMax={rowsMax}
+      underlineShow={false}
+    />
+  )
+};
+
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      exerciseForms: []
+    };
+    this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
+  }
+
+  handleAddExerciseMenuClick(e) {
+    let exerciseForm = {
+      type: e.target.innerText
+    };
+    this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
   }
 
   renderAddExerciseButton() {
