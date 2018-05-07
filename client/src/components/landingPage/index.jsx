@@ -13,6 +13,8 @@ const toolbarTitleStyle = {
   color: colors.yellow500
 }
 
+import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
+
 class LandingPage extends Component {
   render() {
     
