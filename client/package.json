@@ -28,7 +28,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.80.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

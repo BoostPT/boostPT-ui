@@ -16,11 +16,13 @@ class LoginPage extends Component {
           name='email' 
           floatingLabelText='Username' 
           onChange={this.props.onChangeText}
+          value={this.props.email}
         />
         <TextField 
           name='password' 
           floatingLabelText='Password' 
           onChange={this.props.onChangeText}
+          value={this.props.password}
         />
         <FlatButton label="Login" onClick={this.props.handleLoginButton}/>
       </div>
