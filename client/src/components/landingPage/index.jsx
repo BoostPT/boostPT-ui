@@ -3,6 +3,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
+import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
 
 const toolbarStyle = {
   backgroundColor: colors.grey900
@@ -17,6 +18,7 @@ class LandingPage extends Component {
     
     return (
       //this toolbar may need to be a separate component
+      <div>
       <Toolbar style={toolbarStyle} className="landingPageToolBar">
         <ToolbarGroup firstChild={true}>
           <ToolbarTitle style={toolbarTitleStyle} text="BoostPT"/>
@@ -27,7 +29,8 @@ class LandingPage extends Component {
           <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
-
+      <WorkoutsListContainer />
+      </div>
     )
   }
 }

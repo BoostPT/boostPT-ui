@@ -18,6 +18,10 @@ const renderTextField = (name, hintText, type, onChange) => {
   )
 };
 
+const styles = {
+    toggle: { marginBottom: 16 }
+};
+
 class Signup extends Component {
   constructor(props) {
     super(props);
