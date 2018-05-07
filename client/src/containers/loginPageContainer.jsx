@@ -31,14 +31,13 @@ class LoginPageContainer extends Component {
 
     try {
         const result = await this.props.loginUser(payload);
-        console.log("past the post");
         this.setState({showError: false});
         result ? this.props.history.push('/dash') : 
           this.props.history.push('/login');
         
     } catch (err) {
       this.setState({showError: true, email: '', password: ''});
-      console.log(err);
+      return (err);
     }
   }
 

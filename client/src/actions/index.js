@@ -12,9 +12,7 @@ export const logOutUser = () => {
 
 export const loginUser = async (user) => {
   try {
-    console.log(user);
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
-    console.log("inside loginuser action", result);
     return {
       type: AUTH_USER,
       payload: result.data
@@ -32,6 +30,6 @@ export const signUpUser = async (user) => {
       payload: { username: user.username, isTrainer: user.isTrainer }
     };
   } catch (err) {
-    console.log(new Error(err));
+    return(err);
   }
 }
