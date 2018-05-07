@@ -1,0 +1,15 @@
+#dashPageNavbarTitle{
+  padding-left: 15px;
+}
+
+.dashPageNavbarTitleText{
+  font-size: 30px;
+}
+
+#boostTitle.dashPageNavbarTitleText{
+  width: 50px;
+}
+
+#navbarTitlePT.dashPageNavbarTitleText{
+  color: #FFEB3B
+}

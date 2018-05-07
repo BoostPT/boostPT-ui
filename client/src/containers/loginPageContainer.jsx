@@ -30,21 +30,31 @@ class LoginPageContainer extends Component {
     };
 
     try {
-        await this.props.loginUser(payload);
-        // this.setState({
-        //   showError: true
-        // });
+        const result = await this.props.loginUser(payload);
+        this.setState({showError: false});
+        result ? this.props.history.push('/dash') : 
+          this.props.history.push('/login');
+        
     } catch (err) {
-      console.log(err.message);
+      this.setState({showError: true, email: '', password: ''});
+      return (err);
     }
   }
 
   render() {
     return (
-      <LoginPage handleLoginButton={this.handleLoginButton.bind(this)} onChangeText={this.onChangeText.bind(this)}/>
-
+      <div>
+        <LoginPage handleLoginButton={this.handleLoginButton.bind(this)} onChangeText={this.onChangeText.bind(this)} email={this.state.email} password={this.state.password}/>
+        {this.state.showError ?
+          <div className="errorMessage">Invalid inputs</div> 
+          : 
+          null
+        }
+      </div>
     );
   }
 }
 
-export default connect(null, {loginUser,})(LoginPageContainer);
+
+
+export default connect(null, { loginUser })(LoginPageContainer);
