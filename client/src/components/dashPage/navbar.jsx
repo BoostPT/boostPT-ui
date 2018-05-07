@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Search } from 'semantic-ui-react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import * as colors from 'material-ui/styles/colors';
 
@@ -22,7 +21,7 @@ class Navbar extends Component{
           </div>
         </ToolbarGroup>
         <ToolbarGroup>
-          <Search/>
+
         </ToolbarGroup>
 
       </Toolbar>
