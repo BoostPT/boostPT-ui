@@ -1,0 +1,28 @@
+#create-workout-outer {
+  width: 500px;
+  /*max-height: 600px;*/
+}
+
+#create-workout-inner {
+  padding: 20px;
+}
+
+.create-workout-header {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.create-wo-input {
+  padding-left: 20px;
+}
+
+.exercise-form {
+  padding-left: 40px;
+}
+
+#submit-wo-div {
+  float: bottom;
+  margin: 0 auto;
+  width: 160px;
+  font-size: 12px;
+}
