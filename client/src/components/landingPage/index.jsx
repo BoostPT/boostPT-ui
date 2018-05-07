@@ -21,7 +21,6 @@ const toolbarTitleStyle = {
   color: colors.yellow500
 }
 
-
 class LandingPage extends Component {
   render() {
     return (
