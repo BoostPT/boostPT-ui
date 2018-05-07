@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
+const toolbarStyle = {
+  backgroundColor: colors.grey900
+}
+
+const toolbarTitleStyle = {
+  color: colors.yellow500
+}
+
 class LandingPage extends Component {
   render() {
-    const toolbarStyle = {
-      backgroundColor: colors.grey900
-    }
-
-    const toolbarTitleStyle = {
-      color: colors.yellow500
-    }
     
     return (
       //this toolbar may need to be a separate component

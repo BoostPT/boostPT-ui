@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import * as colors from 'material-ui/styles/colors';
 
+const toolbarStyle = {
+  backgroundColor: colors.grey500
+};
 class Navbar extends Component{
   constructor(props){
     super(props);
   }
 
   render(){
-    const toolbarStyle = {
-      backgroundColor: colors.grey500
-    };
 
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
