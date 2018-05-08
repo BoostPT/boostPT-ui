@@ -12,6 +12,19 @@ const toolbarTitleStyle = {
   color: colors.yellow500
 }
 
+class ClientTab extends Component {
+  constructor(props) {
+      super(props);
+  }
+  render() {
+      return (
+          <div>
+              hey
+          </div>
+      );
+  }
+}
+
 class LandingPage extends Component {
   render() {
     return (
@@ -31,5 +44,6 @@ class LandingPage extends Component {
     )
   }
 }
+
 
 export default LandingPage;
