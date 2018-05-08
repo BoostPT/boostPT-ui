@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -56,11 +57,14 @@ class CreateWorkout extends Component {
     super(props);
     this.state = {
       workoutName: '',
-      exerciseForms: []
+      exerciseForms: [],
+      makePrivate: false
     };
     this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleWorkoutNameInput = this.handleWorkoutNameInput.bind(this);
+    this.handleMakePrivateCheck = this.handleMakePrivateCheck.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleAddExerciseMenuClick(e) {
@@ -84,6 +88,37 @@ class CreateWorkout extends Component {
     this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
   }
 
+  handleWorkoutNameInput(e) {
+    this.setState({
+      workoutName: e.target.value
+    });
+  }
+
+  handleFormInput(e) {
+    const [index, key] = e.target.getAttribute('data').split(',');
+    const formCopy = cloneDeep(this.state.exerciseForms);
+
+    formCopy[index][key] = e.target.value;
+    this.setState({
+      exerciseForms: formCopy
+    });
+  }
+
+  handleMakePrivateCheck() {
+    this.setState({
+      makePrivate: !this.state.makePrivate
+    });
+  }
+
+  async handleFormSubmit() {
+    try {
+      const submitWorkout = await axios.post(process.env.REST_SERVER_URL.concat(this.props.API_ENDPOINT), this.state);
+    }
+    catch(err) {
+      console.log('Error submitting workout form', err);
+    }
+  }
+
   renderAddExerciseButton() {
     return (
       <div className="add-exercise-menu">
@@ -99,22 +134,6 @@ class CreateWorkout extends Component {
         </IconMenu>
       </div>
     )
-  }
-
-  handleWorkoutNameInput(e) {
-    this.setState({
-      workoutName: e.target.value
-    });
-  }
-
-  handleFormInput(e) {
-    const [index, key] = e.target.getAttribute('data').split(',');
-    const formCopy = cloneDeep(this.state.exerciseForms);
-
-    formCopy[index][key] = e.target.value;
-    this.setState({
-      exerciseForms: formCopy
-    });
   }
 
   renderExerciseForms() {
@@ -170,8 +189,12 @@ class CreateWorkout extends Component {
           <Divider />
           {this.renderAddExerciseButton()}
           <div id="submit-wo-div">
-            <Checkbox label="Make Private" checkedIcon={<Checkbox defaultChecked={true} iconStyle={{ color: 'black'}} />} />
+            <Checkbox label="Make Private"
+                      checkedIcon={<Checkbox defaultChecked={true} iconStyle={{ color: 'black'}} />}
+                      onCheck={this.handleMakePrivateCheck}
+            />
             <RaisedButton id="submit-wo-btn"
+                          onClick={this.handleFormSubmit}
                           backgroundColor={colors.grey800}
                           label="Save Workout"
                           labelColor={colors.yellow500}
@@ -182,5 +205,9 @@ class CreateWorkout extends Component {
     )
   }
 }
+
+CreateWorkout.propTypes = {
+  API_ENDPOINT: PropTypes.string.isRequired
+};
 
 export default CreateWorkout;

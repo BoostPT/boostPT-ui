@@ -30,7 +30,7 @@ class LandingPage extends Component {
           <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
-      <CreateWorkout />
+      <CreateWorkout API_ENDPOINT='/workouts/addWorkout' />
       </div>
 
     )
