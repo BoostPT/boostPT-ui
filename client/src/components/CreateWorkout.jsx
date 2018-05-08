@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -58,7 +59,7 @@ class CreateWorkout extends Component {
     this.state = {
       workoutName: '',
       exerciseForms: [],
-      makePrivate: false
+      isPublic: true
     };
     this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
@@ -106,13 +107,13 @@ class CreateWorkout extends Component {
 
   handleMakePrivateCheck() {
     this.setState({
-      makePrivate: !this.state.makePrivate
+      isPublic: !this.state.isPublic
     });
   }
 
   async handleFormSubmit() {
     try {
-      const submitWorkout = await axios.post(process.env.REST_SERVER_URL.concat(this.props.API_ENDPOINT), this.state);
+      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), this.state);
     }
     catch(err) {
       console.log('Error submitting workout form', err);
@@ -190,7 +191,6 @@ class CreateWorkout extends Component {
           {this.renderAddExerciseButton()}
           <div id="submit-wo-div">
             <Checkbox label="Make Private"
-                      checkedIcon={<Checkbox defaultChecked={true} iconStyle={{ color: 'black'}} />}
                       onCheck={this.handleMakePrivateCheck}
             />
             <RaisedButton id="submit-wo-btn"
@@ -207,6 +207,7 @@ class CreateWorkout extends Component {
 }
 
 CreateWorkout.propTypes = {
+  REST_SERVER_URL: PropTypes.string.isRequired,
   API_ENDPOINT: PropTypes.string.isRequired
 };
 
