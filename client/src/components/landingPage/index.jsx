@@ -5,7 +5,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
 
+/****/
 import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
+import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx'; 
+/****/
+
 
 const toolbarStyle = {
   backgroundColor: colors.grey900
@@ -18,7 +22,6 @@ const toolbarTitleStyle = {
 
 class LandingPage extends Component {
   render() {
-    
     return (
       //this toolbar may need to be a separate component
       <div>
@@ -33,6 +36,7 @@ class LandingPage extends Component {
         </ToolbarGroup>
       </Toolbar>
       <WorkoutsListContainer />
+      <WorkoutItemContainer />
       </div>
     )
   }

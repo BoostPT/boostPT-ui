@@ -13,6 +13,25 @@
 .clear-float {
     clear: both;
 }
+.bord {
+    border: 1px solid black;
+}
+.hug-left {
+    text-align: left;
+    margin: 2% 0 0 4%;
+}
+.font {
+    font-size: 10px;
+    font-weight: 300;
+    font-family: Arial;
+    color: #546E7A;
+}
+.pad-right {
+    padding-right: 2%;
+}
+.light-grey {
+    background-color: #EEE;
+}
 
 /*************************
       Workout Items
@@ -28,7 +47,6 @@
     border-radius: 7px;
     width: 95%;
     margin: 2% auto;
-    background-color: #EEE;
 }
 .title {
     margin: 1% 0 0 2%;
@@ -53,11 +71,6 @@
 .add-left-pad {
     padding-left: 16.5%;
 }
-.font {
-    font-size: 10px;
-    font-weight: 300;
-    font-family: Arial;
-}
 .font-title {
     font-size: 12px;
 }
@@ -65,4 +78,11 @@
     position: relative;
     top: 5px;
     padding-left: 3px;
+}
+
+/*************************
+      Single Workout
+*************************/
+.workout-title {
+    padding-bottom: 1%;
 }
