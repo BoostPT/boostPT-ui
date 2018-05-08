@@ -1,0 +1,140 @@
+.wrapper {
+    position: absolute;
+    height: 80%;
+    width: 100%;
+}
+
+.outerContainer {
+    position: relative;
+    height: 40%;
+    width: 70%;
+}
+
+body {
+    background-color: #343F4B;
+    line-height: 1.5;s
+}
+
+.innerContainer {
+    background-color: #343F4B;
+    position: absolute;
+    top: 50%;
+    height: 200px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.row {
+    margin-left: 30px;
+}
+/* Clear floats after the columns */
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+.clientCard {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.clientCardText {
+    margin-top: 5px;
+    margin-left: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    margin-top: -8px;
+    margin-left: 10px;
+}
+
+form {
+    outline: 0;
+    float: left;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-right:10px;
+  }
+  
+  form > .textbox {
+    outline: 0;
+    height: 30px;
+    width: calc(100% - 74px);
+    padding: 0 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #212121;
+    border: 0;
+    float: left;
+    -webkit-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+    
+  }
+  
+  form > .textbox:focus {
+    outline: 0;
+    background-color: #FFF;
+  }
+  
+  form > .button {
+    outline: 0;
+    background: none;
+    background-color: rgba(38, 50, 56, 0.8);
+    float: left;
+    height: 42px;
+    width: 42px;
+    text-align: center;
+    line-height: 42px;
+    border: 0;
+    color: #FFF;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 16px;
+    text-rendering: auto;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: background-color .4s ease;
+    transition: background-color .4s ease;
+    -webkit-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+    height: 30px;
+  }
+  
+  form > .button:hover {
+    background-color: rgba(0, 150, 136, 0.8);
+  }
+
+  .addClientButton {
+      height: 30px;
+      margin-top: 5px;
+      width: calc(100% - 10px);
+  }
+
+  #cardPlaceHolder {
+    height: 30px;
+    margin-top: 5px;
+    width: calc(100% - 10px);
+  }
+
+  @media screen and (max-width: 650px) {
+    .column {
+        width: 50%;
+    }
+    
+    #cardPlaceHolder {
+        width: 0px;
+        height: 0px;
+        margin: 0px;
+    }
+}
+
+  
