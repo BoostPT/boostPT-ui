@@ -7,11 +7,20 @@ import DashPage from '../components/dashPage/index.jsx';
 class DashPageContainer extends Component{
   constructor(props){
     super(props);
+
+    this.state = {
+      searchText: ''
+    }
+  }
+
+  handleOnChangeText(e){
+    const {value, name} = e.target;
+    this.setState({[name]: value});
   }
 
   render(){
     return(
-      <DashPage user={this.props.user}/>
+      <DashPage user={this.props.user} handleOnChangeText={this.handleOnChangeText.bind(this)} searchText={this.state.searchText}/>
     );
   }
 }
