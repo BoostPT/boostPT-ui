@@ -30,7 +30,7 @@ class DashPage extends Component{
     return(
       <div>
         <div className="dashPage">
-          <Navbar user={this.props.user} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText}/>
+          <Navbar userInfo={this.props.userInfo} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick}/>
 
           <div className="dashPageBody">
           </div>

@@ -7,6 +7,7 @@ import LoginPageContainer from './containers/loginPageContainer.jsx';
 import LandingPage from './components/landingPage/index.jsx';
 import SignupContainer from './containers/signUpContainer.jsx';
 import DashPageContainer from './containers/dashPageContainer.jsx';
+import BioPageContainer from './containers/bioPageContainer.jsx';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
               <Route exact path='/signup' component={SignupContainer} />
               <Route exact path='/login' component={LoginPageContainer}/>
               <Route path='/dash' component={DashPageContainer}/>
+              <Route path='/bio' component={BioPageContainer}/>
             </Switch>
           </main>
         </div>

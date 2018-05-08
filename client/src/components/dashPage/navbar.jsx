@@ -17,6 +17,8 @@ class Navbar extends Component{
   }
 
   render(){
+    console.log(this.props.userInfo);
+
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
         <ToolbarGroup firstChild={true}>
@@ -26,15 +28,17 @@ class Navbar extends Component{
           </div>
         </ToolbarGroup>
         <ToolbarGroup>
-          <input className="dashPageNabarSearch" placeholder="Search..." onChange={this.props.handleOnChangeText} />
+          <input className="dashPageNavbarSearch" placeholder="Search..." onChange={this.props.handleOnChangeText} />
           <FontAwesomeIcon icon={faBell} />
-          {!this.props.user.picture ? 
-            <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
-            : 
-            <Avatar className="avatarPicture" size={30} src=""/>
-          }
-          <div className="navbarUsername">
-            {this.props.user.user.username}
+          <div className="navbarUser" onClick={this.props.handleUserNameClick}>
+            {!this.props.userInfo.picture ? 
+              <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
+              : 
+              <Avatar className="avatarPicture" size={30} src=""/>
+            }
+            <div className="navbarUsername">
+              {this.props.userInfo.username}
+            </div>
           </div>
         </ToolbarGroup>
 

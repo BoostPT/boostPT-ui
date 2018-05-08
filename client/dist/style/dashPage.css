@@ -12,7 +12,7 @@
   font-size: 30px;
 }
 
-.dashPageNabarSearch{
+.dashPageNavbarSearch{
   height: 30px;
   margin-right: 40px;
 }
@@ -23,6 +23,11 @@
 
 .navbarUsername{
   margin-left: 10px;
+}
+
+.navbarUser{
+  display: flex;
+  align-items: center;
 }
 
 .dashPageBody{
