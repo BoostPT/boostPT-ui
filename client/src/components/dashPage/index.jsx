@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import * as colors from 'material-ui/styles/colors';
 
 const tabStyle = {
-  background: colors.grey300,
-  color: "#5A6978",
-  textTransform: "none"
+  defaultTab: {
+    background: "#C3CAD3",
+    color: "#5A6978",
+    textTransform: "none"
+  },
+  activeTab: {
+    background: "#5A6978",
+    color: "#FFEB3B",
+    textTransform: "none"
+  }
 };
 
 const tabsStyle = {
   marginTop: "40px",
+  marginLeft: "40px",
   width: "400px"
 };
 
@@ -29,32 +36,19 @@ class DashPage extends Component{
           </div>
         </div>
         <Tabs style={tabsStyle} inkBarStyle={{display: "none"}}>
-          <Tab disableTouchRipple={true} className="tab" label="Schedule" style={tabStyle} >
+          <Tab style={tabStyle.defaultTab} disableTouchRipple={true} className="tab" label="Schedule" >
             <div>
-              <h2 >Tab One</h2>
-              <p>
-                This is an example tab.
-              </p>
-              <p>
-                You can put any sort of HTML or react component in here. It even keeps the component state!
-              </p>
 
             </div>
           </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Workouts" style={tabStyle} >
+          <Tab disableTouchRipple={true} className="tab" label="Workouts" style={tabStyle.defaultTab}  >
             <div>
-              <h2>Tab Two</h2>
-              <p>
-                This is another example tab.
-              </p>
+              
             </div>
           </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Clients" style={tabStyle}>
+          <Tab disableTouchRipple={true} className="tab" label="Clients" style={tabStyle.defaultTab} >
             <div>
-              <h2>Tab Three</h2>
-              <p>
-                This is a third example tab.
-              </p>
+              
             </div>
           </Tab>
         </Tabs>

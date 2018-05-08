@@ -17,7 +17,6 @@ class Navbar extends Component{
   }
 
   render(){
-    console.log(this.props.user);
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
         <ToolbarGroup firstChild={true}>
