@@ -112,8 +112,15 @@ class CreateWorkout extends Component {
   }
 
   async handleFormSubmit() {
+    const payload = {
+      user_id: this.props.user_id,
+      workoutName: this.state.workoutName,
+      exerciseForms: this.state.exerciseForms,
+      isPublic: this.state.isPublic
+    };
+
     try {
-      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), this.state);
+      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
     }
     catch(err) {
       console.log('Error submitting workout form', err);
@@ -175,7 +182,7 @@ class CreateWorkout extends Component {
 
   render() {
     return (
-      <Paper id="create-workout-outer" zDepth={2}>
+      <Paper id="create-workout-outer" zDepth={5}>
         <div id="create-workout-inner">
           <h2 className="create-workout-header">Create Workout</h2>
           <br />
@@ -207,6 +214,7 @@ class CreateWorkout extends Component {
 }
 
 CreateWorkout.propTypes = {
+  user_id: PropTypes.string.isRequired,
   REST_SERVER_URL: PropTypes.string.isRequired,
   API_ENDPOINT: PropTypes.string.isRequired
 };

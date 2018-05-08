@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
+import CreateWorkout from '../CreateWorkout.jsx';
+
 const tabStyle = {
   defaultTab: {
     background: "#C3CAD3",
@@ -52,6 +54,7 @@ class DashPage extends Component{
             </div>
           </Tab>
         </Tabs>
+        <CreateWorkout user_id={this.props.userInfo.id} REST_SERVER_URL='http://localhost:8000/api' API_ENDPOINT='/workouts/addWorkout' />
       </div>
     );
   }
