@@ -1,10 +1,14 @@
 #create-workout-outer {
   width: 500px;
-  /*max-height: 600px;*/
+  max-height: 600px;
+  overflow-y: auto;
+  margin-left: 50px;
+  margin-top: 15px;
 }
 
 #create-workout-inner {
   padding: 20px;
+  max-height: 560px;
 }
 
 .create-workout-header {

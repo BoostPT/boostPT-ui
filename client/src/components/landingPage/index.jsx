@@ -12,10 +12,13 @@ const toolbarTitleStyle = {
   color: colors.yellow500
 }
 
+import CreateWorkout from '../CreateWorkout.jsx';
+
 class LandingPage extends Component {
   render() {
     
     return (
+      <div>
       //this toolbar may need to be a separate component
       <Toolbar style={toolbarStyle} className="landingPageToolBar">
         <ToolbarGroup firstChild={true}>
@@ -27,6 +30,9 @@ class LandingPage extends Component {
           <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
+      <CreateWorkout />
+      </div>
+
     )
   }
 }
