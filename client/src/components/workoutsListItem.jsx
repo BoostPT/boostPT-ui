@@ -8,7 +8,7 @@ class WorkoutsListItem extends Component {
 
   render() {
     return (
-      <div className="border font">
+      <div className="border font light-grey">
         <div className="pos-abs full-width">
           <h5 className="title float-left font-title">My Workout #1</h5>
           <p className="created float-right">created yesterday</p>

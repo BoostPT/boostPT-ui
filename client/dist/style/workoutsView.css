@@ -47,7 +47,6 @@
     border-radius: 7px;
     width: 95%;
     margin: 2% auto;
-    background-color: #EEE;
 }
 .title {
     margin: 1% 0 0 2%;
@@ -71,11 +70,6 @@
 }
 .add-left-pad {
     padding-left: 16.5%;
-}
-.font {
-    font-size: 10px;
-    font-weight: 300;
-    font-family: Arial;
 }
 .font-title {
     font-size: 12px;

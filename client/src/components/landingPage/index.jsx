@@ -11,7 +11,11 @@ import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
 /****/
 
 
+/****/
 import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
+import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx'; 
+/****/
+
 
 const toolbarStyle = {
   backgroundColor: colors.grey900
