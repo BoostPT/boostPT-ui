@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -22,6 +23,10 @@ const exerciseFormFloatStyle = {
   fontSize: '14px'
 };
 
+const formUnderlineFocusStyle = {
+  borderColor: colors.yellow500
+};
+
 const saveWorkoutStyle = {
   marginTop: '8px',
   marginBottom: '20px'
@@ -36,7 +41,7 @@ const renderTextField = (hintText, floatingLabelText, multiLine = false, rowsMax
       floatingLabelFixed={true}
       multiLine={multiLine}
       rowsMax={rowsMax}
-      underlineShow={false}
+      underlineFocusStyle={formUnderlineFocusStyle}
     />
   )
 };
@@ -75,19 +80,36 @@ class CreateWorkout extends Component {
   }
 
   renderExerciseForms() {
-
-    // const addWarmupFields = () => {
-    //   return (
-    //     {renderTextField('Exercise Name', `${exerciseForm.type} Exercise`)}
-    //   )
-    // };
+    const renderFields = (type) => {
+      if (type === 'Strength') {
+        return (
+          <div>
+            {renderTextField('', 'Reps (optional)')}
+            {renderTextField('', 'Sets (optional)')}
+          </div>
+        )
+      } else if (type === 'Cardio') {
+        return (
+          <div>
+            {renderTextField('', 'Distance (optional)')}
+            {renderTextField('', 'Pace (optional)')}
+            {renderTextField('', 'Goal Time (optional)')}
+          </div>
+        )
+      } else if (type === 'Stretch') {
+        return renderTextField('', 'Duration (optional)');
+      }
+    };
 
     return this.state.exerciseForms.map((exerciseForm, i) => {
+
+      const className = classNames('exercise-form', { 'odd-greyed': i%2 === 1 });
+
       return (
-        <div className="exercise-form" key={i}>
+        <div className={className} key={i}>
           {renderTextField('Exercise Name', `${exerciseForm.type} Exercise`)}
-          {renderTextField('Enter Description (optional)', 'Description', true, 4)}
-          <Divider />
+          {renderTextField('', 'Description (optional)', true, 4)}
+          {renderFields(exerciseForm.type)}
         </div>
       )
     });

@@ -18,6 +18,11 @@
 
 .exercise-form {
   padding-left: 40px;
+  padding-bottom: 15px;
+}
+
+.odd-greyed {
+  background-color: #F5F5F5;
 }
 
 #submit-wo-div {
