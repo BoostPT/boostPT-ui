@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WorkoutsList from '../components/workoutsList.jsx'
+import WorkoutsList from '../components/workoutsView/workoutsList.jsx'
 
 class WorkoutsListContainer extends Component {
   constructor(props) {

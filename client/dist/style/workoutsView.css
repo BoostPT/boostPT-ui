@@ -86,3 +86,6 @@
 .workout-title {
     padding-bottom: 1%;
 }
+.exercise-height {
+    min-height: 40px;
+}

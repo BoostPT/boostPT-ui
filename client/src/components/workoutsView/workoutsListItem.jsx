@@ -16,12 +16,12 @@ class WorkoutsListItem extends Component {
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad">1 Warm-up<img className="shift-icon-down" src={require('../../dist/images/fire.png')} alt="stretching icon"></img></p>
-          <p className="float-left pad">1 Cardio<img className="shift-icon-down" src={require('../../dist/images/running.png')} alt="stretching icon"></img></p>
+          <p className="float-left pad">1 Warm-up<img className="shift-icon-down" src={require('../../../dist/images/fire.png')} alt="stretching icon"></img></p>
+          <p className="float-left pad">1 Cardio<img className="shift-icon-down" src={require('../../../dist/images/running.png')} alt="stretching icon"></img></p>
           <div className="clear-float"></div>
-          <p className="float-left pad">8 Strength<img className="shift-icon-down" src={require('../../dist/images/weight.png')} alt="stretching icon"></img></p>
-          <p className="float-left add-left-pad">3 Stretch<img className="shift-icon-down" src={require('../../dist/images/stretch.png')} alt="stretching icon"></img></p>
-          <img className="float-right status" src={require('../../dist/images/earth.png')} alt="stretching icon"></img>
+          <p className="float-left pad">8 Strength<img className="shift-icon-down" src={require('../../../dist/images/weight.png')} alt="stretching icon"></img></p>
+          <p className="float-left add-left-pad">3 Stretch<img className="shift-icon-down" src={require('../../../dist/images/stretch.png')} alt="stretching icon"></img></p>
+          <img className="float-right status" src={require('../../../dist/images/earth.png')} alt="stretching icon"></img>
           <div className="clear-float"></div>
         </div>
       </div>
