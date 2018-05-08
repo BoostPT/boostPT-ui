@@ -1,15 +1,46 @@
 #dashPageNavbarTitle{
+  display:flex;
   padding-left: 15px;
+}
+
+.dashPage{
+  display: flex;
+  flex-direction: column;
 }
 
 .dashPageNavbarTitleText{
   font-size: 30px;
 }
 
-#boostTitle.dashPageNavbarTitleText{
-  width: 50px;
+.dashPageNavbarSearch{
+  height: 30px;
+  margin-right: 40px;
+}
+
+.avatarPicture{
+  margin-left: 20px;
+}
+
+.navbarUsername{
+  margin-left: 10px;
+}
+
+.navbarUser{
+  display: flex;
+  align-items: center;
+}
+
+.dashPageBody{
+  position: absolute;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #343F4B;
 }
 
 #navbarTitlePT.dashPageNavbarTitleText{
-  color: #FFEB3B
+  color: #FFEB3B;
 }
+
