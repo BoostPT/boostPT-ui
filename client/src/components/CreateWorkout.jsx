@@ -66,6 +66,44 @@ class CreateWorkout extends Component {
     this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
   }
 
+  handleWorkoutNameInput(e) {
+    this.setState({
+      workoutName: e.target.value
+    });
+  }
+
+  handleFormInput(e) {
+    const [index, key] = e.target.getAttribute('data').split(',');
+    const formCopy = cloneDeep(this.state.exerciseForms);
+
+    formCopy[index][key] = e.target.value;
+    this.setState({
+      exerciseForms: formCopy
+    });
+  }
+
+  handleMakePrivateCheck() {
+    this.setState({
+      isPublic: !this.state.isPublic
+    });
+  }
+
+  async handleFormSubmit() {
+    const payload = {
+      user_id: this.props.user_id,
+      workoutName: this.state.workoutName,
+      exerciseForms: this.state.exerciseForms,
+      isPublic: this.state.isPublic
+    };
+
+    try {
+      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
+    }
+    catch(err) {
+      console.log('Error submitting workout form', err);
+    }
+  }
+
   renderAddExerciseButton() {
     return (
       <div className="add-exercise-menu">
