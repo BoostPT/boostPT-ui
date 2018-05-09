@@ -2,7 +2,8 @@ import axios from 'axios';
 import {
   LOGOUT_USER,
   AUTH_USER,
-  CHANGE_USER_PICTURE
+  CHANGE_USER_PICTURE,
+  FETCH_WORKOUTS
 } from './types';
 
 export const logOutUser = () => {
@@ -35,7 +36,6 @@ export const signUpUser = async (user) => {
   }
 }
 
-<<<<<<< HEAD
 export const changeUserPicture = async (formData) => {
   
   try{
@@ -47,12 +47,18 @@ export const changeUserPicture = async (formData) => {
     };
   } catch (err) {
     return (err);
-=======
-export const getWorkoutsList = async (user) => {
-  try {
+  }
+}
 
+export const getWorkoutsList = async (userId) => {
+  try {
+    const workouts = await axios.get(`http://localhost:8000/api/workouts/${userId}`);
+    console.log(workouts);
+    return {
+      type: FETCH_WORKOUTS,
+      payload: { workouts: workouts }
+    }
   } catch (err) {
     return(err);
->>>>>>> Added styles to exerciseItem component and created exerciseDetails component
   }
 }
