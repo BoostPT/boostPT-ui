@@ -27,24 +27,25 @@ class BioPageContainer extends Component {
     this.props.history.push('/dash');
   }
 
-  async handleOnDrop(e){
-    const formData = new FormData();
-    const uploaders = e.map (file => {
-      formData.append('file', file);
-      formData.append('upload_preset', 'boostpt');
-      formData.append('api_key', '369311567465477');
-      formData.append('timestamp', (Date.now() / 1000) | 0);
-    });
+  async handleOnDrop(files){
+    const picture = {
+      filename: files[0].name,
+      fileType: files[0].type
+    } 
+    
+    const options = {
+      headers: {
+        'Content-Type': files[0].type
+      }
+    }
+
     try {
-      const result = await this.props.chan
-    // axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, {
-    //   header: {'X-Requested-With': 'XMLHttpRequest'},
-    // })
-    //   .then(response => {
-    //     const data = response.data;
-    //     console.log("this is data", data);
-    //   });
+      const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+      console.log(signedUrl.data);
+      const pictureOnBucket = await axios.put(signedUrl.data, files[0], options);
+      console.log("pic on bucket",pictureOnBucket);
     } catch (err) {
+      console.log(err);
       return (err);
     }
   }

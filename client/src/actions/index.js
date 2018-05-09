@@ -36,6 +36,7 @@ export const signUpUser = async (user) => {
 }
 
 export const changeUserPicture = async (formData) => {
+  
   try{
     await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, { header: {'X-Requested-With': 'XMLHttpRequest'}});
 
