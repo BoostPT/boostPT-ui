@@ -9,12 +9,12 @@ import authReducer from '../reducers/authReducer';
 class LoginPageContainer extends Component {
   constructor(props){
     super(props);
-
     this.state = {
       email: '',
       password: '',
       showError: false
     };
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   onChangeText(e){
@@ -22,8 +22,8 @@ class LoginPageContainer extends Component {
     this.setState({[name]: value});
   }
 
-  async handleLoginButton(){
-
+  async handleLogin(e){
+    e.preventDefault();
     const payload = {
       email: this.state.email,
       password: this.state.password
@@ -32,9 +32,9 @@ class LoginPageContainer extends Component {
     try {
         const result = await this.props.loginUser(payload);
         this.setState({showError: false});
-        result ? this.props.history.push('/dash') : 
+        result ? this.props.history.push('/dash') :
           this.props.history.push('/login');
-        
+
     } catch (err) {
       this.setState({showError: true, email: '', password: ''});
       return (err);
@@ -44,9 +44,9 @@ class LoginPageContainer extends Component {
   render() {
     return (
       <div>
-        <LoginPage handleLoginButton={this.handleLoginButton.bind(this)} onChangeText={this.onChangeText.bind(this)} email={this.state.email} password={this.state.password}/>
+        <LoginPage handleLogin={this.handleLogin} onChangeText={this.onChangeText.bind(this)} email={this.state.email} password={this.state.password}/>
         {this.state.showError ?
-          <div className="errorMessage">Invalid inputs</div> 
+          <div className="errorMessage">Invalid inputs</div>
           : 
           null
         }
