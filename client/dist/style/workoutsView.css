@@ -29,6 +29,9 @@
 .pad-right {
     padding-right: 2%;
 }
+.pad-bot {
+    padding-bottom: 2%;
+}
 .light-grey {
     background-color: #EEE;
 }
@@ -88,4 +91,10 @@
 }
 .exercise-height {
     min-height: 40px;
+}
+.pos-title {
+    margin: 4% 0 0 4%;
+}
+.pos-description {
+    margin: 1.5% 0 0 4%;
 }

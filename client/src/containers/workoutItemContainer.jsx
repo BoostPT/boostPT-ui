@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import WorkoutItem from '../components/workoutsView/workoutItem.jsx';
 
 class WorkoutItemContainer extends Component {
@@ -14,3 +15,4 @@ class WorkoutItemContainer extends Component {
 }
 
 export default WorkoutItemContainer;
+// export default connect(null, null)(WorkoutItemContainer);

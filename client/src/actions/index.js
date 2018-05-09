@@ -35,6 +35,7 @@ export const signUpUser = async (user) => {
   }
 }
 
+<<<<<<< HEAD
 export const changeUserPicture = async (formData) => {
   
   try{
@@ -46,5 +47,12 @@ export const changeUserPicture = async (formData) => {
     };
   } catch (err) {
     return (err);
+=======
+export const getWorkoutsList = async (user) => {
+  try {
+
+  } catch (err) {
+    return(err);
+>>>>>>> Added styles to exerciseItem component and created exerciseDetails component
   }
 }
