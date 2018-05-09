@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -14,8 +13,6 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
-
-import cloneDeep from 'lodash/cloneDeep';
 
 const addExerciseStyle = {
   marginTop: '20px',
@@ -56,76 +53,6 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      workoutName: '',
-      exerciseForms: [],
-      isPublic: true
-    };
-    this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
-    this.handleFormInput = this.handleFormInput.bind(this);
-    this.handleWorkoutNameInput = this.handleWorkoutNameInput.bind(this);
-    this.handleMakePrivateCheck = this.handleMakePrivateCheck.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-  }
-
-  handleAddExerciseMenuClick(e) {
-    let exerciseForm = {
-      type: e.target.innerText,
-      name: '',
-      description: ''
-    };
-
-    if (e.target.innerText === 'Strength') {
-      exerciseForm['Reps'] = '';
-      exerciseForm['Sets'] = '';
-    } else if (e.target.innerText === 'Cardio') {
-      exerciseForm['Distance'] = '';
-      exerciseForm['Pace'] = '';
-      exerciseForm['Goal Time'] = '';
-    } else if (e.target.innerText === 'Stretch') {
-      exerciseForm['Goal Time'] = '';
-    }
-
-    this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
-  }
-
-  handleWorkoutNameInput(e) {
-    this.setState({
-      workoutName: e.target.value
-    });
-  }
-
-  handleFormInput(e) {
-    const [index, key] = e.target.getAttribute('data').split(',');
-    const formCopy = cloneDeep(this.state.exerciseForms);
-
-    formCopy[index][key] = e.target.value;
-    this.setState({
-      exerciseForms: formCopy
-    });
-  }
-
-  handleMakePrivateCheck() {
-    this.setState({
-      isPublic: !this.state.isPublic
-    });
-  }
-
-  async handleFormSubmit() {
-    const payload = {
-      user_id: this.props.user_id,
-      workoutName: this.state.workoutName,
-      exerciseForms: this.state.exerciseForms,
-      isPublic: this.state.isPublic
-    };
-
-    try {
-      await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
-      console.log('Successfully saved workout');
-    }
-    catch(err) {
-      console.log('Error submitting workout form', err);
-    }
   }
 
   renderAddExerciseButton() {
@@ -136,10 +63,10 @@ class CreateWorkout extends Component {
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
         >
-          <MenuItem onClick={this.handleAddExerciseMenuClick} primaryText="Warm-up" />
-          <MenuItem onClick={this.handleAddExerciseMenuClick} primaryText="Strength" />
-          <MenuItem onClick={this.handleAddExerciseMenuClick} primaryText="Cardio" />
-          <MenuItem onClick={this.handleAddExerciseMenuClick} primaryText="Stretch" />
+          <MenuItem onClick={this.props.handleAddExerciseMenuClick} primaryText="Warm-up" />
+          <MenuItem onClick={this.props.handleAddExerciseMenuClick} primaryText="Strength" />
+          <MenuItem onClick={this.props.handleAddExerciseMenuClick} primaryText="Cardio" />
+          <MenuItem onClick={this.props.handleAddExerciseMenuClick} primaryText="Stretch" />
         </IconMenu>
       </div>
     )
@@ -150,31 +77,31 @@ class CreateWorkout extends Component {
       if (type === 'Strength') {
         return (
           <div>
-            {renderTextField('', 'Reps', this.handleFormInput, `${index},Reps`)}
-            {renderTextField('', 'Sets', this.handleFormInput, `${index},Sets`)}
+            {renderTextField('', 'Reps', this.props.handleFormInput, `${index},Reps`)}
+            {renderTextField('', 'Sets', this.props.handleFormInput, `${index},Sets`)}
           </div>
         )
       } else if (type === 'Cardio') {
         return (
           <div>
-            {renderTextField('', 'Distance', this.handleFormInput, `${index},Distance`)}
-            {renderTextField('', 'Pace', this.handleFormInput, `${index},Pace`)}
-            {renderTextField('', 'Goal Time', this.handleFormInput, `${index},Goal Time`)}
+            {renderTextField('', 'Distance', this.props.handleFormInput, `${index},Distance`)}
+            {renderTextField('', 'Pace', this.props.handleFormInput, `${index},Pace`)}
+            {renderTextField('', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
           </div>
         )
       } else if (type === 'Stretch') {
-        return renderTextField('', 'Duration', this.handleFormInput, `${index},Goal Time`);
+        return renderTextField('', 'Duration', this.props.handleFormInput, `${index},Goal Time`);
       }
     };
 
-    return this.state.exerciseForms.map((exerciseForm, i) => {
+    return this.props.exerciseForms.map((exerciseForm, i) => {
 
       const className = classNames('exercise-form', { 'odd-greyed': i%2 === 1 });
 
       return (
         <div className={className} key={i}>
-          {renderTextField('Exercise Name', `${exerciseForm.type} Exercise *`, this.handleFormInput, `${i},name`)}
-          {renderTextField('', 'Description', this.handleFormInput, `${i},description`, true, 4)}
+          {renderTextField('Exercise Name', `${exerciseForm.type} Exercise *`, this.props.handleFormInput, `${i},name`)}
+          {renderTextField('', 'Description', this.props.handleFormInput, `${i},description`, true, 4)}
           {renderFields(exerciseForm.type, i)}
         </div>
       )
@@ -188,8 +115,8 @@ class CreateWorkout extends Component {
           <h2 className="create-workout-header">Create Workout</h2>
           <br />
           <TextField
-                     value={this.state.workoutName}
-                     onChange={this.handleWorkoutNameInput}
+                     value={this.props.workoutName}
+                     onChange={this.props.handleWorkoutNameInput}
                      className="create-wo-input"
                      hintText="Workout name (optional)"
                      underlineShow={false} />
@@ -199,10 +126,10 @@ class CreateWorkout extends Component {
           {this.renderAddExerciseButton()}
           <div id="submit-wo-div">
             <Checkbox label="Make Private"
-                      onCheck={this.handleMakePrivateCheck}
+                      onCheck={this.props.handleMakePrivateCheck}
             />
             <RaisedButton id="submit-wo-btn"
-                          onClick={this.handleFormSubmit}
+                          onClick={this.props.handleFormSubmit}
                           backgroundColor={colors.grey800}
                           label="Save Workout"
                           labelColor={colors.yellow500}
@@ -216,8 +143,13 @@ class CreateWorkout extends Component {
 
 CreateWorkout.propTypes = {
   user_id: PropTypes.number.isRequired,
-  REST_SERVER_URL: PropTypes.string.isRequired,
-  API_ENDPOINT: PropTypes.string.isRequired
+  workoutName: PropTypes.string.isRequired,
+  exerciseForms: PropTypes.array.isRequired,
+  handleAddExerciseMenuClick: PropTypes.func.isRequired,
+  handleWorkoutNameInput: PropTypes.func.isRequired,
+  handleFormInput: PropTypes.func.isRequired,
+  handleMakePrivateCheck: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired
 };
 
 export default CreateWorkout;
