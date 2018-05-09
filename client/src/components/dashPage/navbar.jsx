@@ -4,7 +4,7 @@ import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
 import * as colors from 'material-ui/styles/colors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faBell, faUser } from '@fortawesome/fontawesome-free-solid'
+import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
 
 const toolbarStyle = {
   backgroundColor: colors.grey500
@@ -13,7 +13,6 @@ const toolbarStyle = {
 class Navbar extends Component{
   constructor(props){
     super(props);
-
   }
 
   render(){
@@ -22,7 +21,7 @@ class Navbar extends Component{
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
         <ToolbarGroup firstChild={true}>
-          <div id="dashPageNavbarTitle">
+          <div id="dashPageNavbarTitle" onClick={this.props.handleTitleClick}>
             <span id="boostTitle" className="dashPageNavbarTitleText"> Boost </span>
             <span id="navbarTitlePT" className="dashPageNavbarTitleText"> PT </span>
           </div>

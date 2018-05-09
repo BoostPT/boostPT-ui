@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   LOGOUT_USER,
-  AUTH_USER
+  AUTH_USER,
+  CHANGE_USER_PICTURE
 } from './types';
 
 export const logOutUser = () => {
@@ -31,5 +32,18 @@ export const signUpUser = async (user) => {
     };
   } catch (err) {
     return(err);
+  }
+}
+
+export const changeUserPicture = async (formData) => {
+  try{
+    await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, { header: {'X-Requested-With': 'XMLHttpRequest'}});
+
+    return {
+      type: CHANGE_USER_PICTURE,
+      payload: {}
+    };
+  } catch (err) {
+    return (err);
   }
 }
