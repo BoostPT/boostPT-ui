@@ -37,7 +37,7 @@ const saveWorkoutStyle = {
 };
 
 const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
-  // 4th input 'id' is the array index and state exerciseForm key separated by comma, e.g. '2,Strength'
+  // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
   return (
     <TextField
       hintText={hintText}
@@ -120,7 +120,8 @@ class CreateWorkout extends Component {
     };
 
     try {
-      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
+      await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
+      console.log('Successfully saved workout');
     }
     catch(err) {
       console.log('Error submitting workout form', err);
@@ -214,7 +215,7 @@ class CreateWorkout extends Component {
 }
 
 CreateWorkout.propTypes = {
-  user_id: PropTypes.string.isRequired,
+  user_id: PropTypes.number.isRequired,
   REST_SERVER_URL: PropTypes.string.isRequired,
   API_ENDPOINT: PropTypes.string.isRequired
 };
