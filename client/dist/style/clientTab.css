@@ -7,21 +7,22 @@
 .outerContainer {
     position: relative;
     height: 40%;
-    width: 70%;
+    width: 70vw;
 }
 
 body {
     background-color: #343F4B;
-    line-height: 1.5;s
+    line-height: 1.5;
 }
 
 .innerContainer {
     background-color: #343F4B;
     position: absolute;
-    top: 50%;
     height: 200px;
     width: 100%;
     overflow-y: scroll;
+    margin-left:-30px;
+    margin-top:25px;
 }
 
 .column {
@@ -135,6 +136,45 @@ form {
         height: 0px;
         margin: 0px;
     }
+  }
+
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
   
