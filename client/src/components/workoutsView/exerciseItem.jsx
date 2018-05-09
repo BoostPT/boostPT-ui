@@ -10,7 +10,7 @@ class ExerciseItem extends Component {
     return (
       <div className="border exercise-height">
         <div className="pos-title">
-          <img className="float-right pad-right" src={require('../../../../client/dist/images/weight.png')}></img>
+          <img className="float-right pad-right" src={require('../../../../client/dist/images/Strength.png')}></img>
           <h2 className="float-left">Bench Press</h2>
           <div className="clear-float"></div>
         </div>

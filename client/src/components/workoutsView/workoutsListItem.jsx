@@ -7,21 +7,28 @@ class WorkoutsListItem extends Component {
   }
 
   render() {
+    const { name, createdAt, isPublic, exercises } = this.props.workout;
+    const counts = this.props.getEachExerciseCount(this.props.workout.exercises);
     return (
       <div className="border font light-grey">
         <div className="pos-abs full-width">
-          <h5 className="title float-left font-title">My Workout #1</h5>
-          <p className="created float-right">created yesterday</p>
+          <h5 className="title float-left font-title">{name}</h5>
+          <p className="created float-right">created {createdAt}</p>
           <div className="clear-float"></div>
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad">1 Warm-up<img className="shift-icon-down" src={require('../../../dist/images/fire.png')} alt="stretching icon"></img></p>
-          <p className="float-left pad">1 Cardio<img className="shift-icon-down" src={require('../../../dist/images/running.png')} alt="stretching icon"></img></p>
+          <p className="float-left pad">{counts['Warm-up'] || 0} Warm-up<img className="shift-icon-down" src={require('../../../dist/images/Warm-up.png')}></img></p>
+          <p className="float-left pad">{counts['Cardio'] || 0} Cardio<img className="shift-icon-down" src={require('../../../dist/images/Cardio.png')}></img></p>
           <div className="clear-float"></div>
-          <p className="float-left pad">8 Strength<img className="shift-icon-down" src={require('../../../dist/images/weight.png')} alt="stretching icon"></img></p>
-          <p className="float-left add-left-pad">3 Stretch<img className="shift-icon-down" src={require('../../../dist/images/stretch.png')} alt="stretching icon"></img></p>
-          <img className="float-right status" src={require('../../../dist/images/earth.png')} alt="stretching icon"></img>
+          <p className="float-left pad">{counts['Strength'] || 0} Strength<img className="shift-icon-down" src={require('../../../dist/images/Strength.png')}></img></p>
+          <p className="float-left add-left-pad">{counts['Stretch'] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/Stretch.png')}></img></p>
+          {
+            isPublic ? 
+              <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>
+              :
+              <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
+          }
           <div className="clear-float"></div>
         </div>
       </div>

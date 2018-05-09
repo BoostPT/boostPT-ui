@@ -17,10 +17,26 @@ class WorkoutsList extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
-      <Paper className="pos-abs outer-border" style={style} zDepth={1} children={<WorkoutsListItem />} />
+      <Paper 
+      className="pos-abs outer-border"
+      style={style}
+      zDepth={1}
+      children={
+        Array.isArray(this.props.workouts) ? 
+          this.props.workouts.map(workout => {
+            return <WorkoutsListItem 
+                    key={workout.createdAt} 
+                    workout={workout} 
+                    getEachExerciseCount={this.props.getEachExerciseCount}
+                   />
+          })
+          :
+          null
+      }
+      />
     );
   }
 }
