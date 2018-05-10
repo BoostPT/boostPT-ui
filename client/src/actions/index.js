@@ -12,12 +12,33 @@ import {
   DELETE_WORKOUT
 } from './types';
 
+
 export const authUser = (user) => {
   return {
     type: AUTH_USER,
     payload: user
   };
 };
+
+export const logOutUser = () => {
+  // Delete cookie
+
+  return { type: LOGOUT_USER };
+}
+
+export const loginUser = async (user) => {
+  try {
+    const result = await axios.post('http://localhost:8000/api/auth/login', user);
+
+    return {
+      type: AUTH_USER,
+      payload: result.data
+    };
+  } catch (err) {
+    return(err);
+  }
+}
+
 
 export const logOutUser = () => {
   // Move these 2 lines to the LogOut function on the component when it get's implemented.
