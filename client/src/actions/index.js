@@ -350,6 +350,7 @@ export const loginUser = async (user) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+<<<<<<< 0d0cea9a6cb0d740b39f68a115899da60185147e
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 =======
@@ -434,6 +435,9 @@ export const loginUser = async (user) => {
 >>>>>>> Trying to add environment variables globally for client ui side
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
