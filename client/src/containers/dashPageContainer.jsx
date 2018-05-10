@@ -81,6 +81,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
 <<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -128,9 +129,16 @@ class DashPageContainer extends Component {
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+=======
+<<<<<<< 8b24a240783f5f5b6651172dddb6859f6f6ad88f
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< 441b5af5b2d09ca3619b9c5792b9f1194a1b31bd
 =======
 
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+<<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
+=======
+=======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
