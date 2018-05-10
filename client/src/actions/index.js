@@ -131,6 +131,7 @@ export const logOutUser = dispatch => {
   history.push('/');
 };
 
+<<<<<<< 3fddcc23dbf02906299cb4c2c27c6cd07861c2e7
 <<<<<<< 00980414dae0b29645b02ac8baf5976b5c42d645
 
 <<<<<<< 5f57f5d186b6d48ed308513bb582d9a832b14a57
@@ -279,6 +280,9 @@ export const loginUser = async (user) => {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -308,6 +312,7 @@ export const changeUserPicture = async (payload) => {
     await axios.put(signedUrl.data, payload.file[0], options);
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+<<<<<<< 3fddcc23dbf02906299cb4c2c27c6cd07861c2e7
 <<<<<<< 1597abc32d05525546d667333c3e0cb7f2e81923
     
 =======
@@ -337,6 +342,9 @@ export const loginUser = async (user) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+    
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< febdcb02b2453d8c961474d1b0a1cfa68bd0297f
