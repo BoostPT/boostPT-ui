@@ -3,10 +3,12 @@ import CreateWorkout from '../components/CreateWorkout.jsx';
 
 import axios from 'axios';
 import cloneDeep from 'lodash/cloneDeep';
+import omit from 'lodash/omit';
+import shortid from 'shortid';
 
 // Change where we load these from later?
 const REST_SERVER_URL='http://localhost:8000/api';
-const API_ENDPOINT='/workouts/addWorkout'
+const API_ENDPOINT='/workouts/addWorkout';
 
 class CreateWorkoutContainer extends Component {
   constructor(props) {
@@ -19,6 +21,7 @@ class CreateWorkoutContainer extends Component {
     this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleWorkoutNameInput = this.handleWorkoutNameInput.bind(this);
+    this.handleDeleteExercise = this.handleDeleteExercise.bind(this);
     this.handleMakePrivateCheck = this.handleMakePrivateCheck.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
@@ -41,6 +44,9 @@ class CreateWorkoutContainer extends Component {
       exerciseForm['Goal Time'] = '';
     }
 
+    // Add render id so React can correctly re-render upon deletion
+    exerciseForm.renderId = shortid.generate();
+
     this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
   }
 
@@ -60,6 +66,11 @@ class CreateWorkoutContainer extends Component {
     });
   }
 
+  handleDeleteExercise(e) {
+    const renderId = e.currentTarget.getAttribute('data');
+    this.setState({ exerciseForms: this.state.exerciseForms.filter(form => form.renderId !== renderId) });
+  }
+
   handleMakePrivateCheck() {
     this.setState({
       isPublic: !this.state.isPublic
@@ -67,10 +78,12 @@ class CreateWorkoutContainer extends Component {
   }
 
   async handleFormSubmit() {
+    // Remove renderId from object
+    const forms = this.state.exerciseForms.map(form => _.omit(form, 'renderId'));
     const payload = {
       user_id: this.props.user_id,
       workoutName: this.state.workoutName,
-      exerciseForms: this.state.exerciseForms,
+      exerciseForms: forms,
       isPublic: this.state.isPublic
     };
 
@@ -92,6 +105,7 @@ class CreateWorkoutContainer extends Component {
         handleAddExerciseMenuClick={this.handleAddExerciseMenuClick}
         handleWorkoutNameInput={this.handleWorkoutNameInput}
         handleFormInput={this.handleFormInput}
+        handleDeleteExercise={this.handleDeleteExercise}
         handleMakePrivateCheck={this.handleMakePrivateCheck}
         handleFormSubmit={this.handleFormSubmit}
       />

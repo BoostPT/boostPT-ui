@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -10,28 +10,10 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentClear from 'material-ui/svg-icons/content/clear';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
-
-const addExerciseStyle = {
-  marginTop: '20px',
-  marginLeft: '20px'
-};
-
-const exerciseFormFloatStyle = {
-  color: '#9E9E9E',
-  fontSize: '14px'
-};
-
-const formUnderlineFocusStyle = {
-  borderColor: colors.yellow500
-};
-
-const saveWorkoutStyle = {
-  marginTop: '8px',
-  marginBottom: '20px',
-};
 
 const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
   // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
@@ -39,11 +21,11 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
     <TextField
       hintText={hintText}
       floatingLabelText={floatingLabelText}
-      floatingLabelStyle={exerciseFormFloatStyle}
+      floatingLabelStyle={{ color: '#9E9E9E', fontSize: '14px'}}
       floatingLabelFixed={true}
       multiLine={multiLine}
       rowsMax={rowsMax}
-      underlineFocusStyle={formUnderlineFocusStyle}
+      underlineFocusStyle={{ borderColor: colors.yellow500 }}
       data={id}
       onChange={handleChange}
     />
@@ -59,7 +41,7 @@ class CreateWorkout extends Component {
     return (
       <div className="add-exercise-menu">
         <IconMenu
-          iconButtonElement={<FloatingActionButton backgroundColor={colors.grey600} style={addExerciseStyle} mini={true}><ContentAdd /></FloatingActionButton>}
+          iconButtonElement={<FloatingActionButton className="add-exercise" backgroundColor={colors.grey600} mini={true}><ContentAdd /></FloatingActionButton>}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
         >
@@ -76,18 +58,18 @@ class CreateWorkout extends Component {
     const renderFields = (type, index) => {
       if (type === 'Strength') {
         return (
-          <div>
+          <Fragment>
             {renderTextField('', 'Reps', this.props.handleFormInput, `${index},Reps`)}
             {renderTextField('', 'Sets', this.props.handleFormInput, `${index},Sets`)}
-          </div>
+          </Fragment>
         )
       } else if (type === 'Cardio') {
         return (
-          <div>
+          <Fragment>
             {renderTextField('', 'Distance', this.props.handleFormInput, `${index},Distance`)}
             {renderTextField('', 'Pace', this.props.handleFormInput, `${index},Pace`)}
             {renderTextField('', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
-          </div>
+          </Fragment>
         )
       } else if (type === 'Stretch') {
         return renderTextField('', 'Duration', this.props.handleFormInput, `${index},Goal Time`);
@@ -99,11 +81,16 @@ class CreateWorkout extends Component {
       const className = classNames('exercise-form', { 'odd-greyed': i%2 === 1 });
 
       return (
-        <div className={className} key={i}>
+        <li className={className} key={exerciseForm.renderId}>
           {renderTextField('Exercise Name', `${exerciseForm.type} Exercise *`, this.props.handleFormInput, `${i},name`)}
+          <ContentClear className="delete-exercise"
+                        data={exerciseForm.renderId}
+                        color={colors.grey400}
+                        hoverColor={colors.grey800}
+                        onClick={this.props.handleDeleteExercise} />
           {renderTextField('', 'Description', this.props.handleFormInput, `${i},description`, true, 4)}
           {renderFields(exerciseForm.type, i)}
-        </div>
+        </li>
       )
     });
   }
@@ -121,7 +108,9 @@ class CreateWorkout extends Component {
                      hintText="Workout name (optional)"
                      underlineShow={false} />
           <Divider />
-          {this.renderExerciseForms()}
+          <ol>
+            {this.renderExerciseForms()}
+          </ol>
           <Divider />
           {this.renderAddExerciseButton()}
           <div id="submit-wo-div">
@@ -133,7 +122,8 @@ class CreateWorkout extends Component {
                           backgroundColor={colors.grey800}
                           label="Save Workout"
                           labelColor={colors.yellow500}
-                          style={saveWorkoutStyle} />
+                          className="save-workout-btn"
+            />
           </div>
         </div>
       </Paper>
@@ -148,6 +138,7 @@ CreateWorkout.propTypes = {
   handleAddExerciseMenuClick: PropTypes.func.isRequired,
   handleWorkoutNameInput: PropTypes.func.isRequired,
   handleFormInput: PropTypes.func.isRequired,
+  handleDeleteExercise: PropTypes.func.isRequired,
   handleMakePrivateCheck: PropTypes.func.isRequired,
   handleFormSubmit: PropTypes.func.isRequired
 };
