@@ -115,10 +115,20 @@ export const logOutUser = dispatch => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 };
 
+<<<<<<< e55ec29fcca38864bb6bcfbdf2cf0e2fe6d5d15e
 <<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+export const logOutUser = dispatch => {
+  dispatch({ type: LOGOUT_USER });
+  document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  history.push('/');
+};
+
+
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -148,6 +158,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< e55ec29fcca38864bb6bcfbdf2cf0e2fe6d5d15e
 <<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 <<<<<<< b9f79562bcc5b8737233d9d1a802954164da0150
 <<<<<<< ce1b1a74a443c5d2f029d355ad0c6278b4874992
@@ -392,6 +403,8 @@ export const loginUser = async (user) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
