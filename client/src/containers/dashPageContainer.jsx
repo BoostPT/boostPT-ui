@@ -63,6 +63,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< 7ad99b412af4c4252725782728d000047d3ca421
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
@@ -79,6 +80,9 @@ class DashPageContainer extends Component {
 =======
 =======
 =======
+=======
+<<<<<<< 5bd0d706d128614d2d21d21434719e009fbc3881
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
@@ -94,6 +98,8 @@ class DashPageContainer extends Component {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
