@@ -104,6 +104,7 @@ export const changeUserPicture = async (payload) => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 2f4813c99cc686be5511793421bbc4fc742701ef
 <<<<<<< 4c566fa69cd120358742c9411f15274b2d2026d2
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
 <<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
@@ -120,6 +121,12 @@ export const loginUser = async (user) => {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+<<<<<<< 8970b96d32f9e79768783abb1d368da3ebb87a5d
+=======
+
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return {
       type: AUTH_USER,
       payload: result.data
