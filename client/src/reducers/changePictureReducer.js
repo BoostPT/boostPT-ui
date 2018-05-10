@@ -24,9 +24,12 @@ export default function(state = {}, action) {
 =======
 
   if(action.type === CHANGE_USER_PICTURE){
+<<<<<<< f3fc5c1401a7d973d278ed8b766af6d385bf4cae
     console.log("made it inside reducer");
     console.log("action payload",action.payload);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return Object.assign({}, state, {
       user: action.payload 
     });
