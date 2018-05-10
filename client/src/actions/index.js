@@ -49,6 +49,7 @@ export const authUser = (user, endpoint) => {
   };
 };
 
+<<<<<<< 0dd19d593d89bfae31a342f3f7c01a11fa103bed
 export const logOutUser = () => {
   // Delete cookie
 
@@ -101,7 +102,45 @@ export const logOutUser = () => {
   return {
     type: LOGOUT_USER
   };
+=======
+<<<<<<< df52332ec226b9c2efc81b423d6e39e8b713ee1a
+export const logOutUser = dispatch => {
+  dispatch({ type: LOGOUT_USER });
+  document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  history.push('/');
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 };
+=======
+export const logOutUser = () => {
+  // Delete cookie
+
+  return { type: LOGOUT_USER };
+}
+
+export const loginUser = async (user) => {
+  try {
+    const result = await axios.post('http://localhost:8000/api/auth/login', user);
+    return {
+      type: AUTH_USER,
+      payload: result.data
+    };
+  } catch (err) {
+    return(err);
+  }
+}
+
+export const signUpUser = async (user) => {
+  try {
+    await axios.post('http://localhost:8000/api/auth/signup', user);
+    return {
+      type: AUTH_USER,
+      payload: { username: user.username, isTrainer: user.isTrainer }
+    };
+  } catch (err) {
+    return(err);
+  }
+}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 
 <<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -261,6 +300,7 @@ export const changeUserPicture = async (payload) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     await axios.put(signedUrl.data, payload.file[0], options);
 
+<<<<<<< 0dd19d593d89bfae31a342f3f7c01a11fa103bed
 <<<<<<< 8c20b07759c652f9508eb819bd5b7a619ba4fd2d
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
@@ -323,6 +363,8 @@ export const changeUserPicture = async (payload) => {
 =======
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
