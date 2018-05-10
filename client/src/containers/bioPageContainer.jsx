@@ -9,7 +9,7 @@ class BioPageContainer extends Component {
 
     this.state = {
       searchText: '',
-      userInfo: this.props.userInfo
+      userInfo: this.props.location.state
     }
   }
 
@@ -19,13 +19,11 @@ class BioPageContainer extends Component {
   }
 
   handleUserNameClick(){
-    // console.log(this.props.userInfo);
-    // Grab biopageinfo for user from database put onto store?
     this.props.history.push(`/bio/${this.props.userInfo.id}`);
   }
 
   handleTitleClick(){
-    this.props.history.push('/dash');
+    this.props.history.push({pathname: '/dash', state: this.state.userInfo});
   }
 
   async handleOnDrop(files){

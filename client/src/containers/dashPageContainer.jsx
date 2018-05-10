@@ -29,8 +29,9 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
-    // Grab biopageinfo for user from database put onto store?
-    this.props.history.push(`/bio/${this.props.user.id}`);
+
+    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
+    this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }
 
   handleWorkoutsTabClick(){
