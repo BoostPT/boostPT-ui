@@ -166,6 +166,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< ec3cbaae535e86b167bc7d05f4622600c76c9591
 <<<<<<< e55ec29fcca38864bb6bcfbdf2cf0e2fe6d5d15e
 <<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 <<<<<<< b9f79562bcc5b8737233d9d1a802954164da0150
@@ -329,6 +330,9 @@ export const loginUser = async (user) => {
     console.log("login action",result);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 <<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
