@@ -4,7 +4,8 @@ import {
   AUTH_USER,
   CHANGE_USER_PICTURE,
   FETCH_WORKOUTS,
-  SELECT_WORKOUT
+  SELECT_WORKOUT,
+  TRAINER_CLIENT_LIST
 } from './types';
 
 export const logOutUser = () => {
@@ -61,7 +62,20 @@ export const getWorkoutsList = async (userId) => {
     return {
       type: FETCH_WORKOUTS,
       payload: workouts.data
-    }
+    };
+  } catch (err) {
+    return (err);
+  }
+}
+
+export const trainerClientList = async (user) => {
+  try {
+    const result = await axios.get('http://localhost:8000/api/users/1')
+    //change this to query for current trainer
+    return {
+      type: TRAINER_CLIENT_LIST,
+      payload: {result: result.data}
+    };
   } catch (err) {
     return (err);
   }
