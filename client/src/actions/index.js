@@ -99,6 +99,13 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< ab47a668d03699c482ebd270661bac20822ae4a9
+=======
+export const loginUser = async (user) => {
+  try {
+    const result = await axios.post('http://localhost:8000/api/auth/login', user);
+    console.log("login action",result);
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
@@ -164,14 +171,22 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-    await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+    await axios.put(signedUrl.data, payload.file[0], options);
+
+<<<<<<< ab47a668d03699c482ebd270661bac20822ae4a9
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data
+=======
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    return {
+      type: CHANGE_USER_PICTURE,
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     };
   } catch (err) {
     return (err);
