@@ -10,6 +10,7 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
+<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
@@ -23,9 +24,14 @@ class DashPageContainer extends Component {
       activeTab: 1
 =======
 =======
+=======
+<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
       UserfromBioPageChange: this.props.location.state,
       activeTab: 1
 =======
@@ -57,6 +63,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
@@ -71,6 +78,9 @@ class DashPageContainer extends Component {
 
 =======
 =======
+=======
+<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
@@ -81,6 +91,9 @@ class DashPageContainer extends Component {
 =======
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});

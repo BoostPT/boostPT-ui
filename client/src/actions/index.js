@@ -105,6 +105,7 @@ export const loginUser = async (user) => {
   try {
 <<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
 <<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
 <<<<<<< 2f4813c99cc686be5511793421bbc4fc742701ef
 <<<<<<< 4c566fa69cd120358742c9411f15274b2d2026d2
@@ -136,6 +137,9 @@ export const loginUser = async (user) => {
 =======
     console.log("login action",result);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return {
       type: AUTH_USER,
       payload: result.data
@@ -211,6 +215,7 @@ export const changeUserPicture = async (payload) => {
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< 287f55cc081dac75af156b387b1752b9110f6e7b
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 47fe189abb48275cdc40bf04e067fee5fef4c3ae
@@ -222,12 +227,21 @@ export const changeUserPicture = async (payload) => {
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+=======
+<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
