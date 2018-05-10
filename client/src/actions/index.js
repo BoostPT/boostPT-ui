@@ -58,7 +58,7 @@ export const changeUserPicture = async (payload) => {
 
     return {
       type: CHANGE_USER_PICTURE,
-      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
     };
   } catch (err) {
     return (err);
