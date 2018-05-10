@@ -344,6 +344,7 @@ export const loginUser = async (user) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 
+<<<<<<< 5df47ec1eb80863c109d6191b471f27e30646676
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
@@ -448,6 +449,8 @@ export const loginUser = async (user) => {
 =======
 
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
