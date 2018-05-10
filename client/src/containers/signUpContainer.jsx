@@ -27,7 +27,8 @@ class SignupContainer extends Component {
     this.setState({ isTrainer: isChecked });
   }
 
-  handleSignupClick() {
+  handleSignupClick(e) {
+    e.preventDefault();
     const body = Object.assign({}, this.state);
     this.props.setAuthUser(body);
   }

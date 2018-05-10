@@ -5,8 +5,17 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import * as colors from "material-ui/styles/colors";
 
-const formUnderlineFocusStyle = {
-  borderColor: colors.yellow500
+const renderTextField = (name, hintText, type, onChange, value) => {
+  return (
+    <TextField
+      name={name}
+      hintText={hintText}
+      type={type}
+      onChange={onChange}
+      value={value}
+      underlineFocusStyle={{ borderColor: colors.yellow500 }}
+    />
+  )
 };
 
 class LoginPage extends Component {
@@ -16,28 +25,19 @@ class LoginPage extends Component {
 
   render(){
     return (
-      <Paper id="login-outer" zDepth={3}>
-        <div id="login-inner">
+      <Paper className="login-outer" zDepth={3}>
+        <div className="auth-inner">
           <h2>Sign In</h2>
-          <form id="login-form">
-            <TextField
-              name='email'
-              hintText='Email'
-              onChange={this.props.onChangeText}
-              value={this.props.email}
-              underlineFocusStyle={formUnderlineFocusStyle}
-            />
+          <form className="auth-form">
+            {renderTextField('email', 'Email', 'text', this.props.onChangeText, this.props.email)}
             <br />
-            <TextField
-              name='password'
-              hintText='Password'
-              type="password"
-              onChange={this.props.onChangeText}
-              value={this.props.password}
-              underlineFocusStyle={formUnderlineFocusStyle}
-            />
+            {renderTextField('password', 'Password', 'password', this.props.onChangeText, this.props.password)}
             <br />
-            <FlatButton type="submit" label="Login" onClick={this.props.handleLogin}/>
+            <FlatButton
+              type="submit"
+              label="Login"
+              onClick={this.props.handleLogin}
+            />
           </form>
         </div>
       </Paper>
