@@ -9,6 +9,7 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
+<<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
 <<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -63,6 +64,10 @@ class DashPageContainer extends Component {
       activeTab: 1
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      activeTab: 1,
+      UserfromBioPageChange: this.props.location.state
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -81,6 +86,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
 <<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
 <<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
@@ -140,6 +146,8 @@ class DashPageContainer extends Component {
 =======
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});

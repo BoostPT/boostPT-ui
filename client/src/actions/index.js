@@ -313,8 +313,10 @@ export const changeUserPicture = async (payload) => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
     console.log("login action",result);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+<<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
@@ -375,6 +377,11 @@ export const loginUser = async (user) => {
 >>>>>>> Trying to add environment variables globally for client ui side
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+=======
+
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
@@ -480,8 +487,12 @@ export const changeUserPicture = async (payload) => {
 
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
