@@ -44,3 +44,9 @@
   color: #FFEB3B;
 }
 
+.tab-active {
+  background-color: #5A6978;
+  color: #FFEB3B;
+  text-transform: none;
+}
+

@@ -172,6 +172,7 @@ class CreateWorkout extends Component {
                           onClick={this.props.handleFormSubmit}
                           backgroundColor={colors.grey800}
                           label="Save Workout"
+                          labelStyle={{ textTransform: 'none'}}
                           labelColor={colors.yellow500}
                           className="save-workout-btn"
             />

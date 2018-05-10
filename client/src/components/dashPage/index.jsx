@@ -1,26 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
 
 const tabStyle = {
-  defaultTab: {
+  standard: {
     background: "#C3CAD3",
     color: "#5A6978",
     textTransform: "none"
   },
-  activeTab: {
+  active: {
     background: "#5A6978",
     color: "#FFEB3B",
     textTransform: "none"
   }
-};
-
-const tabsStyle = {
-  marginTop: "40px",
-  marginLeft: "40px",
-  width: "400px"
 };
 
 class DashPage extends Component{
@@ -29,35 +24,49 @@ class DashPage extends Component{
   }
 
   render(){
+
+    const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
+
     return(
-      <div>
         <div className="dashPage">
           <Navbar userInfo={this.props.userInfo} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
 
           <div className="dashPageBody">
+            <Tabs
+              className="tabs"
+              inkBarStyle={{display: "none"}}
+              initialSelectedIndex={1}
+            >
+              <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <div>
+
+                </div>
+              </Tab>
+              <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <div>
+
+                </div>
+              </Tab>
+              <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <div>
+
+                </div>
+              </Tab>
+            </Tabs>
+            <CreateWorkoutContainer user_id={this.props.userInfo.id} />
           </div>
         </div>
-        <Tabs style={tabsStyle} inkBarStyle={{display: "none"}}>
-          <Tab style={tabStyle.defaultTab} disableTouchRipple={true} className="tab" label="Schedule" >
-            <div>
-
-            </div>
-          </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Workouts" style={tabStyle.defaultTab}  >
-            <div>
-              
-            </div>
-          </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Clients" style={tabStyle.defaultTab} >
-            <div>
-              
-            </div>
-          </Tab>
-        </Tabs>
-        <CreateWorkoutContainer user_id={this.props.userInfo.id} />
-      </div>
     );
   }
 }
+
+DashPage.propTypes = {
+  userInfo: PropTypes.object.isRequired,
+  activeTab: PropTypes.number.isRequired,
+  handleTabSelect: PropTypes.func.isRequired,
+  handleOnChangeText: PropTypes.func.isRequired,
+  searchText: PropTypes.string.isRequired,
+  handleUserNameClick: PropTypes.func.isRequired
+};
 
 export default DashPage;
