@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import CreateWorkout from '../components/CreateWorkout.jsx';
 
+import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
-import cloneDeep from 'lodash/cloneDeep';
 import omit from 'lodash/omit';
 import shortid from 'shortid';
 
@@ -22,6 +22,7 @@ class CreateWorkoutContainer extends Component {
     this.handleFormInput = this.handleFormInput.bind(this);
     this.handleWorkoutNameInput = this.handleWorkoutNameInput.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
+    this.handleSwapOrder = this.handleSwapOrder.bind(this);
     this.handleDeleteExercise = this.handleDeleteExercise.bind(this);
     this.handleMakePrivateCheck = this.handleMakePrivateCheck.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -54,8 +55,7 @@ class CreateWorkoutContainer extends Component {
 
   handleFormInput(e) {
     const [index, key] = e.target.getAttribute('data').split(',');
-    const formCopy = cloneDeep(this.state.exerciseForms);
-
+    let formCopy = [...this.state.exerciseForms];
     formCopy[index][key] = e.target.value;
     this.setState({
       exerciseForms: formCopy
@@ -80,6 +80,24 @@ class CreateWorkoutContainer extends Component {
     this.setState({ exerciseForms: forms });
   }
 
+  handleSwapOrder(e) {
+    const renderId = e.currentTarget.getAttribute('data');
+    const arrow = e.currentTarget.getAttribute('data-arrow');
+    let forms = [...this.state.exerciseForms];
+    let i;
+    for (i = 0; i < forms.length; i++) {
+      if (forms[i].renderId === renderId) {
+        break;
+      }
+    }
+    if (arrow === 'up') {
+      swapArrayElements(forms, i, i - 1);
+    } else if (arrow === 'down') {
+      swapArrayElements(forms, i, i + 1);
+    }
+    this.setState({ exerciseForms: forms });
+  }
+
   handleDeleteExercise(e) {
     const renderId = e.currentTarget.getAttribute('data');
     this.setState({ exerciseForms: this.state.exerciseForms.filter(form => form.renderId !== renderId) });
@@ -92,7 +110,7 @@ class CreateWorkoutContainer extends Component {
   }
 
   async handleFormSubmit() {
-    const forms = this.state.exerciseForms.map(form => _.omit(form, ['renderId', 'expanded']));
+    const forms = this.state.exerciseForms.map(form => omit(form, ['renderId', 'expanded']));
     const payload = {
       user_id: this.props.user_id,
       workoutName: this.state.workoutName,
@@ -119,6 +137,7 @@ class CreateWorkoutContainer extends Component {
         handleWorkoutNameInput={this.handleWorkoutNameInput}
         handleFormInput={this.handleFormInput}
         handleExpand={this.handleExpand}
+        handleSwapOrder={this.handleSwapOrder}
         handleDeleteExercise={this.handleDeleteExercise}
         handleMakePrivateCheck={this.handleMakePrivateCheck}
         handleFormSubmit={this.handleFormSubmit}

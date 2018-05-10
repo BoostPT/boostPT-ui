@@ -36,6 +36,16 @@
   cursor: pointer;
 }
 
+.swap-arrow {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.swap-arrow:hover {
+  cursor: pointer;
+}
+
 .delete-exercise {
   float: right;
   margin-top: 10px;

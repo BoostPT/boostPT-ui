@@ -8,9 +8,11 @@ import Divider from 'material-ui/Divider';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import Expanded from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import Collapsed from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import UpArrow from 'material-ui/svg-icons/navigation/arrow-upward';
+import DownArrow from 'material-ui/svg-icons/navigation/arrow-downward';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -63,6 +65,32 @@ class CreateWorkout extends Component {
     );
   }
 
+  renderSwapArrows(renderId, index, length) {
+    const upArrow = <UpArrow className="swap-arrow" data={renderId} data-arrow="up" color={colors.grey400} hoverColor={colors.grey800} onClick={this.props.handleSwapOrder} />;
+    const downArrow = <DownArrow className="swap-arrow" data={renderId} data-arrow="down" color={colors.grey400} hoverColor={colors.grey800} onClick={this.props.handleSwapOrder} />;
+    if (length === 1) return null;
+    if (length === 2) {
+      if (index === 0) {
+        return downArrow;
+      } else {
+        return upArrow;
+      }
+    } else {
+      if (index === 0) {
+        return downArrow;
+      } else if (index === length - 1) {
+        return upArrow;
+      } else {
+        return (
+          <Fragment>
+            {downArrow}
+            {upArrow}
+          </Fragment>
+        )
+      }
+    }
+  }
+
   renderExerciseForms() {
     const renderFields = (type, index, expanded) => {
       if (type === 'Warm-up' && expanded) {
@@ -111,6 +139,7 @@ class CreateWorkout extends Component {
                         hoverColor={colors.grey800}
                         onClick={this.props.handleDeleteExercise} />
           {this.renderExpandIcon(exerciseForm.expanded, exerciseForm.renderId)}
+          {this.renderSwapArrows(exerciseForm.renderId, i, this.props.exerciseForms.length)}
           {renderFields(exerciseForm.type, i, exerciseForm.expanded)}
         </li>
       )
@@ -161,6 +190,7 @@ CreateWorkout.propTypes = {
   handleWorkoutNameInput: PropTypes.func.isRequired,
   handleFormInput: PropTypes.func.isRequired,
   handleExpand: PropTypes.func.isRequired,
+  handleSwapOrder: PropTypes.func.isRequired,
   handleDeleteExercise: PropTypes.func.isRequired,
   handleMakePrivateCheck: PropTypes.func.isRequired,
   handleFormSubmit: PropTypes.func.isRequired
