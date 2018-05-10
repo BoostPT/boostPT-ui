@@ -136,6 +136,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< b9f79562bcc5b8737233d9d1a802954164da0150
 <<<<<<< ce1b1a74a443c5d2f029d355ad0c6278b4874992
 <<<<<<< eea93a6d68f8e1010931c63ca3cfc8c373433eba
 <<<<<<< a3fa5b193aa4496e166b7c36f56ff7683a6a1694
@@ -316,6 +317,9 @@ export const changeUserPicture = async (payload) => {
     //post to the database the link url and change the picture link in the url
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+    //post to the database the link url and change the picture link in the url
+>>>>>>> Trying to add environment variables globally for client ui side
 =======
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
