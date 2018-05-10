@@ -29,7 +29,6 @@ export const logOutUser = () => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
-
     return {
       type: AUTH_USER,
       payload: result.data
