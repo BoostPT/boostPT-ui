@@ -104,12 +104,24 @@ export const changeUserPicture = async (payload) => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
 <<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
 <<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
 <<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
     console.log("login action",result);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
+=======
+    console.log("login action",result);
+    return {
+      type: AUTH_USER,
+      payload: result.data
+    };
+  } catch (err) {
+    return(err);
+  }
+}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 
 <<<<<<< ed7088f2ba3101d9be75fe1fb49a39c9f4696d24
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
@@ -143,14 +155,23 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-    await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+    await axios.put(signedUrl.data, payload.file[0], options);
+
+<<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 47fe189abb48275cdc40bf04e067fee5fef4c3ae
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     };
   } catch (err) {
     return (err);
