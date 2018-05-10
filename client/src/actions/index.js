@@ -103,7 +103,10 @@ export const logOutUser = () => {
   };
 };
 
+<<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
+=======
+>>>>>>> Trying to add environment variables globally for client ui side
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -127,6 +130,7 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+<<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
 
     await axios.put(signedUrl.data, payload.file[0], options);
 
@@ -247,6 +251,12 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
     
+=======
+    await axios.put(signedUrl.data, payload.file[0], options);
+    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    //post to the database the link url and change the picture link in the url
+>>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
