@@ -51,13 +51,14 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-    await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
-    //post to the database the link url and change the picture link in the url
+    await axios.put(signedUrl.data, payload.file[0], options);
+
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
     return {
       type: CHANGE_USER_PICTURE,
-      payload: {}
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
     };
   } catch (err) {
     return (err);
