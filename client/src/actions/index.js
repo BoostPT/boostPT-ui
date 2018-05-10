@@ -105,6 +105,7 @@ export const loginUser = async (user) => {
   try {
 <<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
 <<<<<<< 2f4813c99cc686be5511793421bbc4fc742701ef
 <<<<<<< 4c566fa69cd120358742c9411f15274b2d2026d2
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
@@ -132,6 +133,9 @@ export const loginUser = async (user) => {
     const result = await axios.post('http://localhost:8000/api/auth/login', 
     user);
 >>>>>>> Working BioPage ui after rebase
+=======
+    console.log("login action",result);
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: AUTH_USER,
       payload: result.data
@@ -177,6 +181,7 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+<<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
 <<<<<<< 9df407eb6b54f47a0834794b6b1762ba6fcb56cb
 
     await axios.put(signedUrl.data, payload.file[0], options);
@@ -196,12 +201,17 @@ export const changeUserPicture = async (payload) => {
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
+=======
+
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 287f55cc081dac75af156b387b1752b9110f6e7b
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 47fe189abb48275cdc40bf04e067fee5fef4c3ae
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
@@ -211,6 +221,13 @@ export const changeUserPicture = async (payload) => {
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+<<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     };
   } catch (err) {
     return (err);
