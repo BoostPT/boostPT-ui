@@ -1,5 +1,9 @@
 import axios from 'axios';
+<<<<<<< 56eb02ef0de5caf3d281168ad0d7b3c9d218bc12
 
+=======
+// import env from 'dotenv';
+>>>>>>> Trying to add environment variables globally for client ui side
 require('dotenv').config();
 
 import {
