@@ -9,11 +9,6 @@ class WorkoutsListContainer extends Component {
   }
 
   getEachExerciseCount(exercises) {
-    /**
-     * @param {Array} exercises - an array of exercises
-     * 
-     * @return {Object} contains each workout type and their counts
-     */
     return exercises.reduce((counts, exercise) => {
       counts[exercise.type] = counts[exercise.type] + 1 || 1;
       return counts;
@@ -32,7 +27,7 @@ class WorkoutsListContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    workouts: state.workoutsReducer
+    workouts: state.workoutsReducer.workouts
   }
 };
 

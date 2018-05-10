@@ -7,24 +7,24 @@ class WorkoutsListItem extends Component {
   }
 
   render() {
-    const { name, createdAt, isPublic, exercises } = this.props.workout;
+    const { name, created_at, is_public, exercises } = this.props.workout;
     const counts = this.props.getEachExerciseCount(this.props.workout.exercises);
     return (
       <div className="border font light-grey">
         <div className="pos-abs full-width">
           <h5 className="title float-left font-title">{name}</h5>
-          <p className="created float-right">created {createdAt}</p>
+          <p className="created float-right">created {created_at}</p>
           <div className="clear-float"></div>
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad">{counts['Warm-up'] || 0} Warm-up<img className="shift-icon-down" src={require('../../../dist/images/Warm-up.png')}></img></p>
-          <p className="float-left pad">{counts['Cardio'] || 0} Cardio<img className="shift-icon-down" src={require('../../../dist/images/Cardio.png')}></img></p>
+          <p className="float-left pad">{counts[0] || 0} Warm-up<img className="shift-icon-down" src={require('../../../dist/images/Warm-up.png')}></img></p>
+          <p className="float-left pad">{counts[2] || 0} Cardio<img className="shift-icon-down" src={require('../../../dist/images/Cardio.png')}></img></p>
           <div className="clear-float"></div>
-          <p className="float-left pad">{counts['Strength'] || 0} Strength<img className="shift-icon-down" src={require('../../../dist/images/Strength.png')}></img></p>
-          <p className="float-left add-left-pad">{counts['Stretch'] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/Stretch.png')}></img></p>
+          <p className="float-left pad">{counts[1] || 0} Strength<img className="shift-icon-down" src={require('../../../dist/images/Strength.png')}></img></p>
+          <p className="float-left add-left-pad">{counts[3] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/Stretch.png')}></img></p>
           {
-            isPublic ? 
+            is_public ? 
               <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>
               :
               <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>

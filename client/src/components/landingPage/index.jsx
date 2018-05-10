@@ -11,12 +11,6 @@ import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
 /****/
 
 
-/****/
-import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
-import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx'; 
-/****/
-
-
 const toolbarStyle = {
   backgroundColor: colors.grey900
 }
@@ -40,8 +34,6 @@ class LandingPage extends Component {
           <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
-      <WorkoutsListContainer />
-      <WorkoutItemContainer />
       </div>
     )
   }

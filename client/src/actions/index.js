@@ -53,12 +53,15 @@ export const changeUserPicture = async (formData) => {
 export const getWorkoutsList = async (userId) => {
   try {
     const workouts = await axios.get(`http://localhost:8000/api/workouts/${userId}`);
-    console.log(workouts);
+    for (let workout of workouts.data) {
+      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`);
+      workout.exercises = exercises.data;
+    }
     return {
       type: FETCH_WORKOUTS,
-      payload: { workouts: workouts }
+      payload: workouts.data
     }
   } catch (err) {
-    return(err);
+    return (err);
   }
 }
