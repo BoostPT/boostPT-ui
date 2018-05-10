@@ -80,6 +80,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+    //post to the database the link url and change the picture link in the url
     return {
       type: CHANGE_USER_PICTURE,
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
