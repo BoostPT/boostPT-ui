@@ -421,9 +421,47 @@ export const getWorkoutsList = async (userId) => {
   }
 }
 
+<<<<<<< 674f51ba5f7fb73c32d33f6cfdd57b5f036eff37
 export const trainerClientList = async (user, cb) => {
   try {
+<<<<<<< 2e0ad30c3f165033ead6afb5e726d82035fb0705
     const result = await axios.get(`http://localhost:8000/api/users/${user.id}`);
+=======
+    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+=======
+export const changeUserPicture = async (payload) => {
+  const picture = {
+    filename: payload.file[0].name,
+    fileType: payload.file[0].type
+  };
+  
+  const options = {
+    headers: {
+      'Content-Type': payload.file[0].type
+    }
+  };
+
+  if(picture.filename.includes(' ')){
+    picture.filename = picture.filename.split(' ').join('+');
+  }
+
+  const body = {
+    pictureUrl: `http://s3-us-west-1.amazonaws.com/${process.env.S3_BUCKET}/${picture.filename}`,
+    userId: payload.user.id
+  };
+
+  try{
+    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+    await axios.put(signedUrl.data, payload.file[0], options);
+    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    //post to the database the link url and change the picture link in the url
+>>>>>>> Trying to add environment variables globally for client ui side
+>>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data
