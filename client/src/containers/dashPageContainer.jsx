@@ -194,6 +194,7 @@ class DashPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
+<<<<<<< 3958966b8a3cda563205db06f8acff32a00e7aad
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
@@ -211,6 +212,8 @@ const mapStateToProps = function(state) {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     authenticated: state.auth.authenticated,
     userInfo: state.auth.user
 >>>>>>> Checking for another rebase
