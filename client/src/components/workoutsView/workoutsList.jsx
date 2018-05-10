@@ -27,7 +27,6 @@ class WorkoutsList extends Component {
       children={
         Array.isArray(this.props.workouts) ? 
           this.props.workouts.map(workout => {
-            console.log('workout!', workout);
             return <WorkoutsListItem 
                     key={workout.id}
                     workout={workout} 

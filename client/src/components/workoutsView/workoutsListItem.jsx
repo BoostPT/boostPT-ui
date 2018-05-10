@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
+import moment from 'moment';
 
 class WorkoutsListItem extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class WorkoutsListItem extends Component {
       <div className="border font light-grey">
         <div className="pos-abs full-width">
           <h5 className="title float-left font-title">{name}</h5>
-          <p className="created float-right">created {created_at}</p>
+          <p className="created float-right">created {moment(created_at).fromNow()}</p>
           <div className="clear-float"></div>
         </div>
         <div className="pad-top">
