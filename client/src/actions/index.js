@@ -59,7 +59,6 @@ export const logOutUser = () => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
-
     return {
       type: AUTH_USER,
       payload: result.data
@@ -157,6 +156,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< a3fa5b193aa4496e166b7c36f56ff7683a6a1694
 <<<<<<< ab47a668d03699c482ebd270661bac20822ae4a9
 =======
 export const loginUser = async (user) => {
@@ -329,6 +329,8 @@ export const changeUserPicture = async (payload) => {
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
     //post to the database the link url and change the picture link in the url
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
