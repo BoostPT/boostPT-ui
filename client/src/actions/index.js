@@ -104,6 +104,7 @@ export const changeUserPicture = async (payload) => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
 <<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
 <<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
 <<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
@@ -113,6 +114,9 @@ export const loginUser = async (user) => {
 =======
 =======
     console.log("login action",result);
+=======
+
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return {
       type: AUTH_USER,
       payload: result.data
@@ -167,11 +171,15 @@ export const changeUserPicture = async (payload) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 47fe189abb48275cdc40bf04e067fee5fef4c3ae
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
