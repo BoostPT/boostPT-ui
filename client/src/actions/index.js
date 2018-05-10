@@ -131,6 +131,7 @@ export const logOutUser = dispatch => {
   history.push('/');
 };
 
+<<<<<<< 00980414dae0b29645b02ac8baf5976b5c42d645
 
 <<<<<<< 5f57f5d186b6d48ed308513bb582d9a832b14a57
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
@@ -274,6 +275,8 @@ export const loginUser = async (user) => {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+>>>>>>> Trying to add environment variables globally for client ui side
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
