@@ -187,6 +187,7 @@ export const loginUser = async (user) => {
 <<<<<<< 2b89a9170cab48d4e538ee3af0ef6bea671a2547
 <<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 4579ee3d719598c6f217567a6913031ad10e4dca
 <<<<<<< 2f6c8339a5bb491a7ed6f7f99c1613a0078b7175
 <<<<<<< bc053624d547d616bc80594d0a949167aaece703
 <<<<<<< 2ca193920e3984823562eccae3b034f78bd8d9d2
@@ -199,6 +200,8 @@ export const loginUser = async (user) => {
 <<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
 <<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
 <<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 <<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
 <<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
     console.log("login action",result);
@@ -210,6 +213,7 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+<<<<<<< 4579ee3d719598c6f217567a6913031ad10e4dca
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 <<<<<<< 8970b96d32f9e79768783abb1d368da3ebb87a5d
@@ -382,6 +386,10 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+    console.log("login action",result);
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
@@ -475,6 +483,7 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+<<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
 <<<<<<< 51501bf27469f84e88042a951895169054bedc7e
 
     await axios.put(signedUrl.data, payload.file[0], options);
@@ -492,16 +501,25 @@ export const changeUserPicture = async (payload) => {
     await axios.put(signedUrl.data, payload.file[0], options);
     await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
 
-    //post to the database the link url and change the picture link in the url
+    await axios.put(signedUrl.data, payload.file[0], options);
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
 <<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     };
   } catch (err) {
     return (err);
