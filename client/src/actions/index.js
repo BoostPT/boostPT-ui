@@ -111,6 +111,7 @@ export const loginUser = async (user) => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 
+<<<<<<< ed7088f2ba3101d9be75fe1fb49a39c9f4696d24
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
     console.log("login action",result);
@@ -118,6 +119,35 @@ export const loginUser = async (user) => {
 =======
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+export const changeUserPicture = async (payload) => {
+  const picture = {
+    filename: payload.file[0].name,
+    fileType: payload.file[0].type
+  };
+  
+  const options = {
+    headers: {
+      'Content-Type': payload.file[0].type
+    }
+  };
+
+  if(picture.filename.includes(' ')){
+    picture.filename = picture.filename.split(' ').join('+');
+  }
+
+  const body = {
+    pictureUrl: `http://s3-us-west-1.amazonaws.com/${process.env.S3_BUCKET}/${picture.filename}`,
+    userId: payload.user.id
+  };
+
+  try{
+    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+    await axios.put(signedUrl.data, payload.file[0], options);
+    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    //post to the database the link url and change the picture link in the url
+>>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
