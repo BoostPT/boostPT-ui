@@ -3,6 +3,7 @@ import {
 } from '../actions/types'
 
 export default function(state = {}, action) {
+<<<<<<< 3995b057a308e33aee8441d73b931556d6bbe43d
   if(action.type === CHANGE_USER_PICTURE){
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
 <<<<<<< b1fcd1df4aa7499c99cee35d1cefcaa201c5485b
@@ -20,6 +21,12 @@ export default function(state = {}, action) {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+
+  if(action.type === CHANGE_USER_PICTURE){
+    console.log("made it inside reducer");
+    console.log("action payload",action.payload);
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return Object.assign({}, state, {
       user: action.payload 
     });
