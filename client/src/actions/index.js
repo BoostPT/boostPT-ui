@@ -131,6 +131,7 @@ export const logOutUser = dispatch => {
   history.push('/');
 };
 
+<<<<<<< e8d704ad760570ef6b40e880512e9320819913a4
 <<<<<<< 3fddcc23dbf02906299cb4c2c27c6cd07861c2e7
 <<<<<<< 00980414dae0b29645b02ac8baf5976b5c42d645
 
@@ -138,6 +139,8 @@ export const logOutUser = dispatch => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Working BioPage ui after rebase
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -167,6 +170,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< e8d704ad760570ef6b40e880512e9320819913a4
 <<<<<<< ba4a466a6a51b537e572ef933515d1aa06421fc5
 <<<<<<< ec3cbaae535e86b167bc7d05f4622600c76c9591
 <<<<<<< e55ec29fcca38864bb6bcfbdf2cf0e2fe6d5d15e
@@ -345,6 +349,13 @@ export const loginUser = async (user) => {
 >>>>>>> Trying to add environment variables globally for client ui side
 =======
     
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+
+    await axios.put(signedUrl.data, payload.file[0], options);
+
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
