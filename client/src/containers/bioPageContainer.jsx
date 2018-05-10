@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import BioPage from '../components/bioPage/index.jsx';
+import { changeUserPicture } from '../actions/index.js';
 
 class BioPageContainer extends Component {
   constructor(props){
@@ -28,22 +28,24 @@ class BioPageContainer extends Component {
   }
 
   async handleOnDrop(files){
-    const picture = {
-      filename: files[0].name,
-      fileType: files[0].type
-    } 
+    // const picture = {
+    //   filename: files[0].name,
+    //   fileType: files[0].type
+    // } 
     
-    const options = {
-      headers: {
-        'Content-Type': files[0].type
-      }
+    // const options = {
+    //   headers: {
+    //     'Content-Type': files[0].type
+    //   }
+    // }
+    const payload = {
+      file: files,
+      user: this.props.userInfo
     }
-
     try {
-      const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-      console.log(signedUrl.data);
-      const pictureOnBucket = await axios.put(signedUrl.data, files[0], options);
-      console.log("pic on bucket",pictureOnBucket);
+      // const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+      // await axios.put(signedUrl.data, files[0], options);
+      await this.props.changeUserPicture(payload);
     } catch (err) {
       console.log(err);
       return (err);
@@ -71,4 +73,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, null)(BioPageContainer);
+export default connect(mapStateToProps, { changeUserPicture })(BioPageContainer);

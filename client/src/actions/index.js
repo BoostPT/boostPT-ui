@@ -1,4 +1,7 @@
 import axios from 'axios';
+// import env from 'dotenv';
+require('dotenv').config();
+
 import {
   LOGOUT_USER,
   AUTH_USER,
