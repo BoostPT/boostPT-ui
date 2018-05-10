@@ -212,6 +212,10 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< 68bacaf248c1d84cc167f85e8211d63197aa0b96
+>>>>>>> Trying to add environment variables globally for client ui side
+=======
+    //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
