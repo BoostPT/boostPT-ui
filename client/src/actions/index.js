@@ -49,6 +49,7 @@ export const authUser = (user, endpoint) => {
   };
 };
 
+<<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 <<<<<<< 0dd19d593d89bfae31a342f3f7c01a11fa103bed
 export const logOutUser = () => {
   // Delete cookie
@@ -104,44 +105,14 @@ export const logOutUser = () => {
   };
 =======
 <<<<<<< df52332ec226b9c2efc81b423d6e39e8b713ee1a
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
 export const logOutUser = dispatch => {
   dispatch({ type: LOGOUT_USER });
   document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   history.push('/');
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 };
-=======
-export const logOutUser = () => {
-  // Delete cookie
-
-  return { type: LOGOUT_USER };
-}
-
-export const loginUser = async (user) => {
-  try {
-    const result = await axios.post('http://localhost:8000/api/auth/login', 
-    user);
-    return {
-      type: AUTH_USER,
-      payload: result.data
-    };
-  } catch (err) {
-    return(err);
-  }
-}
-
-export const signUpUser = async (user) => {
-  try {
-    await axios.post('http://localhost:8000/api/auth/signup', user);
-    return {
-      type: AUTH_USER,
-      payload: { username: user.username, isTrainer: user.isTrainer }
-    };
-  } catch (err) {
-    return(err);
-  }
-}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
 
 <<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -176,6 +147,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 <<<<<<< b9f79562bcc5b8737233d9d1a802954164da0150
 <<<<<<< ce1b1a74a443c5d2f029d355ad0c6278b4874992
 <<<<<<< eea93a6d68f8e1010931c63ca3cfc8c373433eba
@@ -412,6 +384,8 @@ export const loginUser = async (user) => {
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
@@ -467,8 +441,6 @@ export const getWorkoutsList = async (userId) => {
   }
 }
 
-<<<<<<< 51501bf27469f84e88042a951895169054bedc7e
-<<<<<<< 674f51ba5f7fb73c32d33f6cfdd57b5f036eff37
 export const trainerClientList = async (user, cb) => {
   try {
 <<<<<<< 2e0ad30c3f165033ead6afb5e726d82035fb0705
@@ -479,6 +451,7 @@ export const trainerClientList = async (user, cb) => {
         Authorization: `${document.cookie}`
       }
     });
+<<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 =======
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
@@ -514,38 +487,11 @@ export const changeUserPicture = async (payload) => {
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data
-=======
-    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-=======
-    await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
->>>>>>> Trying to add environment variables globally for client ui side
-=======
-
-    await axios.put(signedUrl.data, payload.file[0], options);
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-
-    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-
-    return {
-      type: CHANGE_USER_PICTURE,
-<<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
-<<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
-<<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
-      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
