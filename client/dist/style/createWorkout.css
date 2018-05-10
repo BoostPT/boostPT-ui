@@ -26,6 +26,16 @@
   margin-left: 20px;
 }
 
+.expand {
+  float: left;
+  margin-top: 12px;
+  margin-left: -45px;
+}
+
+.expand:hover {
+  cursor: pointer;
+}
+
 .delete-exercise {
   float: right;
   margin-top: 10px;

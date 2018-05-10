@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import LoginPage from '../components/loginPage.jsx';
 import { loginUser } from '../actions/index.js';
-import authReducer from '../reducers/authReducer';
 
 class LoginPageContainer extends Component {
   constructor(props){

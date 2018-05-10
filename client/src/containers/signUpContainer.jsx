@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Signup from '../components/signUp.jsx';
 import { setAuthUser } from '../actions/index.js';
-import axios from 'axios';
 
 class SignupContainer extends Component {
   constructor(props) {

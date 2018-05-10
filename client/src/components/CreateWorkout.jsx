@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
-
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Expanded from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import Collapsed from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Checkbox from 'material-ui/Checkbox';
@@ -54,26 +55,47 @@ class CreateWorkout extends Component {
     )
   }
 
+  renderExpandIcon(expanded, renderId) {
+    return expanded ? (
+      <Expanded className="expand" data={renderId} color={colors.grey800} onClick={this.props.handleExpand} />
+    ) : (
+      <Collapsed className="expand" data={renderId} color={colors.grey400} onClick={this.props.handleExpand} />
+    );
+  }
+
   renderExerciseForms() {
-    const renderFields = (type, index) => {
-      if (type === 'Strength') {
+    const renderFields = (type, index, expanded) => {
+      if (type === 'Warm-up' && expanded) {
         return (
           <Fragment>
+            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+          </Fragment>
+        )
+      } else if (type === 'Strength' && expanded) {
+        return (
+          <Fragment>
+            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
             {renderTextField('', 'Reps', this.props.handleFormInput, `${index},Reps`)}
             {renderTextField('', 'Sets', this.props.handleFormInput, `${index},Sets`)}
           </Fragment>
         )
-      } else if (type === 'Cardio') {
+      } else if (type === 'Cardio' && expanded) {
         return (
           <Fragment>
+            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
             {renderTextField('', 'Distance', this.props.handleFormInput, `${index},Distance`)}
             {renderTextField('', 'Pace', this.props.handleFormInput, `${index},Pace`)}
             {renderTextField('', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
           </Fragment>
         )
-      } else if (type === 'Stretch') {
-        return renderTextField('', 'Duration', this.props.handleFormInput, `${index},Goal Time`);
-      }
+      } else if (type === 'Stretch' && expanded) {
+        return (
+          <Fragment>
+            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+            {renderTextField('', 'Duration', this.props.handleFormInput, `${index},Goal Time`)}
+          </Fragment>
+        );
+      } else return null;
     };
 
     return this.props.exerciseForms.map((exerciseForm, i) => {
@@ -88,8 +110,8 @@ class CreateWorkout extends Component {
                         color={colors.grey400}
                         hoverColor={colors.grey800}
                         onClick={this.props.handleDeleteExercise} />
-          {renderTextField('', 'Description', this.props.handleFormInput, `${i},description`, true, 4)}
-          {renderFields(exerciseForm.type, i)}
+          {this.renderExpandIcon(exerciseForm.expanded, exerciseForm.renderId)}
+          {renderFields(exerciseForm.type, i, exerciseForm.expanded)}
         </li>
       )
     });
@@ -138,6 +160,7 @@ CreateWorkout.propTypes = {
   handleAddExerciseMenuClick: PropTypes.func.isRequired,
   handleWorkoutNameInput: PropTypes.func.isRequired,
   handleFormInput: PropTypes.func.isRequired,
+  handleExpand: PropTypes.func.isRequired,
   handleDeleteExercise: PropTypes.func.isRequired,
   handleMakePrivateCheck: PropTypes.func.isRequired,
   handleFormSubmit: PropTypes.func.isRequired
