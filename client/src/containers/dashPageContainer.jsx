@@ -10,7 +10,8 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
-      activeTab: 1
+      activeTab: 1,
+      UserfromBioPageChange: this.props.location.state
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -29,7 +30,6 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
-
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }
@@ -40,7 +40,7 @@ class DashPageContainer extends Component {
    
   render(){
     return(
-      <DashPage user={this.props.user}
+      <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
