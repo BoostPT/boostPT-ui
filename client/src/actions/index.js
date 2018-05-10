@@ -59,7 +59,7 @@ export const logOutUser = () => {
 export const loginUser = async (user) => {
   try {
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
-    console.log("login action",result);
+
     return {
       type: AUTH_USER,
       payload: result.data
@@ -283,6 +283,7 @@ export const changeUserPicture = async (payload) => {
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< e5e2c60efb1fd7afbbf4c6fadf4f7994667b24c1
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
@@ -331,6 +332,9 @@ export const changeUserPicture = async (payload) => {
       type: CHANGE_USER_PICTURE,
       payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
