@@ -43,10 +43,13 @@ export const loginUser = async (user) => {
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 <<<<<<< 8970b96d32f9e79768783abb1d368da3ebb87a5d
 =======
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+<<<<<<< 2f6c8339a5bb491a7ed6f7f99c1613a0078b7175
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
     const result = await axios.post('http://localhost:8000/api/auth/login', 
@@ -105,6 +108,7 @@ export const loginUser = async (user) => {
   try {
 <<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< 2f6c8339a5bb491a7ed6f7f99c1613a0078b7175
 <<<<<<< bc053624d547d616bc80594d0a949167aaece703
 <<<<<<< 2ca193920e3984823562eccae3b034f78bd8d9d2
 <<<<<<< bc35114d2a177127be12f656675f3bdc3ab848d6
@@ -154,6 +158,8 @@ export const loginUser = async (user) => {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     return {
       type: AUTH_USER,
       payload: result.data
