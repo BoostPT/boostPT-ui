@@ -105,6 +105,7 @@ export const loginUser = async (user) => {
   try {
 <<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
+<<<<<<< bc35114d2a177127be12f656675f3bdc3ab848d6
 <<<<<<< 54a4529ed7f9ad27a7561825d7731b80d9db9182
 <<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
 <<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
@@ -142,6 +143,9 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+    console.log("login action",result);
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: AUTH_USER,
@@ -215,6 +219,7 @@ export const changeUserPicture = async (payload) => {
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
+<<<<<<< bc35114d2a177127be12f656675f3bdc3ab848d6
 <<<<<<< dfb106b59126f6508bc66ccb72cdbd798f0c5997
 <<<<<<< 54a4529ed7f9ad27a7561825d7731b80d9db9182
 <<<<<<< 68bacaf248c1d84cc167f85e8211d63197aa0b96
@@ -227,6 +232,8 @@ export const changeUserPicture = async (payload) => {
 =======
     //post to the database the link url and change the picture link in the url
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
