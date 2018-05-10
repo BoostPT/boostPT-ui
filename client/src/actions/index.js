@@ -215,6 +215,7 @@ export const loginUser = async (user) => {
     console.log("login action",result);
 =======
 
+<<<<<<< ed7088f2ba3101d9be75fe1fb49a39c9f4696d24
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 <<<<<<< 4579ee3d719598c6f217567a6913031ad10e4dca
@@ -244,6 +245,7 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
+<<<<<<< b2893b0286020d96aa48974a694d0e88ff8af804
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
@@ -275,6 +277,8 @@ export const loginUser = async (user) => {
 >>>>>>> Trying to add environment variables globally for client ui side
 =======
 >>>>>>> Checking for another rebase
+=======
+>>>>>>> Trying to add environment variables globally for client ui side
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -298,6 +302,7 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+<<<<<<< b2893b0286020d96aa48974a694d0e88ff8af804
 
 <<<<<<< 8c20b07759c652f9508eb819bd5b7a619ba4fd2d
     await axios.put(signedUrl.data, payload.file[0], options);
@@ -400,6 +405,13 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+    await axios.put(signedUrl.data, payload.file[0], options);
+    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+
+    //post to the database the link url and change the picture link in the url
+>>>>>>> Trying to add environment variables globally for client ui side
+>>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
