@@ -26,7 +26,6 @@ export const authUser = (user) => {
 =======
 import { history } from '../index.jsx'
 
-<<<<<<< af3ca8129fdb70bd8c6cbca73148699240e58558
 export const authUser = (user, endpoint) => {
   return async dispatch => {
     try {
@@ -49,26 +48,6 @@ export const authUser = (user, endpoint) => {
 >>>>>>> Checking for another rebase
   };
 };
-=======
-export const logOutUser = () => {
-  // Delete cookie
-
-  return { type: LOGOUT_USER };
-}
-
-export const loginUser = async (user) => {
-  try {
-    const result = await axios.post('http://localhost:8000/api/auth/login', 
-    user);
-    return {
-      type: AUTH_USER,
-      payload: result.data
-    };
-  } catch (err) {
-    return(err);
-  }
-}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
 
 export const logOutUser = () => {
   // Delete cookie
@@ -284,6 +263,7 @@ export const changeUserPicture = async (payload) => {
 >>>>>>> Trying to add environment variables globally for client ui side
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< febdcb02b2453d8c961474d1b0a1cfa68bd0297f
 <<<<<<< e5e2c60efb1fd7afbbf4c6fadf4f7994667b24c1
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -339,6 +319,9 @@ export const changeUserPicture = async (payload) => {
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Trying to add environment variables globally for client ui side
     };
   } catch (err) {
     return (err);
