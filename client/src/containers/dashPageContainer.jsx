@@ -10,8 +10,13 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
+<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
       activeTab: 1,
       UserfromBioPageChange: this.props.location.state
+=======
+      UserfromBioPageChange: this.props.location.state,
+      activeTab: 1
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -30,6 +35,10 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
+=======
+
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }

@@ -9,7 +9,11 @@ class BioPageContainer extends Component {
 
     this.state = {
       searchText: '',
+<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
       bioPageUserInfo: this.props.location.state,
+=======
+      userInfo: this.props.location.state
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     }
   }
 
@@ -23,7 +27,11 @@ class BioPageContainer extends Component {
   }
 
   handleTitleClick(){
+<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
     this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
+=======
+    this.props.history.push({pathname: '/dash', state: this.state.userInfo});
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
   }
 
   async handleOnDrop(files){
