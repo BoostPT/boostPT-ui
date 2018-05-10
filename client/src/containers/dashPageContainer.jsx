@@ -9,6 +9,7 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
+<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
@@ -49,6 +50,10 @@ class DashPageContainer extends Component {
       UserfromBioPageChange: this.props.location.state,
       activeTab: 1
 >>>>>>> Checking for another rebase
+=======
+      activeTab: 1,
+      UserfromBioPageChange: this.props.location.state
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -67,6 +72,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 7ad99b412af4c4252725782728d000047d3ca421
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
@@ -109,6 +115,8 @@ class DashPageContainer extends Component {
 =======
 
 >>>>>>> Checking for another rebase
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }
@@ -119,6 +127,7 @@ class DashPageContainer extends Component {
    
   render(){
     return(
+<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
@@ -137,6 +146,9 @@ class DashPageContainer extends Component {
       <DashPage 
                 userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
 >>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
+=======
+      <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
