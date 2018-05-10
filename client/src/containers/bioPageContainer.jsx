@@ -8,7 +8,8 @@ class BioPageContainer extends Component {
     super(props);
 
     this.state = {
-      searchText: ''
+      searchText: '',
+      userInfo: this.props.userInfo
     }
   }
 
@@ -28,24 +29,15 @@ class BioPageContainer extends Component {
   }
 
   async handleOnDrop(files){
-    // const picture = {
-    //   filename: files[0].name,
-    //   fileType: files[0].type
-    // } 
-    
-    // const options = {
-    //   headers: {
-    //     'Content-Type': files[0].type
-    //   }
-    // }
     const payload = {
       file: files,
       user: this.props.userInfo
     }
     try {
-      // const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-      // await axios.put(signedUrl.data, files[0], options);
-      await this.props.changeUserPicture(payload);
+      const changed = await this.props.changeUserPicture(payload);
+      await this.setState({
+        userInfo: this.props.changedUserInfo
+      });
     } catch (err) {
       console.log(err);
       return (err);

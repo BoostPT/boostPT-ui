@@ -19,7 +19,7 @@ class BioPicture extends Component{
           </Dropzone>
         :
           <Dropzone multiple accept="image/*" style={{borderStyle: "none"}} onDrop={this.props.handleOnDrop}>
-            <Avatar className="avatarPicture" size={100} src=""/>
+            <Avatar className="avatarPicture" size={100} src={this.props.picture}/>
           </Dropzone>
         }
         
