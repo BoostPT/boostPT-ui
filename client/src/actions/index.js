@@ -49,6 +49,7 @@ export const authUser = (user, endpoint) => {
   };
 };
 
+<<<<<<< 5cfdadba8e6266e977eb07d4ae4df7029a595b5d
 <<<<<<< b89b9292f46c03ecb3f981f5cead21f80e1c0469
 <<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
 <<<<<<< 0dd19d593d89bfae31a342f3f7c01a11fa103bed
@@ -263,6 +264,8 @@ export const loginUser = async (user) => {
 >>>>>>> Checking for another rebase
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 export const changeUserPicture = async (payload) => {
