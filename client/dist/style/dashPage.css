@@ -34,7 +34,7 @@
   position: absolute;
   top: 56px;
   left: 0;
-  bottom: 0;
+  height: 103%;
   right: 0;
   overflow: auto;
   background: #343F4B;
