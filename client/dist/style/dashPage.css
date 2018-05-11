@@ -63,11 +63,12 @@
 }
 
 .workouts-list-div {
-  position: absolute;
-  top: 10px;
-  right: -550px;
+  float: right;
+  margin-right: 105px;
+  margin-top: -90px;
 }
 
 .workouts-list-select {
   width:150px;
 }
+
