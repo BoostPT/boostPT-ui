@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -18,24 +18,21 @@ const tabStyle = {
   }
 };
 
-class DashPage extends Component{
+class DashPage extends Component {
   constructor(props){
     super(props);
   }
 
-  render(){
+  render() {
+
     const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
 
-    return(
+    return (
         <div className="dashPage">
           <Navbar userInfo={this.props.userInfo} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
 
           <div className="dashPageBody">
-            <Tabs
-              className="tabs"
-              inkBarStyle={{display: "none"}}
-              initialSelectedIndex={1}
-            >
+            <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
               <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
                 <div>
 
@@ -52,7 +49,7 @@ class DashPage extends Component{
             </Tabs>
           </div>
         </div>
-    );
+    )
   }
 }
 
