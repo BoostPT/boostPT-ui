@@ -17,41 +17,47 @@ class ClientTabContainer extends Component {
     this.fetchClientsFromStore();
   }
 
-  fetchClientsFromStore() {
+  async fetchClientsFromStore(cb) {
+    console.log(typeof cb, 'the cb');
     const payload = {
         id: 1,
     }
-    this.props.trainerClientList(payload);
+    try {
+      const result = await this.props.trainerClientList(payload);
+      cb('success');
+    } catch (err) {
+      return (err);
+    }
   }
 
-  handleSubmitButtonClick(clientName) {
+  handleSubmitButtonClick(clientName, cb) {
     if (this.props.userInfo.istrainer === true) {
       var payload = {client_name: clientName, trainer_id: this.props.userInfo.id};
       axios.post('http://localhost:8000/api/users/addnonuserclient', payload)
       .then((response) => {
         if (response.status === 200) {
-          return ('success');
+          this.fetchClientsFromStore(() => {
+            cb('success');
+          });
         } else {
-          this.setState({toggleSuccessMessage: false});
+          cb('failure');
         }
       })
       .catch((err) => {
-        this.setState({toggleSuccessMessage: false});
         console.log(err);
+        cb('failure');
       })
     } else {
-      this.setState({toggleSuccessMessage: false});
       console.log('Only trainers can do that');
     }
   }
 
   render() {
-    console.log('inside first render', this.props);
     return(
       <div>{
         this.props.clientList.clients ?
         <div>
-          <ClientTab handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} props={this.props.clientList} userInfo = {this.props.userInfo}/>
+          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} props={this.props.clientList} userInfo = {this.props.userInfo}/>
         </div>
         :
         <div>

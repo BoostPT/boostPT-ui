@@ -4,14 +4,21 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleSuccessMessage: false,     
+      toggleFailureMessage: false,     
       unregClientForm: ''
     }
     this.handleUnregClientFormChange = this.handleUnregClientFormChange.bind(this);
   }
 
   handleButtonClick() {
-    console.log(this.props.clickEvent(this.state.unregClientForm));
+    this.props.clickEvent(this.state.unregClientForm, (result) => {
+      if (result === 'success') {
+        console.log('suuucccessss');
+        this.props.toggleModal();
+      } else {
+        this.setState({toggleFailureMessage: true});
+      }
+    });
   }
 
   handleUnregClientFormChange(e) {
@@ -30,10 +37,10 @@ class Modal extends Component {
             </label>
             <button onClick={this.handleButtonClick.bind(this)}>Submit</button>
             {
-              this.state.toggleSuccessMessage === true ?
-              <span>true</span>
+              this.state.toggleFailureMessage === true ?
+              <span> Username Already Taken</span>
               : 
-              <span>false</span>
+              <span></span>
             }
             <span className="close" onClick={this.props.toggleModal}>&times;</span>
           </div>

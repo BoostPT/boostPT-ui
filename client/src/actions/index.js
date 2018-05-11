@@ -68,7 +68,7 @@ export const getWorkoutsList = async (userId) => {
   }
 }
 
-export const trainerClientList = async (user) => {
+export const trainerClientList = async (user, cb) => {
   try {
     const result = await axios.get('http://localhost:8000/api/users/1')
     //change this to query for current trainer
