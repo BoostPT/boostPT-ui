@@ -32,7 +32,6 @@ class WorkoutsList extends Component {
                     workout={workout} 
                     getEachExerciseCount={this.props.getEachExerciseCount}
                     handleExerciseClick={this.props.handleExerciseClick}
-                    // clicked={this.props.clicked}
                    />
           })
           :
