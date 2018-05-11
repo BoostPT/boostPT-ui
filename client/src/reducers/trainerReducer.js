@@ -5,9 +5,8 @@ import {
 export default function(state = {}, action) {
   switch(action.type) {
 		case TRAINER_CLIENT_LIST:   
-			let payload = {clientList: action.payload};
 			return Object.assign({}, state, {
-				clients: payload
+				clients: action.payload
 			});
 			break;
 	}

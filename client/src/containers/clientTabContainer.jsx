@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { trainerClientList } from '../actions/index.js';
-import trainerClientReducer from '../reducers/trainerClientReducer.js';
+import trainerReducer from '../reducers/trainerReducer.js';
 import axios from 'axios';
 import ClientTab from '../components/dashPage/clientTab.jsx';
 
@@ -18,7 +18,6 @@ class ClientTabContainer extends Component {
   }
 
   async fetchClientsFromStore(cb) {
-    console.log(typeof cb, 'the cb');
     const payload = {
         id: 1,
     }
@@ -55,9 +54,9 @@ class ClientTabContainer extends Component {
   render() {
     return(
       <div>{
-        this.props.clientList.clients ?
+        this.props.clients ?
         <div>
-          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} props={this.props.clientList} userInfo = {this.props.userInfo}/>
+          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} clients={this.props.clients} userInfo = {this.props.userInfo}/>
         </div>
         :
         <div>
@@ -71,7 +70,7 @@ class ClientTabContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    clientList: state.trainerClientReducer,
+    clients : state.trainer.clients,
     userInfo: state.authReducer.user
   };
 }

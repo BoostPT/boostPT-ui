@@ -74,7 +74,7 @@ export const trainerClientList = async (user, cb) => {
     //change this to query for current trainer
     return {
       type: TRAINER_CLIENT_LIST,
-      payload: {result: result.data}
+      payload: result.data
     };
   } catch (err) {
     return (err);

@@ -4,8 +4,6 @@ import axios from 'axios';
 import Modal from './clientTabModal.jsx';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import debounce from 'lodash/debounce';
-var typingTimer;
-var doneTypingInterval = 250;
 class ClientTab extends Component {
   constructor(props) {
     super(props);
@@ -16,20 +14,19 @@ class ClientTab extends Component {
     }
     this.toggleModal = this.toggleModal.bind(this);
     this.filterInputChange = this.filterInputChange.bind(this);
-    this.filterCards = debounce(this.filterCards.bind(this));
+    this.filterCards = debounce(this.filterCards.bind(this), 250);
   }
 
   toggleModal() {
     if (this.state.toggleModal === true) {
-      this.setState({toggleModal: false, cardList: this.props.props.clients.clientList.result});
+      this.setState({toggleModal: false, cardList: this.props.clients});
     } else {
       this.setState({toggleModal: true});
     }
   }
 
   filterCards() {
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(this.doneTyping.bind(this), doneTypingInterval);
+    this.doneTyping();
   }
 
   filterInputChange(e) {
@@ -38,20 +35,21 @@ class ClientTab extends Component {
 
   doneTyping() {
     const input = this.state.filterInput.toLowerCase();
-    const tempArr = this.props.props.clients.clientList.result;
+    const tempArr = this.props.clients;
     const newArr = tempArr.filter((value) => value.client_name.toLowerCase().startsWith(input));
     if (input.length > 0) {
       this.setState({cardList: newArr});
     } else {
-      this.setState({cardList: this.props.props.clients.clientList.result});
+      this.setState({cardList: this.props.clients});
     }
   }
 
   componentWillMount() {
-    this.setState({cardList: this.props.props.clients.clientList.result});
+    this.setState({cardList: this.props.clients});
   }
 
   renderCards(cardList) {
+
     let content = [];
     cardList.forEach((card, i) => {
       if((i+1) % 3 === 0) {
@@ -107,15 +105,15 @@ class ClientTab extends Component {
       </div>
     </div>
     <div>
-        {this.state.toggleModal ?
-        <Modal clickEvent={this.props.handleSubmitButtonClick} toggleModal={this.toggleModal}/>
-        :
-        <div>
-        </div>}
-      </div>
-    </div>    
-    );
-  }
+      {this.state.toggleModal ?
+      <Modal clickEvent={this.props.handleSubmitButtonClick} toggleModal={this.toggleModal}/>
+      :
+      <div>
+      </div>}
+    </div>
+  </div>    
+  );
+}
 
   render() {
     return (

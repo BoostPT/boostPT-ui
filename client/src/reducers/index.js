@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import workoutsReducer from './workoutsReducer';
-import trainerClientReducer from './trainerClientReducer';
+import trainerReducer from './trainerReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   workoutsReducer,
-  trainerClientReducer
+  trainer: trainerReducer
 });
 
 export default rootReducer;
