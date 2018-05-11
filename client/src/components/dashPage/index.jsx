@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
+import WorkoutsTab from './workoutsTab.jsx';
 
 const tabStyle = {
   standard: {
@@ -24,7 +24,6 @@ class DashPage extends Component{
   }
 
   render(){
-
     const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
 
     return(
@@ -43,9 +42,7 @@ class DashPage extends Component{
                 </div>
               </Tab>
               <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
-                <div>
-
-                </div>
+                <WorkoutsTab user_id={this.props.userInfo.id} />
               </Tab>
               <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
                 <div>
@@ -53,7 +50,6 @@ class DashPage extends Component{
                 </div>
               </Tab>
             </Tabs>
-            <CreateWorkoutContainer user_id={this.props.userInfo.id} />
           </div>
         </div>
     );

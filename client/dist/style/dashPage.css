@@ -44,6 +44,18 @@
   color: #FFEB3B;
 }
 
+.tabs {
+  margin-top: 40px;
+  margin-left: 40px;
+  width: 400px;
+}
+
+.tab-default {
+  background-color: #C3CAD3;
+  color: #5A6978;
+  text-transform: none;
+}
+
 .tab-active {
   background-color: #5A6978;
   color: #FFEB3B;
