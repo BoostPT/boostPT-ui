@@ -67,8 +67,8 @@ class BioPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    authenticated: state.authReducer.authenticated,
-    userInfo: state.authReducer.user
+    authenticated: state.auth.authenticated,
+    userInfo: state.auth.user
   };
 }
 

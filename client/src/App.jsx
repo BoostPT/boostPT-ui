@@ -14,7 +14,6 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div>
           <main>
             <Switch>
               <Route exact path='/' component={LandingPage} />
@@ -24,7 +23,6 @@ class App extends Component {
               <Route path='/bio' component={BioPageContainer}/>
             </Switch>
           </main>
-        </div>
       </MuiThemeProvider>
     );
   }
