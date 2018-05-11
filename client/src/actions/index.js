@@ -3,7 +3,8 @@ import {
   LOGOUT_USER,
   AUTH_USER,
   CHANGE_USER_PICTURE,
-  FETCH_WORKOUTS
+  FETCH_WORKOUTS,
+  SELECT_WORKOUT
 } from './types';
 
 export const logOutUser = () => {
@@ -65,3 +66,10 @@ export const getWorkoutsList = async (userId) => {
     return (err);
   }
 }
+
+export const selectedWorkout = (workout) => {
+  return {
+    type: SELECT_WORKOUT,
+    payload: workout
+  }
+};

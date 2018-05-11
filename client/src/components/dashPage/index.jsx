@@ -9,7 +9,7 @@ import * as colors from "material-ui/styles/colors";
 
 import CreateWorkout from '../CreateWorkout.jsx';
 import WorkoutListsContainer from '../../containers/workoutsListContainer.jsx';
-import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
+// import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
 import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
 
 const tabStyle = {
@@ -78,7 +78,6 @@ class DashPage extends Component {
           <Tab disableTouchRipple={true} className="tab" label="Workouts" style={tabStyle.defaultTab} onActive={this.props.handleWorkoutsTabClick}>
             <div>
               <WorkoutListsContainer />
-              <WorkoutItemContainer />
             </div>
           </Tab>
           <Tab disableTouchRipple={true} className="tab" label="Clients" style={tabStyle.defaultTab} >

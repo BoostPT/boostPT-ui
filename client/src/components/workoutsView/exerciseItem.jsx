@@ -4,34 +4,40 @@ import ExerciseDetails from './exerciseDetails.jsx';
 class ExerciseItem extends Component {
   constructor(props) {
     super(props);
+    this.types = {
+      0: 'Warm-up',
+      1: 'Strength',
+      2: 'Cardio',
+      3: 'Stretch'
+    }
   }
 
   render() {
+    const exercise = this.props.exercise;
+    const type = this.types[exercise.type];
     return (
       <div className="border exercise-height">
         <div className="pos-title">
-          <img className="float-right pad-right" src={require('../../../../client/dist/images/Strength.png')}></img>
-          <h2 className="float-left">Bench Press</h2>
+          <img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>
+          <h2 className="float-left">{exercise.name}</h2>
           <div className="clear-float"></div>
         </div>
-        <p className="float-left pad-bot pos-description">Wide grip, with a spotter</p>
+        <p className="float-left pad-bot pos-description">{exercise.description || null}</p>
         <div className="clear-float"></div>
-        <div>
+        <div className="pad-bot">
           {
-            /*
-          if type is strength
-            <div>
-              <span>reps: </span>
-              <span>sets: </span>
-            </div>
-
-          iterate over each key in exercise object
-          for each key...
-            if value is not null and key is not title or description
-            return exercise details component passing in the key and value to the child   
-            */
-            
-            }
+            exercise.type === 1 ? 
+              <div className="emphasize">
+                <span className="pad-right">{<span className="nums">{exercise.reps}</span> || null} Reps</span>
+                <span>{<span className="nums">{exercise.sets}</span> || null} Sets</span>
+              </div>
+              :
+              <div className="emphasize">
+                <p>{exercise.distance ? 'Distance: ' + exercise.distance : null}</p>
+                <p>{exercise.goaltime ? exercise.type === 3 ? 'Duration: ' + exercise.goaltime : 'Goal Time: ' + exercise.goaltime : null}</p>
+                <p>{exercise.pace ? 'Pace: ' + exercise.pace : null}</p>
+              </div>
+          }
         </div>
       </div>
     );

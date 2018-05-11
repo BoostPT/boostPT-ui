@@ -35,6 +35,15 @@
 .light-grey {
     background-color: #EEE;
 }
+.pointer:hover {
+    cursor: pointer;
+}
+.block {
+    display: block;
+}
+.full-pad {
+    padding: 4% 4%;
+}
 
 /*************************
       Workout Items
@@ -97,4 +106,15 @@
 }
 .pos-description {
     margin: 1.5% 0 0 4%;
+}
+
+/*************************
+        Exercises
+*************************/
+.exercise-height {
+    min-height: 40px;
+}
+.emphasize {
+    font-size: 12px;
+    font-weight: 500;
 }

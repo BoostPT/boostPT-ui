@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import WorkoutItem from '../components/workoutsView/workoutItem.jsx';
 
 class WorkoutItemContainer extends Component {
   constructor(props) {
     super(props);
   }
-
+   
   render() {
     return (
-      <WorkoutItem />
+      <WorkoutItem clickedWorkout={this.props.clickedWorkout}/>
     );
   }
 }
 
+
 export default WorkoutItemContainer;
-// export default connect(null, null)(WorkoutItemContainer);
