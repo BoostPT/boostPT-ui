@@ -1,0 +1,79 @@
+#create-workout-outer {
+  position: relative;
+  width: 500px;
+  max-height: 600px;
+  overflow-y: auto;
+  margin-left: 50px;
+  margin-top: 15px;
+}
+
+#create-workout-inner {
+  padding: 20px;
+  max-height: 560px;
+}
+
+.create-workout-header {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.create-wo-input {
+  padding-left: 20px;
+}
+
+.add-exercise {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.expand {
+  float: left;
+  margin-top: 12px;
+  margin-left: -45px;
+}
+
+.expand:hover {
+  cursor: pointer;
+}
+
+.swap-arrow {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.swap-arrow:hover {
+  cursor: pointer;
+}
+
+.delete-exercise {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.delete-exercise:hover {
+  cursor: pointer;
+}
+
+.exercise-form {
+  list-style-type: none;
+  padding-left: 40px;
+  padding-bottom: 15px;
+}
+
+.odd-greyed {
+  background-color: #F5F5F5;
+}
+
+#submit-wo-div {
+  float: bottom;
+  margin: 0 auto;
+  width: 160px;
+  font-size: 12px;
+}
+
+.save-workout-btn {
+  margin-top: 8px;
+  margin-bottom: 20px;
+}

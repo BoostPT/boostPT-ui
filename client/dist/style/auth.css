@@ -1,0 +1,33 @@
+.signup-outer {
+  position: relative;
+  width:480px;
+  height: 350px;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.login-outer {
+  position: relative;
+  width:480px;
+  height: 250px;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.auth-inner {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.auth-form {
+  padding-top: 20px;
+}
+
+.signup-submit-div {
+  padding-top: 30px;
+}
+
+.signup-toggle-trainer {
+  margin-bottom: 16px;
+}

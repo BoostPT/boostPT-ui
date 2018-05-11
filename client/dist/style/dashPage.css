@@ -44,3 +44,31 @@
   color: #FFEB3B;
 }
 
+.tabs {
+  margin-top: 40px;
+  margin-left: 40px;
+  width: 400px;
+}
+
+.tab-default {
+  background-color: #C3CAD3;
+  color: #5A6978;
+  text-transform: none;
+}
+
+.tab-active {
+  background-color: #5A6978;
+  color: #FFEB3B;
+  text-transform: none;
+}
+
+.workouts-list-div {
+  float: right;
+  margin-right: 105px;
+  margin-top: -90px;
+}
+
+.workouts-list-select {
+  width:150px;
+}
+

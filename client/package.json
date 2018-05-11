@@ -23,8 +23,11 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "@fortawesome/react-fontawesome": "0.0.19",
     "axios": "^0.18.0",
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
     "material-ui": "^0.20.0",
     "moment": "^2.22.0",
+    "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-dropzone": "^4.2.9",
@@ -32,7 +35,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
