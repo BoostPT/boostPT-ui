@@ -58,7 +58,14 @@ class BioPageContainer extends Component {
 //comment for rebase
 const mapStateToProps = function(state) {
   return {
+<<<<<<< a9cb18656b334628b257dc1a33e1c9ac3b584113
     userInfo: state.auth.user
+=======
+    authenticated: state.auth.authenticated,
+    userInfo: state.auth.user,
+    changedUserInfo: state.changePictureReducer.user
+
+>>>>>>> Working BioPage ui after rebase
   };
 };
 
