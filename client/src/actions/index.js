@@ -58,11 +58,8 @@ export const logOutUser = () => {
 
 export const loginUser = async (user) => {
   try {
-    const result = await axios.post('http://localhost:8000/api/auth/login', user);
-<<<<<<< 8970b96d32f9e79768783abb1d368da3ebb87a5d
-=======
-
->>>>>>> Working Updates of profile picture in bioPage and dashPage
+    const result = await axios.post('http://localhost:8000/api/auth/login', 
+    user);
     return {
       type: AUTH_USER,
       payload: result.data
