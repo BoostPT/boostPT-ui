@@ -122,10 +122,10 @@ class CreateWorkoutContainer extends Component {
 
     try {
       await axios.post(REST_SERVER_URL.concat(API_ENDPOINT), payload);
-      console.log('Successfully saved workout');
       this.props.handleCreateWorkoutSuccess();
     }
     catch(err) {
+      // Handle error, show message on client?
       console.log('Error submitting workout form', err);
     }
   }
