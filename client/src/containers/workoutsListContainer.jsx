@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
   return {
     clickedWorkout: state.workoutsReducer.clickedWorkout,
     workouts: state.workoutsReducer.workouts,
-    userId: state.authReducer.user.id
+    userId: state.auth.user.id
   }
 };
 
