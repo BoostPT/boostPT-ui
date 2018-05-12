@@ -103,6 +103,7 @@ export const changeUserPicture = async (payload) => {
 =======
 export const loginUser = async (user) => {
   try {
+<<<<<<< 1b157371cadf51c37884a477e2440b4aa3006bb4
     const result = await axios.post('http://localhost:8000/api/auth/login', user);
 <<<<<<< 2f4813c99cc686be5511793421bbc4fc742701ef
 <<<<<<< 4c566fa69cd120358742c9411f15274b2d2026d2
@@ -127,6 +128,10 @@ export const loginUser = async (user) => {
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+    const result = await axios.post('http://localhost:8000/api/auth/login', 
+    user);
+>>>>>>> Working BioPage ui after rebase
     return {
       type: AUTH_USER,
       payload: result.data
