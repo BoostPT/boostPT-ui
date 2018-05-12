@@ -19,7 +19,7 @@ class ClientTabContainer extends Component {
 
   async fetchClientsFromStore(cb) {
     const payload = {
-        id: 1,
+      id: this.props.userInfo.id,
     }
     try {
       const result = await this.props.trainerClientList(payload);

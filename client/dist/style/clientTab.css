@@ -1,176 +1,164 @@
 .wrapper {
-    position: absolute;
-    height: 80%;
-    width: 100%;
+  position: absolute;
+  height: 80%;
+  width: 100%;
 }
 
 .outerContainer {
-    position: relative;
-    height: 40%;
-    width: 70vw;
-}
-
-body {
-    background-color: #343F4B;
-    line-height: 1.5;
+  position: relative;
+  height: 40%;
+  width: 70vw;
 }
 
 .innerContainer {
-    background-color: #343F4B;
-    position: absolute;
-    height: 200px;
-    width: 100%;
-    margin-top:25px;
+  background-color: #343F4B;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  margin-top:25px;
 }
 
 .column {
-    float: left;
-    width: 33.33%;
+  float: left;
+  width: 33.33%;
+  margin-bottom: 6px;
 }
 
 .clientCard {
-    height: 30px;
-    margin-right: 10px;
+  height: 50px;
+  margin-right: 10px;
 }
 
 .clientCardText {
-    margin-top: 5px;
-    margin-left: 5px;
-    align-items: center;
-    justify-content: center;
+  margin-top: 5px;
+  margin-left: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
-    margin-top: -8px;
+  font-size: 22px;
 }
 
-form {
-    outline: 0;
-    float: left;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    font-size: 13px;
-    margin-top: 5px;
-    margin-right:10px;
-  }
-  
-  form > .textbox {
-    outline: 0;
-    height: 30px;
-    width: calc(100% - 74px);
-    padding: 0 16px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #212121;
-    border: 0;
-    float: left;
-    -webkit-border-radius: 4px 0 0 4px;
-    border-radius: 4px 0 0 4px;
-    
-  }
-  
-  form > .textbox:focus {
-    outline: 0;
-    background-color: #FFF;
-  }
-  
-  form > .button {
-    outline: 0;
-    background: none;
-    background-color: rgba(38, 50, 56, 0.8);
-    float: left;
-    height: 42px;
-    width: 42px;
-    text-align: center;
-    line-height: 42px;
-    border: 0;
-    color: #FFF;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 16px;
-    text-rendering: auto;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    -webkit-transition: background-color .4s ease;
-    transition: background-color .4s ease;
-    -webkit-border-radius: 0 4px 4px 0;
-    border-radius: 0 4px 4px 0;
-    height: 30px;
-  }
-  
-  form > .button:hover {
-    background-color: rgba(0, 150, 136, 0.8);
-  }
+.filter {
+  outline: 0;
+  float: left;
 
-  .addClientButton {
-      height: 30px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      width: calc(100% - 10px);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 22px;
+  margin-top: 5px;
+  margin-right: 10px;
+  width: calc(100% - 35px);
+  border-radius:4px;
   }
+  
+.filter > .textbox {
+  outline: 0;
+  height: 50px;
+  width: calc(100% - 10px);
+  padding: 0 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212121;
+  border: 0;
+  float: left;
+  font-size:22px;
+  border-radius:4px;
+}
+  
+.filter > .textbox:focus {
+  outline: 0;
+  background-color: #FFF;
+}
+  
+.addClientButton {
+  height: 50px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: calc(100% - 20px);
+  font-size: 22px;
+  border-radius: 4px;
+}
 
-  #cardPlaceHolder {
-    height: 30px;
-    margin-top: 5px;
-    width: calc(100% - 10px);
-  }
+#cardPlaceHolder {
+  height: 50px;
+  margin-top: 5px;
+  width: calc(100% - 10px);
+}
 
 /* The Modal (background) */
 
 .modal {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* Modal Content */
+
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 35px;
+  border: 1px solid #888;
+  width: 60%;
+  border-radius: 7px;
+}
+
+#modalTitle {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+#createUserButton {
+  font-size: 25px;
+  margin-left: 10px;
+  padding-left: 4px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+.modalsubTitle {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+#modalInput {
+  font-size: 30px;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid black;
 }
 
 /* The Close Button */
+
 .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .scrollBox {
-    width: 100%;
-    height:200px;
-    overflow-y: scroll;
+  width: 100%;
+  height:300px;
+  overflow-y: scroll;
 }
-
-/*media queries, saving for future use
-
-/* @media screen and (max-width: 650px) {
-    .column {
-        width: 50%;
-    }
-    
-    #cardPlaceHolder {
-        width: 0px;
-        height: 0px;
-        margin: 0px;
-    }
-  } */
   

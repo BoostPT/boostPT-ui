@@ -42,7 +42,6 @@ export const changeUserPicture = async (formData) => {
   
   try{
     await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, { header: {'X-Requested-With': 'XMLHttpRequest'}});
-
     return {
       type: CHANGE_USER_PICTURE,
       payload: {}
@@ -70,8 +69,7 @@ export const getWorkoutsList = async (userId) => {
 
 export const trainerClientList = async (user, cb) => {
   try {
-    const result = await axios.get('http://localhost:8000/api/users/1')
-    //change this to query for current trainer
+    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`);
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data

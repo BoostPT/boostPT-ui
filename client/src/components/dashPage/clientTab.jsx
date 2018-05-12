@@ -25,12 +25,12 @@ class ClientTab extends Component {
     }
   }
 
-  filterCards() {
-    this.doneTyping();
-  }
-
   filterInputChange(e) {
     this.setState({filterInput: e.target.value});
+  }
+
+  filterCards() {
+    this.doneTyping();
   }
 
   doneTyping() {
@@ -49,7 +49,6 @@ class ClientTab extends Component {
   }
 
   renderCards(cardList) {
-
     let content = [];
     cardList.forEach((card, i) => {
       if((i+1) % 3 === 0) {
@@ -84,9 +83,8 @@ class ClientTab extends Component {
               <div>
               <div className="row" key={0}>
                 <div className="column">
-                  <form className="search">
+                  <form className="filter">
                     <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} onKeyUp={this.filterCards} value={this.state.filterInput}></input>
-                    <input title="Search" value="" type="submit" className="button"/>
                   </form>
                 </div>
               <div className="column">
@@ -114,7 +112,6 @@ class ClientTab extends Component {
   </div>    
   );
 }
-
   render() {
     return (
       <div>

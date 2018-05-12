@@ -13,7 +13,6 @@ class Modal extends Component {
   handleButtonClick() {
     this.props.clickEvent(this.state.unregClientForm, (result) => {
       if (result === 'success') {
-        console.log('suuucccessss');
         this.props.toggleModal();
       } else {
         this.setState({toggleFailureMessage: true});
@@ -30,22 +29,28 @@ class Modal extends Component {
       <div>{
         <div id="myModal" className="modal">
           <div className="modal-content">
-            <div>Add Unregistered Client</div>
-            <div>Name</div>
-            <label>
-              <input name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
+            <div id="modalTitle" >Add Client</div>
+            <div className="modalsubTitle" >Name
+            </div>
+            <label className="modalsubTitle">
+              <span>
+                <input id="modalInput" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
+                <button id="createUserButton" onClick={this.handleButtonClick.bind(this)}>Submit</button>
+              </span>
             </label>
-            <button onClick={this.handleButtonClick.bind(this)}>Submit</button>
             {
               this.state.toggleFailureMessage === true ?
               <span> Username Already Taken</span>
               : 
               <span></span>
             }
-            <span className="close" onClick={this.props.toggleModal}>&times;</span>
+            <div>
+              <span className="close" onClick={this.props.toggleModal}>&times;</span>
+            </div>
           </div>
         </div>}
-      </div>);
+      </div>
+    );
   }
 }
 
