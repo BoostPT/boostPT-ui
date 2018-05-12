@@ -44,10 +44,24 @@
 .full-pad {
     padding: 4% 4%;
 }
-
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
 /*************************
-      Workout Items
+     Workout Items
 *************************/
+.workout-list {
+    max-height: 550px;
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+    background-color: #37474F;
+    border-radius: 7px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .full-width {
     width: 100%;
 }
@@ -95,6 +109,18 @@
 /*************************
       Single Workout
 *************************/
+.workout-container {
+    height: 550px;
+    width: 300px;
+    margin-left: 450px;
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 7px;
+    background-color: #EEE;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .workout-title {
     padding-bottom: 1%;
 }
