@@ -24,6 +24,7 @@
     "@fortawesome/react-fontawesome": "0.0.19",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "file-loader": "^1.1.11",
     "lodash": "^4.17.4",
     "material-ui": "^0.20.0",
     "moment": "^2.22.0",
@@ -37,7 +38,8 @@
     "redux-persist": "^5.9.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "url-loader": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
