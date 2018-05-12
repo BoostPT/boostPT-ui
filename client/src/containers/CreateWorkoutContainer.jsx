@@ -154,7 +154,6 @@ CreateWorkoutContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log('state', state)
   return {
     user_id: state.auth.user.id
   }
