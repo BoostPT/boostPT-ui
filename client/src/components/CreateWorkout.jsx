@@ -36,20 +36,6 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
   )
 };
 
-const renderTextField = (hintText, floatingLabelText, multiLine = false, rowsMax = 1) => {
-  return (
-    <TextField
-      hintText={hintText}
-      floatingLabelText={floatingLabelText}
-      floatingLabelStyle={exerciseFormFloatStyle}
-      floatingLabelFixed={true}
-      multiLine={multiLine}
-      rowsMax={rowsMax}
-      underlineShow={false}
-    />
-  )
-};
-
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);

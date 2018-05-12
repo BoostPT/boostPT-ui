@@ -13,6 +13,10 @@ class WorkoutsListContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getWorkoutsList(this.props.userId);
+  }
+
   getEachExerciseCount(exercises) {
     return exercises.reduce((counts, exercise) => {
       counts[exercise.type] = counts[exercise.type] + 1 || 1;
@@ -28,7 +32,8 @@ class WorkoutsListContainer extends Component {
   render() {
     return (
       <div>
-        <WorkoutsList 
+        <WorkoutsList
+         userId={this.props.userId}
          workouts={this.props.workouts} 
          getEachExerciseCount={this.getEachExerciseCount}
          handleExerciseClick={this.handleExerciseClick}
@@ -42,8 +47,9 @@ class WorkoutsListContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     clickedWorkout: state.workoutsReducer.clickedWorkout,
-    workouts: state.workoutsReducer.workouts
+    workouts: state.workoutsReducer.workouts,
+    userId: state.authReducer.user.id
   }
 };
 
-export default connect(mapStateToProps, { selectedWorkout })(WorkoutsListContainer);
+export default connect(mapStateToProps, { selectedWorkout, getWorkoutsList })(WorkoutsListContainer);

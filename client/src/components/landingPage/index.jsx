@@ -3,13 +3,6 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
-import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
-
-/****/
-import WorkoutsListContainer from '../../containers/workoutsListContainer.jsx';
-import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx'; 
-/****/
-
 
 const toolbarStyle = {
   backgroundColor: colors.grey900

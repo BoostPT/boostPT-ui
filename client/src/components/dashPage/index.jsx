@@ -7,11 +7,6 @@ import { List, ListItem } from 'material-ui/List';
 import WorkoutsTab from './workoutsTab.jsx';
 import * as colors from "material-ui/styles/colors";
 
-import CreateWorkout from '../CreateWorkout.jsx';
-import WorkoutListsContainer from '../../containers/workoutsListContainer.jsx';
-// import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
-import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
-
 const tabStyle = {
   standard: {
     background: "#C3CAD3",
@@ -68,27 +63,29 @@ class DashPage extends Component {
     const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
 
     return (
-      <div>
-        <Tabs style={tabsStyle} inkBarStyle={{display: "none"}}>
-          <Tab style={tabStyle.defaultTab} disableTouchRipple={true} className="tab" label="Schedule" >
-            <div>
+        <div className="dashPage">
+          <Navbar userInfo={this.props.userInfo} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
 
-            </div>
-          </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Workouts" style={tabStyle.defaultTab} onActive={this.props.handleWorkoutsTabClick}>
-            <div>
-              <WorkoutListsContainer />
-            </div>
-          </Tab>
-          <Tab disableTouchRipple={true} className="tab" label="Clients" style={tabStyle.defaultTab} >
-            <div>
-              
-            </div>
-          </Tab>
-        </Tabs>
-        <CreateWorkout user_id={this.props.userInfo.id} REST_SERVER_URL='http://localhost:8000/api' API_ENDPOINT='/workouts/addWorkout' />
-      </div>
-    );
+          <div className="dashPageBody">
+            <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
+              <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <div>
+
+                </div>
+              </Tab>
+              <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <WorkoutsTab activeListItem={this.state.workoutTabActiveListItem} user_id={this.props.userInfo.id} />
+              </Tab>
+              <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
+                <div>
+
+                </div>
+              </Tab>
+            </Tabs>
+            {this.renderWorkoutTabList()}
+          </div>
+        </div>
+    )
   }
 }
 
