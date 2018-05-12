@@ -18,7 +18,6 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
-
 const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
   // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
   return (
@@ -39,55 +38,6 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      exerciseForms: []
-    };
-    this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
-  }
-
-  handleAddExerciseMenuClick(e) {
-    let exerciseForm = {
-      type: e.target.innerText
-    };
-    this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
-  }
-
-  handleWorkoutNameInput(e) {
-    this.setState({
-      workoutName: e.target.value
-    });
-  }
-
-  handleFormInput(e) {
-    const [index, key] = e.target.getAttribute('data').split(',');
-    const formCopy = cloneDeep(this.state.exerciseForms);
-
-    formCopy[index][key] = e.target.value;
-    this.setState({
-      exerciseForms: formCopy
-    });
-  }
-
-  handleMakePrivateCheck() {
-    this.setState({
-      isPublic: !this.state.isPublic
-    });
-  }
-
-  async handleFormSubmit() {
-    const payload = {
-      user_id: this.props.user_id,
-      workoutName: this.state.workoutName,
-      exerciseForms: this.state.exerciseForms,
-      isPublic: this.state.isPublic
-    };
-
-    try {
-      const submitWorkout = await axios.post(this.props.REST_SERVER_URL.concat(this.props.API_ENDPOINT), payload);
-    }
-    catch(err) {
-      console.log('Error submitting workout form', err);
-    }
   }
 
   renderAddExerciseButton() {
