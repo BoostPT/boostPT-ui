@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import CreateWorkout from '../components/CreateWorkout.jsx';
+import { connect } from 'react-redux';
+import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
 import omit from 'lodash/omit';
 import shortid from 'shortid';
+import PropTypes from "prop-types";
 
 // Change where we load these from later?
 const REST_SERVER_URL='http://localhost:8000/api';
@@ -121,6 +123,7 @@ class CreateWorkoutContainer extends Component {
     try {
       await axios.post(REST_SERVER_URL.concat(API_ENDPOINT), payload);
       console.log('Successfully saved workout');
+      this.props.handleCreateWorkoutSuccess();
     }
     catch(err) {
       console.log('Error submitting workout form', err);
@@ -146,4 +149,15 @@ class CreateWorkoutContainer extends Component {
   }
 }
 
-export default CreateWorkoutContainer;
+CreateWorkoutContainer.propTypes = {
+  handleCreateWorkoutSuccess: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => {
+  console.log('state', state)
+  return {
+    user_id: state.auth.user.id
+  }
+};
+
+export default connect(mapStateToProps, null)(CreateWorkoutContainer);

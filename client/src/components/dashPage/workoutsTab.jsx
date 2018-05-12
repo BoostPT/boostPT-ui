@@ -12,14 +12,14 @@ class WorkoutsTab extends Component {
     return this.props.activeListItem === 0 ? (
       <WorkoutListContainer />
     ) : (
-      <CreateWorkoutContainer user_id={this.props.user_id} />
+      <CreateWorkoutContainer handleCreateWorkoutSuccess={this.props.handleCreateWorkoutSuccess} />
     );
   }
 }
 
 WorkoutsTab.propTypes = {
   activeListItem: PropTypes.number.isRequired,
-  user_id: PropTypes.number.isRequired
+  handleCreateWorkoutSuccess: PropTypes.func.isRequired
 };
 
 export default WorkoutsTab;

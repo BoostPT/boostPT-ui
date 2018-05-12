@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { List, ListItem } from 'material-ui/List';
+import Snackbar from 'material-ui/Snackbar';
 
 import WorkoutsTab from './workoutsTab.jsx';
 import * as colors from "material-ui/styles/colors";
@@ -33,14 +34,29 @@ class DashPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      workoutTabActiveListItem: 0
+      workoutTabActiveListItem: 0,
+      workoutCreatedBar: false
     };
     this.handleWorkoutTabListItemSelect = this.handleWorkoutTabListItemSelect.bind(this);
+    this.handleCreateWorkoutSuccess = this.handleCreateWorkoutSuccess.bind(this);
+    this.handleWorkoutBarClose = this.handleWorkoutBarClose.bind(this);
   }
 
   handleWorkoutTabListItemSelect(e) {
     this.setState({
       workoutTabActiveListItem: parseInt(e.currentTarget.getAttribute('data'))
+    });
+  }
+
+  handleCreateWorkoutSuccess() {
+    this.setState({
+      workoutCreatedBar: true
+    });
+  }
+
+  handleWorkoutBarClose() {
+    this.setState({
+      workoutCreatedBar: false
     });
   }
 
@@ -74,7 +90,9 @@ class DashPage extends Component {
                 </div>
               </Tab>
               <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
-                <WorkoutsTab activeListItem={this.state.workoutTabActiveListItem} user_id={this.props.userInfo.id} />
+                <WorkoutsTab activeListItem={this.state.workoutTabActiveListItem}
+                             handleCreateWorkoutSuccess={this.handleCreateWorkoutSuccess}
+                />
               </Tab>
               <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
                 <div>
@@ -83,6 +101,12 @@ class DashPage extends Component {
               </Tab>
             </Tabs>
             {this.renderWorkoutTabList()}
+            <Snackbar
+              open={this.state.workoutCreatedBar}
+              message="Workout saved!"
+              autoHideDuration={2000}
+              onRequestClose={this.handleWorkoutBarClose}
+            />
           </div>
         </div>
     )
