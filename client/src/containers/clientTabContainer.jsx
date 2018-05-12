@@ -44,7 +44,7 @@ class ClientTabContainer extends Component {
       })
       .catch((err) => {
         console.log(err);
-        cb('failure');
+        cb(err);
       })
     } else {
       console.log('Only trainers can do that');
@@ -71,7 +71,7 @@ class ClientTabContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     clients : state.trainer.clients,
-    userInfo: state.authReducer.user
+    userInfo: state.auth.user
   };
 }
 
