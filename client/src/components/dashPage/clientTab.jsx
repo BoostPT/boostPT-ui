@@ -27,13 +27,10 @@ class ClientTab extends Component {
 
   filterInputChange(e) {
     this.setState({filterInput: e.target.value});
+    this.filterCards();
   }
 
   filterCards() {
-    this.doneTyping();
-  }
-
-  doneTyping() {
     const input = this.state.filterInput.toLowerCase();
     const tempArr = this.props.clients;
     const newArr = tempArr.filter((value) => value.client_name.toLowerCase().startsWith(input));
@@ -84,7 +81,7 @@ class ClientTab extends Component {
               <div className="row" key={0}>
                 <div className="column">
                   <form className="filter">
-                    <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} onKeyUp={this.filterCards} value={this.state.filterInput}></input>
+                    <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} value={this.state.filterInput}></input>
                   </form>
                 </div>
               <div className="column">

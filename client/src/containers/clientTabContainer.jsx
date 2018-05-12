@@ -29,25 +29,19 @@ class ClientTabContainer extends Component {
     }
   }
 
-  handleSubmitButtonClick(clientName, cb) {
-    if (this.props.userInfo.istrainer === true) {
+  async handleSubmitButtonClick(clientName, cb) {
+    try {
       var payload = {client_name: clientName, trainer_id: this.props.userInfo.id};
-      axios.post('http://localhost:8000/api/users/addnonuserclient', payload)
-      .then((response) => {
-        if (response.status === 200) {
-          this.fetchClientsFromStore(() => {
-            cb('success');
-          });
-        } else {
-          cb('failure');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        cb(err);
-      })
-    } else {
-      console.log('Only trainers can do that');
+      const result = await axios.post('http://localhost:8000/api/users/addnonuserclient', payload);
+      if (result.status === 200) {
+        this.fetchClientsFromStore(() => {
+          cb('success');
+        });
+      } else {
+        cb('failure');
+      }
+    } catch (err) {
+      cb(err);
     }
   }
 
