@@ -23,8 +23,7 @@ class BioPageContainer extends Component {
   }
 
   handleTitleClick(){
-    console.log(this.props.changedUserInfo);
-    this.props.history.push({pathname: '/dash', state: this.props.changedUserInfo});
+    this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
   }
 
   async handleOnDrop(files){
