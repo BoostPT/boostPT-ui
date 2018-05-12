@@ -54,7 +54,7 @@ class BioPageContainer extends Component {
     return(
       <div>
         <BioPage 
-          userInfo={this.props.userInfo} 
+          userInfo={this.props.userInfo}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
           handleUserNameClick={this.handleUserNameClick.bind(this)} handleTitleClick={this.handleTitleClick.bind(this)} 
@@ -67,9 +67,8 @@ class BioPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    authenticated: state.auth.authenticated,
     userInfo: state.auth.user
   };
-}
+};
 
 export default connect(mapStateToProps, null)(BioPageContainer);

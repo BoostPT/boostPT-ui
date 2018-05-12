@@ -2,41 +2,41 @@ import axios from 'axios';
 import {
   LOGOUT_USER,
   AUTH_USER,
+  AUTH_ERROR,
   CHANGE_USER_PICTURE,
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST
 } from './types';
+import { history } from '../index.jsx'
+
+export const authUser = (user, endpoint) => {
+  return async dispatch => {
+    try {
+      const result = await axios.post(`http://localhost:8000/api/auth/${endpoint}`, user);
+      dispatch({
+        type: AUTH_USER,
+        payload: result.data
+      });
+      document.cookie = `jwt=${result.headers.jwt}`;
+      history.push('/dash');
+    }
+    catch(err) {
+      // Payload currently a hardcoded string
+      // For sign up, it could be changed later to a more descriptive answer but not getting data with 409 HTTP response
+      dispatch({
+        type: AUTH_ERROR,
+        payload: 'Invalid input'
+      });
+    }
+  };
+};
 
 export const logOutUser = () => {
   // Delete cookie
 
   return { type: LOGOUT_USER };
-}
-
-export const loginUser = async (user) => {
-  try {
-    const result = await axios.post('http://localhost:8000/api/auth/login', user);
-    return {
-      type: AUTH_USER,
-      payload: result.data
-    };
-  } catch (err) {
-    return(err);
-  }
-}
-
-export const signUpUser = async (user) => {
-  try {
-    await axios.post('http://localhost:8000/api/auth/signup', user);
-    return {
-      type: AUTH_USER,
-      payload: { username: user.username, isTrainer: user.isTrainer }
-    };
-  } catch (err) {
-    return(err);
-  }
-}
+};
 
 export const changeUserPicture = async (formData) => {
   
