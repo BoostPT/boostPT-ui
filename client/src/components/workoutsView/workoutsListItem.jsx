@@ -26,7 +26,7 @@ class WorkoutsListItem extends Component {
           <p className="float-left pad">{counts[2] || 0} Cardio<img className="shift-icon-down" src={require('../../../dist/images/Cardio.png')}></img></p>
           <div className="clear-float"></div>
           <p className="float-left pad">{counts[1] || 0} Strength<img className="shift-icon-down" src={require('../../../dist/images/Strength.png')}></img></p>
-          <p className="float-left add-left-pad">{counts[3] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/Stretch.png')}></img></p>
+          <p className="float-left add-left-pad">{counts[3] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/stretch.png')}></img></p>
           {
             is_public ? 
               <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>

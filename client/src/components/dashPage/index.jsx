@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
+import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { List, ListItem } from 'material-ui/List';
 import Snackbar from 'material-ui/Snackbar';
@@ -96,7 +97,7 @@ class DashPage extends Component {
               </Tab>
               <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
                 <div>
-
+                <ClientTabContainer/>
                 </div>
               </Tab>
             </Tabs>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
@@ -31,5 +32,6 @@ class LandingPage extends Component {
     )
   }
 }
+
 
 export default LandingPage;
