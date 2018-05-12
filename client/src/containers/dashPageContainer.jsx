@@ -53,8 +53,7 @@ class DashPageContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
-    userInfo: state.auth.user,
-    clientList: state
+    userInfo: state.auth.user
   };
 };
 

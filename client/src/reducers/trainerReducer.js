@@ -4,11 +4,11 @@ import {
 
 export default function(state = {}, action) {
   switch(action.type) {
-		case TRAINER_CLIENT_LIST:   
-			return Object.assign({}, state, {
-				clients: action.payload
-			});
-			break;
-	}
+    case TRAINER_CLIENT_LIST:   
+      return Object.assign({}, state, {
+        clients: action.payload
+      });
+    break;
+  }
 	return state;
 }

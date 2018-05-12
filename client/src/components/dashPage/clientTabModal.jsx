@@ -27,14 +27,14 @@ class Modal extends Component {
   render() {
     return (
       <div>{
-        <div id="myModal" className="modal">
-          <div className="modal-content">
-            <div id="modalTitle" >Add Client</div>
-            <div className="modalsubTitle" >Name
+        <div className="addNewClientModal">
+          <div className="addNewClientModal-content">
+            <div id="addNewClientModal-title" >Add Client</div>
+            <div id="addNewClientModal-subtitle" >Name
             </div>
-            <label className="modalsubTitle">
+            <label>
               <span>
-                <input id="modalInput" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
+                <input id="addNewClientModal-input" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
                 <button id="createUserButton" onClick={this.handleButtonClick.bind(this)}>Submit</button>
               </span>
             </label>
