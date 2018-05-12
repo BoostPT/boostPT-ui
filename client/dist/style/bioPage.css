@@ -49,7 +49,11 @@
   align-items: center;
   font-size: auto;
   margin-top: 10px;
+<<<<<<< a0f510b3b7efbfd1e19e65583f9b3bbd18aec50a
   margin-left: 15%;
+=======
+  margin-left: 10%; 
+>>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
   margin-right: 10%;
 }
 
@@ -61,6 +65,7 @@
   margin-left: 10%; 
   margin-right: 10%;
 }
+<<<<<<< a0f510b3b7efbfd1e19e65583f9b3bbd18aec50a
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< a64604318f902b2e830c7c8da197904a335032a5
 <<<<<<< cee403cef9ee324e1f4837ce42939c851dd81b35
@@ -99,3 +104,9 @@
   border-radius: 10px; */
 }
 >>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
+=======
+
+.bioEditButton:hover{
+  color: #424242;
+}
+>>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
