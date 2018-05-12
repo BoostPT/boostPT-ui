@@ -29,10 +29,11 @@ class WorkoutsListItem extends Component {
           <p className="float-left add-left-pad">{counts[3] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/stretch.png')}></img></p>
           {
             is_public ? 
-              <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>
-              :
-              <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
+            <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>
+            :
+            <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
           }
+          <img className="float-left delete-icon" src={require('../../../dist/images/trash.png')}></img>
           <div className="clear-float"></div>
         </div>
       </div>
