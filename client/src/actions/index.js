@@ -49,6 +49,7 @@ export const authUser = (user, endpoint) => {
   };
 };
 
+<<<<<<< 5f57f5d186b6d48ed308513bb582d9a832b14a57
 <<<<<<< 5cfdadba8e6266e977eb07d4ae4df7029a595b5d
 <<<<<<< b89b9292f46c03ecb3f981f5cead21f80e1c0469
 <<<<<<< e71c1263c413f21bc85a1bb5f9439528de44f40f
@@ -122,6 +123,8 @@ export const logOutUser = dispatch => {
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
 =======
+=======
+>>>>>>> Working BioPage ui after rebase
 export const logOutUser = dispatch => {
   dispatch({ type: LOGOUT_USER });
   document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -129,7 +132,10 @@ export const logOutUser = dispatch => {
 };
 
 
+<<<<<<< 5f57f5d186b6d48ed308513bb582d9a832b14a57
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
+=======
+>>>>>>> Working BioPage ui after rebase
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
