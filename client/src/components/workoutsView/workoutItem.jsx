@@ -22,20 +22,19 @@ class WorkoutItem extends Component {
   }
 
   render() {
-    const clicked = this.props.clickedWorkout;
     return (
-      clicked ?
+      this.props.clickedWorkout ?
         <Paper style={style} zDepth={5} children={
           <div className="font">
             <div className="hug-left">
               <h2 className="workout-title">
-                {clicked.name}
-                <img className="float-right pad-right" src={require(`../../../../client/dist/images/${clicked.is_public ? "earth" : "lock"}.png`)}></img>
+                {this.props.clickedWorkout.name}
+                <img className="float-right pad-right" src={require(`../../../../client/dist/images/${this.props.clickedWorkout.is_public ? "earth" : "lock"}.png`)}></img>
                 <div className="clear-float"></div>
               </h2>
-              <p>{moment(clicked.created_at).fromNow()}</p>
+              <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.sortExercises(clicked.exercises).map(exercise => <ExerciseItem key={new Date().getTime() + exercise.name} exercise={exercise} />)}
+            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem key={exercise.id} exercise={exercise} />)}
           </div>
         } />
         :
