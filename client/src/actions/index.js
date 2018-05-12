@@ -2,7 +2,9 @@ import axios from 'axios';
 import {
   LOGOUT_USER,
   AUTH_USER,
-  CHANGE_USER_PICTURE
+  CHANGE_USER_PICTURE,
+  FETCH_WORKOUTS,
+  SELECT_WORKOUT
 } from './types';
 
 export const logOutUser = () => {
@@ -48,3 +50,26 @@ export const changeUserPicture = async (formData) => {
     return (err);
   }
 }
+
+export const getWorkoutsList = async (userId) => {
+  try {
+    const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`);
+    for (let workout of workouts.data) {
+      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`);
+      workout.exercises = exercises.data;
+    }
+    return {
+      type: FETCH_WORKOUTS,
+      payload: workouts.data
+    }
+  } catch (err) {
+    return (err);
+  }
+}
+
+export const selectedWorkout = (workout) => {
+  return {
+    type: SELECT_WORKOUT,
+    payload: workout
+  }
+};

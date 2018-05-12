@@ -14,9 +14,9 @@ const toolbarTitleStyle = {
 
 class LandingPage extends Component {
   render() {
-    
     return (
       //this toolbar may need to be a separate component
+      <div>
       <Toolbar style={toolbarStyle} className="landingPageToolBar">
         <ToolbarGroup firstChild={true}>
           <ToolbarTitle style={toolbarTitleStyle} text="BoostPT"/>
@@ -27,7 +27,7 @@ class LandingPage extends Component {
           <Link to='/login'><RaisedButton label="Login" /></Link>
         </ToolbarGroup>
       </Toolbar>
-
+      </div>
     )
   }
 }
