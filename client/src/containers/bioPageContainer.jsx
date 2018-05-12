@@ -9,7 +9,7 @@ class BioPageContainer extends Component {
 
     this.state = {
       searchText: '',
-      userInfo: this.props.location.state
+      bioPageUserInfo: this.props.location.state,
     }
   }
 
@@ -23,7 +23,8 @@ class BioPageContainer extends Component {
   }
 
   handleTitleClick(){
-    this.props.history.push({pathname: '/dash', state: this.state.userInfo});
+    console.log(this.props.changedUserInfo);
+    this.props.history.push({pathname: '/dash', state: this.props.changedUserInfo});
   }
 
   async handleOnDrop(files){
@@ -34,7 +35,7 @@ class BioPageContainer extends Component {
     try {
       const changed = await this.props.changeUserPicture(payload);
       await this.setState({
-        userInfo: this.props.changedUserInfo
+        bioPageUserInfo: this.props.changedUserInfo
       });
     } catch (err) {
       console.log(err);

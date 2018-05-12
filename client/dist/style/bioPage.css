@@ -3,26 +3,65 @@
   flex-direction: column;
 }
 
+.bioPicture{
+  align-self: center;
+  margin-top: 5px;
+}
+
 .bioInfo{
   position: relative;
   display: flex;
+  flex-direction: column;
   background-color: #EEEEEE;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 30px;
+  margin-left: 5%;
+  width: 300px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border-radius: 10px;
 }
 
 .bioPageBody{
   position: absolute;
+  display: flex;
   top: 56px;
   left: 0;
-  height: 103%;
+  height: 100%;
   right: 0;
   overflow: auto;
   background: #343F4B;
 }
 
 .bioUsername{
-  font-size: 75px;
-  margin-left: 15px;
+  font-size: 30px;
+  align-self: center;
+}
+
+.aboutMe{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 10%; 
+  margin-right: 10%;
+}
+
+.email{
+  display: flex;
+  align-items: center;
+  font-size: auto;
+  margin-top: 10px;
+  margin-left: 10%; 
+  margin-right: 10%;
+}
+
+.phoneNumber{
+  display: flex;
+  align-items: center;
+  font-size: auto ;
+  margin-top: 10px;
+  margin-left: 10%; 
+  margin-right: 10%;
+}
+
+.bioEditButton:hover{
+  color: #424242;
 }
