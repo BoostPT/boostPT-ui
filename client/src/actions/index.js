@@ -117,6 +117,7 @@ export const logOutUser = dispatch => {
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
 };
 
+<<<<<<< 6ab6769ce8fa4ab8fe92477962e30801c2f2078b
 <<<<<<< 0181f61b1e2ff6ad0cec5863b4601bedb3dd1cab
 <<<<<<< e55ec29fcca38864bb6bcfbdf2cf0e2fe6d5d15e
 <<<<<<< a20eee72f3fa19cc9b90ae8945fdeb8b0dcc28bb
@@ -145,6 +146,8 @@ export const logOutUser = dispatch => {
 =======
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+>>>>>>> Working BioPage ui after rebase
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
