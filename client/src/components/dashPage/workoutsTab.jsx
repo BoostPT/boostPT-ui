@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
+import WorkoutListContainer from '../../containers/workoutsListContainer.jsx';
 
 class WorkoutsTab extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class WorkoutsTab extends Component {
 
   render() {
     return this.props.activeListItem === 0 ? (
-      <h1>INSERT VIEW WORKOUTS COMPONENT</h1>
+      <WorkoutListContainer />
     ) : (
       <CreateWorkoutContainer user_id={this.props.user_id} />
     );

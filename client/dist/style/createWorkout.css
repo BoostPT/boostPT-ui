@@ -5,6 +5,8 @@
   overflow-y: auto;
   margin-left: 50px;
   margin-top: 15px;
+  width: 500px;
+  max-height: 600px;
 }
 
 #create-workout-inner {
@@ -64,6 +66,10 @@
 
 .odd-greyed {
   background-color: #F5F5F5;
+}
+  
+.exercise-form {
+  padding-left: 40px;
 }
 
 #submit-wo-div {

@@ -1,0 +1,120 @@
+/*************************
+      Custom Styles
+*************************/
+.pos-abs {
+    position: absolute;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.clear-float {
+    clear: both;
+}
+.bord {
+    border: 1px solid black;
+}
+.hug-left {
+    text-align: left;
+    margin: 2% 0 0 4%;
+}
+.font {
+    font-size: 10px;
+    font-weight: 300;
+    font-family: Arial;
+    color: #546E7A;
+}
+.pad-right {
+    padding-right: 2%;
+}
+.pad-bot {
+    padding-bottom: 2%;
+}
+.light-grey {
+    background-color: #EEE;
+}
+.pointer:hover {
+    cursor: pointer;
+}
+.block {
+    display: block;
+}
+.full-pad {
+    padding: 4% 4%;
+}
+
+/*************************
+      Workout Items
+*************************/
+.full-width {
+    width: 100%;
+}
+.outer-border {
+    border: 1px solid yellow;
+}
+.border {
+    border: 1px solid black;
+    border-radius: 7px;
+    width: 95%;
+    margin: 2% auto;
+}
+.title {
+    margin: 1% 0 0 2%;
+}
+.created {
+    display: inline;
+    margin: 1% 6% 0 0;
+}
+.exercises {
+    margin: 5% 80.5% 2% 0%;
+    text-decoration: underline;
+}
+.status {
+    margin: -7% 2% 0 85%;
+}
+.pad {
+    padding: 0 0 3% 15%;
+}
+.pad-top {
+    padding-top: 2%;
+}
+.add-left-pad {
+    padding-left: 16.5%;
+}
+.font-title {
+    font-size: 12px;
+}
+.shift-icon-down {
+    position: relative;
+    top: 5px;
+    padding-left: 3px;
+}
+
+/*************************
+      Single Workout
+*************************/
+.workout-title {
+    padding-bottom: 1%;
+}
+.exercise-height {
+    min-height: 40px;
+}
+.pos-title {
+    margin: 4% 0 0 4%;
+}
+.pos-description {
+    margin: 1.5% 0 0 4%;
+}
+
+/*************************
+        Exercises
+*************************/
+.exercise-height {
+    min-height: 40px;
+}
+.emphasize {
+    font-size: 12px;
+    font-weight: 500;
+}

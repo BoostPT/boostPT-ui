@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getWorkoutsList } from '../actions/index.js';
+// import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
 
@@ -31,6 +33,10 @@ class DashPageContainer extends Component {
     this.props.history.push(`/bio/${this.props.userInfo.id}`);
   }
 
+  handleWorkoutsTabClick(){
+    this.props.getWorkoutsList(this.props.userInfo.id);
+  }
+   
   render(){
     return(
       <DashPage userInfo={this.props.userInfo}
@@ -51,5 +57,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, null)(DashPageContainer);
-
+export default connect(mapStateToProps, { getWorkoutsList })(DashPageContainer);

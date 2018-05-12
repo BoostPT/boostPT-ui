@@ -1,3 +1,5 @@
 export const AUTH_USER = 'AUTH_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const CHANGE_USER_PICTURE = 'CHANGE_USER_PICTURE';
+export const FETCH_WORKOUTS = 'FETCH_WORKOUTS';
+export const SELECT_WORKOUT = 'SELECT_WORKOUT';
