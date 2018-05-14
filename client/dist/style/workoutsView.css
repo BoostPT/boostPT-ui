@@ -137,6 +137,22 @@
     margin: 1.5% 0 0 4%;
 }
 
+.public-private-icon {
+  float: right;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.star {
+    float: right;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.star:hover {
+  cursor: pointer;
+}
+
 /*************************
         Exercises
 *************************/

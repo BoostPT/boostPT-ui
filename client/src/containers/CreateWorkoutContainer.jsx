@@ -8,9 +8,8 @@ import omit from 'lodash/omit';
 import shortid from 'shortid';
 import PropTypes from "prop-types";
 
-// Change where we load these from later?
+// Change where we load this from later?
 const REST_SERVER_URL='http://localhost:8000/api';
-const API_ENDPOINT='/workouts/addWorkout';
 
 class CreateWorkoutContainer extends Component {
   constructor(props) {
@@ -121,7 +120,7 @@ class CreateWorkoutContainer extends Component {
     };
 
     try {
-      await axios.post(REST_SERVER_URL.concat(API_ENDPOINT), payload, {
+      await axios.post(REST_SERVER_URL.concat('/workouts/addWorkout'), payload, {
         headers: {
           Authorization: `${document.cookie}`
         }
