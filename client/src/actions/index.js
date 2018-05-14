@@ -32,16 +32,21 @@ export const authUser = (user, endpoint) => {
   };
 };
 
-export const logOutUser = () => {
-  // Delete cookie
-
-  return { type: LOGOUT_USER };
+export const logOutUser = dispatch => {
+  dispatch({ type: LOGOUT_USER });
+  document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  history.push('/');
 };
 
 export const changeUserPicture = async (formData) => {
   
   try{
-    await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, { header: {'X-Requested-With': 'XMLHttpRequest'}});
+    await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+
     return {
       type: CHANGE_USER_PICTURE,
       payload: {}
@@ -49,13 +54,21 @@ export const changeUserPicture = async (formData) => {
   } catch (err) {
     return (err);
   }
-}
+};
 
 export const getWorkoutsList = async (userId) => {
   try {
-    const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`);
+    const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
     for (let workout of workouts.data) {
-      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`);
+      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
+        headers: {
+          Authorization: `${document.cookie}`
+        }
+      });
       workout.exercises = exercises.data;
     }
     return {
@@ -69,7 +82,11 @@ export const getWorkoutsList = async (userId) => {
 
 export const trainerClientList = async (user, cb) => {
   try {
-    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`);
+    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data
