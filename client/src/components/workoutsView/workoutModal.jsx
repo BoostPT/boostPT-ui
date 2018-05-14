@@ -7,12 +7,14 @@ class WorkoutModal extends Component {
 
   render() {
     return (
-      <div>
+      <div className="modal-font">
         {
           this.props.modalVisible ? 
-            <div className="modal">
-              <div className="modal-content">
-                <p>Delete workout {this.props.workoutName}?</p>
+            <div className="modal-workout">
+              <div className="modal-workout-content">
+                <p>Delete {this.props.workoutName}?</p>
+                <a className="float-left modal-btn pointer">Yes</a>
+                <a className="float-left modal-btn pointer">No</a>
               </div>
             </div>
             :

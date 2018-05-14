@@ -6,7 +6,7 @@ import {
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
 import WorkoutItem from '../components/workoutsView/workoutItem.jsx';
-import WorkoutModal from '../components/workoutsView/workoutModal.jsx';
+import WorkoutModalContainer from './workoutModalContainer.jsx';
 import WorkoutItemContainer from './workoutItemContainer.jsx';
 
 
@@ -38,7 +38,6 @@ class WorkoutsListContainer extends Component {
   }
 
   render() {
-    console.log(this.props.clickedWorkout);
     return (
       <div>
         <WorkoutsList

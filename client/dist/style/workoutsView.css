@@ -152,7 +152,7 @@
          Modal
 *************************/
 /* The Modal (background) */
-.modal {
+.modal-workout {
     display: block;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -166,11 +166,29 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.modal-workout-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
-    height: 20%;
+    height: 25%;
+    text-align: center;
+    border-radius: 7px;
+}
+.modal-font {
+    font-family: Arial;
+    color: #546E7A;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 7px;
+}
+.modal-btn {
+    width: 50%;
+    border: 2px solid #546E7A;
+    border-radius: 5px;
+    padding: 3%;
+    margin: 5% 0 0 20%;
+    background-color: #546E7A;
+    color: yellow;
 }
