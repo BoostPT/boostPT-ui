@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ExerciseItem from './exerciseItem.jsx';
 import moment from 'moment';
 import Paper from 'material-ui/Paper';

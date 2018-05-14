@@ -5,10 +5,8 @@ import {
   selectedWorkout
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
-import WorkoutItem from '../components/workoutsView/workoutItem.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
 import WorkoutItemContainer from './workoutItemContainer.jsx';
-
 
 class WorkoutsListContainer extends Component {
   constructor(props) {
