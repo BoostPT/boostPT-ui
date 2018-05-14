@@ -56,7 +56,7 @@ class BioPageContainer extends Component {
     );
   }
 }
-//comment for rebase
+
 const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
