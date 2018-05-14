@@ -38,7 +38,7 @@ class WorkoutsListItem extends Component {
              async (e) => {
                e.persist();
                await this.props.handleExerciseClick.bind(this)();
-               this.props.handleDeleteClick(e);
+               this.props.toggleModal(e);
              }
            }></img>
           <div className="clear-float"></div>

@@ -32,9 +32,9 @@ class WorkoutsListContainer extends Component {
     this.props.selectedWorkout(this.state.workout);
   }
   
-  handleDeleteClick(e) {
+  toggleModal(e) {
     e.stopPropagation();
-    this.setState({ modalVisible: true });
+    this.setState({ modalVisible: !this.state.modalVisible });
   }
 
   render() {
@@ -45,10 +45,14 @@ class WorkoutsListContainer extends Component {
          workouts={this.props.workouts} 
          getEachExerciseCount={this.getEachExerciseCount}
          handleExerciseClick={this.handleExerciseClick}
-         handleDeleteClick={this.handleDeleteClick.bind(this)}
+         toggleModal={this.toggleModal.bind(this)}
         />
         <WorkoutItemContainer clickedWorkout={this.props.clickedWorkout ? this.props.clickedWorkout : null} />
-        <WorkoutModal modalVisible={this.state.modalVisible} workoutName={this.props.clickedWorkout.name} />
+        <WorkoutModalContainer
+         modalVisible={this.state.modalVisible} 
+         workoutName={this.props.clickedWorkout.name}
+         toggleModal={this.toggleModal.bind(this)}  
+        />
       </div>
     );
   }

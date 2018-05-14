@@ -13,8 +13,8 @@ class WorkoutModal extends Component {
             <div className="modal-workout">
               <div className="modal-workout-content">
                 <p>Delete {this.props.workoutName}?</p>
-                <a className="float-left modal-btn pointer">Yes</a>
-                <a className="float-left modal-btn pointer">No</a>
+                <a className="float-left modal-btn pointer" onClick={this.props.handleYesClick}>Yes</a>
+                <a className="float-left modal-btn pointer" onClick={this.props.toggleModal}>No</a>
               </div>
             </div>
             :

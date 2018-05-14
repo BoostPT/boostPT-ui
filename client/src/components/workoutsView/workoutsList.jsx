@@ -18,7 +18,7 @@ class WorkoutsList extends Component {
                     workout={workout} 
                     getEachExerciseCount={this.props.getEachExerciseCount}
                     handleExerciseClick={this.props.handleExerciseClick}
-                    handleDeleteClick={this.props.handleDeleteClick}
+                    toggleModal={this.props.toggleModal}
                    />
           })
           :

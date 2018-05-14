@@ -6,10 +6,20 @@ class WorkoutModalContainer extends Component {
     super(props);
   }
 
+  handleYesClick() {
+    console.log('clicked yes!');
+    // make delete request
+  }
+
   render() {
     return(
       <div>
-        <WorkoutModal />
+        <WorkoutModal 
+         handleYesClick={this.handleYesClick}
+         modalVisible={this.props.modalVisible}
+         workoutName={this.props.workoutName}
+         toggleModal={this.props.toggleModal}
+        />
       </div>
     );
   };
