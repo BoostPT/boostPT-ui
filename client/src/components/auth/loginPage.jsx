@@ -40,6 +40,11 @@ class LoginPage extends Component {
             />
           </form>
         </div>
+        {this.props.errorMessage ?
+          <div className="error-message">Invalid inputs</div>
+          :
+          null
+        }
       </Paper>
     );  
   }
@@ -49,7 +54,8 @@ LoginPage.propTypes = {
   handleLogin: PropTypes.func.isRequired,
   onChangeText: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
+  password: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired
 };
 
 export default LoginPage;

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -48,6 +48,11 @@ class Signup extends Component {
               />
             </div>
           </form>
+          {this.props.errorMessage ?
+            <div className="error-message">{this.props.errorMessage}</div>
+            :
+            null
+          }
         </div>
       </Paper>
     );
@@ -57,7 +62,8 @@ class Signup extends Component {
 Signup.propTypes = {
   handleSignupClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleToggleButtonChange: PropTypes.func.isRequired
+  handleToggleButtonChange: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired
 };
 
 export default Signup;

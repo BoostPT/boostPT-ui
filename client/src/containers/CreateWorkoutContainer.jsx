@@ -121,7 +121,11 @@ class CreateWorkoutContainer extends Component {
     };
 
     try {
-      await axios.post(REST_SERVER_URL.concat(API_ENDPOINT), payload);
+      await axios.post(REST_SERVER_URL.concat(API_ENDPOINT), payload, {
+        headers: {
+          Authorization: `${document.cookie}`
+        }
+      });
       this.props.handleCreateWorkoutSuccess();
     }
     catch(err) {

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import LoginPage from '../components/loginPage.jsx';
-import { loginUser } from '../actions/index.js';
+import LoginPage from '../components/auth/loginPage.jsx';
+import { authUser } from '../actions/index.js';
 
 class LoginPageContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
       email: '',
-      password: '',
-      showError: false
+      password: ''
     };
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -20,39 +19,30 @@ class LoginPageContainer extends Component {
     this.setState({[name]: value});
   }
 
-  async handleLogin(e){
+  handleLogin(e) {
     e.preventDefault();
-    const payload = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    try {
-        const result = await this.props.loginUser(payload);
-        this.setState({showError: false});
-        result ? this.props.history.push('/dash') :
-          this.props.history.push('/login');
-
-    } catch (err) {
-      this.setState({showError: true, email: '', password: ''});
-      return (err);
-    }
+    this.props.authUser(this.state, 'login');
+    this.setState({
+      email: '',
+      password: ''
+    });
   }
 
   render() {
     return (
-      <div>
-        <LoginPage handleLogin={this.handleLogin} onChangeText={this.onChangeText.bind(this)} email={this.state.email} password={this.state.password}/>
-        {this.state.showError ?
-          <div className="errorMessage">Invalid inputs</div>
-          : 
-          null
-        }
-      </div>
+      <LoginPage
+        handleLogin={this.handleLogin}
+        onChangeText={this.onChangeText.bind(this)}
+        email={this.state.email}
+        password={this.state.password}
+        errorMessage={this.props.error}
+      />
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return { error: state.auth.error };
+};
 
-
-export default connect(null, { loginUser })(LoginPageContainer);
+export default connect(mapStateToProps, { authUser })(LoginPageContainer);
