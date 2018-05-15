@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import moment from 'moment';
-import { selectedWorkout } from '../../actions';
 
 class WorkoutsListItem extends Component {
   constructor(props) {
@@ -10,11 +8,15 @@ class WorkoutsListItem extends Component {
     this.state = { workout: this.props.workout }
   }
 
+  handleWorkoutClick() {
+    this.props.handleWorkoutClick(this.props.workout);
+  }
+
   render() {
     const { name, created_at, is_public, exercises } = this.props.workout;
-    const counts = this.props.getEachExerciseCount(this.props.workout.exercises);
+    const counts = this.props.getEachExerciseCount(exercises);
     return (
-      <div className="border font light-grey pointer" onClick={this.props.handleExerciseClick.bind(this)}>
+      <div className="border font light-grey pointer" onClick={this.handleWorkoutClick.bind(this)}>
         <div className="pos-abs full-width">
           <h5 className="title float-left font-title">{name}</h5>
           <p className="created float-right">created {moment(created_at).fromNow()}</p>
@@ -37,7 +39,7 @@ class WorkoutsListItem extends Component {
            onClick={
              async (e) => {
                e.persist();
-               await this.props.handleExerciseClick.bind(this)();
+               await this.handleWorkoutClick.bind(this)();
                this.props.toggleModal(e);
              }
            }></img>
@@ -49,4 +51,4 @@ class WorkoutsListItem extends Component {
 }
 {/* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */}
 
-export default connect(null, { selectedWorkout })(WorkoutsListItem);
+export default WorkoutsListItem;

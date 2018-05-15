@@ -6,7 +6,8 @@ import {
   CHANGE_USER_PICTURE,
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
-  TRAINER_CLIENT_LIST
+  TRAINER_CLIENT_LIST,
+  DELETE_WORKOUT
 } from './types';
 import { history } from '../index.jsx'
 
@@ -58,6 +59,7 @@ export const changeUserPicture = async (formData) => {
 
 export const getWorkoutsList = async (userId) => {
   try {
+    console.log('workouts get fired!')
     const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`, {
       headers: {
         Authorization: `${document.cookie}`
@@ -100,5 +102,23 @@ export const selectedWorkout = (workout) => {
   return {
     type: SELECT_WORKOUT,
     payload: workout
+  }
+};
+
+export const deleteWorkout = async (workoutId, userId) => {
+  try {
+    await axios.delete(`http://localhost:8000/api/workouts/delete/${workoutId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const updatedWorkouts = await getWorkoutsList(userId);
+    console.log('UPDATED WORKOUTS', updatedWorkouts.payload)
+    return { 
+      type: DELETE_WORKOUT,
+      payload: { clickedWorkout: null, workouts: updatedWorkouts.payload }
+    }
+  } catch (err) {
+    return (err);
   }
 };

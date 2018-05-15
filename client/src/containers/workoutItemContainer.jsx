@@ -12,10 +12,17 @@ class WorkoutItemContainer extends Component {
 
   render() {
     return (
-      <WorkoutItem
-       clickedWorkout={this.props.clickedWorkout}
-       sortExercises={this.sortExercises}
-       />
+      <div>
+        {
+          this.props.clickedWorkout ? 
+            <WorkoutItem
+            clickedWorkout={this.props.clickedWorkout}
+            sortExercises={this.sortExercises}
+            />
+            :
+            null
+        }
+      </div>
     );
   }
 }

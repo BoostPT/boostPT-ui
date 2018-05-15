@@ -14,6 +14,7 @@ class WorkoutsListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { modalVisible: false }
+    this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +28,8 @@ class WorkoutsListContainer extends Component {
     }, {});
   }
 
-  handleExerciseClick() { 
-    // 'this' refers to workoutListItem component
-    this.props.selectedWorkout(this.state.workout);
+  handleWorkoutClick(workout) { 
+    this.props.selectedWorkout(workout);
   }
   
   toggleModal(e) {
@@ -38,20 +38,22 @@ class WorkoutsListContainer extends Component {
   }
 
   render() {
+    console.log(this.props.workouts);
     return (
       <div>
         <WorkoutsList
          userId={this.props.userId}
          workouts={this.props.workouts} 
          getEachExerciseCount={this.getEachExerciseCount}
-         handleExerciseClick={this.handleExerciseClick}
+         handleWorkoutClick={this.handleWorkoutClick}
          toggleModal={this.toggleModal.bind(this)}
         />
-        <WorkoutItemContainer clickedWorkout={this.props.clickedWorkout ? this.props.clickedWorkout : null} />
+        <WorkoutItemContainer clickedWorkout={this.props.clickedWorkout} />
         <WorkoutModalContainer
          modalVisible={this.state.modalVisible} 
-         workoutName={this.props.clickedWorkout.name}
-         toggleModal={this.toggleModal.bind(this)}  
+         clickedWorkout={this.props.clickedWorkout}
+         toggleModal={this.toggleModal.bind(this)}
+         userId={this.props.userId}
         />
       </div>
     );

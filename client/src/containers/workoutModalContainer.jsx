@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { 
+  deleteWorkout,
+  getWorkoutsList
+} from '../actions/index.js';
 import WorkoutModal from '../components/workoutsView/workoutModal.jsx';
 
 class WorkoutModalContainer extends Component {
@@ -6,23 +11,24 @@ class WorkoutModalContainer extends Component {
     super(props);
   }
 
-  handleYesClick() {
-    console.log('clicked yes!');
-    // make delete request
+  handleYesClick(e, workoutId, userId) {
+    this.props.deleteWorkout(workoutId, userId);
+    this.props.toggleModal(e);
   }
 
   render() {
     return(
       <div>
         <WorkoutModal 
-         handleYesClick={this.handleYesClick}
+         handleYesClick={this.handleYesClick.bind(this)}
          modalVisible={this.props.modalVisible}
-         workoutName={this.props.workoutName}
+         clickedWorkout={this.props.clickedWorkout}
          toggleModal={this.props.toggleModal}
+         userId={this.props.userId}
         />
       </div>
     );
   };
 }
 
-export default WorkoutModalContainer;
+export default connect(null, { deleteWorkout, getWorkoutsList })(WorkoutModalContainer);
