@@ -113,3 +113,10 @@ export const deleteWorkout = async (workoutId, workouts) => {
     return (err);
   }
 };
+
+export const updateWorkoutsWithStar = (workouts) => {
+  return {
+    type: FETCH_WORKOUTS,
+    payload: workouts
+  }
+};
