@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-
+import Star from 'material-ui/svg-icons/toggle/star';
 import { stretchSvg } from './svgHelper.js';
+import * as colors from "material-ui/styles/colors";
 
 class WorkoutsListItem extends Component {
   constructor(props) {
@@ -12,8 +13,12 @@ class WorkoutsListItem extends Component {
     this.props.handleWorkoutClick(this.props.workout);
   }
 
-  handleWorkoutClick() {
-    this.props.handleWorkoutClick(this.props.workout);
+  renderStar() {
+    return this.props.workout.star ? (
+      <Star className="star-void" color={colors.yellow800} />
+    ) : (
+      null
+    )
   }
 
   render() {
@@ -24,14 +29,15 @@ class WorkoutsListItem extends Component {
         <div className="pos-abs full-width">
           <h5 className="title float-left font-title">{name}</h5>
           <p className="created float-right">created {moment(created_at).fromNow()}</p>
+          {this.renderStar()}
           <div className="clear-float"></div>
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad"><b>{counts[0] || 0}</b> Warm-up<img className="exercise-icon" src={require('../../../dist/images/Warm-up.png')}></img></p>
-          <p className="float-left pad"><b>{counts[2] || 0}</b> Cardio<img className="exercise-icon" src={require('../../../dist/images/Cardio.png')}></img></p>
+          <p className="float-left pad"><b>{counts[0] || 0}</b> Warm-up<img className="exercise-icon" src={require('../../../dist/images/warm-up.png')}></img></p>
+          <p className="float-left pad"><b>{counts[2] || 0}</b> Cardio<img className="exercise-icon" src={require('../../../dist/images/cardio.png')}></img></p>
           <div className="clear-float"></div>
-          <p className="float-left pad"><b>{counts[1] || 0}</b> Strength<img className="exercise-icon" src={require('../../../dist/images/Strength.png')}></img></p>
+          <p className="float-left pad"><b>{counts[1] || 0}</b> Strength<img className="exercise-icon" src={require('../../../dist/images/strength.png')}></img></p>
           <p className="float-left add-left-pad"><b>{counts[3] || 0}</b> Stretch<img className="exercise-icon" src={stretchSvg} /></p>
           {
             is_public ? 
