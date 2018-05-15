@@ -35,14 +35,7 @@ class WorkoutsListItem extends Component {
             :
             <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
           }
-          <img className="float-left delete-icon" src={require('../../../dist/images/trash.png')} 
-           onClick={
-             async (e) => {
-               e.persist();
-               await this.handleWorkoutClick.bind(this)();
-               this.props.toggleModal(e);
-             }
-           }></img>
+          <img className="float-left delete-icon" src={require('../../../dist/images/trash.png')} data={this.props.workout.id} onClick={(e) => this.props.toggleModal(e)}></img>
           <div className="clear-float"></div>
         </div>
       </div>
