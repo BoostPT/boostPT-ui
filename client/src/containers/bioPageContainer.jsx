@@ -42,6 +42,7 @@ class BioPageContainer extends Component {
   }
 
   render(){
+    
     return(
       <div>
         <BioPage 

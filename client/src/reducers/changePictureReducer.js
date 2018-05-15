@@ -3,7 +3,6 @@ import {
 } from '../actions/types'
 
 export default function(state = {}, action) {
-
   if(action.type === CHANGE_USER_PICTURE){
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
 <<<<<<< b1fcd1df4aa7499c99cee35d1cefcaa201c5485b

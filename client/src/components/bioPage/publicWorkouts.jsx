@@ -10,7 +10,7 @@ class PublicWorkouts extends Component{
 
   render(){
     return(
-      <div>
+      <div className="myPublicWorkouts">
         <PublicWorkoutsListContainer user={this.props.user}/>
         <WorkoutItemContainer/>
       </div>

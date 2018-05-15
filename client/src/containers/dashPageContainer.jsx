@@ -119,6 +119,7 @@ class DashPageContainer extends Component {
    
   render(){
     return(
+<<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< e65036b98d38e29e8b342c9e94c50a795bb42b72
@@ -132,6 +133,10 @@ class DashPageContainer extends Component {
 =======
       <DashPage userInfo={this.props.userInfo}
 >>>>>>> Checking for another rebase
+=======
+      <DashPage 
+                userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}

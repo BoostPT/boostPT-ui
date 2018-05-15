@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
+import RaisedButton from 'material-ui/RaisedButton';
 import Edit from 'material-ui/svg-icons/image/edit';
 import Email from 'material-ui/svg-icons/communication/email';
 import Phone from 'material-ui/svg-icons/communication/phone';
 import IconButton from 'material-ui/IconButton';
-import { grey800 } from 'material-ui/styles/colors';
+import { grey800, blueGrey800 } from 'material-ui/styles/colors';
 
 import MyPublicWorkoutsContainer from '../../containers/myPublicWorkoutsContainer.jsx';
 import BioPicture from '../bioPage/bioPicture.jsx';
@@ -37,6 +38,12 @@ const IconButtonStyle = {
   height: '15px', 
   width: '15px'
 };
+
+const bioPageButtons = {
+  position: 'absolute',
+  bottom: '0px',
+  alignSelf: 'center'
+}
 
 class BioPage extends Component{
   constructor(props){
@@ -80,17 +87,6 @@ class BioPage extends Component{
               </div>
             </div>
             <div className="email">
-              {this.props.loggedInAsUser.id === this.props.userInfo.id ?
-              <IconButton 
-                disableTouchRipple={true} 
-                iconStyle={IconButtonStyle} 
-                style={edit_button_style2}
-              > 
-                <Edit style={edit_button_style2}/>
-              </IconButton>
-                :
-                null
-              }
               <Email  style={email_phone_style}/>
               {!this.props.userInfo.email ? 'Unavailable' : this.props.userInfo.email}
             </div>
@@ -109,6 +105,7 @@ class BioPage extends Component{
               <Phone style={email_phone_style}/>
               {!this.props.userInfo.phoneNumber ? 'Unavailable' : this.props.userInfo.phoneNumber}
             </div>
+            <RaisedButton label="Send Message" style={bioPageButtons} backgroundColor={blueGrey800} />
           </div>
           <div className="bioPageMyPublicWorkouts">
             <MyPublicWorkoutsContainer user={this.props.userInfo}/>

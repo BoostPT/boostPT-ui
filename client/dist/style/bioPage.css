@@ -49,7 +49,7 @@
   align-items: center;
   font-size: auto;
   margin-top: 10px;
-  margin-left: 10%; 
+  margin-left: 15%;
   margin-right: 10%;
 }
 
@@ -61,6 +61,7 @@
   margin-left: 10%; 
   margin-right: 10%;
 }
+<<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< a64604318f902b2e830c7c8da197904a335032a5
 <<<<<<< cee403cef9ee324e1f4837ce42939c851dd81b35
 =======
@@ -71,3 +72,30 @@
 >>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
 =======
 >>>>>>> Working BioPage ui after rebase
+=======
+
+/*Public Workout*/
+
+.bioPageMyPublicWorkouts{
+  background-color: #EEEEEE;
+  margin-top: 50px;
+  margin-left: 75px;
+  margin-bottom: 100px;
+  border-radius: 10px;
+}
+
+.publicWorkoutTitle{
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.publicWorkoutsContainer{
+  display: flex;
+  flex-direction: column;
+
+  /* background-color: #EEEEEE;
+  margin-top: 50px;
+  margin-left: 75px;
+  border-radius: 10px; */
+}
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click

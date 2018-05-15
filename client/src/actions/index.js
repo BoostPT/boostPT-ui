@@ -6,6 +6,7 @@ import {
   LOGOUT_USER,
   AUTH_USER,
   CHANGE_USER_PICTURE,
+  FETCH_PUBLIC_WORKOUTS,
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
@@ -241,9 +242,10 @@ export const changeUserPicture = async (payload) => {
     await axios.put(signedUrl.data, payload.file[0], options);
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-
+    
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< 287f55cc081dac75af156b387b1752b9110f6e7b
@@ -275,6 +277,15 @@ export const changeUserPicture = async (payload) => {
 =======
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Checking for another rebase
+=======
+      payload: { 
+        username: payload.user.username, 
+        isTrainer: payload.user.istrainer, 
+        id: payload.user.id, 
+        picture: result.data.pictureUrl,
+        email: payload.user.email
+      }
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
     };
   } catch (err) {
     return (err);
@@ -285,8 +296,15 @@ export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
 
-    console.log("Public Workouts response",publicWorkouts);
+    for(let publicWorkout of publicWorkouts.data){
+      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`);
+      publicWorkout.exercises = exercises.data;
+    }
 
+    return{
+      type: FETCH_PUBLIC_WORKOUTS,
+      payload: publicWorkouts.data
+    };
   }catch(err){
     console.log("error*************",err);
     return (err);
