@@ -25,27 +25,29 @@ class LoginPage extends Component {
 
   render(){
     return (
-      <Paper className="login-outer" zDepth={3}>
-        <div className="auth-inner">
-          <h2>Sign In</h2>
-          <form className="auth-form">
-            {renderTextField('email', 'Email', 'text', this.props.onChangeText, this.props.email)}
-            <br />
-            {renderTextField('password', 'Password', 'password', this.props.onChangeText, this.props.password)}
-            <br />
-            <FlatButton
-              type="submit"
-              label="Login"
-              onClick={this.props.handleLogin}
-            />
-          </form>
-        </div>
-        {this.props.errorMessage ?
-          <div className="error-message">Invalid inputs</div>
-          :
-          null
-        }
-      </Paper>
+      <div className='auth-page'>
+        <Paper className="login-outer" zDepth={3}>
+          <div className="auth-inner">
+            <h2>Sign In</h2>
+            <form className="auth-form">
+              {renderTextField('email', 'Email', 'text', this.props.onChangeText, this.props.email)}
+              <br />
+              {renderTextField('password', 'Password', 'password', this.props.onChangeText, this.props.password)}
+              <br />
+              <FlatButton
+                type="submit"
+                label="Login"
+                onClick={this.props.handleLogin}
+              />
+            </form>
+          </div>
+          {this.props.errorMessage ?
+            <div className="error-message">Invalid inputs</div>
+            :
+            null
+          }
+        </Paper>
+      </div>
     );  
   }
 }
