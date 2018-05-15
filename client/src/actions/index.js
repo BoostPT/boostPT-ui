@@ -370,6 +370,7 @@ export const loginUser = async (user) => {
     await axios.put(signedUrl.data, payload.file[0], options);
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
+<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
 
 >>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
@@ -482,6 +483,18 @@ export const loginUser = async (user) => {
 =======
 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+    
+    return {
+      type: CHANGE_USER_PICTURE,
+      payload: { 
+        username: payload.user.username, 
+        isTrainer: payload.user.istrainer, 
+        id: payload.user.id, 
+        picture: result.data.pictureUrl,
+        email: payload.user.email
+      }
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
     };
   } catch (err) {
     return (err);
@@ -492,11 +505,15 @@ export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
 
+<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
 <<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
+=======
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
     for(let publicWorkout of publicWorkouts.data){
       let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`);
       publicWorkout.exercises = exercises.data;
     }
+<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
 
     return{
       type: FETCH_PUBLIC_WORKOUTS,
@@ -506,6 +523,13 @@ export const getUserPublicWorkoutsList = async(userId) =>{
     console.log("Public Workouts response",publicWorkouts);
 
 >>>>>>> Checking for another rebase
+=======
+
+    return{
+      type: FETCH_PUBLIC_WORKOUTS,
+      payload: publicWorkouts.data
+    };
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
   }catch(err){
     console.log("error*************",err);
     return (err);

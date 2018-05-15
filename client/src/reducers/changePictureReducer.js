@@ -3,6 +3,7 @@ import {
 } from '../actions/types'
 
 export default function(state = {}, action) {
+<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
 <<<<<<< 3995b057a308e33aee8441d73b931556d6bbe43d
   if(action.type === CHANGE_USER_PICTURE){
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
@@ -23,6 +24,8 @@ export default function(state = {}, action) {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 
+=======
+>>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
   if(action.type === CHANGE_USER_PICTURE){
 <<<<<<< f3fc5c1401a7d973d278ed8b766af6d385bf4cae
     console.log("made it inside reducer");
