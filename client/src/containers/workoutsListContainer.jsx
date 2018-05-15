@@ -38,7 +38,6 @@ class WorkoutsListContainer extends Component {
   }
 
   render() {
-    console.log(this.props.workouts);
     return (
       <div>
         <WorkoutsList

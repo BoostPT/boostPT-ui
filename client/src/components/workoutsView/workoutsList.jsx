@@ -9,7 +9,6 @@ class WorkoutsList extends Component {
   }
 
   render() {
-    console.log('WORKOUT LIST RERENDDER?!?');
     return (
       <div className="workout-list pos-abs outer-border">
         {Array.isArray(this.props.workouts) ? 

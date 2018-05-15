@@ -59,7 +59,6 @@ export const changeUserPicture = async (formData) => {
 
 export const getWorkoutsList = async (userId) => {
   try {
-    console.log('workouts get fired!')
     const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`, {
       headers: {
         Authorization: `${document.cookie}`
@@ -113,7 +112,6 @@ export const deleteWorkout = async (workoutId, userId) => {
       }
     });
     const updatedWorkouts = await getWorkoutsList(userId);
-    console.log('UPDATED WORKOUTS', updatedWorkouts.payload)
     return { 
       type: DELETE_WORKOUT,
       payload: { clickedWorkout: null, workouts: updatedWorkouts.payload }
