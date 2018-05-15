@@ -45,7 +45,7 @@ class BioPageContainer extends Component {
     return(
       <div>
         <BioPage 
-          userInfo={this.state.bioPageUserInfo} 
+          userInfo={this.state.bioPageUserInfo } 
           loggedInAsUser={this.props.userInfo}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 

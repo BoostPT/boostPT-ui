@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getWorkoutsList } from '../actions/index.js';
-// import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
 
@@ -10,6 +9,7 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
@@ -45,6 +45,10 @@ class DashPageContainer extends Component {
       UserfromBioPageChange: this.props.location.state
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      UserfromBioPageChange: this.props.location.state,
+      activeTab: 1
+>>>>>>> Checking for another rebase
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -63,6 +67,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 7ad99b412af4c4252725782728d000047d3ca421
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
@@ -101,6 +106,9 @@ class DashPageContainer extends Component {
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+
+>>>>>>> Checking for another rebase
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }
@@ -110,8 +118,8 @@ class DashPageContainer extends Component {
   }
    
   render(){
-
     return(
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< e65036b98d38e29e8b342c9e94c50a795bb42b72
       <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
@@ -121,6 +129,9 @@ class DashPageContainer extends Component {
 =======
       <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      <DashPage userInfo={this.props.userInfo}
+>>>>>>> Checking for another rebase
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
@@ -133,6 +144,7 @@ class DashPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
 <<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
     user: state.auth.user
@@ -148,6 +160,10 @@ const mapStateToProps = function(state) {
     userInfo: state.authReducer.user,
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+    authenticated: state.auth.authenticated,
+    userInfo: state.auth.user
+>>>>>>> Checking for another rebase
   };
 };
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import env from 'dotenv';
+
 require('dotenv').config();
 
 import {
@@ -12,11 +12,35 @@ import {
   DELETE_WORKOUT
 } from './types';
 
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 
 export const authUser = (user) => {
   return {
     type: AUTH_USER,
     payload: user
+=======
+import { history } from '../index.jsx'
+
+export const authUser = (user, endpoint) => {
+  return async dispatch => {
+    try {
+      const result = await axios.post(`http://localhost:8000/api/auth/${endpoint}`, user);
+      dispatch({
+        type: AUTH_USER,
+        payload: result.data
+      });
+      document.cookie = `jwt=${result.headers.jwt}`;
+      history.push('/dash');
+    }
+    catch(err) {
+      // Payload currently a hardcoded string
+      // For sign up, it could be changed later to a more descriptive answer but not getting data with 409 HTTP response
+      dispatch({
+        type: AUTH_ERROR,
+        payload: 'Invalid input'
+      });
+    }
+>>>>>>> Checking for another rebase
   };
 };
 
@@ -74,6 +98,7 @@ export const logOutUser = () => {
   };
 };
 
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -187,6 +212,8 @@ export const loginUser = async (user) => {
 =======
 =======
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+>>>>>>> Checking for another rebase
 export const changeUserPicture = async (payload) => {
   const picture = {
     filename: payload.file[0].name,
@@ -210,57 +237,14 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-<<<<<<< 665e30bc5705319f9948ea51e0ef06cbe8d87de1
-<<<<<<< 9df407eb6b54f47a0834794b6b1762ba6fcb56cb
 
-    await axios.put(signedUrl.data, payload.file[0], options);
-
-<<<<<<< 1f3dd22ed381012868583762664ef7aa2b872aec
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
-=======
-    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-
-<<<<<<< 4c566fa69cd120358742c9411f15274b2d2026d2
-<<<<<<< d1762d2fbdf80b6ac5665b4da7771f22ed8daf7b
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
-=======
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-=======
-
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
     await axios.put(signedUrl.data, payload.file[0], options);
 
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
-<<<<<<< bc053624d547d616bc80594d0a949167aaece703
-<<<<<<< c4b8e41e853aef2c144e4a5343c58c34f9b79efd
-<<<<<<< bc35114d2a177127be12f656675f3bdc3ab848d6
-<<<<<<< dfb106b59126f6508bc66ccb72cdbd798f0c5997
-<<<<<<< 54a4529ed7f9ad27a7561825d7731b80d9db9182
-<<<<<<< 68bacaf248c1d84cc167f85e8211d63197aa0b96
->>>>>>> Trying to add environment variables globally for client ui side
-=======
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
-=======
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
-=======
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
-=======
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
     return {
       type: CHANGE_USER_PICTURE,
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 <<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
 <<<<<<< 287f55cc081dac75af156b387b1752b9110f6e7b
 <<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
@@ -288,25 +272,32 @@ export const changeUserPicture = async (payload) => {
       payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
+>>>>>>> Checking for another rebase
     };
   } catch (err) {
     return (err);
   }
-};
+}
+
+export const getUserPublicWorkoutsList = async(userId) =>{
+  try{
+    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
+
+    console.log("Public Workouts response",publicWorkouts);
+
+  }catch(err){
+    console.log("error*************",err);
+    return (err);
+  }
+}
 
 export const getWorkoutsList = async (userId) => {
   try {
-    const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`, {
-      headers: {
-        Authorization: `${document.cookie}`
-      }
-    });
+    const workouts = await axios.get(`http://localhost:8000/api/workouts/user/${userId}`, {headers: {Authorization: document.cookie}});
     for (let workout of workouts.data) {
-      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
-        headers: {
-          Authorization: `${document.cookie}`
-        }
-      });
+      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`);
       workout.exercises = exercises.data;
     }
     return {
@@ -318,81 +309,12 @@ export const getWorkoutsList = async (userId) => {
   }
 }
 
-<<<<<<< 51501bf27469f84e88042a951895169054bedc7e
-<<<<<<< 674f51ba5f7fb73c32d33f6cfdd57b5f036eff37
 export const trainerClientList = async (user, cb) => {
   try {
-    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`, {
-      headers: {
-        Authorization: `${document.cookie}`
-      }
-    });
-=======
-=======
->>>>>>> Trying to add environment variables globally for client ui side
-export const changeUserPicture = async (payload) => {
-  const picture = {
-    filename: payload.file[0].name,
-    fileType: payload.file[0].type
-  };
-  
-  const options = {
-    headers: {
-      'Content-Type': payload.file[0].type
-    }
-  };
-
-  if(picture.filename.includes(' ')){
-    picture.filename = picture.filename.split(' ').join('+');
-  }
-
-  const body = {
-    pictureUrl: `http://s3-us-west-1.amazonaws.com/${process.env.S3_BUCKET}/${picture.filename}`,
-    userId: payload.user.id
-  };
-
-  try{
-    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
-<<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
-<<<<<<< 51501bf27469f84e88042a951895169054bedc7e
-
-    await axios.put(signedUrl.data, payload.file[0], options);
-
-<<<<<<< ab47a668d03699c482ebd270661bac20822ae4a9
-    //post to the database the link url and change the picture link in the url
->>>>>>> Trying to add environment variables globally for client ui side
+    const result = await axios.get(`http://localhost:8000/api/users/${user.id}`);
     return {
       type: TRAINER_CLIENT_LIST,
       payload: result.data
-=======
-    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-=======
-    await axios.put(signedUrl.data, payload.file[0], options);
-    await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
->>>>>>> Trying to add environment variables globally for client ui side
-=======
-
-    await axios.put(signedUrl.data, payload.file[0], options);
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-
-    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
-
-    return {
-      type: CHANGE_USER_PICTURE,
-<<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
-<<<<<<< 38ce212cd9aba5209265dc29e53c0b67e37c796c
-<<<<<<< 2cc89d75b90876992a360c6c8f93f80cd725f6b6
-      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.isTrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> picture changes on bioPage, but data does not persist when navigating back
-=======
-      payload: { username: payload.user.username, isTrainer: payload.user.istrainer, id: payload.user.id, picture: result.data.pictureUrl}
->>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
   } catch (err) {
     return (err);
@@ -404,6 +326,7 @@ export const selectedWorkout = (workout) => {
     type: SELECT_WORKOUT,
     payload: workout
   }
+<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 };
 
 export const deleteWorkout = async (workoutId, workouts) => {
@@ -435,4 +358,6 @@ export const updateWorkoutsWithStar = (workouts) => {
     type: FETCH_WORKOUTS,
     payload: workouts
   }
+=======
+>>>>>>> Checking for another rebase
 };

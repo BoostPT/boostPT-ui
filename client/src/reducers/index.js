@@ -9,7 +9,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   workoutsReducer,
   trainer: trainerReducer,
-  changePictureReducer
+  changePictureReducer,
+  
 });
 
 export default rootReducer;
