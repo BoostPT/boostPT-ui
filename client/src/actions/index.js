@@ -6,7 +6,8 @@ import {
   CHANGE_USER_PICTURE,
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
-  TRAINER_CLIENT_LIST
+  TRAINER_CLIENT_LIST,
+  DELETE_WORKOUT
 } from './types';
 import { history } from '../index.jsx'
 
@@ -100,5 +101,29 @@ export const selectedWorkout = (workout) => {
   return {
     type: SELECT_WORKOUT,
     payload: workout
+  }
+};
+
+export const deleteWorkout = async (workoutId, workouts) => {
+  try {
+    await axios.delete(`http://localhost:8000/api/workouts/delete/${workoutId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const newList = [];
+    let i = 0;
+    while (i < workouts.length - 1) {
+      if (workouts[i].id !== workoutId) {
+        newList.push(workouts[i]);
+      }
+      i++;
+    }
+    return { 
+      type: DELETE_WORKOUT,
+      payload: { clickedWorkout: null, workouts: newList }
+    }
+  } catch (err) {
+    return (err);
   }
 };

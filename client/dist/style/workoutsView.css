@@ -44,10 +44,24 @@
 .full-pad {
     padding: 4% 4%;
 }
-
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
 /*************************
-      Workout Items
+     Workout Items
 *************************/
+.workout-list {
+    max-height: 550px;
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+    background-color: #37474F;
+    border-radius: 7px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .full-width {
     width: 100%;
 }
@@ -71,8 +85,11 @@
     margin: 5% 80.5% 2% 0%;
     text-decoration: underline;
 }
+.delete-icon {
+    margin: 0 1.5% 2% 0;
+}
 .status {
-    margin: -7% 2% 0 85%;
+    margin: 1% 1% 0 85%;
 }
 .pad {
     padding: 0 0 3% 15%;
@@ -95,6 +112,18 @@
 /*************************
       Single Workout
 *************************/
+.workout-container {
+    height: 550px;
+    width: 300px;
+    margin-left: 450px;
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 7px;
+    background-color: #EEE;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .workout-title {
     padding-bottom: 1%;
 }
@@ -117,4 +146,49 @@
 .emphasize {
     font-size: 12px;
     font-weight: 500;
+}
+
+/*************************
+         Modal
+*************************/
+/* The Modal (background) */
+.modal-workout {
+    display: block;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-workout-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 25%;
+    text-align: center;
+    border-radius: 7px;
+}
+.modal-font {
+    font-family: Arial;
+    color: #546E7A;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 7px;
+}
+.modal-btn {
+    width: 50%;
+    border: 2px solid #546E7A;
+    border-radius: 5px;
+    padding: 3%;
+    margin: 5% 0 0 20%;
+    background-color: #546E7A;
+    color: yellow;
 }

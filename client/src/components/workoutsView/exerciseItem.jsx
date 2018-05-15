@@ -5,10 +5,10 @@ class ExerciseItem extends Component {
   constructor(props) {
     super(props);
     this.types = {
-      0: 'Warm-up',
-      1: 'Strength',
-      2: 'Cardio',
-      3: 'Stretch'
+      0: 'warm-up',
+      1: 'strength',
+      2: 'cardio',
+      3: 'stretch'
     }
   }
 
