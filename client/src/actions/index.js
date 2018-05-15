@@ -1,9 +1,13 @@
 import axios from 'axios';
+<<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
 <<<<<<< 56eb02ef0de5caf3d281168ad0d7b3c9d218bc12
 
 =======
 // import env from 'dotenv';
 >>>>>>> Trying to add environment variables globally for client ui side
+=======
+
+>>>>>>> Checking for another rebase
 require('dotenv').config();
 
 import {
@@ -17,6 +21,7 @@ import {
   DELETE_WORKOUT
 } from './types';
 
+<<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
 
 export const authUser = (user) => {
@@ -24,6 +29,8 @@ export const authUser = (user) => {
     type: AUTH_USER,
     payload: user
 =======
+=======
+>>>>>>> Checking for another rebase
 import { history } from '../index.jsx'
 
 export const authUser = (user, endpoint) => {
@@ -485,6 +492,7 @@ export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
 
+<<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
     for(let publicWorkout of publicWorkouts.data){
       let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`);
       publicWorkout.exercises = exercises.data;
@@ -494,6 +502,10 @@ export const getUserPublicWorkoutsList = async(userId) =>{
       type: FETCH_PUBLIC_WORKOUTS,
       payload: publicWorkouts.data
     };
+=======
+    console.log("Public Workouts response",publicWorkouts);
+
+>>>>>>> Checking for another rebase
   }catch(err){
     console.log("error*************",err);
     return (err);

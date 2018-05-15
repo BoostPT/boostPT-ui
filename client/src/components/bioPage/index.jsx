@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
-import RaisedButton from 'material-ui/RaisedButton';
-import Edit from 'material-ui/svg-icons/image/edit';
-import Email from 'material-ui/svg-icons/communication/email';
-import Phone from 'material-ui/svg-icons/communication/phone';
-import IconButton from 'material-ui/IconButton';
-import { grey800, blueGrey800 } from 'material-ui/styles/colors';
-
-import MyPublicWorkoutsContainer from '../../containers/myPublicWorkoutsContainer.jsx';
-import BioPicture from '../bioPage/bioPicture.jsx';
-import Navbar from '../dashPage/navbar.jsx';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
 import Edit from 'material-ui/svg-icons/image/edit';
 import Email from 'material-ui/svg-icons/communication/email';
 import Phone from 'material-ui/svg-icons/communication/phone';
 import IconButton from 'material-ui/IconButton';
 import { grey800 } from 'material-ui/styles/colors';
+
+import MyPublicWorkoutsContainer from '../../containers/myPublicWorkoutsContainer.jsx';
+import BioPicture from '../bioPage/bioPicture.jsx';
+import Navbar from '../dashPage/navbar.jsx';
 
 const email_phone_style = {
   marginRight: '10%',
@@ -140,6 +132,9 @@ class BioPage extends Component{
               {!this.props.userInfo.phoneNumber ? 'Unavailable' : this.props.userInfo.phoneNumber}
             </div>
             <RaisedButton label="Send Message" style={bioPageButtons} backgroundColor={blueGrey800} />
+          </div>
+          <div className="bioPageMyPublicWorkouts">
+            <MyPublicWorkoutsContainer user={this.props.userInfo}/>
           </div>
           <div className="bioPageMyPublicWorkouts">
             <MyPublicWorkoutsContainer user={this.props.userInfo}/>

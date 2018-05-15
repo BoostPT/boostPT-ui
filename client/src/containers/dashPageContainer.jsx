@@ -158,8 +158,8 @@ class DashPageContainer extends Component {
   }
    
   render(){
-
     return(
+<<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
 <<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
 <<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
 <<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
@@ -182,6 +182,9 @@ class DashPageContainer extends Component {
 =======
       <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
+=======
+      <DashPage userInfo={this.props.userInfo}
+>>>>>>> Checking for another rebase
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
