@@ -9,9 +9,8 @@ const REST_SERVER_URL='http://localhost:8000/api';
 class WorkoutItemContainer extends Component {
   constructor(props) {
     super(props);
-    console.log('star?', this.props.clickedWorkout.star)
     this.state = {
-      star: !!this.props.clickedWorkout.star
+      star: false
     };
     this.handleStarWorkoutClick = this.handleStarWorkoutClick.bind(this);
   }

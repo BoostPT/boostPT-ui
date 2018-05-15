@@ -4,7 +4,10 @@ import moment from 'moment';
 class WorkoutsListItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { workout: this.props.workout }
+  }
+
+  handleWorkoutClick() {
+    this.props.handleWorkoutClick(this.props.workout);
   }
 
   handleWorkoutClick() {

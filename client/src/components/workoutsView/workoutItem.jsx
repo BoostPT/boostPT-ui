@@ -53,10 +53,10 @@ class WorkoutItem extends Component {
 }
 
 WorkoutItem.propTypes = {
-  clickedWorkout: PropTypes.object.isRequired,
+  clickedWorkout: PropTypes.object,
   sortExercises: PropTypes.func.isRequired,
   handleStarWorkoutClick: PropTypes.func.isRequired,
-  star: PropTypes.bool.isRequired
+  star: PropTypes.bool
 };
 
 export default WorkoutItem;
