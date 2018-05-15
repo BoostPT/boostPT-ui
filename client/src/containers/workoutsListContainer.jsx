@@ -6,7 +6,6 @@ import {
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
-import WorkoutItemContainer from './workoutItemContainer.jsx';
 
 class WorkoutsListContainer extends Component {
   constructor(props) {
@@ -54,7 +53,7 @@ class WorkoutsListContainer extends Component {
          toggleModal={this.toggleModal.bind(this)}
         />
         <WorkoutModalContainer
-         modalVisible={this.state.modalVisible} 
+         modalVisible={this.state.modalVisible}
          clickedWorkout={this.props.clickedWorkout}
          toggleModal={this.toggleModal.bind(this)}
          workouts={this.props.workouts}
@@ -68,7 +67,6 @@ class WorkoutsListContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    clickedWorkout: state.workoutsReducer.clickedWorkout,
     workouts: state.workoutsReducer.workouts,
     userId: state.auth.user.id
   }

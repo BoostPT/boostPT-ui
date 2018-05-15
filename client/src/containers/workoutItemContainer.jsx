@@ -9,9 +9,6 @@ const REST_SERVER_URL='http://localhost:8000/api';
 class WorkoutItemContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      star: false
-    };
     this.handleStarWorkoutClick = this.handleStarWorkoutClick.bind(this);
   }
   
@@ -19,18 +16,15 @@ class WorkoutItemContainer extends Component {
     return exercises.sort((a, b) => a.order_index - b.order_index);
   }
 
-  handleStarWorkoutClick() {
+  async handleStarWorkoutClick() {
     const payload = {
       user_id: this.props.user_id,
       workout_id: this.props.clickedWorkout.id
     };
-    axios.post(REST_SERVER_URL.concat('/workouts/starworkout'), payload, {
+    await axios.post(REST_SERVER_URL.concat('/workouts/starworkout'), payload, {
       headers: {
         Authorization: `${document.cookie}`
       }
-    });
-    this.setState({
-      star: !this.state.star
     });
   }
 
@@ -40,7 +34,7 @@ class WorkoutItemContainer extends Component {
        clickedWorkout={this.props.clickedWorkout}
        sortExercises={this.sortExercises}
        handleStarWorkoutClick={this.handleStarWorkoutClick}
-       star={this.state.star}
+       star={!!this.props.clickedWorkout.star}
        />
     );
   }
@@ -48,6 +42,7 @@ class WorkoutItemContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    clickedWorkout: state.workoutsReducer.clickedWorkout,
     user_id: state.auth.user.id
   }
 };
