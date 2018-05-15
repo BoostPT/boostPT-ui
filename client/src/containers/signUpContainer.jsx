@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Signup from '../components/auth/signUp.jsx';
 import { authUser } from '../actions/index.js';
+import axios from 'axios';
 
 class SignupContainer extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class SignupContainer extends Component {
         username: '',
         email: '',
         password: '',
-        isTrainer: false
+        isTrainer: false,
+        errorMessage: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,32 +28,40 @@ class SignupContainer extends Component {
     this.setState({ isTrainer: isChecked });
   }
 
-  handleSignupClick(e) {
+  async handleSignupClick(e) {
     e.preventDefault();
-    this.props.authUser(this.state, 'signup');
-    this.setState({
-      username: '',
-      email: '',
-      password: ''
-    });
+    const userPayload = {
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      isTrainer: this.state.isTrainer
+    };
+    try {
+      const result = await axios.post('http://localhost:8000/api/auth/signup', userPayload);
+      this.props.authUser(result.data);
+      document.cookie = `jwt=${result.headers.jwt}`;
+      this.props.history.push('/dash');
+    }
+    catch(err) {
+      this.setState({
+        username: '',
+        email: '',
+        password: '',
+        errorMessage: 'Invalid input'
+      });
+    }
   }
-
-
 
   render() {
     return (
-      <Signup 
-      handleSignupClick={this.handleSignupClick}
-      handleChange={this.handleChange}
-      handleToggleButtonChange={this.handleToggleButtonChange}
-      errorMessage={this.props.error}
+      <Signup
+        handleSignupClick={this.handleSignupClick}
+        handleChange={this.handleChange}
+        handleToggleButtonChange={this.handleToggleButtonChange}
+        errorMessage={this.state.errorMessage}
       />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { error: state.auth.error };
-};
-
-export default connect(mapStateToProps, { authUser })(SignupContainer);
+export default connect(null, { authUser })(SignupContainer);

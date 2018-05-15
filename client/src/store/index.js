@@ -3,7 +3,6 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import rootReducer from '../reducers';
-import reduxThunk from 'redux-thunk';
 import reduxPromise from 'redux-promise';
 import logger from 'redux-logger';
 
@@ -15,7 +14,7 @@ const persistConfig = {
 
 const persistentReducer = persistReducer(persistConfig, rootReducer);
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, reduxPromise, logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxPromise, logger)(createStore);
 
 export const store = createStoreWithMiddleware(persistentReducer);
 export const persistor = persistStore(store);
