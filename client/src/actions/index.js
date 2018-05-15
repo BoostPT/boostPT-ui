@@ -200,7 +200,7 @@ export const deleteFromStarredExercises = (exercises) => {
   }
 }
 
-export const allTrainersList = async () => {
+export const getAllTrainersList = async () => {
   try {
     const trainers = await axios.get('http://localhost:8000/api/users/trainers');
     return {
