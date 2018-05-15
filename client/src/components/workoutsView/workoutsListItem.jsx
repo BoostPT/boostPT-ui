@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+import { stretchSvg } from './svgHelper.js';
+
 class WorkoutsListItem extends Component {
   constructor(props) {
     super(props);
@@ -26,11 +28,11 @@ class WorkoutsListItem extends Component {
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad">{counts[0] || 0} Warm-up<img className="shift-icon-down" src={require('../../../dist/images/warm-up.png')}></img></p>
-          <p className="float-left pad">{counts[2] || 0} Cardio<img className="shift-icon-down" src={require('../../../dist/images/cardio.png')}></img></p>
+          <p className="float-left pad"><b>{counts[0] || 0}</b> Warm-up<img className="exercise-icon" src={require('../../../dist/images/Warm-up.png')}></img></p>
+          <p className="float-left pad"><b>{counts[2] || 0}</b> Cardio<img className="exercise-icon" src={require('../../../dist/images/Cardio.png')}></img></p>
           <div className="clear-float"></div>
-          <p className="float-left pad">{counts[1] || 0} Strength<img className="shift-icon-down" src={require('../../../dist/images/strength.png')}></img></p>
-          <p className="float-left add-left-pad">{counts[3] || 0} Stretch<img className="shift-icon-down" src={require('../../../dist/images/stretch.png')}></img></p>
+          <p className="float-left pad"><b>{counts[1] || 0}</b> Strength<img className="exercise-icon" src={require('../../../dist/images/Strength.png')}></img></p>
+          <p className="float-left add-left-pad"><b>{counts[3] || 0}</b> Stretch<img className="exercise-icon" src={stretchSvg} /></p>
           {
             is_public ? 
             <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>

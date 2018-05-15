@@ -30,16 +30,16 @@ class DashPageContainer extends Component {
 
   handleUserNameClick(){
     // Grab biopageinfo for user from database put onto store?
-    this.props.history.push(`/bio/${this.props.userInfo.id}`);
+    this.props.history.push(`/bio/${this.props.user.id}`);
   }
 
   handleWorkoutsTabClick(){
-    this.props.getWorkoutsList(this.props.userInfo.id);
+    this.props.getWorkoutsList(this.props.user.id);
   }
    
   render(){
     return(
-      <DashPage userInfo={this.props.userInfo}
+      <DashPage user={this.props.user}
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
@@ -52,7 +52,7 @@ class DashPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    userInfo: state.auth.user
+    user: state.auth.user
   };
 };
 
