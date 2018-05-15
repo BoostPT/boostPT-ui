@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getWorkoutsList } from '../actions/index.js';
+import { 
+  getWorkoutsList,
+  getAllTrainersList
+ } from '../actions/index.js';
 // import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
@@ -36,6 +39,11 @@ class DashPageContainer extends Component {
   handleWorkoutsTabClick(){
     this.props.getWorkoutsList(this.props.user.id);
   }
+
+  componentWillMount() {
+    // fetch all trainers from db
+    this.props.getAllTrainersList();
+  }
    
   render(){
     return(
@@ -56,4 +64,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList })(DashPageContainer);
