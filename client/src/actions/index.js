@@ -9,7 +9,8 @@ import {
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
   DELETE_WORKOUT,
-  FETCH_STARRED_EXERCISES
+  FETCH_STARRED_EXERCISES,
+  FETCH_TRAINERS
 } from './types';
 
 
@@ -196,5 +197,17 @@ export const deleteFromStarredExercises = (exercises) => {
   return {
     type: FETCH_STARRED_EXERCISES,
     payload: exercises
+  }
+}
+
+export const allTrainersList = async () => {
+  try {
+    const trainers = await axios.get('http://localhost:8000/api/users/trainers');
+    return {
+      type: FETCH_TRAINERS,
+      payload: trainers
+    }
+  } catch (err) {
+    return (err);
   }
 };

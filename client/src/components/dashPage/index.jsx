@@ -37,6 +37,30 @@ class DashPage extends Component {
     }
   }
 
+  handleWorkoutBarClose() {
+    this.setState({
+      workoutCreatedBar: false
+    });
+  }
+
+  componentWillMount() {
+    // fetch all trainers from db
+  }
+
+  renderWorkoutTabList() {
+    const workoutTabItemStatus = Array(2).fill('').map((v, i) => this.state.workoutTabActiveListItem === i ? 'active' : 'standard');
+    return this.props.activeTab === 1 ? (
+      <div className="workouts-list-div">
+        <List className="workouts-list-select">
+          <ListItem primaryText="View Workouts" style={workoutTabListStyle[workoutTabItemStatus[0]]} onClick={this.handleWorkoutTabListItemSelect} data="0" disableTouchRipple={true}/>
+          <ListItem primaryText="Create Workout" style={workoutTabListStyle[workoutTabItemStatus[1]]} onClick={this.handleWorkoutTabListItemSelect} data="1" disableTouchRipple={true}/>
+        </List>
+      </div>
+    ) : (
+      null
+    );
+  }
+
   render() {
 
     const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
