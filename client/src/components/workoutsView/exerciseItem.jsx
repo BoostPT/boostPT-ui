@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ExerciseDetails from './exerciseDetails.jsx';
 
 class ExerciseItem extends Component {
   constructor(props) {
