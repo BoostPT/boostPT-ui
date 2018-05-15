@@ -6,7 +6,8 @@ import {
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
-  DELETE_WORKOUT
+  DELETE_WORKOUT,
+  FETCH_TRAINERS
 } from './types';
 
 export const authUser = (user) => {
@@ -118,5 +119,17 @@ export const updateWorkoutsWithStar = (workouts) => {
   return {
     type: FETCH_WORKOUTS,
     payload: workouts
+  }
+}
+
+export const allTrainersList = async () => {
+  try {
+    const trainers = await axios.get('http://localhost:8000/api/users/trainers');
+    return {
+      type: FETCH_TRAINERS,
+      payload: trainers
+    }
+  } catch (err) {
+    return (err);
   }
 };

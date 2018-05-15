@@ -61,6 +61,10 @@ class DashPage extends Component {
     });
   }
 
+  componentWillMount() {
+    // fetch all trainers from db
+  }
+
   renderWorkoutTabList() {
     const workoutTabItemStatus = Array(2).fill('').map((v, i) => this.state.workoutTabActiveListItem === i ? 'active' : 'standard');
     return this.props.activeTab === 1 ? (
