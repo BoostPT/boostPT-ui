@@ -15,7 +15,8 @@ class WorkoutsListContainer extends Component {
     super(props);
     this.state = { 
       modalVisible: false,
-      workoutId: null
+      workoutId: null,
+      workoutName: null
     }
     this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
   }
@@ -39,7 +40,8 @@ class WorkoutsListContainer extends Component {
     e.stopPropagation();
     this.setState({ 
       modalVisible: !this.state.modalVisible,
-      workoutId: e.target.getAttribute('data') || null
+      workoutId: e.target.dataset.id || null,
+      workoutName: e.target.dataset.name || null
     });
   }
 
@@ -60,6 +62,7 @@ class WorkoutsListContainer extends Component {
          toggleModal={this.toggleModal.bind(this)}
          workouts={this.props.workouts}
          workoutId={this.state.workoutId}
+         workoutName={this.state.workoutName}
         />
       </div>
     );

@@ -25,6 +25,7 @@ class WorkoutModalContainer extends Component {
          toggleModal={this.props.toggleModal}
          workouts={this.props.workouts}
          workoutId={this.props.workoutId}
+         workoutName={this.props.workoutName}
         />
       </div>
     );
