@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import * as colors from "material-ui/styles/colors";
-import axios from "axios/index";
-
-// Change where we load this from later?
-const REST_SERVER_URL='http://localhost:8000/api';
 
 class ExerciseItem extends Component {
   constructor(props) {
@@ -16,28 +13,13 @@ class ExerciseItem extends Component {
       2: 'cardio',
       3: 'stretch'
     };
-    this.handleStarExerciseClick = this.handleStarExerciseClick.bind(this);
-  }
-
-  handleStarExerciseClick() {
-    // let updatedExercise = Object.assign({}, this.props.exercise);
-    const payload = {
-      user_id: this.props.user_id,
-      exercise_id: this.props.exercise.id
-    };
-    axios.post(REST_SERVER_URL.concat('/workouts/starexercise'), payload, {
-      headers: {
-        Authorization: `${document.cookie}`
-      }
-    });
-    // updatedExercise.star = !updatedWorkout.star;
   }
 
   renderStar() {
     return this.props.exercise.star ? (
-      <Star className="exercise-star" color={colors.yellow800} hoverColor={colors.yellow900} onClick={this.handleStarExerciseClick} />
+      <Star className="exercise-star" color={colors.yellow800} hoverColor={colors.yellow900} onClick={this.props.handleStarExerciseClick} />
     ) : (
-      <StarBorder className="exercise-star" color={colors.grey500} hoverColor={colors.grey700} onClick={this.handleStarExerciseClick} />
+      <StarBorder className="exercise-star" color={colors.grey500} hoverColor={colors.grey700} onClick={this.props.handleStarExerciseClick} />
     )
   }
 
@@ -73,5 +55,10 @@ class ExerciseItem extends Component {
     );
   }
 }
+
+ExerciseItem.propTypes = {
+  exercise: PropTypes.object.isRequired,
+  handleStarExerciseClick: PropTypes.func
+};
 
 export default ExerciseItem;

@@ -15,10 +15,6 @@ class WorkoutItemContainer extends Component {
     super(props);
     this.handleStarWorkoutClick = this.handleStarWorkoutClick.bind(this);
   }
-  
-  sortExercises(exercises) {
-    return exercises.sort((a, b) => a.order_index - b.order_index);
-  }
 
   handleStarWorkoutClick() {
     let updatedWorkout = Object.assign({}, this.props.clickedWorkout);
@@ -35,13 +31,13 @@ class WorkoutItemContainer extends Component {
     updatedWorkout.star = !updatedWorkout.star;
     this.props.selectedWorkout(updatedWorkout);
 
-    updatedWorkouts = updatedWorkouts.map(workout => {
-      if (workout.id === this.props.clickedWorkout.id) {
-        return updatedWorkout;
-      } else {
-        return workout;
+    for (let i = 0; i < updatedWorkouts.length; i++) {
+      if (updatedWorkouts[i].id === this.props.clickedWorkout.id) {
+        updatedWorkouts[i] = updatedWorkout;
+        break;
       }
-    });
+    }
+
     this.props.updateWorkoutsWithStar(updatedWorkouts);
 
   }
@@ -51,7 +47,6 @@ class WorkoutItemContainer extends Component {
       <WorkoutItem
        user_id={this.props.user_id}
        clickedWorkout={this.props.clickedWorkout}
-       sortExercises={this.sortExercises}
        handleStarWorkoutClick={this.handleStarWorkoutClick}
        star={!!this.props.clickedWorkout.star}
        />

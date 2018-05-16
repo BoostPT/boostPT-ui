@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ExerciseItem from './exerciseItem.jsx';
+import ExerciseItemContainer from '../../containers/exerciseItemContainer.jsx';
 import moment from 'moment';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -43,7 +43,7 @@ class WorkoutItem extends Component {
               </h2>
               <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem user_id={this.props.user_id} key={exercise.id} exercise={exercise} clickedWorkout={this.props.clickedWorkout} />)}
+            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={exercise.id} exercise={exercise} />)}
           </div>
         :
         null}
@@ -55,7 +55,6 @@ class WorkoutItem extends Component {
 WorkoutItem.propTypes = {
   user_id: PropTypes.number.isRequired,
   clickedWorkout: PropTypes.object,
-  sortExercises: PropTypes.func.isRequired,
   handleStarWorkoutClick: PropTypes.func.isRequired,
   star: PropTypes.bool
 };
