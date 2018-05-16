@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BioPage from '../components/bioPage/index.jsx';
-import { changeUserPicture } from '../actions/index.js';
+import BioPage from '../../components/bioPage/index.jsx';
+import { changeUserPicture } from '../../actions/index.js';
 
 class BioPageContainer extends Component {
   constructor(props){
@@ -10,6 +10,8 @@ class BioPageContainer extends Component {
     this.state = {
       searchText: '',
       bioPageUserInfo: this.props.location.state,
+      aboutMeEdit: false,
+      phoneNumberEdit: false
     }
   }
   handleOnChangeText(e){
@@ -25,6 +27,13 @@ class BioPageContainer extends Component {
     this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
   }
 
+  editAboutMe(){
+    this.setState({aboutMeEdit: true});
+  }
+
+  editPhoneNumber(){
+    this.setState({phoneNumberEdit: true});
+  }
   async handleOnDrop(files){
     const payload = {
       file: files,

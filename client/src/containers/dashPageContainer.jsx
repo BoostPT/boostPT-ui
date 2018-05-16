@@ -86,6 +86,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< ae100c5af0b0185fb01d9236bac3b7b48fc719ef
 <<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
 <<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
 <<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
@@ -150,6 +151,10 @@ class DashPageContainer extends Component {
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
+=======
+    let stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
+    stateToBioPage.showTrashCan = false;
+>>>>>>> Commit before rebase with master
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
   }
 

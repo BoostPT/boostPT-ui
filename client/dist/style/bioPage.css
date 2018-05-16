@@ -111,11 +111,10 @@
 .publicWorkoutsContainer{
   display: flex;
   flex-direction: column;
+}
 
-  /* background-color: #EEEEEE;
-  margin-top: 50px;
-  margin-left: 75px;
-  border-radius: 10px; */
+.publicWorkoutsListContainer{
+  display: flex;
 }
 <<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
 >>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click

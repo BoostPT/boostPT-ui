@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
-import WorkoutsListItem from '../workoutsView/workoutsListItem.jsx';
-// import { blueGrey800 } from 'material-ui/styles/colors';
+import PublicWorkoutsListItem from './publicWorkoutsListItem.jsx';
 
 const style = {
   height: 550,
@@ -29,11 +28,12 @@ class PublicWorkoutsList extends Component{
           zDepth={1}
           children={
             Array.isArray(this.props.publicWorkouts) ? this.props.publicWorkouts.map(publicWorkout => {
-              return <WorkoutsListItem 
+              return <PublicWorkoutsListItem 
                       key={publicWorkout.id} 
                       workout={publicWorkout}
                       getEachExerciseCount={this.props.getEachExerciseCount}
-                      handleExerciseClick={this.props.handleExerciseClick}
+                      handleWorkoutClick={this.props.handleWorkoutClick}
+                      showTrashCan={this.props.showTrashCan}
                       />
             })
             : 

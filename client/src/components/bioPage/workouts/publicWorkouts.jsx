@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import PublicWorkoutsListContainer from '../../containers/publicWorkoutsListContainer.jsx';
-import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
+import PublicWorkoutsListContainer from '../../../containers/bioPage/publicWorkoutsListContainer.jsx';
+import PublicWorkoutItemContainer from '../../../containers/bioPage/publicWorkoutItemContainer.jsx';
 
 class PublicWorkouts extends Component{
   constructor(props){
@@ -12,7 +12,7 @@ class PublicWorkouts extends Component{
     return(
       <div className="myPublicWorkouts">
         <PublicWorkoutsListContainer user={this.props.user}/>
-        <WorkoutItemContainer/>
+        <PublicWorkoutItemContainer/>
       </div>
     );
   }

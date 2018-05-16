@@ -6,9 +6,10 @@ import Edit from 'material-ui/svg-icons/image/edit';
 import Email from 'material-ui/svg-icons/communication/email';
 import Phone from 'material-ui/svg-icons/communication/phone';
 import IconButton from 'material-ui/IconButton';
-import { grey800, blueGrey800 } from 'material-ui/styles/colors';
+import { grey800, blueGrey800, yellowA200
+} from 'material-ui/styles/colors';
 
-import MyPublicWorkoutsContainer from '../../containers/myPublicWorkoutsContainer.jsx';
+import MyPublicWorkoutsContainer from '../../containers/bioPage/myPublicWorkoutsContainer.jsx';
 import BioPicture from '../bioPage/bioPicture.jsx';
 import Navbar from '../dashPage/navbar.jsx';
 
@@ -39,8 +40,16 @@ const IconButtonStyle = {
   width: '15px'
 };
 
-const bioPageButtons = {
+const sendMessageButton = {
   position: 'absolute',
+  marginBottom: '35%',
+  bottom: '0px',
+  alignSelf: 'center'
+}
+
+const RequestAsTrainerButton = {
+  position: 'absolute',
+  marginBottom: '20%',
   bottom: '0px',
   alignSelf: 'center'
 }
@@ -72,9 +81,9 @@ class BioPage extends Component{
             <div className="aboutMe">
             {this.props.loggedInAsUser.id === this.props.userInfo.id ?
             <IconButton 
-              disableTouchRipple={true} 
               iconStyle={edit_button_style} 
               style={edit_button_style}
+              onClick={this.props.editAboutMe}
             >
               <Edit style={edit_button_style} />
             </IconButton>
@@ -93,9 +102,9 @@ class BioPage extends Component{
             <div className="phoneNumber">
               {this.props.loggedInAsUser.id === this.props.userInfo.id ? 
               <IconButton 
-                disableTouchRipple={true} 
                 iconStyle={IconButtonStyle} 
                 style={edit_button_style2}
+                onClick={this.props.editPhoneNumber}
               >  
                 <Edit style={edit_button_style2}/>
               </IconButton>  
@@ -105,7 +114,8 @@ class BioPage extends Component{
               <Phone style={email_phone_style}/>
               {!this.props.userInfo.phoneNumber ? 'Unavailable' : this.props.userInfo.phoneNumber}
             </div>
-            <RaisedButton label="Send Message" style={bioPageButtons} backgroundColor={blueGrey800} />
+            <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
+            <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
           </div>
           <div className="bioPageMyPublicWorkouts">
             <MyPublicWorkoutsContainer user={this.props.userInfo}/>
