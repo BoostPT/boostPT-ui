@@ -13,7 +13,9 @@ class PublicWorkoutItem extends Component {
   render() {
     return (
       <div className={"publicWorkout-container"}>
-        {this.props.clickedWorkout ?
+        {!this.props.clickedWorkout.exercises ?
+          null
+        :
           <div className="font">
             <div className="hug-left">
               <h2 className="workout-title">
@@ -25,8 +27,7 @@ class PublicWorkoutItem extends Component {
             </div>
             {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem key={exercise.id} exercise={exercise} />)}
           </div>
-        :
-        null}
+        }
       </div>
     );
   }

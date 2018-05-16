@@ -63,7 +63,7 @@ class BioPage extends Component{
     return(
       <div className="bioPage">
         <Navbar 
-          userInfo={this.props.userInfo} 
+          user={this.props.user} 
           handleOnChangeText={this.props.handleOnChangeText} 
           searchText={this.props.searchText} 
           handleUserNameClick={this.props.handleUserNameClick} 
@@ -73,13 +73,13 @@ class BioPage extends Component{
         <div className="bioPageBody">
           <div className="bioInfo">
             <div className="bioUsername">
-              {this.props.userInfo.username}
+              {this.props.user.username}
             </div>
             <div className="bioPicture">
-              <BioPicture picture={!this.props.userInfo.picture ? null : this.props.userInfo.picture} handleOnDrop={this.props.handleOnDrop}/>
+              <BioPicture picture={!this.props.user.picture ? null : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
             </div>
             <div className="aboutMe">
-            {this.props.loggedInAsUser.id === this.props.userInfo.id ?
+            {this.props.loggedInAsUser.id === this.props.user.id ?
             <IconButton 
               iconStyle={edit_button_style} 
               style={edit_button_style}
@@ -92,15 +92,15 @@ class BioPage extends Component{
             }
               About Me:
               <div className="aboutMeText">
-                {!this.props.userInfo.aboutMe? null : this.props.userInfo.aboutMe }
+                {!this.props.user.aboutMe? null : this.props.user.aboutMe }
               </div>
             </div>
             <div className="email">
               <Email  style={email_phone_style}/>
-              {!this.props.userInfo.email ? 'Unavailable' : this.props.userInfo.email}
+              {!this.props.user.email ? 'Unavailable' : this.props.user.email}
             </div>
             <div className="phoneNumber">
-              {this.props.loggedInAsUser.id === this.props.userInfo.id ? 
+              {this.props.loggedInAsUser.id === this.props.user.id ? 
               <IconButton 
                 iconStyle={IconButtonStyle} 
                 style={edit_button_style2}
@@ -112,13 +112,13 @@ class BioPage extends Component{
                 null
               }
               <Phone style={email_phone_style}/>
-              {!this.props.userInfo.phoneNumber ? 'Unavailable' : this.props.userInfo.phoneNumber}
+              {!this.props.user.phoneNumber ? 'Unavailable' : this.props.user.phoneNumber}
             </div>
             <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
             <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
           </div>
           <div className="bioPageMyPublicWorkouts">
-            <MyPublicWorkoutsContainer user={this.props.userInfo}/>
+            <MyPublicWorkoutsContainer user={this.props.user}/>
           </div>
         </div>
 

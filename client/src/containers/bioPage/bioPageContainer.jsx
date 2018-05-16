@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BioPage from '../../components/bioPage/index.jsx';
-import { changeUserPicture } from '../../actions/index.js';
+import { changeUserPicture, selectedWorkout } from '../../actions/index.js';
 
 class BioPageContainer extends Component {
   constructor(props){
@@ -20,10 +20,11 @@ class BioPageContainer extends Component {
   }
 
   handleUserNameClick(){
-    this.props.history.push(`/bio/${this.props.userInfo.id}`);
+    this.props.history.push(`/bio/${this.props.user.id}`);
   }
 
   handleTitleClick(){
+    this.props.selectedWorkout({});
     this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
   }
 
@@ -37,7 +38,7 @@ class BioPageContainer extends Component {
   async handleOnDrop(files){
     const payload = {
       file: files,
-      user: this.props.userInfo
+      user: this.props.user
     }
     try {
       const changed = await this.props.changeUserPicture(payload);
@@ -55,8 +56,8 @@ class BioPageContainer extends Component {
     return(
       <div>
         <BioPage 
-          userInfo={this.state.bioPageUserInfo } 
-          loggedInAsUser={this.props.userInfo}
+          user={this.state.bioPageUserInfo } 
+          loggedInAsUser={this.props.user}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
           handleUserNameClick={this.handleUserNameClick.bind(this)} handleTitleClick={this.handleTitleClick.bind(this)} 
@@ -70,9 +71,9 @@ class BioPageContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
-    userInfo: state.auth.user,
+    user: state.auth.user,
     changedUserInfo: state.changePictureReducer.user
   };
 };
 
-export default connect(mapStateToProps, { changeUserPicture })(BioPageContainer);
+export default connect(mapStateToProps, { changeUserPicture, selectedWorkout })(BioPageContainer);

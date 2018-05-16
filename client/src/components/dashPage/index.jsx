@@ -82,7 +82,7 @@ class DashPage extends Component {
 
     return (
         <div className="dashPage">
-          <Navbar userInfo={!this.props.userInfo?null : this.props.userInfo} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
+          <Navbar user={!this.props.user ? null : this.props.user} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
 
           <div className="dashPageBody">
             <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>

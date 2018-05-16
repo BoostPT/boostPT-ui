@@ -86,6 +86,7 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
+<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
 <<<<<<< ae100c5af0b0185fb01d9236bac3b7b48fc719ef
 <<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
 <<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
@@ -156,6 +157,11 @@ class DashPageContainer extends Component {
     stateToBioPage.showTrashCan = false;
 >>>>>>> Commit before rebase with master
     this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
+=======
+    let stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
+    stateToBioPage.showTrashCan = false;
+    this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: stateToBioPage});
+>>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
   }
 
   handleWorkoutsTabClick(){
@@ -183,6 +189,7 @@ class DashPageContainer extends Component {
 >>>>>>> Checking for another rebase
 =======
       <DashPage 
+<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
                 userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
 >>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
 =======
@@ -195,6 +202,9 @@ class DashPageContainer extends Component {
       <DashPage 
                 userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
 >>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
+=======
+                user={!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange}
+>>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
@@ -228,8 +238,12 @@ const mapStateToProps = function(state) {
 =======
 >>>>>>> Working Updates of profile picture in bioPage and dashPage
     authenticated: state.auth.authenticated,
+<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
     userInfo: state.auth.user
 >>>>>>> Checking for another rebase
+=======
+    user: state.auth.user
+>>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
   };
 };
 

@@ -32,7 +32,9 @@ class WorkoutItem extends Component {
   render() {
     return (
       <div className="workout-container">
-        {this.props.clickedWorkout ?
+        {!this.props.clickedWorkout.exercises ?
+          null
+        :
           <div className="font">
             <div className="hug-left">
               <h2 className="workout-title">
@@ -45,8 +47,7 @@ class WorkoutItem extends Component {
             </div>
             {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={exercise.id} exercise={exercise} />)}
           </div>
-        :
-        null}
+        }
       </div>
     );
   }

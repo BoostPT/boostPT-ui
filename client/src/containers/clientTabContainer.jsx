@@ -19,7 +19,7 @@ class ClientTabContainer extends Component {
 
   async fetchClientsFromStore(cb) {
     const payload = {
-      id: this.props.userInfo.id,
+      id: this.props.user.id,
     }
     try {
       const result = await this.props.trainerClientList(payload);
@@ -31,7 +31,7 @@ class ClientTabContainer extends Component {
 
   async handleSubmitButtonClick(clientName, cb) {
     try {
-      var payload = {client_name: clientName, trainer_id: this.props.userInfo.id};
+      var payload = {client_name: clientName, trainer_id: this.props.user.id};
       const result = await axios.post('http://localhost:8000/api/users/addnonuserclient', payload);
       if (result.status === 200) {
         this.fetchClientsFromStore(() => {
@@ -50,7 +50,7 @@ class ClientTabContainer extends Component {
       <div>{
         this.props.clients ?
         <div>
-          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} clients={this.props.clients} userInfo = {this.props.userInfo}/>
+          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} clients={this.props.clients} user = {this.props.user}/>
         </div>
         :
         <div>
@@ -65,7 +65,7 @@ class ClientTabContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     clients : state.trainer.clients,
-    userInfo: state.auth.user
+    user: state.auth.user
   };
 }
 
