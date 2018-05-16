@@ -127,7 +127,7 @@ export const getAllTrainersList = async () => {
     const trainers = await axios.get('http://localhost:8000/api/users/trainers');
     return {
       type: FETCH_TRAINERS,
-      payload: trainers
+      payload: trainers.data
     }
   } catch (err) {
     return (err);
