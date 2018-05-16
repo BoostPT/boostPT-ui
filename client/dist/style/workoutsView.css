@@ -115,6 +115,12 @@
   margin-top: 5px;
 }
 
+.filter-workout-list-tabs {
+  margin: 10px 0 28px 34px;
+  height: 34px;
+  width: 272px;
+}
+
 /*************************
       Single Workout
 *************************/
