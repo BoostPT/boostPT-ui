@@ -49,6 +49,7 @@ class WorkoutItemContainer extends Component {
   render() {
     return (
       <WorkoutItem
+       user_id={this.props.user_id}
        clickedWorkout={this.props.clickedWorkout}
        sortExercises={this.sortExercises}
        handleStarWorkoutClick={this.handleStarWorkoutClick}

@@ -170,6 +170,16 @@
     font-weight: 500;
 }
 
+.exercise-star {
+  float: right;
+  margin-top: -7px;
+  margin-right: 11px;
+}
+
+.exercise-star:hover {
+  cursor: pointer;
+}
+
 /*************************
          Modal
 *************************/

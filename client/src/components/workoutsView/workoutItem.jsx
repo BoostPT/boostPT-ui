@@ -43,7 +43,7 @@ class WorkoutItem extends Component {
               </h2>
               <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem key={exercise.id} exercise={exercise} />)}
+            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem user_id={this.props.user_id} key={exercise.id} exercise={exercise} clickedWorkout={this.props.clickedWorkout} />)}
           </div>
         :
         null}
@@ -53,6 +53,7 @@ class WorkoutItem extends Component {
 }
 
 WorkoutItem.propTypes = {
+  user_id: PropTypes.number.isRequired,
   clickedWorkout: PropTypes.object,
   sortExercises: PropTypes.func.isRequired,
   handleStarWorkoutClick: PropTypes.func.isRequired,
