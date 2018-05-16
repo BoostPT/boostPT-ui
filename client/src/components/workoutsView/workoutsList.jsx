@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import WorkoutsListItem from './workoutsListItem.jsx';
-import Paper from 'material-ui/Paper';
-import { blueGrey800 } from 'material-ui/styles/colors';
 
 class WorkoutsList extends Component {
   constructor(props) {

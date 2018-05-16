@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ExerciseItem from './exerciseItem.jsx';
+import PropTypes from 'prop-types';
+import ExerciseItemContainer from '../../containers/exerciseItemContainer.jsx';
 import moment from 'moment';
-import Paper from 'material-ui/Paper';
-import { grey200 } from 'material-ui/styles/colors';
+import Star from 'material-ui/svg-icons/toggle/star';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import Public from 'material-ui/svg-icons/social/public';
+import Private from 'material-ui/svg-icons/action/lock';
+import * as colors from 'material-ui/styles/colors';
 
 class WorkoutItem extends Component {
   constructor(props) {
     super(props);
+  }
+
+  renderPublicOrPrivate() {
+    return this.props.clickedWorkout.is_public ? (
+      <Public className="public-private-icon" color={colors.grey400} />
+    ) : (
+      <Private className="public-private-icon" color={colors.grey400} />
+    );
+  }
+
+  renderStar() {
+    return this.props.star ? (
+      <Star className="star" color={colors.yellow800} hoverColor={colors.yellow900} onClick={this.props.handleStarWorkoutClick} />
+    ) : (
+      <StarBorder className="star" color={colors.grey500} hoverColor={colors.grey700} onClick={this.props.handleStarWorkoutClick} />
+    )
   }
 
   render() {
@@ -18,12 +37,13 @@ class WorkoutItem extends Component {
             <div className="hug-left">
               <h2 className="workout-title">
                 {this.props.clickedWorkout.name}
-                <img className="float-right pad-right" src={require(`../../../../client/dist/images/${this.props.clickedWorkout.is_public ? "earth" : "lock"}.png`)}></img>
+                {this.renderPublicOrPrivate()}
+                {this.renderStar()}
                 <div className="clear-float"></div>
               </h2>
               <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItem key={exercise.id} exercise={exercise} />)}
+            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={exercise.id} exercise={exercise} />)}
           </div>
         :
         null}
@@ -31,5 +51,12 @@ class WorkoutItem extends Component {
     );
   }
 }
+
+WorkoutItem.propTypes = {
+  user_id: PropTypes.number.isRequired,
+  clickedWorkout: PropTypes.object,
+  handleStarWorkoutClick: PropTypes.func.isRequired,
+  star: PropTypes.bool
+};
 
 export default WorkoutItem;

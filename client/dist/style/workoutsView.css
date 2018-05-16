@@ -103,10 +103,22 @@
 .font-title {
     font-size: 12px;
 }
-.shift-icon-down {
+.exercise-icon {
     position: relative;
     top: 5px;
     padding-left: 3px;
+}
+
+.star-void {
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.filter-workout-list-tabs {
+  margin: 10px 0 28px 34px;
+  height: 34px;
+  width: 272px;
 }
 
 /*************************
@@ -137,6 +149,22 @@
     margin: 1.5% 0 0 4%;
 }
 
+.public-private-icon {
+  float: right;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+.star {
+    float: right;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.star:hover {
+  cursor: pointer;
+}
+
 /*************************
         Exercises
 *************************/
@@ -146,6 +174,16 @@
 .emphasize {
     font-size: 12px;
     font-weight: 500;
+}
+
+.exercise-star {
+  float: right;
+  margin-top: -7px;
+  margin-right: 11px;
+}
+
+.exercise-star:hover {
+  cursor: pointer;
 }
 
 /*************************

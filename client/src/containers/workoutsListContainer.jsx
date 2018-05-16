@@ -1,14 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   getWorkoutsList,
   selectedWorkout
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
-import WorkoutItem from '../components/workoutsView/workoutItem.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
-import WorkoutItemContainer from './workoutItemContainer.jsx';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import Star from 'material-ui/svg-icons/toggle/star';
+import * as colors from 'material-ui/styles/colors';
 
+const filterTabStyle = {
+  standard: {
+    background: colors.grey700,
+    color: colors.grey300,
+    textTransform: "none"
+  },
+  active: {
+    background: colors.grey700,
+    color: "#FFEB3B",
+    textTransform: "none"
+  }
+};
+
+const starStyle = {
+  standard: {
+  },
+  active: {
+    color: "#FFEB3B"
+  }
+};
 
 class WorkoutsListContainer extends Component {
   constructor(props) {
@@ -16,9 +37,11 @@ class WorkoutsListContainer extends Component {
     this.state = { 
       modalVisible: false,
       workoutId: null,
-      workoutName: null
-    }
+      workoutName: null,
+      activeFilterTab: 0
+    };
     this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
+    this.handleFilterTabSelect = this.handleFilterTabSelect.bind(this);
   }
 
   componentDidMount() {
@@ -32,8 +55,24 @@ class WorkoutsListContainer extends Component {
     }, {});
   }
 
-  handleWorkoutClick(workout) { 
+  handleWorkoutClick(workout) {
     this.props.selectedWorkout(workout);
+  }
+
+  handleFilterTabSelect(tab) {
+    this.setState({
+      activeFilterTab: tab.props.index
+    });
+  }
+
+  filterWorkouts(workouts) {
+    return workouts.filter(workout => {
+      if (this.state.activeFilterTab === 1) {
+        if (workout.star) return true;
+      } else {
+        return true;
+      }
+    });
   }
   
   toggleModal(e) {
@@ -46,32 +85,48 @@ class WorkoutsListContainer extends Component {
   }
 
   render() {
+
+    const filterTabStyles = Array(2).fill('').map((v, i) => this.state.activeFilterTab === i ? 'active' : 'standard');
+
     return (
-      <div>
+      <Fragment>
+        <Tabs inkBarStyle={{display: "none"}} className="filter-workout-list-tabs">
+          <Tab
+            label="ALL"
+            style={filterTabStyle[filterTabStyles[0]]}
+            disableTouchRipple={true}
+            onActive={this.handleFilterTabSelect}
+          />
+          <Tab
+            icon={<Star style={starStyle[filterTabStyles[1]]} />}
+            label="STARRED"
+            style={filterTabStyle[filterTabStyles[1]]}
+            disableTouchRipple={true}
+            onActive={this.handleFilterTabSelect}
+          />
+        </Tabs>
         <WorkoutsList
          userId={this.props.userId}
-         workouts={this.props.workouts} 
+         workouts={this.filterWorkouts(this.props.workouts)}
          getEachExerciseCount={this.getEachExerciseCount}
          handleWorkoutClick={this.handleWorkoutClick}
          toggleModal={this.toggleModal.bind(this)}
         />
-        <WorkoutItemContainer clickedWorkout={this.props.clickedWorkout} />
         <WorkoutModalContainer
-         modalVisible={this.state.modalVisible} 
+         modalVisible={this.state.modalVisible}
          clickedWorkout={this.props.clickedWorkout}
          toggleModal={this.toggleModal.bind(this)}
          workouts={this.props.workouts}
          workoutId={this.state.workoutId}
          workoutName={this.state.workoutName}
         />
-      </div>
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    clickedWorkout: state.workoutsReducer.clickedWorkout,
     workouts: state.workoutsReducer.workouts,
     userId: state.auth.user.id
   }

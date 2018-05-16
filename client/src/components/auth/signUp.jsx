@@ -25,36 +25,38 @@ class Signup extends Component {
 
   render() {
     return (
-      <Paper className="signup-outer" zDepth={3}>
-        <div className="auth-inner">
-          <h2>Sign Up</h2>
-          <form className="auth-form">
-            {renderTextField('username', 'Username', 'text', this.props.handleChange)}
-            <br />
-            {renderTextField('email', 'Email', 'text', this.props.handleChange)}
-            <br/>
-            {renderTextField('password', 'Password', 'password', this.props.handleChange)}
-            <div className="signup-submit-div">
-              <Toggle
-                label="I'm a trainer"
-                labelPosition="right"
-                onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
-                onClick={this.props.handleToggleButtonChange}
-              />
-              <RaisedButton
-                label="Sign Up"
-                primary={true}
-                onClick={this.props.handleSignupClick}
-              />
-            </div>
-          </form>
-          {this.props.errorMessage ?
-            <div className="error-message">{this.props.errorMessage}</div>
-            :
-            null
-          }
-        </div>
-      </Paper>
+      <div className='auth-page'>
+        <Paper className="signup-outer" zDepth={3}>
+          <div className="auth-inner">
+            <h2>Sign Up</h2>
+            <form className="auth-form">
+              {renderTextField('username', 'Username', 'text', this.props.handleChange)}
+              <br />
+              {renderTextField('email', 'Email', 'text', this.props.handleChange)}
+              <br/>
+              {renderTextField('password', 'Password', 'password', this.props.handleChange)}
+              <div className="signup-submit-div">
+                <Toggle
+                  label="I'm a trainer"
+                  labelPosition="right"
+                  onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
+                  onClick={this.props.handleToggleButtonChange}
+                />
+                <RaisedButton
+                  label="Sign Up"
+                  primary={true}
+                  onClick={this.props.handleSignupClick}
+                />
+              </div>
+            </form>
+            {this.props.errorMessage ?
+              <div className="error-message">{this.props.errorMessage}</div>
+              :
+              null
+            }
+          </div>
+        </Paper>
+      </div>
     );
   }
 }

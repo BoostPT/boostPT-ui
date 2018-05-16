@@ -28,13 +28,13 @@ class Navbar extends Component{
           <input className="dashPageNavbarSearch" placeholder="Search..." onChange={this.props.handleOnChangeText} />
           <FontAwesomeIcon icon={faBell} />
           <div className="navbarUser" onClick={this.props.handleUserNameClick}>
-            {!this.props.userInfo.picture ? 
+            {!this.props.user.picture ?
               <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
               : 
               <Avatar className="avatarPicture" size={30} src=""/>
             }
             <div className="navbarUsername">
-              {this.props.userInfo.username}
+              {this.props.user.username}
             </div>
           </div>
         </ToolbarGroup>

@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 
 import LoginPage from '../components/auth/loginPage.jsx';
 import { authUser } from '../actions/index.js';
+import axios from "axios/index";
 
 class LoginPageContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errorMessage: ''
     };
     this.handleLogin = this.handleLogin.bind(this);
   }
@@ -19,13 +21,25 @@ class LoginPageContainer extends Component {
     this.setState({[name]: value});
   }
 
-  handleLogin(e) {
+  async handleLogin(e) {
     e.preventDefault();
-    this.props.authUser(this.state, 'login');
-    this.setState({
-      email: '',
-      password: ''
-    });
+    const loginPayload = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    try {
+      const result = await axios.post('http://localhost:8000/api/auth/login', loginPayload);
+      this.props.authUser(result.data);
+      document.cookie = `jwt=${result.headers.jwt}`;
+      this.props.history.push('/dash');
+    }
+    catch(err) {
+      this.setState({
+        email: '',
+        password: '',
+        errorMessage: 'Invalid email/password combination'
+      });
+    }
   }
 
   render() {
@@ -35,14 +49,10 @@ class LoginPageContainer extends Component {
         onChangeText={this.onChangeText.bind(this)}
         email={this.state.email}
         password={this.state.password}
-        errorMessage={this.props.error}
+        errorMessage={this.state.errorMessage}
       />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return { error: state.auth.error };
-};
-
-export default connect(mapStateToProps, { authUser })(LoginPageContainer);
+export default connect(null, { authUser })(LoginPageContainer);

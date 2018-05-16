@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import ExerciseDetails from './exerciseDetails.jsx';
+import PropTypes from 'prop-types';
+import Star from 'material-ui/svg-icons/toggle/star';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import * as colors from "material-ui/styles/colors";
 
 class ExerciseItem extends Component {
   constructor(props) {
@@ -9,7 +12,15 @@ class ExerciseItem extends Component {
       1: 'strength',
       2: 'cardio',
       3: 'stretch'
-    }
+    };
+  }
+
+  renderStar() {
+    return this.props.exercise.star ? (
+      <Star className="exercise-star" color={colors.yellow800} hoverColor={colors.yellow900} onClick={this.props.handleStarExerciseClick} />
+    ) : (
+      <StarBorder className="exercise-star" color={colors.grey500} hoverColor={colors.grey700} onClick={this.props.handleStarExerciseClick} />
+    )
   }
 
   render() {
@@ -19,6 +30,7 @@ class ExerciseItem extends Component {
       <div className="border exercise-height">
         <div className="pos-title">
           <img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>
+          {this.renderStar()}
           <h2 className="float-left">{exercise.name}</h2>
           <div className="clear-float"></div>
         </div>
@@ -43,5 +55,10 @@ class ExerciseItem extends Component {
     );
   }
 }
+
+ExerciseItem.propTypes = {
+  exercise: PropTypes.object.isRequired,
+  handleStarExerciseClick: PropTypes.func
+};
 
 export default ExerciseItem;

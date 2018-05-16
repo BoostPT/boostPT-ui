@@ -37,7 +37,6 @@
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
     "url-loader": "^1.0.1"
   },
