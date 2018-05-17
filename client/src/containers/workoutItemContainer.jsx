@@ -52,7 +52,7 @@ class WorkoutItemContainer extends Component {
        user_id={this.props.user_id}
        clickedWorkout={this.props.clickedWorkout}
        handleStarWorkoutClick={this.handleStarWorkoutClick}
-       star={!this.props.clickedWorkout? false : !!this.props.clickedWorkout.star}
+       star={star}
        />
     );
   }

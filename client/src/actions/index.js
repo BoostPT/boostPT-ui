@@ -37,7 +37,7 @@ export const changeUserPicture = async (payload) => {
   
   const options = {
     headers: {
-      'Content-Type': payload.file[0].type
+      'Content-Type': payload.file[0].type,
     }
   };
 
@@ -51,7 +51,7 @@ export const changeUserPicture = async (payload) => {
   };
 
   try{
-    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture, {headers: { Authorization: `${document.cookie}`}});
 
     await axios.put(signedUrl.data, payload.file[0], options);
 
@@ -155,11 +155,11 @@ export const updateWorkoutsWithStar = (workouts) => {
 
 export const getUserPublicWorkoutsList = async(userId) =>{
   try{
-    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
+    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`, {headers: { Authorization: `${document.cookie}`}});
     //console.log("public workouts********",publicWorkouts);
     if(Array.isArray(publicWorkouts.data)){
       for(let publicWorkout of publicWorkouts.data){
-        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`);
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`, {headers: { Authorization: `${document.cookie}`}});
         publicWorkout.exercises = exercises.data;
       }
       return{
