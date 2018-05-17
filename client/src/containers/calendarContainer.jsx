@@ -5,6 +5,8 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.less';
+
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
 const DnDCalendar = withDragAndDrop(Calendar);
