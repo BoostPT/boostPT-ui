@@ -58,7 +58,11 @@ class DashPageContainer extends Component {
     window.addEventListener('click', (e) => {
       this.setState({ showDropdown: false });
     });
-  }    
+  }
+
+  handleSearchItemClick(e) {
+    console.log(e.target.dataset.id);
+  }
 
   filterTrainers() {
     let filteredTrainers = this.props.trainers.filter(trainer => {
@@ -88,6 +92,7 @@ class DashPageContainer extends Component {
                 filteredTrainers={this.state.filteredTrainers}
                 showDropdown={this.state.showDropdown}
                 showDropdownClick={this.showDropdownClick}
+                handleSearchItemClick={this.handleSearchItemClick}
       />
     );
   }

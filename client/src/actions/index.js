@@ -202,7 +202,11 @@ export const deleteFromStarredExercises = (exercises) => {
 
 export const getAllTrainersList = async () => {
   try {
-    const trainers = await axios.get('http://localhost:8000/api/users/trainers');
+    const trainers = await axios.get('http://localhost:8000/api/users/trainers', {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
     return {
       type: FETCH_TRAINERS,
       payload: trainers.data

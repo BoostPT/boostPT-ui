@@ -74,7 +74,6 @@
   margin-right: 15px;
 }
 
-/* The search field */
 .searchbar {
   border-width: 0px;
   position: relative;
@@ -82,37 +81,26 @@
   height: 100%;
 }
 
-/* The search field when it gets focus/clicked on */
 .searchbar:focus {
   outline: 3px solid #B8B8B8;
 }
 
-/* The container <div> - needed to position the dropdown content */
-/* .dropdown {
-  position: relative;
-  display: inline-block;
-} */
-
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  /* display: none; */
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 500;
   position: absolute;
   background-color: #f6f6f6;
   width: 43.2%;
   border: 1px solid #ddd;
+  cursor: pointer;
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-/* .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-} */
+.dropdown-item {
+  margin: -10px 0 -10px -30px; 
+}
 
-/* Change color of dropdown links on hover */
-/* .dropdown-content a:hover {background-color: #f1f1f1} */
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-/* .show {display:block;} */
+.dropdown-item a:hover {
+  background-color: #B8B8B8;
+}

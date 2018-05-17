@@ -73,6 +73,7 @@ class DashPage extends Component {
            filteredTrainers={this.props.filteredTrainers}
            showDropdown={this.props.showDropdown}
            showDropdownClick={this.props.showDropdownClick}
+           handleSearchItemClick={this.props.handleSearchItemClick}
           />
 
           <div className="dashPageBody">

@@ -28,10 +28,10 @@ class Navbar extends Component{
         <ToolbarGroup>
           <div className="dashPageNavbarSearch">
             <input className="searchbar" name="searchText" placeholder="Search..." onChange={this.props.handleOnChangeText} onClick={this.props.showDropdownClick}/>
-            <div className="dropdown-content">
+            <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
             {
               this.props.showDropdown ?
-                this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} />)
+                this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} userId={this.props.user.id}/>)
                 :
                 null
             }
