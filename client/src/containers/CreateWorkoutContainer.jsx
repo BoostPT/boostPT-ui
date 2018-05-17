@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
+import ExerciseItem from '../components/workoutsView/exerciseItem.jsx';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
@@ -133,21 +134,49 @@ class CreateWorkoutContainer extends Component {
     }
   }
 
+  handleDeleteStarExercise(exercise) {
+    const payload = {
+      user_id: this.props.user_id,
+      exercise_id: exercise.id
+    };
+    axios.post(REST_SERVER_URL.concat('/workouts/starexercise'), payload, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+  }
+
+  renderStarredExercises() {
+    return this.props.starredExercises.length ? (
+      this.props.starredExercises.map(exercise => {
+        return <ExerciseItem key={exercise.id} exercise={exercise} handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)} />
+      })
+    ) : (
+      <p className="starred-exercise-header">You haven't starred any exercises!</p>
+    )
+  }
+
   render() {
     return (
-      <CreateWorkout
-        user_id={this.props.user_id}
-        workoutName={this.state.workoutName}
-        exerciseForms={this.state.exerciseForms}
-        handleAddExerciseMenuClick={this.handleAddExerciseMenuClick}
-        handleWorkoutNameInput={this.handleWorkoutNameInput}
-        handleFormInput={this.handleFormInput}
-        handleExpand={this.handleExpand}
-        handleSwapOrder={this.handleSwapOrder}
-        handleDeleteExercise={this.handleDeleteExercise}
-        handleMakePrivateCheck={this.handleMakePrivateCheck}
-        handleFormSubmit={this.handleFormSubmit}
-      />
+      <Fragment>
+        <div className="starred-exercises-div">
+          <h3 className="starred-exercise-header">Starred Exercises</h3>
+          {this.renderStarredExercises()}
+        </div>
+        <CreateWorkout
+          user_id={this.props.user_id}
+          workoutName={this.state.workoutName}
+          exerciseForms={this.state.exerciseForms}
+          handleAddExerciseMenuClick={this.handleAddExerciseMenuClick}
+          handleWorkoutNameInput={this.handleWorkoutNameInput}
+          handleFormInput={this.handleFormInput}
+          handleExpand={this.handleExpand}
+          handleSwapOrder={this.handleSwapOrder}
+          handleDeleteExercise={this.handleDeleteExercise}
+          handleMakePrivateCheck={this.handleMakePrivateCheck}
+          handleFormSubmit={this.handleFormSubmit}
+        />
+      </Fragment>
     )
   }
 }
@@ -158,7 +187,8 @@ CreateWorkoutContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user.id
+    user_id: state.auth.user.id,
+    starredExercises: state.workoutsReducer.starredExercises
   }
 };
 

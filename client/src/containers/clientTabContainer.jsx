@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { trainerClientList } from '../actions/index.js';
-import trainerReducer from '../reducers/trainerReducer.js';
 import axios from 'axios';
 import ClientTab from '../components/dashPage/clientTab.jsx';
 
