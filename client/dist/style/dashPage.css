@@ -87,7 +87,6 @@
 
 .dropdown-content {
   font-family: Arial;
-  font-size: 14px;
   font-weight: 500;
   position: absolute;
   background-color: #f6f6f6;
@@ -98,7 +97,8 @@
 }
 
 .dropdown-item {
-  margin: -10px 0 -10px -30px; 
+  margin: -15px 0 -10px -30px;
+  font-size: 14px;
 }
 
 .dropdown-item a:hover {

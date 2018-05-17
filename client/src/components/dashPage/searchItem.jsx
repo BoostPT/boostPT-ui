@@ -4,12 +4,14 @@ import Avatar from 'material-ui/Avatar';
 
 const avatarStyles = {
   marginLeft: -10,
-  marginTop: -2,
+  marginTop: -5,
+  marginBottom: -5,
   zIndex: -10
 };
 
 const listItemStyles = {
-  zIndex: 10
+  zIndex: 10,
+  paddingBottom: 10
 };
 
 class SearchItem extends Component {
