@@ -45,7 +45,9 @@ class WorkoutsListItem extends Component {
             :
             <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
           }
+          {this.props.showTrashCan === false ? null : 
           <img className="float-left delete-icon" src={require('../../../dist/images/trash.png')} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)}></img>
+          }
           <div className="clear-float"></div>
         </div>
       </div>

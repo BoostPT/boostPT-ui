@@ -1,13 +1,18 @@
 import axios from 'axios';
+// import env from 'dotenv';
+require('dotenv').config();
+
 import {
   LOGOUT_USER,
   AUTH_USER,
   CHANGE_USER_PICTURE,
   FETCH_WORKOUTS,
+  FETCH_PUBLIC_WORKOUTS,
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
   DELETE_WORKOUT
 } from './types';
+
 
 export const authUser = (user) => {
   return {
@@ -25,18 +30,43 @@ export const logOutUser = () => {
   };
 };
 
-export const changeUserPicture = async (formData) => {
+export const changeUserPicture = async (payload) => {
+  const picture = {
+    filename: payload.file[0].name,
+    fileType: payload.file[0].type
+  };
   
+  const options = {
+    headers: {
+      'Content-Type': payload.file[0].type
+    }
+  };
+
+  if(picture.filename.includes(' ')){
+    picture.filename = picture.filename.split(' ').join('+');
+  }
+
+  const body = {
+    pictureUrl: `http://s3-us-west-1.amazonaws.com/${process.env.S3_BUCKET}/${picture.filename}`,
+    userId: payload.user.id
+  };
+
   try{
-    await axios.post('https://api.cloudinary.com/v1_1/dxfzmbtst/image/upload', formData, {
-      headers: {
-        Authorization: `${document.cookie}`
-      }
-    });
+    const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture);
+
+    await axios.put(signedUrl.data, payload.file[0], options);
+
+    const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body);
 
     return {
       type: CHANGE_USER_PICTURE,
-      payload: {}
+      payload: { 
+        username: payload.user.username, 
+        isTrainer: payload.user.istrainer, 
+        id: payload.user.id, 
+        picture: result.data.pictureUrl,
+        email: payload.user.email
+      }
     };
   } catch (err) {
     return (err);
@@ -120,3 +150,29 @@ export const updateWorkoutsWithStar = (workouts) => {
     payload: workouts
   }
 };
+
+export const getUserPublicWorkoutsList = async(userId) =>{
+  try{
+    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`);
+    console.log("public workouts********",publicWorkouts);
+    if(Array.isArray(publicWorkouts.data)){
+      for(let publicWorkout of publicWorkouts.data){
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`);
+        publicWorkout.exercises = exercises.data;
+      }
+      return{
+        type: FETCH_PUBLIC_WORKOUTS,
+        payload: publicWorkouts.data
+      };
+    }else{
+      return{
+        type: FETCH_PUBLIC_WORKOUTS,
+        payload: []
+      };
+    }
+
+  }catch(err){
+    console.log("error*************",err);
+    return (err);
+  }
+}

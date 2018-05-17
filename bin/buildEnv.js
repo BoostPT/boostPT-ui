@@ -15,5 +15,5 @@ const buildEnv = () => {
     createENVFile(key, value);
   });
 }
-//oops
+
 buildEnv();

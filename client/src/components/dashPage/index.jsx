@@ -1,13 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import Navbar from './navbar.jsx';
-import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { List, ListItem } from 'material-ui/List';
 import Snackbar from 'material-ui/Snackbar';
+import * as colors from "material-ui/styles/colors";
 
 import WorkoutsTab from './workoutsTab.jsx';
-import * as colors from "material-ui/styles/colors";
+import Navbar from './navbar.jsx';
+import ClientTabContainer from '../../containers/clientTabContainer.jsx';
+import CalendarContainer from '../../containers/calendarContainer.jsx';
 
 const tabStyle = {
   standard: {
@@ -81,13 +82,13 @@ class DashPage extends Component {
 
     return (
         <div className="dashPage">
-          <Navbar user={this.props.user} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
+          <Navbar user={!this.props.user ? null : this.props.user} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
 
           <div className="dashPageBody">
             <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
               <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>
                 <div>
-
+                  <CalendarContainer />
                 </div>
               </Tab>
               <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true}>

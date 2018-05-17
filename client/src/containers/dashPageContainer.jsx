@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getWorkoutsList } from '../actions/index.js';
+import { getWorkoutsList, selectedWorkout } from '../actions/index.js';
 // import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
@@ -10,7 +10,8 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
-      activeTab: 1
+      activeTab: 1,
+      UserfromBioPageChange: this.props.location.state
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -29,8 +30,9 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
-    // Grab biopageinfo for user from database put onto store?
-    this.props.history.push(`/bio/${this.props.user.id}`);
+    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
+    this.props.selectedWorkout({});
+    this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: stateToBioPage});
   }
 
   handleWorkoutsTabClick(){
@@ -38,8 +40,9 @@ class DashPageContainer extends Component {
   }
    
   render(){
+
     return(
-      <DashPage user={this.props.user}
+      <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
@@ -56,4 +59,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, selectedWorkout })(DashPageContainer);
