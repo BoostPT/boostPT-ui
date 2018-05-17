@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import { grey800, blueGrey800, yellowA200
 } from 'material-ui/styles/colors';
 
-import MyPublicWorkoutsContainer from '../../containers/bioPage/myPublicWorkoutsContainer.jsx';
+import PublicWorkouts from './workouts/publicWorkOuts.jsx';
 import BioPicture from '../bioPage/bioPicture.jsx';
 import Navbar from '../dashPage/navbar.jsx';
 
@@ -118,7 +118,7 @@ class BioPage extends Component{
             <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
           </div>
           <div className="bioPageMyPublicWorkouts">
-            <MyPublicWorkoutsContainer user={this.props.user}/>
+            <PublicWorkouts user={this.props.user}/>
           </div>
         </div>
 
