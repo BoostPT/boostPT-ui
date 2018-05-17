@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {getUserPublicWorkoutsList, selectedWorkout} from '../../actions/index.js';
+import { getUserPublicWorkoutsList, selectedWorkout} from '../../actions/index.js';
 
 import PublicWorkoutsList from '../../components/bioPage/workouts/publicWorkoutsList.jsx';
 import PublicWorkoutItemContainer from './publicWorkoutItemContainer.jsx';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getWorkoutsList } from '../actions/index.js';
+import { getWorkoutsList, selectedWorkout } from '../actions/index.js';
+// import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
 
@@ -9,65 +10,8 @@ class DashPageContainer extends Component {
     super(props);
     this.state = {
       searchText: '',
-<<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
-<<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
-<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
-<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
-<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
-<<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
-<<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
-<<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
-<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
       activeTab: 1,
       UserfromBioPageChange: this.props.location.state
-=======
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-      UserfromBioPageChange: this.props.location.state,
-      activeTab: 1
-=======
-=======
-=======
-<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-      UserfromBioPageChange: this.props.location.state,
-      activeTab: 1
-=======
-      activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
-=======
-=======
-      activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
->>>>>>> Working Updates of profile picture in bioPage and dashPage
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      UserfromBioPageChange: this.props.location.state,
-      activeTab: 1
->>>>>>> Checking for another rebase
-=======
-      activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
-=======
-<<<<<<< 441b5af5b2d09ca3619b9c5792b9f1194a1b31bd
-      activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
-=======
-      UserfromBioPageChange: this.props.location.state,
-      activeTab: 1
->>>>>>> Working Updates of profile picture in bioPage and dashPage
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
->>>>>>> Working Updates of profile picture in bioPage and dashPage
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
@@ -86,82 +30,9 @@ class DashPageContainer extends Component {
   }
 
   handleUserNameClick(){
-<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
-<<<<<<< ae100c5af0b0185fb01d9236bac3b7b48fc719ef
-<<<<<<< fed060c1c0a648d67d75216d40bbe61b40745568
-<<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
-<<<<<<< 52fe16c0a9805504aa3995186039f77bb2b7246e
-<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
-<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
-<<<<<<< 7ad99b412af4c4252725782728d000047d3ca421
-<<<<<<< fd3b265431cd1a106e20cbe5d9b055778c3c6b61
-<<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
-<<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
-<<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
-<<<<<<< e65036b98d38e29e8b342c9e94c50a795bb42b72
-<<<<<<< e402a4c076557d199a31a0f05ee3f57f798affe3
-=======
-
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-
-=======
-=======
-=======
-=======
-<<<<<<< 5bd0d706d128614d2d21d21434719e009fbc3881
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< 418cdda1a469bf1410ef5845af5e0fb2da3659d0
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< eb00eedcdf8716f5cbeafcf1767a2e168cd7e8a7
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
-
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< ea50768157c4d2599431bc7f4bd8baa154708129
-=======
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-
->>>>>>> Checking for another rebase
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-=======
-<<<<<<< 8b24a240783f5f5b6651172dddb6859f6f6ad88f
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< 441b5af5b2d09ca3619b9c5792b9f1194a1b31bd
-=======
-
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-<<<<<<< f3011c0bf8739e18704a24ea9970ae37a375e02c
-=======
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
-=======
-    let stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange);
-    stateToBioPage.showTrashCan = false;
->>>>>>> Commit before rebase with master
-    this.props.history.push({pathname: `/bio/${this.props.userInfo.id}`, state: stateToBioPage});
-=======
-    let stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
-    stateToBioPage.showTrashCan = false;
+    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
+    this.props.selectedWorkout({});
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: stateToBioPage});
->>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
   }
 
   handleWorkoutsTabClick(){
@@ -169,42 +40,9 @@ class DashPageContainer extends Component {
   }
    
   render(){
+
     return(
-<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
-<<<<<<< 4d29e9ff0bf8c35dc488c70451c7596ec884b4ee
-<<<<<<< da7df46ff1a5c9a5f54469a19c44b57237915df3
-<<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
-<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
-<<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
-<<<<<<< e65036b98d38e29e8b342c9e94c50a795bb42b72
       <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
-=======
-      <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      <DashPage userInfo={this.props.userInfo}
->>>>>>> Checking for another rebase
-=======
-      <DashPage 
-<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
-                userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
-=======
-      <DashPage userInfo={!this.state.UserfromBioPageChange ?this.props.userInfo : this.state.UserfromBioPageChange} 
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-      <DashPage userInfo={this.props.userInfo}
->>>>>>> Checking for another rebase
-=======
-      <DashPage 
-                userInfo={!this.state.UserfromBioPageChange ? this.props.userInfo : this.state.UserfromBioPageChange}
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
-=======
-                user={!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange}
->>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 handleOnChangeText={this.handleOnChangeText}
@@ -217,34 +55,8 @@ class DashPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-<<<<<<< 3958966b8a3cda563205db06f8acff32a00e7aad
-<<<<<<< 545b6bd31ae6852c32d523bef117910c62d290e4
-<<<<<<< 19c5eadd9a642ad5d6848ace16c893b62e7cebb9
-<<<<<<< 9671e1341e6d73652e8b03e2b79c6cb721324fb1
     user: state.auth.user
-=======
-    authenticated: state.auth.authenticated,
-    userInfo: state.auth.user
-=======
-<<<<<<< b9a2f00e22f36dbe5f85cce5c85bbd228012e4bf
-    authenticated: state.auth.authenticated,
-    userInfo: state.auth.user
-=======
-    authenticated: state.authReducer.authenticated,
-    userInfo: state.authReducer.user,
->>>>>>> Working Updates of profile picture in bioPage and dashPage
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-=======
-=======
->>>>>>> Working Updates of profile picture in bioPage and dashPage
-    authenticated: state.auth.authenticated,
-<<<<<<< 98e9ebb979e10e52d1c3101019d11687e99ddfda
-    userInfo: state.auth.user
->>>>>>> Checking for another rebase
-=======
-    user: state.auth.user
->>>>>>> Changed all instances of userInfo to User, Fixed bug with clicked workout
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, selectedWorkout })(DashPageContainer);

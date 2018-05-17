@@ -41,6 +41,7 @@ class BioPageContainer extends Component {
       user: this.props.user
     }
     try {
+      console.log("payload to change user picture", payload);
       const changed = await this.props.changeUserPicture(payload);
       await this.setState({
         bioPageUserInfo: this.props.changedUserInfo

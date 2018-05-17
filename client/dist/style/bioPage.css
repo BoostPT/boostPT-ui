@@ -49,15 +49,7 @@
   align-items: center;
   font-size: auto;
   margin-top: 10px;
-<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
-<<<<<<< a0f510b3b7efbfd1e19e65583f9b3bbd18aec50a
   margin-left: 15%;
-=======
-  margin-left: 10%; 
->>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
-=======
-  margin-left: 15%;
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
   margin-right: 10%;
 }
 
@@ -69,29 +61,6 @@
   margin-left: 10%; 
   margin-right: 10%;
 }
-<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
-<<<<<<< 5f57f5d186b6d48ed308513bb582d9a832b14a57
-<<<<<<< bf830dbbe3c46c156d5e4fb214dd131edcdcf014
-<<<<<<< badcf8c701421f6ca57359993789e71828b91c45
-<<<<<<< a0f510b3b7efbfd1e19e65583f9b3bbd18aec50a
-<<<<<<< 44b8189a29e3509738c23fc9e195f9ab9831f6aa
-<<<<<<< a64604318f902b2e830c7c8da197904a335032a5
-<<<<<<< cee403cef9ee324e1f4837ce42939c851dd81b35
-=======
-<<<<<<< 4321b7c0ca2603890b3fd742aa015fa98957cc63
->>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
-=======
-
-.bioEditButton:hover{
-  color: #424242;
-}
->>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
-<<<<<<< bf830dbbe3c46c156d5e4fb214dd131edcdcf014
-=======
->>>>>>> Working BioPage ui after rebase
-=======
-=======
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
 
 /*Public Workout*/
 
@@ -116,19 +85,3 @@
 .publicWorkoutsListContainer{
   display: flex;
 }
-<<<<<<< c52e86cbdd585f4f18b7744ad79ac1eb8a60b098
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click
-=======
-
-.bioEditButton:hover{
-  color: #424242;
-}
->>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
-=======
->>>>>>> Working BioPage ui after rebase
-=======
->>>>>>> Styling of BioPage and building editing capabilites. TODO: onClick for
-=======
->>>>>>> Working BioPage ui after rebase
-=======
->>>>>>> Fixed dashpage/bioPage picture edit not persisting on home click

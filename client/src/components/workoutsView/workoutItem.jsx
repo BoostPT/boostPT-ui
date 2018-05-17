@@ -30,9 +30,10 @@ class WorkoutItem extends Component {
   }
 
   render() {
-    return (
+    return ( 
       <div className="workout-container">
-        {!this.props.clickedWorkout.exercises ?
+      {!this.props.clickedWorkout ? null :
+        !this.props.clickedWorkout.exercises ?
           null
         :
           <div className="font">
