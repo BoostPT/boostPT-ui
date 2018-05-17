@@ -1,5 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getStarredExercises } from '../../actions';
 import Navbar from './navbar.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -44,13 +46,18 @@ class DashPage extends Component {
   }
 
   handleWorkoutTabListItemSelect(e) {
+    const tabIndex = parseInt(e.currentTarget.getAttribute('data'));
     this.setState({
-      workoutTabActiveListItem: parseInt(e.currentTarget.getAttribute('data'))
+      workoutTabActiveListItem: tabIndex
     });
+    if (tabIndex === 1) {
+      this.props.getStarredExercises(this.props.user.id);
+    }
   }
 
   handleCreateWorkoutSuccess() {
     this.setState({
+      workoutTabActiveListItem: 0,
       workoutCreatedBar: true
     });
   }
@@ -105,7 +112,7 @@ class DashPage extends Component {
             <Snackbar
               open={this.state.workoutCreatedBar}
               message="Workout saved!"
-              autoHideDuration={2000}
+              autoHideDuration={2400}
               onRequestClose={this.handleWorkoutBarClose}
             />
           </div>
@@ -123,4 +130,4 @@ DashPage.propTypes = {
   handleUserNameClick: PropTypes.func.isRequired
 };
 
-export default DashPage;
+export default connect(null, { getStarredExercises })(DashPage);

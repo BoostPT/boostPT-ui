@@ -1,15 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
+import ExerciseItem from '../components/workoutsView/exerciseItem.jsx';
+import AddExercise from 'material-ui/svg-icons/av/library-add';
+import {
+  deleteFromStarredExercises,
+  updateWorkoutsWithStar
+} from '../actions';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
 import omit from 'lodash/omit';
 import shortid from 'shortid';
 import PropTypes from "prop-types";
+import * as colors from "material-ui/styles/colors";
 
 // Change where we load this from later?
 const REST_SERVER_URL='http://localhost:8000/api';
+
+const exerciseTypes = {
+  0: 'Warm-up',
+  1: 'Strength',
+  2: 'Cardio',
+  3: 'Stretch'
+};
 
 class CreateWorkoutContainer extends Component {
   constructor(props) {
@@ -133,21 +147,110 @@ class CreateWorkoutContainer extends Component {
     }
   }
 
+  handleDeleteStarExercise(exercise) {
+    let updatedExercise = Object.assign({}, this.props.exercise);
+    let updatedExercises = this.props.starredExercises.slice();
+    updatedExercise.star = false;
+    const payload = {
+      user_id: this.props.user_id,
+      exercise_id: exercise.id
+    };
+    axios.post(REST_SERVER_URL.concat('/workouts/starexercise'), payload, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+
+    for (let i = 0; i < updatedExercises.length; i++) {
+      if (updatedExercises[i].id === exercise.id) {
+        updatedExercises.splice(i, 1);
+        break;
+      }
+    }
+
+    this.props.deleteFromStarredExercises(updatedExercises);
+    let updatedWorkouts = this.props.workouts.slice();
+    for (let i = 0; i < updatedWorkouts.length; i++) {
+      for (let j = 0; j < updatedWorkouts[i].exercises.length; j++) {
+        if (updatedWorkouts[i].exercises[j].id === exercise.id) {
+          updatedWorkouts[i].exercises[j] = updatedExercise;
+        }
+      }
+    }
+    this.props.updateWorkoutsWithStar(updatedWorkouts);
+  }
+
+  handleAddStarredExercise(exercise) {
+
+    let exerciseForm = {
+      id: exercise.id,
+      type: exerciseTypes[exercise.type],
+      name: exercise.name,
+      description: exercise.description
+    };
+
+    if (exerciseForm.type === 'Strength') {
+      if (exercise.reps) {
+        exerciseForm['Reps'] = exercise.reps.toString()
+      } else {
+        exerciseForm['Reps'] = '';
+      }
+      if (exercise.sets) {
+        exerciseForm['Sets'] = exercise.sets.toString()
+      } else {
+        exerciseForm['Sets'] = '';
+      }
+    } else if (exerciseForm.type === 'Cardio') {
+      exerciseForm['Distance'] = exercise.distance;
+      exerciseForm['Pace'] = exercise.pace;
+      exerciseForm['Goal Time'] = exercise.goaltime;
+    } else if (exerciseForm.type === 'Stretch') {
+      exerciseForm['Goal Time'] = exercise.goaltime;
+    }
+
+    // Add render id so React can correctly re-render upon deletion
+    exerciseForm.renderId = shortid.generate();
+    exerciseForm.expanded = false;
+
+    this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
+  }
+
+  renderStarredExercises() {
+    if (this.props.starredExercises.length) {
+      return this.props.starredExercises.map(exercise => {
+        return (
+          <Fragment key={exercise.id}>
+            <ExerciseItem exercise={exercise} handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)} />
+            <AddExercise className="add-starred-exercise" color={colors.grey500} hoverColor={colors.grey700} onClick={this.handleAddStarredExercise.bind(this, exercise)} />
+          </Fragment>
+        )
+      });
+    } else {
+      return <p className="starred-exercise-header">You haven't starred any exercises!</p>;
+    }
+  }
+
   render() {
     return (
-      <CreateWorkout
-        user_id={this.props.user_id}
-        workoutName={this.state.workoutName}
-        exerciseForms={this.state.exerciseForms}
-        handleAddExerciseMenuClick={this.handleAddExerciseMenuClick}
-        handleWorkoutNameInput={this.handleWorkoutNameInput}
-        handleFormInput={this.handleFormInput}
-        handleExpand={this.handleExpand}
-        handleSwapOrder={this.handleSwapOrder}
-        handleDeleteExercise={this.handleDeleteExercise}
-        handleMakePrivateCheck={this.handleMakePrivateCheck}
-        handleFormSubmit={this.handleFormSubmit}
-      />
+      <Fragment>
+        <div className="starred-exercises-div">
+          <h3 className="starred-exercise-header">Starred Exercises</h3>
+          {this.renderStarredExercises()}
+        </div>
+        <CreateWorkout
+          user_id={this.props.user_id}
+          workoutName={this.state.workoutName}
+          exerciseForms={this.state.exerciseForms}
+          handleAddExerciseMenuClick={this.handleAddExerciseMenuClick}
+          handleWorkoutNameInput={this.handleWorkoutNameInput}
+          handleFormInput={this.handleFormInput}
+          handleExpand={this.handleExpand}
+          handleSwapOrder={this.handleSwapOrder}
+          handleDeleteExercise={this.handleDeleteExercise}
+          handleMakePrivateCheck={this.handleMakePrivateCheck}
+          handleFormSubmit={this.handleFormSubmit}
+        />
+      </Fragment>
     )
   }
 }
@@ -158,8 +261,10 @@ CreateWorkoutContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user.id
+    user_id: state.auth.user.id,
+    workouts: state.workoutsReducer.workouts,
+    starredExercises: state.workoutsReducer.starredExercises
   }
 };
 
-export default connect(mapStateToProps, null)(CreateWorkoutContainer);
+export default connect(mapStateToProps, { deleteFromStarredExercises, updateWorkoutsWithStar })(CreateWorkoutContainer);

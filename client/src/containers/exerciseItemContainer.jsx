@@ -47,7 +47,7 @@ class ExerciseItemContainer extends Component {
     // Update the workout list. O(n^2) now until we can refactor redux state
     for (let i = 0; i < updatedWorkouts.length; i++) {
       for (let j = 0; j < updatedWorkouts[i].exercises.length; j++) {
-        if (updatedWorkouts[i].exercises[j] === this.props.exercise.id) {
+        if (updatedWorkouts[i].exercises[j].id === this.props.exercise.id) {
           updatedWorkouts[i].exercises[j] = updatedExercise;
         }
       }

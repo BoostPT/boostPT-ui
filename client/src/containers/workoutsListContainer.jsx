@@ -66,13 +66,16 @@ class WorkoutsListContainer extends Component {
   }
 
   filterWorkouts(workouts) {
-    return workouts.filter(workout => {
-      if (this.state.activeFilterTab === 1) {
-        if (workout.star) return true;
-      } else {
-        return true;
-      }
-    });
+    if (workouts) {
+      return workouts.filter(workout => {
+        if (this.state.activeFilterTab === 1) {
+          if (workout.star) return true;
+        } else {
+          return true;
+        }
+      });
+    }
+    return [];
   }
   
   toggleModal(e) {

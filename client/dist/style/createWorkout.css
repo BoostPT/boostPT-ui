@@ -5,8 +5,6 @@
   overflow-y: auto;
   margin-left: 50px;
   margin-top: 15px;
-  width: 500px;
-  max-height: 600px;
 }
 
 #create-workout-inner {
@@ -82,4 +80,24 @@
 .save-workout-btn {
   margin-top: 8px;
   margin-bottom: 20px;
+}
+
+.starred-exercises-div {
+  border: 1px solid #FFEB3B;
+  background-color: #EEE;
+  border-radius: 7px;
+  width: 300px;
+  max-height: 600px;
+  overflow-y: auto;
+  margin-left: 640px;
+  font-family: Arial;
+  color: #546E7A;
+}
+
+.starred-exercise-header {
+  text-align: center;
+}
+
+.add-starred-exercise:hover {
+  cursor: pointer;
 }

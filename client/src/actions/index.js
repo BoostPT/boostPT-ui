@@ -6,7 +6,8 @@ import {
   FETCH_WORKOUTS,
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
-  DELETE_WORKOUT
+  DELETE_WORKOUT,
+  FETCH_STARRED_EXERCISES
 } from './types';
 
 export const authUser = (user) => {
@@ -118,5 +119,25 @@ export const updateWorkoutsWithStar = (workouts) => {
   return {
     type: FETCH_WORKOUTS,
     payload: workouts
+  }
+};
+
+export const getStarredExercises = async (userId) => {
+  const request = await axios.get(`http://localhost:8000/api/workouts/starredexercises/${userId}`, {
+    headers: {
+      Authorization: `${document.cookie}`
+    }
+  });
+
+  return {
+    type: FETCH_STARRED_EXERCISES,
+    payload: request.data
+  };
+};
+
+export const deleteFromStarredExercises = (exercises) => {
+  return {
+    type: FETCH_STARRED_EXERCISES,
+    payload: exercises
   }
 };
