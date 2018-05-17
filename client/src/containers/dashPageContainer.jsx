@@ -16,12 +16,13 @@ class DashPageContainer extends Component {
       searchText: '',
       activeTab: 1,
       showDropdown: false,
-      filteredTrainers: [{id: 1, username: "gus", email: "gus@cheesemail.com", picture: null}, {id: 2, username: "aaron", email: "aaron@cheesemail.com", picture: null}]
+      filteredTrainers: []
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
     this.handleUserNameClick = this.handleUserNameClick.bind(this);
     this.filterTrainers = debounce(this.filterTrainers, 250);
+    this.showDropdownClick = this.showDropdownClick.bind(this);
   }
 
   handleTabSelect(tab) {
@@ -45,20 +46,30 @@ class DashPageContainer extends Component {
     this.props.getWorkoutsList(this.props.user.id);
   }
 
-  handleSearchBarClick() {
-    console.log('typed');
+  showDropdownClick(e) {
+    e.stopPropagation();
+    this.setState({ showDropdown: true });
   }
+
+  hideDropdownClick() {
+    window.addEventListener('click', (e) => {
+      this.setState({ showDropdown: false });
+    });
+  }    
 
   filterTrainers() {
     let filteredTrainers = this.props.trainers.filter(trainer => {
-      return trainer.username.slice(0, this.state.searchText.length).includes(this.state.searchText);
+      if (this.state.searchText !== '') {
+        return trainer.username.slice(0, this.state.searchText.length).includes(this.state.searchText);
+      }
+      return false;
     });
     this.setState({ filteredTrainers: filteredTrainers });
   }
 
   componentWillMount() {
-    // fetch all trainers from db
     this.props.getAllTrainersList();
+    this.hideDropdownClick();
   }
    
   render(){
@@ -69,9 +80,10 @@ class DashPageContainer extends Component {
                 handleOnChangeText={this.handleOnChangeText}
                 searchText={this.state.searchText}
                 handleUserNameClick={this.handleUserNameClick}
-                handleSearchBarClick={this.handleSearchBarClick}
+                showSearchBar={this.showSearchBar}
                 filteredTrainers={this.state.filteredTrainers}
                 showDropdown={this.state.showDropdown}
+                showDropdownClick={this.showDropdownClick}
       />
     );
   }

@@ -82,7 +82,7 @@ class DashPage extends Component {
     return (
         <div className="dashPage">
           <Navbar 
-           userInfo={this.props.userInfo}
+           user={this.props.user}
            handleOnChangeText={this.props.handleOnChangeText}
            searchText={this.props.searchText}
            handleUserNameClick={this.props.handleUserNameClick}
@@ -90,6 +90,7 @@ class DashPage extends Component {
            handleSearchBarClick={this.props.handleSearchBarClick}
            filteredTrainers={this.props.filteredTrainers}
            showDropdown={this.props.showDropdown}
+           showDropdownClick={this.props.showDropdownClick}
           />
 
           <div className="dashPageBody">

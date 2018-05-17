@@ -43,12 +43,16 @@ class WorkoutItemContainer extends Component {
   }
 
   render() {
+    let star = false;
+    if (this.props.clickedWorkout && this.props.clickedWorkout.star) {
+      star = true;
+    }
     return (
       <WorkoutItem
        user_id={this.props.user_id}
        clickedWorkout={this.props.clickedWorkout}
        handleStarWorkoutClick={this.handleStarWorkoutClick}
-       star={!!this.props.clickedWorkout.star}
+       star={star}
        />
     );
   }
