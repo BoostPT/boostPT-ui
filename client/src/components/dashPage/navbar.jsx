@@ -17,7 +17,6 @@ class Navbar extends Component{
   }
 
   render(){
-    console.log('trainers', this.props.filteredTrainers)
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
         <ToolbarGroup firstChild={true}>
@@ -28,7 +27,7 @@ class Navbar extends Component{
         </ToolbarGroup>
         <ToolbarGroup>
           <div className="dashPageNavbarSearch">
-            <input className="searchbar" name="searchText" placeholder="Search..." onChange={this.props.handleOnChangeText} onChange={this.props.handleSearchBarClick}/>
+            <input className="searchbar" name="searchText" placeholder="Search..." onChange={this.props.handleOnChangeText} onClick={this.props.showDropdownClick}/>
             <div className="dropdown-content">
             {
               this.props.showDropdown ?
