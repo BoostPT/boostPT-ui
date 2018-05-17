@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
 import ExerciseItem from '../components/workoutsView/exerciseItem.jsx';
 import AddExercise from 'material-ui/svg-icons/av/library-add';
+import {
+  deleteFromStarredExercises,
+  updateWorkoutsWithStar
+} from '../actions';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
@@ -144,7 +148,9 @@ class CreateWorkoutContainer extends Component {
   }
 
   handleDeleteStarExercise(exercise) {
-    // This still doesn't rerender, but it will star/unstar the exercise in the db
+    let updatedExercise = Object.assign({}, this.props.exercise);
+    let updatedExercises = this.props.starredExercises.slice();
+    updatedExercise.star = false;
     const payload = {
       user_id: this.props.user_id,
       exercise_id: exercise.id
@@ -154,6 +160,24 @@ class CreateWorkoutContainer extends Component {
         Authorization: `${document.cookie}`
       }
     });
+
+    for (let i = 0; i < updatedExercises.length; i++) {
+      if (updatedExercises[i].id === exercise.id) {
+        updatedExercises.splice(i, 1);
+        break;
+      }
+    }
+
+    this.props.deleteFromStarredExercises(updatedExercises);
+    let updatedWorkouts = this.props.workouts.slice();
+    for (let i = 0; i < updatedWorkouts.length; i++) {
+      for (let j = 0; j < updatedWorkouts[i].exercises.length; j++) {
+        if (updatedWorkouts[i].exercises[j].id === exercise.id) {
+          updatedWorkouts[i].exercises[j] = updatedExercise;
+        }
+      }
+    }
+    this.props.updateWorkoutsWithStar(updatedWorkouts);
   }
 
   handleAddStarredExercise(exercise) {
@@ -238,8 +262,9 @@ CreateWorkoutContainer.propTypes = {
 const mapStateToProps = (state) => {
   return {
     user_id: state.auth.user.id,
+    workouts: state.workoutsReducer.workouts,
     starredExercises: state.workoutsReducer.starredExercises
   }
 };
 
-export default connect(mapStateToProps, null)(CreateWorkoutContainer);
+export default connect(mapStateToProps, { deleteFromStarredExercises, updateWorkoutsWithStar })(CreateWorkoutContainer);

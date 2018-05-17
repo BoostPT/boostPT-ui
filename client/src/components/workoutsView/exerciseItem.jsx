@@ -35,7 +35,7 @@ class ExerciseItem extends Component {
         <div className="pos-title">
           {/* Render SVGs depending on the type */}
           {/*{this.renderSVGByType()}*/}
-          <img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>
+          {/*<img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>*/}
           {this.renderStar()}
           <h2 className="float-left">{exercise.name}</h2>
           <div className="clear-float"></div>

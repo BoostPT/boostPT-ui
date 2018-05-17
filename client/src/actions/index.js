@@ -122,8 +122,8 @@ export const updateWorkoutsWithStar = (workouts) => {
   }
 };
 
-export const getStarredExercises = (userId) => {
-  const request = axios.get(`http://localhost:8000/api/workouts/starredexercises/${userId}`, {
+export const getStarredExercises = async (userId) => {
+  const request = await axios.get(`http://localhost:8000/api/workouts/starredexercises/${userId}`, {
     headers: {
       Authorization: `${document.cookie}`
     }
@@ -131,6 +131,13 @@ export const getStarredExercises = (userId) => {
 
   return {
     type: FETCH_STARRED_EXERCISES,
-    payload: request
+    payload: request.data
   };
+};
+
+export const deleteFromStarredExercises = (exercises) => {
+  return {
+    type: FETCH_STARRED_EXERCISES,
+    payload: exercises
+  }
 };

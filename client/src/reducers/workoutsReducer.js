@@ -14,7 +14,7 @@ export default function(state = {}, action) {
     case DELETE_WORKOUT:
       return Object.assign({}, state, { clickedWorkout: action.payload.clickedWorkout, workouts: action.payload.workouts });
     case FETCH_STARRED_EXERCISES:
-      return Object.assign({}, state, { starredExercises: action.payload.data });
+      return Object.assign({}, state, { starredExercises: action.payload });
   }
   return state;
 }
