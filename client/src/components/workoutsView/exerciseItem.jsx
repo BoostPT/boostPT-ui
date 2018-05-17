@@ -15,6 +15,10 @@ class ExerciseItem extends Component {
     };
   }
 
+  renderSVGByType(type) {
+    // To be completed
+  }
+
   renderStar() {
     return this.props.exercise.star ? (
       <Star className="exercise-star" color={colors.yellow800} hoverColor={colors.yellow900} onClick={this.props.handleStarExerciseClick} />
@@ -29,6 +33,8 @@ class ExerciseItem extends Component {
     return (
       <div className="border exercise-height">
         <div className="pos-title">
+          {/* Render SVGs depending on the type */}
+          {/*{this.renderSVGByType()}*/}
           <img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>
           {this.renderStar()}
           <h2 className="float-left">{exercise.name}</h2>

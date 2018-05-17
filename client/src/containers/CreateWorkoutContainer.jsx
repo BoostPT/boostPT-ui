@@ -2,15 +2,24 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
 import ExerciseItem from '../components/workoutsView/exerciseItem.jsx';
+import AddExercise from 'material-ui/svg-icons/av/library-add';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
 import omit from 'lodash/omit';
 import shortid from 'shortid';
 import PropTypes from "prop-types";
+import * as colors from "material-ui/styles/colors";
 
 // Change where we load this from later?
 const REST_SERVER_URL='http://localhost:8000/api';
+
+const exerciseTypes = {
+  0: 'Warm-up',
+  1: 'Strength',
+  2: 'Cardio',
+  3: 'Stretch'
+};
 
 class CreateWorkoutContainer extends Component {
   constructor(props) {
@@ -135,6 +144,7 @@ class CreateWorkoutContainer extends Component {
   }
 
   handleDeleteStarExercise(exercise) {
+    // This still doesn't rerender, but it will star/unstar the exercise in the db
     const payload = {
       user_id: this.props.user_id,
       exercise_id: exercise.id
@@ -146,14 +156,54 @@ class CreateWorkoutContainer extends Component {
     });
   }
 
+  handleAddStarredExercise(exercise) {
+
+    let exerciseForm = {
+      id: exercise.id,
+      type: exerciseTypes[exercise.type],
+      name: exercise.name,
+      description: exercise.description
+    };
+
+    if (exerciseForm.type === 'Strength') {
+      if (exercise.reps) {
+        exerciseForm['Reps'] = exercise.reps.toString()
+      } else {
+        exerciseForm['Reps'] = '';
+      }
+      if (exercise.sets) {
+        exerciseForm['Sets'] = exercise.sets.toString()
+      } else {
+        exerciseForm['Sets'] = '';
+      }
+    } else if (exerciseForm.type === 'Cardio') {
+      exerciseForm['Distance'] = exercise.distance;
+      exerciseForm['Pace'] = exercise.pace;
+      exerciseForm['Goal Time'] = exercise.goaltime;
+    } else if (exerciseForm.type === 'Stretch') {
+      exerciseForm['Goal Time'] = exercise.goaltime;
+    }
+
+    // Add render id so React can correctly re-render upon deletion
+    exerciseForm.renderId = shortid.generate();
+    exerciseForm.expanded = false;
+
+    this.setState({ exerciseForms: [...this.state.exerciseForms, exerciseForm] });
+  }
+
   renderStarredExercises() {
-    return this.props.starredExercises.length ? (
-      this.props.starredExercises.map(exercise => {
-        return <ExerciseItem key={exercise.id} exercise={exercise} handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)} />
-      })
-    ) : (
-      <p className="starred-exercise-header">You haven't starred any exercises!</p>
-    )
+    if (this.props.starredExercises.length) {
+      return this.props.starredExercises.map(exercise => {
+        return (
+          <Fragment key={exercise.id}>
+            <ExerciseItem exercise={exercise} handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)} />
+            <AddExercise className="add-starred-exercise" color={colors.grey500} hoverColor={colors.grey700} onClick={this.handleAddStarredExercise.bind(this, exercise)} />
+          </Fragment>
+        )
+      });
+    } else {
+      return <p className="starred-exercise-header">You haven't starred any exercises!</p>;
+    }
   }
 
   render() {

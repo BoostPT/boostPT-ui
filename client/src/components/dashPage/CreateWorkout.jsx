@@ -18,7 +18,7 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
-const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
+const renderTextField = (value, hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
   // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
   return (
     <TextField
@@ -30,6 +30,7 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
       rowsMax={rowsMax}
       underlineFocusStyle={{ borderColor: colors.yellow500 }}
       data={id}
+      value={value}
       onChange={handleChange}
     />
   )
@@ -92,35 +93,35 @@ class CreateWorkout extends Component {
   }
 
   renderExerciseForms() {
-    const renderFields = (type, index, expanded) => {
+    const renderFields = (type, index, expanded, form = null) => {
       if (type === 'Warm-up' && expanded) {
         return (
           <Fragment>
-            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+            {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
           </Fragment>
         )
       } else if (type === 'Strength' && expanded) {
         return (
           <Fragment>
-            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField('', 'Reps', this.props.handleFormInput, `${index},Reps`)}
-            {renderTextField('', 'Sets', this.props.handleFormInput, `${index},Sets`)}
+            {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+            {renderTextField(form.reps, '', 'Reps', this.props.handleFormInput, `${index},Reps`)}
+            {renderTextField(form.sets, '', 'Sets', this.props.handleFormInput, `${index},Sets`)}
           </Fragment>
         )
       } else if (type === 'Cardio' && expanded) {
         return (
           <Fragment>
-            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField('', 'Distance', this.props.handleFormInput, `${index},Distance`)}
-            {renderTextField('', 'Pace', this.props.handleFormInput, `${index},Pace`)}
-            {renderTextField('', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
+            {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+            {renderTextField(form.distance, '', 'Distance', this.props.handleFormInput, `${index},Distance`)}
+            {renderTextField(form.pace, '', 'Pace', this.props.handleFormInput, `${index},Pace`)}
+            {renderTextField(form.goaltime, '', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
           </Fragment>
         )
       } else if (type === 'Stretch' && expanded) {
         return (
           <Fragment>
-            {renderTextField('', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField('', 'Duration', this.props.handleFormInput, `${index},Goal Time`)}
+            {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
+            {renderTextField(form.goaltime, '', 'Duration', this.props.handleFormInput, `${index},Goal Time`)}
           </Fragment>
         );
       } else return null;
@@ -132,7 +133,7 @@ class CreateWorkout extends Component {
 
       return (
         <li className={className} key={exerciseForm.renderId}>
-          {renderTextField('Exercise Name', `${exerciseForm.type} Exercise *`, this.props.handleFormInput, `${i},name`)}
+          {renderTextField(exerciseForm.name, 'Exercise Name', `${exerciseForm.type} Exercise *`, this.props.handleFormInput, `${i},name`)}
           <ContentClear className="delete-exercise"
                         data={exerciseForm.renderId}
                         color={colors.grey400}
@@ -140,7 +141,7 @@ class CreateWorkout extends Component {
                         onClick={this.props.handleDeleteExercise} />
           {this.renderExpandIcon(exerciseForm.expanded, exerciseForm.renderId)}
           {this.renderSwapArrows(exerciseForm.renderId, i, this.props.exerciseForms.length)}
-          {renderFields(exerciseForm.type, i, exerciseForm.expanded)}
+          {renderFields(exerciseForm.type, i, exerciseForm.expanded, exerciseForm)}
         </li>
       )
     });
