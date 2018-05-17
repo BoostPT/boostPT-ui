@@ -4,6 +4,13 @@ import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import * as colors from "material-ui/styles/colors";
 
+import {
+  warmupSvg,
+  strengthSvg,
+  cardioSvg,
+  stretchSvg
+} from './svgHelper.js';
+
 class ExerciseItem extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +23,21 @@ class ExerciseItem extends Component {
   }
 
   renderSVGByType(type) {
-    // To be completed
+    let svg;
+    switch (type) {
+      case 0:
+        svg = warmupSvg;
+        break;
+      case 1:
+        svg = strengthSvg;
+        break;
+      case 2:
+        svg = cardioSvg;
+        break;
+      case 3:
+        svg = stretchSvg;
+    }
+    return <img className="float-right pad-right" src={svg} />;
   }
 
   renderStar() {
@@ -29,13 +50,10 @@ class ExerciseItem extends Component {
 
   render() {
     const exercise = this.props.exercise;
-    const type = this.types[exercise.type];
     return (
       <div className="border exercise-height">
         <div className="pos-title">
-          {/* Render SVGs depending on the type */}
-          {/*{this.renderSVGByType()}*/}
-          {/*<img className="float-right pad-right" src={require(`../../../../client/dist/images/${type}.png`)}></img>*/}
+          {this.renderSVGByType(exercise.type)}
           {this.renderStar()}
           <h2 className="float-left">{exercise.name}</h2>
           <div className="clear-float"></div>

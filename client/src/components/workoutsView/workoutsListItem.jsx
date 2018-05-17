@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import Star from 'material-ui/svg-icons/toggle/star';
-import { stretchSvg } from './svgHelper.js';
+import {
+  warmupSvg,
+  strengthSvg,
+  cardioSvg,
+  stretchSvg
+} from './svgHelper.js';
+import Public from 'material-ui/svg-icons/social/public';
+import Private from 'material-ui/svg-icons/action/lock';
+import Delete from 'material-ui/svg-icons/action/delete';
 import * as colors from "material-ui/styles/colors";
 
 class WorkoutsListItem extends Component {
@@ -34,18 +42,19 @@ class WorkoutsListItem extends Component {
         </div>
         <div className="pad-top">
           <p className="exercises">Exercises</p>
-          <p className="float-left pad"><b>{counts[0] || 0}</b> Warm-up<img className="exercise-icon" src={require('../../../dist/images/warm-up.png')}></img></p>
-          <p className="float-left pad"><b>{counts[2] || 0}</b> Cardio<img className="exercise-icon" src={require('../../../dist/images/cardio.png')}></img></p>
+          <p className="float-left pad"><b>{counts[0] || 0}</b> Warm-up<img className="exercise-icon" src={warmupSvg} /></p>
+          <p className="float-left pad"><b>{counts[2] || 0}</b> Cardio<img className="exercise-icon" src={cardioSvg} /></p>
           <div className="clear-float"></div>
-          <p className="float-left pad"><b>{counts[1] || 0}</b> Strength<img className="exercise-icon" src={require('../../../dist/images/strength.png')}></img></p>
+          <p className="float-left pad"><b>{counts[1] || 0}</b> Strength<img className="exercise-icon" src={strengthSvg} /></p>
           <p className="float-left add-left-pad"><b>{counts[3] || 0}</b> Stretch<img className="exercise-icon" src={stretchSvg} /></p>
           {
-            is_public ? 
-            <img className="float-right status" src={require('../../../dist/images/earth.png')}></img>
+            is_public ?
+
+            <Public className="float-right status" color={colors.grey400} />
             :
-            <img className="float-right status" src={require('../../../dist/images/lock.png')}></img>
+            <Private className="float-right status" color={colors.grey400} />
           }
-          <img className="float-left delete-icon" src={require('../../../dist/images/trash.png')} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)}></img>
+          <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)} />
           <div className="clear-float"></div>
         </div>
       </div>
