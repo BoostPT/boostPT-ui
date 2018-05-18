@@ -10,7 +10,10 @@ import {
 import Public from 'material-ui/svg-icons/social/public';
 import Private from 'material-ui/svg-icons/action/lock';
 import Delete from 'material-ui/svg-icons/action/delete';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from "material-ui/styles/colors";
+
+import ScheduleButton from '../schedule/ScheduleButton.jsx';
 
 class WorkoutsListItem extends Component {
   constructor(props) {
@@ -56,9 +59,10 @@ class WorkoutsListItem extends Component {
             }
             {!this.props.isPublic ? 
               <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)} />
-            : 
+              : 
               null
             }
+            <ScheduleButton handleOnClick={this.props.handleScheduleButtonOnClick}/>
             <div className="clear-float"></div>
           </div>
         </div>

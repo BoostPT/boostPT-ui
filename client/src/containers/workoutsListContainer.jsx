@@ -7,6 +7,7 @@ import {
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
+import ScheduleModalContainer from './scheduleModalContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Star from 'material-ui/svg-icons/toggle/star';
 import * as colors from 'material-ui/styles/colors';
@@ -39,7 +40,8 @@ class WorkoutsListContainer extends Component {
       modalVisible: false,
       workoutId: null,
       workoutName: null,
-      activeFilterTab: 0
+      activeFilterTab: 0,
+      ScheduleModalVisible: false
     };
     this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
     this.handleFilterTabSelect = this.handleFilterTabSelect.bind(this);
@@ -90,6 +92,10 @@ class WorkoutsListContainer extends Component {
     });
   }
 
+  handleScheduleButtonOnClick(){
+    console.log("clicked");
+  }
+
   render() {
     const filterTabStyles = Array(2).fill('').map((v, i) => this.state.activeFilterTab === i ? 'active' : 'standard');
 
@@ -116,6 +122,7 @@ class WorkoutsListContainer extends Component {
          getEachExerciseCount={this.getEachExerciseCount}
          handleWorkoutClick={this.handleWorkoutClick}
          toggleModal={this.toggleModal.bind(this)}
+         isPublic={this.props.isPublic} 
         />
         <WorkoutModalContainer
          modalVisible={this.state.modalVisible}
@@ -124,6 +131,9 @@ class WorkoutsListContainer extends Component {
          workouts={this.props.workouts}
          workoutId={this.state.workoutId}
          workoutName={this.state.workoutName}
+        />
+        <ScheduleModalContainer 
+        
         />
       </Fragment>
     );
