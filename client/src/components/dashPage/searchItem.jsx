@@ -21,17 +21,17 @@ class SearchItem extends Component {
 
   render() {
     return(
-      <div>
+      <div className="dropdown-item">
         {
           this.props.picture ?
-            <img data-id={this.props.userId} src={require(`${this.props.picture}`)} />
+            <img className="avatar-styles" data-id={this.props.userId} src={require(`${this.props.picture}`)} />
             :
             <ListItem
              style={listItemStyles}
              disabled={true}
              leftAvatar={<Avatar size={25} style={avatarStyles} data-id={this.props.userId}>{this.props.trainer.username.slice(0,1)}</Avatar>}
             >
-             <p className="dropdown-item" data-id={this.props.userId}>{this.props.trainer.username}</p>
+             <p className="dropdown-name" data-id={this.props.userId}>{this.props.trainer.username}</p>
             </ListItem>
         }
       </div>
