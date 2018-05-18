@@ -54,7 +54,11 @@ class WorkoutsListItem extends Component {
               :
               <Private className="float-right status" color={colors.grey400} />
             }
-            <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)} />
+            {!this.props.isPublic ? 
+              <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)} />
+            : 
+              null
+            }
             <div className="clear-float"></div>
           </div>
         </div>
