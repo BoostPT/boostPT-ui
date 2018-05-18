@@ -16,7 +16,6 @@ class NavbarContainer extends Component {
       searchText: '',
       showDropdown: false,
       filteredTrainers: [],
-      UserfromBioPageChange: this.props.location ? this.props.location.state : null
     };
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
     this.handleUserNameClick = this.handleUserNameClick.bind(this);
@@ -28,11 +27,11 @@ class NavbarContainer extends Component {
 
   handleTitleClick(){
     this.props.selectedWorkout({});
-    this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
+    const user = Object.assign({}, this.props.user, { publicWorkouts: this.props.userWorkouts});
+    this.props.history.push({pathname: '/dash', state: user});
   }
 
   handleUserNameClick(){
-    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
     this.props.selectedWorkout({});
     const user = Object.assign({}, this.props.user, { publicWorkouts: this.props.userWorkouts});
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
@@ -95,7 +94,6 @@ class NavbarContainer extends Component {
       searchText={this.state.searchText}
       handleUserNameClick={this.handleUserNameClick}
       handleTitleClick={this.handleTitleClick}
-      handleSearchBarClick={this.handleSearchBarClick}
       filteredTrainers={this.state.filteredTrainers}
       showDropdown={this.state.showDropdown}
       showDropdownClick={this.showDropdownClick}

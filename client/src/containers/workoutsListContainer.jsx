@@ -49,10 +49,12 @@ class WorkoutsListContainer extends Component {
   }
 
   getEachExerciseCount(exercises) {
-    return exercises.reduce((counts, exercise) => {
-      counts[exercise.type] = counts[exercise.type] + 1 || 1;
-      return counts;
-    }, {});
+    if (Array.isArray(exercises)) {
+      return exercises.reduce((counts, exercise) => {
+        counts[exercise.type] = counts[exercise.type] + 1 || 1;
+        return counts;
+      }, {});
+    }
   }
 
   handleWorkoutClick(workout) {
