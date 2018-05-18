@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class MessagePageModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      inputValue : ''
     }
+    this.handleInputValueChange = this.handleInputValueChange.bind(this);
+    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this)
+  };
+
+  handleInputValueChange(e) {
+    this.setState({inputValue: e.target.value});
+    console.log(this.state.inputValue);
+  }
+
+  handleSubmitButtonClick() {
+    this.props.toggleModal(this.state.inputValue);
+    let newUser = this.state.inputValue;
+    let activeUser = this.props.activeUser;
+    let tempArr = [newUser, activeUser];
+    let newArr = tempArr.sort();
+    let channelStr = tempArr[0] + ':' + tempArr[1];
+    let payload = {channelStr: channelStr}
+    axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload)
   }
 
   render() {
@@ -17,8 +37,8 @@ class MessagePageModal extends Component {
             </div>
             <label>
               <span>
-                <input id="messageModal-input" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
-                <button id="createChannelButton" >Submit</button>
+                <input id="messageModal-input" value ={this.state.inputValue} name="unregUserInput" onChange={this.handleInputValueChange}></input>
+                <button id="createChannelButton" onClick={this.handleSubmitButtonClick} >Submit</button>
               </span>
             </label>
             {

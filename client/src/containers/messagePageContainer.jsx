@@ -8,6 +8,7 @@ class MessagePageContainer extends Component {
     super(props);
     this.state = {
     };
+    // this.socket = io('http://localhost:5000');
   }
 
   componentWillMount() {
@@ -15,9 +16,7 @@ class MessagePageContainer extends Component {
   }
 
   async fetchChannelsFromStore() {
-    const payload = {
-      username : this.props.userInfo.username
-    }
+    const payload = this.props.userInfo.username;
     try {
       await this.props.channelList(payload);
     } catch (err) {

@@ -62,7 +62,7 @@
   height: 70px;
 }
 
-#messagetwo {
+#message:nth-child(odd) {
   background-color: #FFFFFF;
   font-size: 20px;
   height: 70px;
@@ -156,3 +156,8 @@
   background-color: rgb(161, 161, 240);
   opacity:0.5;
 } 
+
+.channelScrollBox {
+  overflow-y: scroll;
+  height: 450px;
+}

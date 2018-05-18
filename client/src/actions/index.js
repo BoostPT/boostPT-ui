@@ -224,7 +224,7 @@ export const getAllTrainersList = async () => {
 
 export const channelList = async (username) => {
   try {
-    const result = await axios.get(`http://localhost:8000/api/messages/getchannels`, {
+    const result = await axios.get(`http://localhost:8000/api/messages/getchannels/${username}`, {
       headers: {
         Authorization: `${document.cookie}`
       }
