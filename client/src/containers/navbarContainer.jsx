@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { 
   getWorkoutsList,
   getAllTrainersList,
-  selectedWorkout
+  selectedWorkout,
+  getUserPublicWorkoutsList
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
@@ -54,11 +55,14 @@ class NavbarContainer extends Component {
     });
   }
 
-  handleSearchItemClick(e) {
-    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
-    // send action to grab user at e.targer.dataset.id
-    // set that user as state in history
-    this.props.history.push({pathname: `/bio/${e.target.dataset.id}`, state: stateToBioPage});
+  async handleSearchItemClick(e) {
+    // grab trainer object with id of e.target.dataset.id
+    const trainer = this.props.trainers.filter(trainer => trainer.id === parseInt(e.target.dataset.id))[0];
+    // get public workouts for trainer
+    // const publicWorkouts = await this.props.getUserPublicWorkoutsList(trainer.id);
+    console.log('TRAINER PUB WORKOUTS', publicWorkouts)
+    // this.props.getUserPublicWorkoutsList();
+    // this.props.history.push({pathname: `/bio/${e.target.dataset.id}`, state: Object.assign({}, trainer, /* workouts */)});
   }
 
   filterTrainers() {
@@ -101,4 +105,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(NavbarContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout, getUserPublicWorkoutsList })(NavbarContainer);

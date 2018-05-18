@@ -28,14 +28,14 @@ class Navbar extends Component{
         <ToolbarGroup>
           <div className="dashPageNavbarSearch">
             <input className="searchbar" name="searchText" placeholder="Search..." onChange={this.props.handleOnChangeText} onClick={this.props.showDropdownClick}/>
-            <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
             {
               this.props.showDropdown ?
-                this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} userId={this.props.user.id}/>)
+                <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
+                  {this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} id={trainer.id}/>)}
+                </div>
                 :
                 null
             }
-            </div>
           </div>
           <FontAwesomeIcon icon={faBell} />
           <div className="navbarUser" onClick={this.props.handleUserNameClick}>
