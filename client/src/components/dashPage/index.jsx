@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import NavbarContainer from '../../containers/navbarContainer.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
-
 import WorkoutsTab from './workoutsTab.jsx';
 
 const tabStyle = {
@@ -39,7 +38,7 @@ class DashPage extends Component {
 
   render() {
 
-    const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
+    const tabStyles = Array(4).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
 
     return (
         <div className="dashPage">

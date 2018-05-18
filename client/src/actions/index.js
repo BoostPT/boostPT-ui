@@ -10,7 +10,8 @@ import {
   TRAINER_CLIENT_LIST,
   DELETE_WORKOUT,
   FETCH_STARRED_EXERCISES,
-  FETCH_TRAINERS
+  FETCH_TRAINERS,
+  USER_CHANNEL_LIST
 } from './types';
 
 
@@ -203,7 +204,7 @@ export const deleteFromStarredExercises = (exercises) => {
     type: FETCH_STARRED_EXERCISES,
     payload: exercises
   }
-}
+};
 
 export const getAllTrainersList = async () => {
   try {
@@ -216,6 +217,22 @@ export const getAllTrainersList = async () => {
       type: FETCH_TRAINERS,
       payload: trainers.data
     }
+  } catch (err) {
+    return (err);
+  }
+};
+
+export const channelList = async (username) => {
+  try {
+    const result = await axios.get(`http://localhost:8000/api/messages/getchannels`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: USER_CHANNEL_LIST,
+      payload: result.data
+    };
   } catch (err) {
     return (err);
   }
