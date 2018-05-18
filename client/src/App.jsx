@@ -7,7 +7,7 @@ import LoginPageContainer from './containers/loginPageContainer.jsx';
 import LandingPage from './components/landingPage/index.jsx';
 import SignupContainer from './containers/signUpContainer.jsx';
 import DashPageContainer from './containers/dashPageContainer.jsx';
-import BioPageContainer from './containers/bioPageContainer.jsx';
+import BioPageContainer from './containers/bioPage/bioPageContainer.jsx';
 
 class App extends Component {
 

@@ -2,6 +2,7 @@ import {
   FETCH_WORKOUTS, 
   SELECT_WORKOUT,
   DELETE_WORKOUT,
+  FETCH_PUBLIC_WORKOUTS,
   FETCH_STARRED_EXERCISES
 } from '../actions/types';
 
@@ -13,6 +14,8 @@ export default function(state = {}, action) {
       return Object.assign({}, state, { clickedWorkout: action.payload });
     case DELETE_WORKOUT:
       return Object.assign({}, state, { clickedWorkout: action.payload.clickedWorkout, workouts: action.payload.workouts });
+    case FETCH_PUBLIC_WORKOUTS:
+      return Object.assign({}, state, { publicWorkouts: action.payload });
     case FETCH_STARRED_EXERCISES:
       return Object.assign({}, state, { starredExercises: action.payload });
   }
