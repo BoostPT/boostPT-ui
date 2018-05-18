@@ -44,6 +44,24 @@ class MessagePageModal extends Component {
     if (e.key === 'Enter') {
       this.handleSubmitButtonClick();
     }
+    this.handleInputValueChange = this.handleInputValueChange.bind(this);
+    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this)
+  };
+
+  handleInputValueChange(e) {
+    this.setState({inputValue: e.target.value});
+    console.log(this.state.inputValue);
+  }
+
+  handleSubmitButtonClick() {
+    this.props.toggleModal(this.state.inputValue);
+    let newUser = this.state.inputValue;
+    let activeUser = this.props.activeUser;
+    let tempArr = [newUser, activeUser];
+    let newArr = tempArr.sort();
+    let channelStr = tempArr[0] + ':' + tempArr[1];
+    let payload = {channelStr: channelStr}
+    axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload)
   }
 
   render() {

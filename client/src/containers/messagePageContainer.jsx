@@ -8,6 +8,7 @@ class MessagePageContainer extends Component {
     super(props);
     this.state = {
     };
+    // this.socket = io('http://localhost:5000');
   }
 
   componentWillMount() {
