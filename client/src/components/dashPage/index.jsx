@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Navbar from './navbar.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Snackbar from 'material-ui/Snackbar';
 
 import WorkoutsTab from './workoutsTab.jsx';
 
@@ -23,24 +22,8 @@ const tabStyle = {
 class DashPage extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      workoutCreatedBar: false
-    };
-    this.handleCreateWorkoutSuccess = this.handleCreateWorkoutSuccess.bind(this);
-    this.handleWorkoutBarClose = this.handleWorkoutBarClose.bind(this);
+
     this.renderActiveTabPage = this.renderActiveTabPage.bind(this);
-  }
-
-  handleCreateWorkoutSuccess() {
-    this.setState({
-      workoutCreatedBar: true
-    });
-  }
-
-  handleWorkoutBarClose() {
-    this.setState({
-      workoutCreatedBar: false
-    });
   }
 
   renderActiveTabPage() {
@@ -48,7 +31,7 @@ class DashPage extends Component {
       // Schedule Page
       return null
     } else if (this.props.activeTab === 1) {
-      return <WorkoutsTab handleCreateWorkoutSuccess={this.handleCreateWorkoutSuccess} />
+      return <WorkoutsTab />
     } else if (this.props.activeTab === 2) {
       return <ClientTabContainer />
     }
@@ -69,12 +52,6 @@ class DashPage extends Component {
               <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
             </Tabs>
             {this.renderActiveTabPage()}
-            <Snackbar
-              open={this.state.workoutCreatedBar}
-              message="Workout saved!"
-              autoHideDuration={2400}
-              onRequestClose={this.handleWorkoutBarClose}
-            />
           </div>
         </div>
     )

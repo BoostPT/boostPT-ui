@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import CreateWorkoutContainer from '../../containers/CreateWorkoutContainer.jsx';
 import WorkoutListContainer from '../../containers/workoutsListContainer.jsx';
 import WorkoutItemContainer from '../../containers/workoutItemContainer.jsx';
@@ -57,15 +56,17 @@ class WorkoutsTab extends Component {
       </Fragment>
     ) : (
       <Fragment>
-        <CreateWorkoutContainer handleCreateWorkoutSuccess={this.props.handleCreateWorkoutSuccess} />
+        <CreateWorkoutContainer />
         {this.renderWorkoutTabList()}
       </Fragment>
     );
   }
 }
 
-WorkoutsTab.propTypes = {
-  handleCreateWorkoutSuccess: PropTypes.func.isRequired
+const mapStateToProps = function(state) {
+  return {
+    user: state.auth.user
+  };
 };
 
-export default connect(null, { getStarredExercises })(WorkoutsTab);
+export default connect(mapStateToProps, { getStarredExercises })(WorkoutsTab);

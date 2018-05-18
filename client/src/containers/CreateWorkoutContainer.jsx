@@ -7,6 +7,7 @@ import {
   deleteFromStarredExercises,
   updateWorkoutsWithStar
 } from '../actions';
+import Snackbar from 'material-ui/Snackbar';
 
 import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
@@ -31,7 +32,8 @@ class CreateWorkoutContainer extends Component {
     this.state = {
       workoutName: '',
       exerciseForms: [],
-      isPublic: true
+      isPublic: true,
+      workoutCreatedBar: false
     };
     this.handleAddExerciseMenuClick = this.handleAddExerciseMenuClick.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
@@ -41,6 +43,8 @@ class CreateWorkoutContainer extends Component {
     this.handleDeleteExercise = this.handleDeleteExercise.bind(this);
     this.handleMakePrivateCheck = this.handleMakePrivateCheck.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleCreateWorkoutSuccess = this.handleCreateWorkoutSuccess.bind(this);
+    this.handleWorkoutBarClose = this.handleWorkoutBarClose.bind(this);
   }
 
   handleAddExerciseMenuClick(e) {
@@ -139,7 +143,7 @@ class CreateWorkoutContainer extends Component {
           Authorization: `${document.cookie}`
         }
       });
-      this.props.handleCreateWorkoutSuccess();
+      this.handleCreateWorkoutSuccess();
       this.setState({
         workoutName: '',
         exerciseForms: [],
@@ -149,6 +153,18 @@ class CreateWorkoutContainer extends Component {
       // Handle error, show message on client?
       console.log('Error submitting workout form', err);
     }
+  }
+
+  handleCreateWorkoutSuccess() {
+    this.setState({
+      workoutCreatedBar: true
+    });
+  }
+
+  handleWorkoutBarClose() {
+    this.setState({
+      workoutCreatedBar: false
+    });
   }
 
   handleDeleteStarExercise(exercise) {
@@ -253,6 +269,12 @@ class CreateWorkoutContainer extends Component {
           handleDeleteExercise={this.handleDeleteExercise}
           handleMakePrivateCheck={this.handleMakePrivateCheck}
           handleFormSubmit={this.handleFormSubmit}
+        />
+        <Snackbar
+          open={this.state.workoutCreatedBar}
+          message="Workout saved!"
+          autoHideDuration={2400}
+          onRequestClose={this.handleWorkoutBarClose}
         />
       </Fragment>
     )
