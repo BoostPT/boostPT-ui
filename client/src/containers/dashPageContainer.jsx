@@ -105,8 +105,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-<<<<<<< HEAD
-export default connect(mapStateToProps, { getWorkoutsList, selectedWorkout })(DashPageContainer);
-=======
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList })(DashPageContainer);
->>>>>>> Moved componentDidMount to dash page container
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(DashPageContainer);
