@@ -56,6 +56,7 @@ class NavbarContainer extends Component {
 
   async handleSearchItemClick(e) {
     e.persist();
+    this.props.selectedWorkout({});
     const trainer = this.props.trainers.filter(trainer => trainer.id === parseInt(e.target.dataset.id))[0];
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${trainer.id}`, { headers: { Authorization: `${document.cookie}`} });
     if (Array.isArray(publicWorkouts.data)) {
