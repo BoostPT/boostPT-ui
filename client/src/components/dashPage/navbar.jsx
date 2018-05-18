@@ -42,7 +42,7 @@ class Navbar extends Component{
             {!this.props.user.picture ?
               <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
               : 
-              <Avatar className="avatarPicture" size={30} src={this.props.user.picture}/>
+              <Avatar className="avatarPicture" size={30} src=""/>
             }
             <div className="navbarUsername">
               {this.props.user.username}
