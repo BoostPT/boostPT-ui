@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   getWorkoutsList,
-  selectedWorkout
+  selectedWorkout,
+  getUserPublicWorkoutsList
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
@@ -45,7 +46,7 @@ class WorkoutsListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getWorkoutsList(this.props.userId);
+    !this.props.isPublic ? this.props.getWorkoutsList(this.props.userId) : this.props.getUserPublicWorkoutsList(this.props.user.id);
   }
 
   getEachExerciseCount(exercises) {
@@ -132,8 +133,9 @@ class WorkoutsListContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     workouts: state.workoutsReducer.workouts,
-    userId: state.auth.user.id
+    userId: state.auth.user.id,
+    publicWorkouts: state.workoutsReducer.publicWorkouts
   }
 };
 
-export default connect(mapStateToProps, { selectedWorkout, getWorkoutsList })(WorkoutsListContainer);
+export default connect(mapStateToProps, { selectedWorkout, getWorkoutsList, getUserPublicWorkoutsList })(WorkoutsListContainer);
