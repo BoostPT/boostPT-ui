@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from './clientTabModal.jsx';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import debounce from 'lodash/debounce';
+
 class ClientTab extends Component {
   constructor(props) {
     super(props);
@@ -47,67 +48,69 @@ class ClientTab extends Component {
 
   renderCards(cardList) {
     let content = [];
-    cardList.forEach((card, i) => {
-      if((i+1) % 3 === 0) {
-        content.push(
-          <div className="row" key={i + 1}>       
-            <div className="column">
+    if (Array.isArray(cardList)) {
+      cardList.forEach((card, i) => {
+        if((i+1) % 3 === 0) {
+          content.push(
+            <div className="row" key={i + 1}>       
+              <div className="column">
+                <Card className = 'clientCard'>
+                  <CardText className ='clientCardText'> 
+                    <div className="name">{cardList[i].client_name}</div>
+                  </CardText>
+                </Card>
+              </div>
+            </div>
+          )
+        } else {
+          content.push(
+            <div className="column" key={i + 1}>
               <Card className = 'clientCard'>
                 <CardText className ='clientCardText'> 
                   <div className="name">{cardList[i].client_name}</div>
                 </CardText>
               </Card>
-            </div>
           </div>
-        )
-      } else {
-        content.push(
-          <div className="column" key={i + 1}>
-            <Card className = 'clientCard'>
-              <CardText className ='clientCardText'> 
-                <div className="name">{cardList[i].client_name}</div>
-              </CardText>
-            </Card>
-        </div>
-        );
-      }
-    });
-    return (
-      <div>
-        <div className='wrapper'>
-          <div className='outerContainer'>
-            <div className='innerContainer'>
-              <div>
-              <div className="row" key={0}>
+          );
+        }
+      });
+      return (
+        <div>
+          <div className='wrapper'>
+            <div className='outerContainer'>
+              <div className='innerContainer'>
+                <div>
+                <div className="row" key={0}>
+                  <div className="column">
+                    <form className="filter">
+                      <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} value={this.state.filterInput}></input>
+                    </form>
+                  </div>
                 <div className="column">
-                  <form className="filter">
-                    <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} value={this.state.filterInput}></input>
-                  </form>
+                  <button className="addClientButton" onClick={this.toggleModal}>Add a Client</button>
                 </div>
-              <div className="column">
-                <button className="addClientButton" onClick={this.toggleModal}>Add a Client</button>
-              </div>
-              <div className="column">
-                <div id="cardPlaceHolder">
+                <div className="column">
+                  <div id="cardPlaceHolder">
+                  </div>
                 </div>
+              </div>    
+              <div className="scrollBox">
+                {content}
               </div>
-            </div>    
-            <div className="scrollBox">
-              {content}
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      {this.state.toggleModal ?
-      <Modal clickEvent={this.props.handleSubmitButtonClick} toggleModal={this.toggleModal}/>
-      :
       <div>
-      </div>}
-    </div>
-  </div>    
-  );
+        {this.state.toggleModal ?
+        <Modal clickEvent={this.props.handleSubmitButtonClick} toggleModal={this.toggleModal}/>
+        :
+        <div>
+        </div>}
+      </div>
+    </div>    
+    );
+  }
 }
   render() {
     return (

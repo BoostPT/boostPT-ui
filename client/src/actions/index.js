@@ -83,18 +83,25 @@ export const getWorkoutsList = async (userId) => {
         Authorization: `${document.cookie}`
       }
     });
-    for (let workout of workouts.data) {
-      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
-        headers: {
-          Authorization: `${document.cookie}`
-        }
-      });
-      workout.exercises = exercises.data;
+    if (Array.isArray(workouts.data)) {
+      for (let workout of workouts.data) {
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
+          headers: {
+            Authorization: `${document.cookie}`
+          }
+        });
+        workout.exercises = exercises.data;
+      }
+      return {
+        type: FETCH_WORKOUTS,
+        payload: workouts.data
+      };
+    } else {
+      return {
+        type: FETCH_WORKOUTS,
+        payload: []
+      }
     }
-    return {
-      type: FETCH_WORKOUTS,
-      payload: workouts.data
-    };
   } catch (err) {
     return (err);
   }

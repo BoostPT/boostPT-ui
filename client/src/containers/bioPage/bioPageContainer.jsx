@@ -48,17 +48,16 @@ class BioPageContainer extends Component {
   }
 
   render(){
-    
     return(
       <div>
         <BioPage 
-          user={this.state.bioPageUserInfo } 
           loggedInAsUser={this.props.user}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
           handleUserNameClick={this.handleUserNameClick.bind(this)}
           handleOnDrop={this.handleOnDrop.bind(this)}
           history={this.props.history}
+          user={this.props.history.location.state}
         />
       </div>
     );

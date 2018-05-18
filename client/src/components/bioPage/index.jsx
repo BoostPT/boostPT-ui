@@ -111,7 +111,7 @@ class BioPage extends Component{
             <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
           </div>
           <div className="bioPageMyPublicWorkouts">
-            <PublicWorkouts user={this.props.user}/>
+            <PublicWorkouts user={this.props.user} publicWorkouts={this.props.user.publicWorkouts}/>
           </div>
         </div>
 

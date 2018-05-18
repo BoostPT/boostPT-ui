@@ -4,11 +4,10 @@ import {
   getWorkoutsList,
   getAllTrainersList,
   selectedWorkout,
-  getUserPublicWorkoutsList
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
-// import axios from 'axios';
+import axios from 'axios';
 
 class NavbarContainer extends Component {
   constructor(props){
@@ -35,7 +34,8 @@ class NavbarContainer extends Component {
   handleUserNameClick(){
     const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
     this.props.selectedWorkout({});
-    this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: stateToBioPage});
+    const user = Object.assign({}, this.props.user, { publicWorkouts: this.props.userWorkouts});
+    this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
   }
 
   handleOnChangeText(e){
@@ -56,13 +56,20 @@ class NavbarContainer extends Component {
   }
 
   async handleSearchItemClick(e) {
-    // grab trainer object with id of e.target.dataset.id
+    e.persist();
     const trainer = this.props.trainers.filter(trainer => trainer.id === parseInt(e.target.dataset.id))[0];
-    // get public workouts for trainer
-    // const publicWorkouts = await this.props.getUserPublicWorkoutsList(trainer.id);
-    console.log('TRAINER PUB WORKOUTS', publicWorkouts)
-    // this.props.getUserPublicWorkoutsList();
-    // this.props.history.push({pathname: `/bio/${e.target.dataset.id}`, state: Object.assign({}, trainer, /* workouts */)});
+    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${trainer.id}`, { headers: { Authorization: `${document.cookie}`} });
+    if (Array.isArray(publicWorkouts.data)) {
+      for (let workout of publicWorkouts.data) {
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, { headers: { Authorization: `${document.cookie}`} });
+        workout.exercises = exercises.data;
+      }
+      trainer.publicWorkouts = publicWorkouts.data;
+      this.props.history.push({pathname: `/bio/${e.target.dataset.id}`, state: trainer});
+    } else {
+      trainer.publicWorkouts = [];
+      this.props.history.push({pathname: `/bio/${e.target.dataset.id}`, state: trainer});
+    }    
   }
 
   filterTrainers() {
@@ -101,8 +108,9 @@ class NavbarContainer extends Component {
 const mapStateToProps = function(state) {
   return {
     user: state.auth.user,
+    userWorkouts: state.workoutsReducer.workouts,
     trainers: state.client.trainers
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout, getUserPublicWorkoutsList })(NavbarContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(NavbarContainer);
