@@ -140,6 +140,10 @@ class CreateWorkoutContainer extends Component {
         }
       });
       this.props.handleCreateWorkoutSuccess();
+      this.setState({
+        workoutName: '',
+        exerciseForms: [],
+      });
     }
     catch(err) {
       // Handle error, show message on client?
