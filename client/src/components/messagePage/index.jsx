@@ -64,11 +64,14 @@ class MessagePage extends Component {
   }
 
   handleChannelNameClick(channelName) {
+    let tempArr = [channelName, this.props.user.username];
+    let newArr = tempArr.sort();
+    var channelStr = tempArr[0] + ':' + tempArr[1];
     if (this.state.activeChannel.length > 0) {
       this.socket.emit('unsubscribe', this.state.activeChannel);
     }
     //subscribe to name of channel
-    this.socket.emit('subscribe', channelName);
+    this.socket.emit('subscribe', channelStr);
     let channels = this.props.channels;
     let tempMessagesArr = [];
     for (let i = 0; i < channels.length; i++) {
@@ -79,7 +82,7 @@ class MessagePage extends Component {
         }
       }
     }
-    this.setState({activeChannel: channelName, messages: tempMessagesArr});
+    this.setState({activeChannel: channelStr, messages: tempMessagesArr});
   }
 
   handleMessageInput(e) {
@@ -124,7 +127,7 @@ class MessagePage extends Component {
           {
             this.state.activeChannel.length > 0 ?
             <div>
-              Direct Message with {this.state.activeChannel}
+              Direct Message with {this.state.activeChannel.replace(this.props.user.username, "").replace(":", "")}
             </div>
             :
             <div>

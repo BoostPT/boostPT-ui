@@ -17,29 +17,6 @@ class MessagePageModal extends Component {
     this.setState({inputValue: e.target.value});
   }
 
-  async handleSubmitButtonClick() {
-    let newUser = this.state.inputValue;
-    let activeUser = this.props.activeUser;
-    let tempArr = [newUser, activeUser];
-    let newArr = tempArr.sort();
-    let channelStr = tempArr[0] + ':' + tempArr[1];
-    let payload = {channelStr: channelStr, newUser: newUser}
-    try {
-      const result = await axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload)
-      if (result.status === 200) {
-        this.props.toggleAddChatModal(this.state.inputValue);
-        return ('success');
-      } else if (result.status === 205) {
-        this.setState({toggleExistsMessage: true, toggleFailureMessage: false});
-      } else {
-        this.setState({toggleFailureMessage: true, toggleExistsMessage: false});
-      }
-    } catch (err) {
-      console.log(err);
-      return (err);
-    }
-  }
-
   handleKeyPress(e) {
     if (e.key === 'Enter') {
       this.handleSubmitButtonClick();
