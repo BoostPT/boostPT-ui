@@ -66,6 +66,7 @@ class MessagePage extends Component {
     if (this.state.activeChannel.length > 0) {
       this.socket.emit('unsubscribe', this.state.activeChannel);
     }
+    //subscribe to name of channel
     this.socket.emit('subscribe', value);
     var channels = this.props.channels;
     var tempMessagesArr = [];

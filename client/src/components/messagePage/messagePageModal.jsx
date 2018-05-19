@@ -52,7 +52,7 @@ class MessagePageModal extends Component {
         <div className="messageModal">
           <div className="messageModal-content">
             <div id="messageModal-title" >Start a New Channel</div>
-            <div id="messagetModal-subtitle" >Name
+            <div id="messagetModal-subtitle" >Enter a username here
             </div>
             <label>
               <span>
