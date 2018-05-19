@@ -23,11 +23,6 @@ class BioPageContainer extends Component {
     this.props.history.push(`/bio/${this.props.user.id}`);
   }
 
-  handleTitleClick(){
-    this.props.selectedWorkout({});
-    this.props.history.push({pathname: '/dash', state: this.state.bioPageUserInfo});
-  }
-
   editAboutMe(){
     this.setState({aboutMeEdit: true});
   }
@@ -53,16 +48,16 @@ class BioPageContainer extends Component {
   }
 
   render(){
-    
     return(
       <div>
         <BioPage 
-          user={this.state.bioPageUserInfo } 
           loggedInAsUser={this.props.user}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
-          handleUserNameClick={this.handleUserNameClick.bind(this)} handleTitleClick={this.handleTitleClick.bind(this)} 
+          handleUserNameClick={this.handleUserNameClick.bind(this)}
           handleOnDrop={this.handleOnDrop.bind(this)}
+          history={this.props.history}
+          user={this.props.history.location.state}
         />
       </div>
     );

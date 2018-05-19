@@ -9,7 +9,8 @@ import {
   SELECT_WORKOUT,
   TRAINER_CLIENT_LIST,
   DELETE_WORKOUT,
-  FETCH_STARRED_EXERCISES
+  FETCH_STARRED_EXERCISES,
+  FETCH_TRAINERS
 } from './types';
 
 
@@ -82,18 +83,25 @@ export const getWorkoutsList = async (userId) => {
         Authorization: `${document.cookie}`
       }
     });
-    for (let workout of workouts.data) {
-      let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
-        headers: {
-          Authorization: `${document.cookie}`
-        }
-      });
-      workout.exercises = exercises.data;
+    if (Array.isArray(workouts.data)) {
+      for (let workout of workouts.data) {
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
+          headers: {
+            Authorization: `${document.cookie}`
+          }
+        });
+        workout.exercises = exercises.data;
+      }
+      return {
+        type: FETCH_WORKOUTS,
+        payload: workouts.data
+      };
+    } else {
+      return {
+        type: FETCH_WORKOUTS,
+        payload: []
+      }
     }
-    return {
-      type: FETCH_WORKOUTS,
-      payload: workouts.data
-    };
   } catch (err) {
     return (err);
   }
@@ -156,7 +164,6 @@ export const updateWorkoutsWithStar = (workouts) => {
 export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`, {headers: { Authorization: `${document.cookie}`}});
-    //console.log("public workouts********",publicWorkouts);
     if(Array.isArray(publicWorkouts.data)){
       for(let publicWorkout of publicWorkouts.data){
         let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`, {headers: { Authorization: `${document.cookie}`}});
@@ -174,7 +181,6 @@ export const getUserPublicWorkoutsList = async(userId) =>{
     }
 
   }catch(err){
-    console.log("error*************",err);
     return (err);
   }
 }
@@ -196,5 +202,21 @@ export const deleteFromStarredExercises = (exercises) => {
   return {
     type: FETCH_STARRED_EXERCISES,
     payload: exercises
+  }
+}
+
+export const getAllTrainersList = async () => {
+  try {
+    const trainers = await axios.get('http://localhost:8000/api/users/trainers', {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_TRAINERS,
+      payload: trainers.data
+    }
+  } catch (err) {
+    return (err);
   }
 };

@@ -31,7 +31,7 @@ class WorkoutsListItem extends Component {
 
   render() {
     const { name, created_at, is_public, exercises } = this.props.workout;
-    const counts = this.props.getEachExerciseCount(exercises);
+    const counts = this.props.getEachExerciseCount(exercises) || [];
     return (
       <div className="border font light-grey pointer" onClick={this.handleWorkoutClick.bind(this)}>
         <div className="pos-abs full-width">

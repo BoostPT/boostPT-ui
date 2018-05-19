@@ -11,7 +11,7 @@ import { grey800, blueGrey800, yellowA200
 
 import PublicWorkouts from './workouts/publicWorkOuts.jsx';
 import BioPicture from '../bioPage/bioPicture.jsx';
-import Navbar from '../dashPage/navbar.jsx';
+import NavbarContainer from '../../containers/navbarContainer.jsx';
 
 const email_phone_style = {
   marginRight: '10%',
@@ -62,14 +62,7 @@ class BioPage extends Component{
   render(){
     return(
       <div className="bioPage">
-        <Navbar 
-          user={this.props.user} 
-          handleOnChangeText={this.props.handleOnChangeText} 
-          searchText={this.props.searchText} 
-          handleUserNameClick={this.props.handleUserNameClick} 
-          handleTitleClick={this.props.handleTitleClick}
-        />
-
+        <NavbarContainer history={this.props.history}/>
         <div className="bioPageBody">
           <div className="bioInfo">
             <div className="bioUsername">
@@ -118,7 +111,7 @@ class BioPage extends Component{
             <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
           </div>
           <div className="bioPageMyPublicWorkouts">
-            <PublicWorkouts user={this.props.user}/>
+            <PublicWorkouts user={this.props.user} publicWorkouts={this.props.user.publicWorkouts}/>
           </div>
         </div>
 

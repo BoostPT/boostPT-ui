@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchItem from './searchItem.jsx';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
@@ -25,13 +26,23 @@ class Navbar extends Component{
           </div>
         </ToolbarGroup>
         <ToolbarGroup>
-          <input className="dashPageNavbarSearch" placeholder="Search..." onChange={this.props.handleOnChangeText} />
+          <div className="dashPageNavbarSearch">
+            <input className="searchbar" name="searchText" placeholder="Search..." onChange={this.props.handleOnChangeText} onClick={this.props.showDropdownClick}/>
+            {
+              this.props.showDropdown ?
+                <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
+                  {this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} id={trainer.id}/>)}
+                </div>
+                :
+                null
+            }
+          </div>
           <FontAwesomeIcon icon={faBell} />
           <div className="navbarUser" onClick={this.props.handleUserNameClick}>
             {!this.props.user.picture ?
               <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
               : 
-              <Avatar className="avatarPicture" size={30} src={this.props.user.picture}/>
+              <Avatar className="avatarPicture" size={30} src=""/>
             }
             <div className="navbarUsername">
               {this.props.user.username}

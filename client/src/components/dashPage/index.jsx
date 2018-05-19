@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Navbar from './navbar.jsx';
+import NavbarContainer from '../../containers/navbarContainer.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
@@ -43,8 +43,7 @@ class DashPage extends Component {
 
     return (
         <div className="dashPage">
-          <Navbar user={this.props.user} handleOnChangeText={this.props.handleOnChangeText} searchText={this.props.searchText} handleUserNameClick={this.props.handleUserNameClick} handleTitleClick={this.props.handleTitleClick}/>
-
+          <NavbarContainer history={this.props.history}/>
           <div className="dashPageBody">
             <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
               <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
@@ -60,10 +59,8 @@ class DashPage extends Component {
 
 DashPage.propTypes = {
   user: PropTypes.object.isRequired,
+  activeTab: PropTypes.number.isRequired,
   handleTabSelect: PropTypes.func.isRequired,
-  handleOnChangeText: PropTypes.func.isRequired,
-  searchText: PropTypes.string.isRequired,
-  handleUserNameClick: PropTypes.func.isRequired
 };
 
 export default DashPage;

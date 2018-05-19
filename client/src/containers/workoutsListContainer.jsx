@@ -49,10 +49,12 @@ class WorkoutsListContainer extends Component {
   }
 
   getEachExerciseCount(exercises) {
-    return exercises.reduce((counts, exercise) => {
-      counts[exercise.type] = counts[exercise.type] + 1 || 1;
-      return counts;
-    }, {});
+    if (Array.isArray(exercises)) {
+      return exercises.reduce((counts, exercise) => {
+        counts[exercise.type] = counts[exercise.type] + 1 || 1;
+        return counts;
+      }, {});
+    }
   }
 
   handleWorkoutClick(workout) {
@@ -88,7 +90,6 @@ class WorkoutsListContainer extends Component {
   }
 
   render() {
-
     const filterTabStyles = Array(2).fill('').map((v, i) => this.state.activeFilterTab === i ? 'active' : 'standard');
 
     return (
@@ -110,7 +111,7 @@ class WorkoutsListContainer extends Component {
         </Tabs>
         <WorkoutsList
          userId={this.props.userId}
-         workouts={this.filterWorkouts(this.props.workouts)}
+         workouts={this.filterWorkouts(this.props.isPublic ? this.props.publicWorkouts : this.props.workouts)}
          getEachExerciseCount={this.getEachExerciseCount}
          handleWorkoutClick={this.handleWorkoutClick}
          toggleModal={this.toggleModal.bind(this)}

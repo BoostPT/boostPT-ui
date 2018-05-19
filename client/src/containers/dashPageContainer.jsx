@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getWorkoutsList, selectedWorkout } from '../actions/index.js';
+import { 
+  getWorkoutsList,
+  getAllTrainersList,
+  selectedWorkout
+ } from '../actions/index.js';
+import debounce from 'lodash/debounce';
 // import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
@@ -9,13 +14,9 @@ class DashPageContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchText: '',
       activeTab: 1,
-      UserfromBioPageChange: this.props.location.state
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
-    this.handleOnChangeText = this.handleOnChangeText.bind(this);
-    this.handleUserNameClick = this.handleUserNameClick.bind(this);
   }
 
   handleTabSelect(tab) {
@@ -24,30 +25,42 @@ class DashPageContainer extends Component {
     });
   }
 
-  handleOnChangeText(e){
-    const {value, name} = e.target;
-    this.setState({[name]: value});
-  }
-
-  handleUserNameClick(){
-    const stateToBioPage = (!this.state.UserfromBioPageChange ? this.props.user : this.state.UserfromBioPageChange);
-    this.props.selectedWorkout({});
-    this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: stateToBioPage});
-  }
-
   handleWorkoutsTabClick(){
     this.props.getWorkoutsList(this.props.user.id);
   }
+
+  showDropdownClick(e) {
+    e.stopPropagation();
+    this.setState({ showDropdown: true });
+  }
+
+  hideDropdownClick() {
+    window.addEventListener('click', (e) => {
+      this.setState({ showDropdown: false });
+    });
+  }    
+
+  filterTrainers() {
+    let filteredTrainers = this.props.trainers.filter(trainer => {
+      if (this.state.searchText !== '') {
+        return trainer.username.slice(0, this.state.searchText.length).includes(this.state.searchText);
+      }
+      return false;
+    });
+    this.setState({ filteredTrainers: filteredTrainers });
+  }
+
+  componentWillMount() {
+    this.props.getAllTrainersList();
+    this.hideDropdownClick();
+  }
    
   render(){
-
     return(
       <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
-                handleOnChangeText={this.handleOnChangeText}
-                searchText={this.state.searchText}
-                handleUserNameClick={this.handleUserNameClick}
+                history={this.props.history}
       />
     );
   }
@@ -55,8 +68,9 @@ class DashPageContainer extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    trainers: state.client.trainers
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, selectedWorkout })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(DashPageContainer);
