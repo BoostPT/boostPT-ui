@@ -106,21 +106,23 @@ class WorkoutsListContainer extends Component {
 
     return (
       <Fragment>
-        <Tabs inkBarStyle={{display: "none"}} className="filter-workout-list-tabs">
-          <Tab
-            label="ALL"
-            style={filterTabStyle[filterTabStyles[0]]}
-            disableTouchRipple={true}
-            onActive={this.handleFilterTabSelect}
-          />
-          <Tab
-            icon={<Star style={starStyle[filterTabStyles[1]]} />}
-            label="STARRED"
-            style={filterTabStyle[filterTabStyles[1]]}
-            disableTouchRipple={true}
-            onActive={this.handleFilterTabSelect}
-          />
-        </Tabs>
+        {this.props.isPublic === true ? null : 
+          <Tabs inkBarStyle={{display: "none"}} className="filter-workout-list-tabs">
+            <Tab
+              label="ALL"
+              style={filterTabStyle[filterTabStyles[0]]}
+              disableTouchRipple={true}
+              onActive={this.handleFilterTabSelect}
+            />
+            <Tab
+              icon={<Star style={starStyle[filterTabStyles[1]]} />}
+              label="STARRED"
+              style={filterTabStyle[filterTabStyles[1]]}
+              disableTouchRipple={true}
+              onActive={this.handleFilterTabSelect}
+            />
+          </Tabs>
+        }
         <WorkoutsList
          userId={this.props.userId}
          workouts={this.filterWorkouts(this.props.isPublic ? this.props.publicWorkouts : this.props.workouts)}
