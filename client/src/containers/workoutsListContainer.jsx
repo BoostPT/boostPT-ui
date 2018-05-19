@@ -93,7 +93,6 @@ class WorkoutsListContainer extends Component {
         workoutName: workoutName || null
       });
     }else if(type === 'schedule'){
-      console.log("inside workoutsList container");
       this.setState({ 
         scheduleModalVisible: !this.state.scheduleModalVisible,
         workoutId: workoutId || null,

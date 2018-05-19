@@ -1,10 +1,13 @@
 .scheduleModalContent {
   background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
   border: 1px solid #888;
-  width: 30%;
-  height: 25%;
-  text-align: center;
+  width: 40%;
+  height: 50%;
   border-radius: 7px;
+  margin-left: 30%;
+  margin-top: 10%;
+}
+
+.scheduleModalContent p{
+  font-size: 30px;
 }

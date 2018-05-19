@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
 import IconButton from 'material-ui/IconButton';
 import Clear from 'material-ui/svg-icons/content/clear';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
+import FlatButton from 'material-ui/FlatButton';
+
+const saveButtonLabelStyle = {
+  color: "#FFEB3B",
+  fontSize: '13px',
+  textTransform: "none",
+}
+
 
 class ScheduleModal extends Component {
   constructor(props){
@@ -15,12 +25,20 @@ class ScheduleModal extends Component {
         {this.props.scheduleModalVisible ? 
           <div className="modal-workout">
             <div className="scheduleModalContent">
-            <IconButton
-              // onClick={this.props.toggleModal()}
-            >
-              <Clear/>
-            </IconButton>
-            
+              <p> Schedule {this.props.workoutName} </p>
+              <IconButton
+                onClick={(e)=>this.props.toggleModal(e, 'schedule')}
+              >
+                <Clear/>
+              </IconButton>
+              <DatePicker />
+              <TimePicker />
+              <FlatButton 
+                label="Save" 
+                backgroundColor="#5A6978" 
+                labelStyle={saveButtonLabelStyle} 
+                onClick={this.props.handleSaveButtonClick}
+              />
             </div>
 
           </div>

@@ -19,7 +19,6 @@ class WorkoutModalContainer extends Component {
   render() {
     return(
       <div>
-        {console.log("inside workoutModal container",this.props)}
         <WorkoutModal 
          handleYesClick={this.handleYesClick.bind(this)}
          modalVisible={this.props.modalVisible}

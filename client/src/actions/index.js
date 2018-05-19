@@ -85,7 +85,6 @@ export const getWorkoutsList = async (userId) => {
       }
     });
 
-    console.log("inside get workoutslist action", workouts.data);
     if (Array.isArray(workouts.data)) {
       for (let workout of workouts.data) {
         let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
@@ -239,5 +238,14 @@ export const channelList = async (username) => {
   }
 };
 
-
-     
+export const saveEvent = async (type, payload) => {
+  try {
+    if(type === 'workout') {
+      const result = await axios.post('http://localhost:8000/api/users/events/workout')
+    } else if(type === 'client') {
+      const result = await axios.post('http://localhost:8000/api/users/events/client')
+    }
+  } catch(err) {
+    return (err);
+  }
+}
