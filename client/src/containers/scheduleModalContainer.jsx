@@ -13,13 +13,17 @@ class ScheduleModalContainer extends Component{
 
   render(){
     return(
+      // <div>
       <ScheduleModal 
         handleSaveToCalendarClick={this.handleSaveToCalendarClick.bind(this)}
         scheduleModalVisible={this.props.scheduleModalVisible}
         workoutName={this.props.workoutName}
+        workoutId={this.props.workoutId}
       />
+      // {console.log("schedule modal",this.props.workoutId, this.props.workoutName)}
+      // </div>
     );
   }
 }
 
-export default connect (null, {})(ScheduleModalContainer);
+export default connect (null, null)(ScheduleModalContainer);

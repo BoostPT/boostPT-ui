@@ -41,7 +41,7 @@ class WorkoutsListContainer extends Component {
       workoutId: null,
       workoutName: null,
       activeFilterTab: 0,
-      ScheduleModalVisible: false
+      scheduleModalVisible: false
     };
     this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
     this.handleFilterTabSelect = this.handleFilterTabSelect.bind(this);
@@ -83,17 +83,22 @@ class WorkoutsListContainer extends Component {
     return [];
   }
   
-  toggleModal(e) {
+  toggleModal(e, type, workoutName, workoutId) {
     e.stopPropagation();
-    this.setState({ 
-      modalVisible: !this.state.modalVisible,
-      workoutId: e.target.dataset.id || null,
-      workoutName: e.target.dataset.name || null
-    });
-  }
-
-  handleScheduleButtonOnClick(){
-    console.log("clicked");
+    if(type === 'deleteWorkout'){
+      this.setState({ 
+        modalVisible: !this.state.modalVisible,
+        workoutId:  workoutId || null,
+        workoutName: workoutName || null
+      });
+    }else if(type === 'schedule'){
+      console.log("inside workoutsList container");
+      this.setState({ 
+        scheduleModalVisible: !this.state.scheduleModalVisible,
+        workoutId: workoutId || null,
+        workoutName: workoutName || null
+      });
+    }
   }
 
   render() {
@@ -131,9 +136,13 @@ class WorkoutsListContainer extends Component {
          workouts={this.props.workouts}
          workoutId={this.state.workoutId}
          workoutName={this.state.workoutName}
+         userId={this.props.userId}
         />
         <ScheduleModalContainer 
-        
+          scheduleModalVisible={this.state.scheduleModalVisible}
+          workoutName={this.state.workoutName}
+          workoutId={this.state.workoutId}
+          toggleModal={this.toggleModal.bind(this)}
         />
       </Fragment>
     );

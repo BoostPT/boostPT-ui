@@ -131,13 +131,10 @@ export const selectedWorkout = (workout) => {
   }
 };
 
-export const deleteWorkout = async (workoutId, workouts) => {
+export const deleteWorkout = async (workoutId, workouts, userId) => {
   try {
-    await axios.delete(`http://localhost:8000/api/workouts/delete/${workoutId}`, {
-      headers: {
-        Authorization: `${document.cookie}`
-      }
-    });
+    await axios.delete(`http://localhost:8000/api/workouts/delete/${userId}/${workoutId}`, {headers: {Authorization: `${document.cookie}`}});
+
     const newList = [];
     let i = 0;
     while (i < workouts.length - 1) {
@@ -148,7 +145,7 @@ export const deleteWorkout = async (workoutId, workouts) => {
     }
     return { 
       type: DELETE_WORKOUT,
-      payload: { clickedWorkout: null, workouts: newList }
+      payload: { clickedWorkout: null, workouts: newList}
     }
   } catch (err) {
     return (err);

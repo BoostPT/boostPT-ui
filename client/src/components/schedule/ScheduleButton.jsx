@@ -23,9 +23,15 @@ class ScheduleButton extends Component{
 
   render(){
     return(
-      <FlatButton label="Schedule" backgroundColor="#5A6978" style={scheduleButtonStyle} labelStyle={scheduleLabelStyle} onClick={this.props.handleOnClick}/>
+        <FlatButton 
+          label="Schedule" 
+          backgroundColor="#5A6978" 
+          style={scheduleButtonStyle} 
+          labelStyle={scheduleLabelStyle} 
+          onClick={(e)=>this.props.toggleModal(e,'schedule',this.props.workout.name,this.props.workout.id)}
+        />
     );
   }
 }
 
-export default ScheduleButton;
+export default ScheduleButton;  
