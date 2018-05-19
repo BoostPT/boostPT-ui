@@ -8,7 +8,6 @@ class MessagePageContainer extends Component {
     super(props);
     this.state = {
     };
-    // this.socket = io('http://localhost:5000');
   }
 
   componentWillMount() {
@@ -29,7 +28,7 @@ class MessagePageContainer extends Component {
       <div>{
         this.props.channels ?
         <div>
-          <MessagePage channels={this.props.channels} user={this.props.userInfo}/>
+          <MessagePage fetchChannelsFromStore = {this.fetchChannelsFromStore.bind(this)} channels={this.props.channels} user={this.props.userInfo}/>
         </div>
         :
         <div>

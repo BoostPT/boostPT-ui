@@ -39,7 +39,7 @@ class MessagePage extends Component {
   componentDidMount() {
     this.socket.on('message', (data) => {
       let tempArr = this.state.messages;
-      tempArr.unshift({user: data.user, text: data.message});
+      tempArr.push({user: data.user, text: data.message});
       this.setState({messages: tempArr});
      });
   }
@@ -63,6 +63,10 @@ class MessagePage extends Component {
   }
 
   handleChannelNameClick(value) {
+    if (this.state.activeChannel.length > 0) {
+      this.socket.emit('unsubscribe', this.state.activeChannel);
+    }
+    this.socket.emit('subscribe', value);
     var channels = this.props.channels;
     var tempMessagesArr = [];
     for (var i = 0; i < channels.length; i++) {
@@ -74,7 +78,6 @@ class MessagePage extends Component {
       }
     }
     this.setState({activeChannel: value, messages: tempMessagesArr});
-    this.socket.emit('subscribe', this.state.activeChannel);
   }
 
   handleMessageInputValueChange(e) {
