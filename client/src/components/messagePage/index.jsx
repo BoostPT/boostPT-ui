@@ -5,22 +5,23 @@ import * as colors from 'material-ui/styles/colors';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import MessagePageModal from './messagePageModal.jsx';
 import io from 'socket.io-client';
+import shortid from 'shortid';
 
 class MessagePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleModal: false,
+      toggleAddChatModal: false,
       channelNameList: [],
       activeChannel: '',
       messageInput: '',
       messages: []
     }
-    this.toggleModal = this.toggleModal.bind(this);
-    this.handleChannelButtonClick = this.handleChannelButtonClick.bind(this);
+    this.toggleAddChatModal = this.toggleAddChatModal.bind(this);
+    this.handleAddChatButton = this.handleAddChatButton.bind(this);
     this.handleChannelNameClick = this.handleChannelNameClick.bind(this);
-    this.handleSubmitMessageButtonClick = this.handleSubmitMessageButtonClick.bind(this);
-    this.handleMessageInputValueChange = this.handleMessageInputValueChange.bind(this);
+    this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
+    this.handleMessageInput = this.handleMessageInput.bind(this);
     this.socket = io('http://localhost:5000');
   }
 
@@ -29,8 +30,8 @@ class MessagePage extends Component {
     let username = this.props.user.username;
     let messages = this.props.channels.messages;
     let tempArr = [];
-    for (var i = 0; i < channels.length; i++) {
-      var str = channels[i].participants.replace(username, "").replace(":", "");
+    for (let i = 0; i < channels.length; i++) {
+      let str = channels[i].participants.replace(username, "").replace(":", "");
       tempArr.push(str);
     }
     this.setState({channelNameList: tempArr});
@@ -44,54 +45,54 @@ class MessagePage extends Component {
      });
   }
 
-  toggleModal(channel) {
-    if (this.state.toggleModal === true) {
+  toggleAddChatModal(channel) {
+    if (this.state.toggleAddChatModal === true) {
       if (typeof channel === 'string') {
-        var tempChannelArr = this.state.channelNameList;
+        let tempChannelArr = this.state.channelNameList;
         tempChannelArr.unshift(channel);
-        this.setState({toggleModal: false, channel: channel})
+        this.setState({toggleAddChatModal: false, channel: channel})
       } else {
-        this.setState({toggleModal: false});
+        this.setState({toggleAddChatModal: false});
       }
     } else {
-      this.setState({toggleModal: true});
+      this.setState({toggleAddChatModal: true});
     }
   }
 
-  handleChannelButtonClick() {
-    this.setState({toggleModal: true});
+  handleAddChatButton() {
+    this.setState({toggleAddChatModal: true});
   }
 
-  handleChannelNameClick(value) {
+  handleChannelNameClick(channelName) {
     if (this.state.activeChannel.length > 0) {
       this.socket.emit('unsubscribe', this.state.activeChannel);
     }
     //subscribe to name of channel
-    this.socket.emit('subscribe', value);
-    var channels = this.props.channels;
-    var tempMessagesArr = [];
-    for (var i = 0; i < channels.length; i++) {
-      if (channels[i].participants.includes(value)) {
-        var messages = channels[i].messages;
-        for (var j = 0; j < messages.length; j++) {
+    this.socket.emit('subscribe', channelName);
+    let channels = this.props.channels;
+    let tempMessagesArr = [];
+    for (let i = 0; i < channels.length; i++) {
+      if (channels[i].participants.includes(channelName)) {
+        let messages = channels[i].messages;
+        for (let j = 0; j < messages.length; j++) {
           tempMessagesArr.push({user: messages[j].user, text: messages[j].text});
         }
       }
     }
-    this.setState({activeChannel: value, messages: tempMessagesArr});
+    this.setState({activeChannel: channelName, messages: tempMessagesArr});
   }
 
-  handleMessageInputValueChange(e) {
+  handleMessageInput(e) {
     this.setState({messageInput: e.target.value});
   }
 
-  handleSubmitMessageButtonClick() {
+  handleSubmitMessage() {
     this.socket.emit('send', {room: this.state.activeChannel, message: this.state.messageInput, user: this.props.user.username});
   }
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.handleSubmitMessageButtonClick();
+      this.handleSubmitMessage();
       this.setState({messageInput: ''});
     }
   }
@@ -104,13 +105,13 @@ class MessagePage extends Component {
             <span id="left-header">
               Messages
             </span>
-            <FloatingActionButton onClick={this.handleChannelButtonClick} className="add-chat" backgroundColor={colors.grey600} mini={true}><ContentAdd /></FloatingActionButton>
+            <FloatingActionButton onClick={this.handleAddChatButton} className="add-chat" backgroundColor={colors.grey600} mini={true}><ContentAdd /></FloatingActionButton>
             <div className="channelScrollBox">
             {
-              this.state.channelNameList.map(value =>    
-                <div className="channelName" onClick={() => {this.handleChannelNameClick.call(null, value)}}>
+              this.state.channelNameList.map(channelName =>    
+                <div key={shortid.generate()} className="channelName" onClick={() => {this.handleChannelNameClick.call(null, channelName)}}>
                   <div className="overlay">
-                  {value}
+                  {channelName}
                   </div>
                 </div> 
               )
@@ -135,7 +136,7 @@ class MessagePage extends Component {
         <div id="right-middle">
           {
             this.state.messages.map(value => 
-              <div id="message">
+              <div key={shortid.generate()} id="message">
                 <span id="name">
                   {value.user}
                 </span>
@@ -149,14 +150,14 @@ class MessagePage extends Component {
         <div id="right-bottom">
         <div>
           <label>
-            <input id="messageInput" type="text" value={this.state.messageInput} onChange={this.handleMessageInputValueChange} onKeyPress={(e) => this.handleKeyPress(e)}/>
-            <button onClick={() => {this.handleSubmitMessageButtonClick()}}>Submit</button>
+            <input id="messageInput" type="text" value={this.state.messageInput} onChange={this.handleMessageInput} onKeyPress={(e) => this.handleKeyPress(e)}/>
+            <button onClick={() => {this.handleSubmitMessage()}}>Submit</button>
           </label>
         </div>
         </div>
         <div>
-          {this.state.toggleModal ?
-          <MessagePageModal activeUser = {this.props.user.username} toggleModal={this.toggleModal.bind(this)}/>
+          {this.state.toggleAddChatModal ?
+          <MessagePageModal activeUser = {this.props.user.username} toggleAddChatModal={this.toggleAddChatModal.bind(this)}/>
           :
           <div>
           </div>}

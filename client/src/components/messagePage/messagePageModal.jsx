@@ -27,7 +27,7 @@ class MessagePageModal extends Component {
     try {
       const result = await axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload)
       if (result.status === 200) {
-        this.props.toggleModal(this.state.inputValue);
+        this.props.toggleAddChatModal(this.state.inputValue);
         return ('success');
       } else if (result.status === 205) {
         this.setState({toggleExistsMessage: true, toggleFailureMessage: false});
@@ -60,9 +60,13 @@ class MessagePageModal extends Component {
     let channelStr = tempArr[0] + ':' + tempArr[1];
     let payload = {channelStr: channelStr, newUser: newUser}
     try {
-      const result = await axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload)
+      const result = await axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload, {
+        headers: {
+          Authorization: `${document.cookie}`
+        }
+      });
       if (result.status === 200) {
-        this.props.toggleModal(this.state.inputValue);
+        this.props.toggleAddChatModal(this.state.inputValue);
         return ('success');
       } else if (result.status === 205) {
         this.setState({toggleExistsMessage: true, toggleFailureMessage: false});
@@ -110,7 +114,7 @@ class MessagePageModal extends Component {
             }
             </div>
             <div>
-              <span className="close" onClick={this.props.toggleModal}>&times;</span>
+              <span className="close" onClick={this.props.toggleAddChatModal}>&times;</span>
             </div>
           </div>
         </div>}
