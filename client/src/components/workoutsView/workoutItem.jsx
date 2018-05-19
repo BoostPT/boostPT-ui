@@ -30,6 +30,14 @@ class WorkoutItem extends Component {
     )
   }
 
+  renderClickedWorkout() {
+    if (this.props.clickedWorkout.exercises.length) {
+      return this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={shortid.generate()} exercise={exercise} />)
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return ( 
       <div className="workout-container">
@@ -47,7 +55,7 @@ class WorkoutItem extends Component {
               </h2>
               <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={shortid.generate()} exercise={exercise} />)}
+            {this.renderClickedWorkout()}
           </div>
         }
       </div>
