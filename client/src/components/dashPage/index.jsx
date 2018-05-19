@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import NavbarContainer from '../../containers/navbarContainer.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
-
 import WorkoutsTab from './workoutsTab.jsx';
+import MessagePageContainer from '../../containers/messagePageContainer.jsx';
 
 const tabStyle = {
   standard: {
@@ -34,12 +34,14 @@ class DashPage extends Component {
       return <WorkoutsTab />
     } else if (this.props.activeTab === 2) {
       return <ClientTabContainer />
+    } else if (this.props.activeTab === 3) {
+      return <MessagePageContainer/>
     }
   }
 
   render() {
 
-    const tabStyles = Array(3).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
+    const tabStyles = Array(4).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
 
     return (
         <div className="dashPage">
@@ -49,6 +51,7 @@ class DashPage extends Component {
               <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
               <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
               <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+              <Tab label="Messages" style={tabStyle[tabStyles[3]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
             </Tabs>
             {this.renderActiveTabPage()}
           </div>
