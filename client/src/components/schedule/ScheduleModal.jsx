@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import IconButton from 'material-ui/IconButton';
+import Clear from 'material-ui/svg-icons/content/clear';
 
 class ScheduleModal extends Component {
   constructor(props){
@@ -13,6 +15,11 @@ class ScheduleModal extends Component {
         {this.props.scheduleModalVisible ? 
           <div className="modal-workout">
             <div className="scheduleModalContent">
+            <IconButton
+              // onClick={this.props.toggleModal()}
+            >
+              <Clear/>
+            </IconButton>
             
             </div>
 
