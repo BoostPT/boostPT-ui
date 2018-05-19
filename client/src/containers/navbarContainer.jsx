@@ -4,6 +4,7 @@ import {
   getWorkoutsList,
   getAllTrainersList,
   selectedWorkout,
+  logOutUser
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
@@ -19,6 +20,7 @@ class NavbarContainer extends Component {
     };
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
     this.handleUserNameClick = this.handleUserNameClick.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
     this.filterTrainers = debounce(this.filterTrainers, 250);
     this.showDropdownClick = this.showDropdownClick.bind(this);
     this.handleSearchItemClick = this.handleSearchItemClick.bind(this);
@@ -35,6 +37,12 @@ class NavbarContainer extends Component {
     this.props.selectedWorkout({});
     const user = Object.assign({}, this.props.user, { publicWorkouts: this.props.userWorkouts});
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
+  }
+
+  handleLogOut() {
+    document.cookie = 'jwt=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.props.logOutUser();
+    this.props.history.push('/');
   }
 
   handleOnChangeText(e){
@@ -94,6 +102,7 @@ class NavbarContainer extends Component {
       handleOnChangeText={this.handleOnChangeText}
       searchText={this.state.searchText}
       handleUserNameClick={this.handleUserNameClick}
+      handleLogOut={this.handleLogOut}
       handleTitleClick={this.handleTitleClick}
       filteredTrainers={this.state.filteredTrainers}
       showDropdown={this.state.showDropdown}
@@ -112,4 +121,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(NavbarContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout, logOutUser })(NavbarContainer);
