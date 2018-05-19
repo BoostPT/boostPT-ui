@@ -39,7 +39,7 @@ class WorkoutsTab extends Component {
     const workoutTabItemStatus = Array(2).fill('').map((v, i) => this.state.activeListItem === i ? 'active' : 'standard');
     return (
       <div className="workouts-list-div">
-        <List className="workouts-list-select">
+        <List>
           <ListItem primaryText="View Workouts" style={workoutTabListStyle[workoutTabItemStatus[0]]} onClick={this.handleWorkoutTabListItemSelect} data="0" disableTouchRipple={true}/>
           <ListItem primaryText="Create Workout" style={workoutTabListStyle[workoutTabItemStatus[1]]} onClick={this.handleWorkoutTabListItemSelect} data="1" disableTouchRipple={true}/>
         </List>

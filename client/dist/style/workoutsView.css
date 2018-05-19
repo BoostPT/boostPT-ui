@@ -171,9 +171,8 @@
 .exercise-height {
     min-height: 40px;
 }
-.emphasize {
-    font-size: 12px;
-    font-weight: 500;
+.scale-font {
+    font-size: 1vw;
 }
 
 .exercise-star {

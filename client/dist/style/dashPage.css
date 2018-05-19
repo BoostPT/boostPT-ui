@@ -58,13 +58,9 @@
 }
 
 .workouts-list-div {
-  float: right;
-  margin-right: 105px;
-  margin-top: -90px;
-}
-
-.workouts-list-select {
-  width:150px;
+  top: 9.5%;
+  right: 6%;
+  position: absolute;
 }
 
 .dashPageNavbarSearch{
