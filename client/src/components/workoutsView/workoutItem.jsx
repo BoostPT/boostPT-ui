@@ -6,6 +6,7 @@ import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Public from 'material-ui/svg-icons/social/public';
 import Private from 'material-ui/svg-icons/action/lock';
+import shortid from 'shortid';
 import * as colors from 'material-ui/styles/colors';
 
 class WorkoutItem extends Component {
@@ -46,7 +47,7 @@ class WorkoutItem extends Component {
               </h2>
               <p>{moment(this.props.clickedWorkout.created_at).fromNow()}</p>
             </div>
-            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={exercise.id} exercise={exercise} />)}
+            {this.props.clickedWorkout.exercises.map(exercise => <ExerciseItemContainer key={shortid.generate()} exercise={exercise} />)}
           </div>
         }
       </div>
