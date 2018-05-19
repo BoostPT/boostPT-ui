@@ -1,10 +1,11 @@
 #create-workout-outer {
+  display: inline-block;
   position: relative;
-  width: 500px;
-  max-height: 600px;
+  width: 42%;
+  max-height: 75%;
   overflow-y: auto;
-  margin-left: 50px;
-  margin-top: 15px;
+  margin-left: 9.5%;
+  margin-top: 1.5%;
 }
 
 #create-workout-inner {
@@ -86,12 +87,15 @@
   border: 1px solid #FFEB3B;
   background-color: #EEE;
   border-radius: 7px;
-  width: 300px;
-  max-height: 600px;
+  width: 20%;
+  max-height: 72%;
   overflow-y: auto;
-  margin-left: 640px;
+  margin-right: 23.5%;
+  margin-top: 1.5%;
+  float: right;
   font-family: Arial;
   color: #546E7A;
+  display: inline-block
 }
 
 .starred-exercise-header {
