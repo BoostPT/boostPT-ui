@@ -11,7 +11,8 @@ import {
   DELETE_WORKOUT,
   FETCH_STARRED_EXERCISES,
   FETCH_TRAINERS,
-  USER_CHANNEL_LIST
+  USER_CHANNEL_LIST,
+  SCHEDULE_EVENT
 } from './types';
 
 
@@ -238,14 +239,31 @@ export const channelList = async (username) => {
   }
 };
 
-export const saveEvent = async (type, payload) => {
+export const scheduleEvent = async (type, payload) => {
   try {
     if(type === 'workout') {
       const result = await axios.post('http://localhost:8000/api/users/events/workout')
     } else if(type === 'client') {
       const result = await axios.post('http://localhost:8000/api/users/events/client')
     }
+
+    return {
+      type: SCHEDULE_EVENT,
+      payload: {}
+    }
   } catch(err) {
     return (err);
   }
 }
+
+export const fetchEvents = async (userId) => {
+  try {
+
+    return {
+      type: FETCH_EVENTS,
+      payload: {}
+    };
+  } catch (err) {
+    return (err);
+  }
+};
