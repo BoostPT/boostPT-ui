@@ -109,4 +109,15 @@
   margin-top: -5;
   margin-bottom: -5;
   z-index: -10;
-};
+}
+
+.log-out {
+  font-size: 1em;
+  margin-left: 8%;
+  width: 20%;
+}
+
+.log-out:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

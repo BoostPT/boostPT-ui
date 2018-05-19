@@ -41,12 +41,15 @@ class Navbar extends Component{
           <div className="navbarUser" onClick={this.props.handleUserNameClick}>
             {!this.props.user.picture ?
               <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>
-              : 
+              :
               <Avatar className="avatarPicture" size={30} src=""/>
             }
             <div className="navbarUsername">
               {this.props.user.username}
             </div>
+          </div>
+          <div className="log-out">
+            <p onClick={this.props.handleLogOut}>Log Out</p>
           </div>
         </ToolbarGroup>
 
