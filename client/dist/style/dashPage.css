@@ -100,17 +100,13 @@
   font-size: 14px;
 }
 
-.dropdown-item:nth-child(odd) {
-  background-color: #F3F3F3;
+.dropdown-item {
+  background-color: #F9F9F9;
 }
 
-.dropdown-item:nth-child(even) {
-  background-color: white;
+.dropdown-item:hover {
+  background-color: #E5E5E5;
 }
-
-/* .dropdown-item a:hover {
-  background-color: #B8B8B8;
-} */
 
 .avatar-styles {
   margin-left: -10;
