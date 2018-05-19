@@ -48,7 +48,8 @@ class WorkoutsListContainer extends Component {
   }
 
   componentDidMount() {
-    !this.props.isPublic ? this.props.getWorkoutsList(this.props.userId) : this.props.getUserPublicWorkoutsList(this.props.user.id);
+    this.props.getWorkoutsList(this.props.userId);
+    // !this.props.isPublic ? this.props.getWorkoutsList(this.props.userId) : this.props.getUserPublicWorkoutsList(this.props.user.id);
   }
 
   getEachExerciseCount(exercises) {
@@ -153,7 +154,7 @@ const mapStateToProps = (state) => {
   return {
     workouts: state.workoutsReducer.workouts,
     userId: state.auth.user.id,
-    publicWorkouts: state.workoutsReducer.publicWorkouts
+    // publicWorkouts: state.workoutsReducer.publicWorkouts
   }
 };
 

@@ -25,6 +25,7 @@ class WorkoutsListItem extends Component {
   }
 
   renderStar() {
+    console.log("here*************",this.props.workout);
     return this.props.workout.star ? (
       <Star className="star-void" color={colors.yellow800} />
     ) : (

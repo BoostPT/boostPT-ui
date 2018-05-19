@@ -35,7 +35,13 @@ class NavbarContainer extends Component {
 
   handleUserNameClick(){
     this.props.selectedWorkout({});
-    const user = Object.assign({}, this.props.user, { publicWorkouts: this.props.userWorkouts});
+
+    const pubWorkouts = this.props.userWorkouts.filter(workout=>{
+      return workout.is_public;
+    });
+
+    const user = Object.assign({}, this.props.user, { publicWorkouts: pubWorkouts});
+
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
   }
 
@@ -98,7 +104,7 @@ class NavbarContainer extends Component {
   render(){
     return(
       <Navbar 
-      user={this.props.user}
+      user={ this.props.user }
       handleOnChangeText={this.handleOnChangeText}
       searchText={this.state.searchText}
       handleUserNameClick={this.handleUserNameClick}

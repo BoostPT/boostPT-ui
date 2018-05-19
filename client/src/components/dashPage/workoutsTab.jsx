@@ -47,11 +47,15 @@ class WorkoutsTab extends Component {
     );
   }
 
+  starRerenderfunction(){
+
+  }
+
   render() {
     return this.state.activeListItem === 0 ? (
       <Fragment>
         <WorkoutListContainer />
-        <WorkoutItemContainer />
+        <WorkoutItemContainer starRerenderfunction={this.starRerenderfunction}/>
         {this.renderWorkoutTabList()}
       </Fragment>
     ) : (

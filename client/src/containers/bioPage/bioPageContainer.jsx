@@ -9,7 +9,7 @@ class BioPageContainer extends Component {
 
     this.state = {
       searchText: '',
-      bioPageUserInfo: this.props.location.state,
+      bioPageUserInfo: this.props.history.location.state,
       aboutMeEdit: false,
       phoneNumberEdit: false
     }
@@ -39,7 +39,7 @@ class BioPageContainer extends Component {
       console.log("payload to change user picture", payload);
       const changed = await this.props.changeUserPicture(payload);
       await this.setState({
-        bioPageUserInfo: this.props.changedUserInfo
+        bioPageUserInfo: this.props.user
       });
     } catch (err) {
       console.log(err);
@@ -50,14 +50,16 @@ class BioPageContainer extends Component {
   render(){
     return(
       <div>
-        <BioPage 
+      {console.log("biopage container user info",this.state.bioPageUserInfo)}
+        <BioPage
+
           loggedInAsUser={this.props.user}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
           handleUserNameClick={this.handleUserNameClick.bind(this)}
           handleOnDrop={this.handleOnDrop.bind(this)}
           history={this.props.history}
-          user={this.props.history.location.state}
+          user={this.state.bioPageUserInfo}
         />
       </div>
     );
@@ -68,7 +70,7 @@ const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
     user: state.auth.user,
-    changedUserInfo: state.changePictureReducer.user
+    // changedUserInfo: state.changePictureReducer.user
   };
 };
 

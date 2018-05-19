@@ -84,6 +84,8 @@ export const getWorkoutsList = async (userId) => {
         Authorization: `${document.cookie}`
       }
     });
+
+    console.log("inside get workoutslist action", workouts.data);
     if (Array.isArray(workouts.data)) {
       for (let workout of workouts.data) {
         let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, {
@@ -162,6 +164,8 @@ export const updateWorkoutsWithStar = (workouts) => {
 export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`, {headers: { Authorization: `${document.cookie}`}});
+
+    // console.log("")
     if(Array.isArray(publicWorkouts.data)){
       for(let publicWorkout of publicWorkouts.data){
         let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`, {headers: { Authorization: `${document.cookie}`}});

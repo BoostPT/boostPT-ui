@@ -62,7 +62,7 @@ class BioPage extends Component{
   render(){
     return(
       <div className="bioPage">
-        <NavbarContainer history={this.props.history}/>
+        <NavbarContainer history={this.props.history} changedUser={this.props.user}/>
         <div className="bioPageBody">
           <div className="bioInfo">
             <div className="bioUsername">
@@ -114,8 +114,6 @@ class BioPage extends Component{
             <PublicWorkouts user={this.props.user} publicWorkouts={this.props.user.publicWorkouts}/>
           </div>
         </div>
-
-
       </div>
     );
   }

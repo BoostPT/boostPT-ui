@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Tabs, Tab} from 'material-ui/Tabs';
+
 import NavbarContainer from '../../containers/navbarContainer.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
-import {Tabs, Tab} from 'material-ui/Tabs';
 import WorkoutsTab from './workoutsTab.jsx';
 import MessagePageContainer from '../../containers/messagePageContainer.jsx';
 import CalendarContainer from '../../containers/calendarContainer.jsx';
