@@ -1,0 +1,28 @@
+#landing-page {
+  background-color: #BDBDBD;
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+#boostpt-title {
+  font-family: 'Teko', sans-serif;
+  float: left;
+  margin-left: 0.8em;
+  margin-top: 0.3em;
+  font-size: 4em;
+  color: #49525d;
+}
+
+#pt-title {
+  color: #FFEB3B;
+}
+
+.auth-btns {
+  float: right;
+  margin-right: 2.5em;
+  margin-top: 1.5em;
+}
+
+
+
+/*#343F4B*/

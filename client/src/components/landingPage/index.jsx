@@ -1,33 +1,47 @@
 import React, { Component } from 'react';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 
-const toolbarStyle = {
-  backgroundColor: colors.grey900
-}
+const authBtnLabelStyle = {
+  fontFamily: 'Lato',
+  fontSize: '1.2em',
+  textTransform: 'none'
+};
 
-const toolbarTitleStyle = {
-  color: colors.yellow500
-}
+const authBtnStyle = {
+  height: '2.4em',
+  width: '6.4em',
+  margin: '1.2em'
+};
 
 class LandingPage extends Component {
   render() {
     return (
-      //this toolbar may need to be a separate component
-      <div>
-      <Toolbar style={toolbarStyle} className="landingPageToolBar">
-        <ToolbarGroup firstChild={true}>
-          <ToolbarTitle style={toolbarTitleStyle} text="BoostPT"/>
-        </ToolbarGroup>
-
-        <ToolbarGroup>
-          <Link to="/signup"><RaisedButton label="Signup" /></Link>
-          <Link to='/login'><RaisedButton label="Login" /></Link>
-        </ToolbarGroup>
-      </Toolbar>
+      <div id="landing-page">
+        <h2 id="boostpt-title">Boost<span id="pt-title">PT</span></h2>
+        <div className="auth-btns">
+          <Link to="/signup">
+            <FlatButton
+              label="Sign Up"
+              backgroundColor={colors.grey600}
+              hoverColor={colors.grey700}
+              rippleColor={colors.yellow500}
+              labelStyle={authBtnLabelStyle}
+              style={authBtnStyle}
+            />
+          </Link>
+          <Link to='/login'>
+            <FlatButton
+              label="Log In"
+              backgroundColor={colors.grey600}
+              hoverColor={colors.grey700}
+              rippleColor={colors.yellow500}
+              labelStyle={authBtnLabelStyle}
+              style={authBtnStyle}
+            />
+          </Link>
+        </div>
       </div>
     )
   }
