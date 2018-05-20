@@ -19,6 +19,20 @@ const authBtnStyle = {
   margin: '1.2em'
 };
 
+const toggleStyle = {
+  thumb: {
+    backgroundColor: colors.yellow700
+  },
+  track: {
+    backgroundColor: colors.yellow300
+  }
+};
+
+const toggleLabelStyle = {
+  color: '#49525d',
+  fontFamily: 'Lato'
+};
+
 const renderTextField = (name, hintText, type, onChange) => {
   return (
     <TextField
@@ -51,7 +65,11 @@ class Signup extends Component {
               <div className="signup-submit-div">
                 <Toggle
                   label="I'm a trainer"
+                  defaultToggled={true}
                   labelPosition="right"
+                  thumbSwitchedStyle={toggleStyle.thumb}
+                  trackSwitchedStyle={toggleStyle.track}
+                  labelStyle={toggleLabelStyle}
                   onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
                   onClick={this.props.handleToggleButtonChange}
                 />

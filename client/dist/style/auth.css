@@ -30,7 +30,9 @@
 }
 
 .signup-submit-div {
-  padding-top: 30px;
+  margin: 0 auto;
+  padding-top: 2em;
+  width: 9em;
 }
 
 .signup-toggle-trainer {
