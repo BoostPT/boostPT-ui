@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
 import * as colors from 'material-ui/styles/colors';
@@ -16,6 +17,13 @@ const authBtnStyle = {
 };
 
 class LandingPage extends Component {
+
+  componentDidMount() {
+    if (this.props.user) {
+      this.props.history.push('/dash');
+    }
+  }
+
   render() {
     return (
       <div id="landing-page">
@@ -47,5 +55,10 @@ class LandingPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.user
+  }
+};
 
-export default LandingPage;
+export default connect(mapStateToProps, null)(LandingPage);
