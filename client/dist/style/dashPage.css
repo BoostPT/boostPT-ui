@@ -1,15 +1,26 @@
-#dashPageNavbarTitle{
-  display:flex;
-  padding-left: 15px;
-}
-
 .dashPage{
   display: flex;
   flex-direction: column;
 }
 
-.dashPageNavbarTitleText{
-  font-size: 30px;
+.dashPageNavbarTitle{
+  display: flex;
+  padding-left: 0.56em;
+  font-family: 'Teko';
+  font-size: 2.8em;
+  margin-top: 0.2em;
+}
+
+.dashPageNavbarTitle:hover {
+  cursor: pointer;
+}
+
+#boostTitleNav {
+  color: #49525d;
+}
+
+#boostTitlePTNav {
+  color: #FFEB3B
 }
 
 .avatarPicture{
@@ -20,9 +31,18 @@
   margin-left: 10px;
 }
 
-.navbarUser{
+.navbarUsername:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.navbarUser {
   display: flex;
   align-items: center;
+}
+
+.navbarUser:hover {
+  cursor: pointer;
 }
 
 .dashPageBody{
@@ -33,10 +53,6 @@
   right: 0;
   overflow: auto;
   background: #343F4B;
-}
-
-#navbarTitlePT.dashPageNavbarTitleText{
-  color: #FFEB3B;
 }
 
 .tabs {
