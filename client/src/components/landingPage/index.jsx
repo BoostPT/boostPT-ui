@@ -50,6 +50,14 @@ class LandingPage extends Component {
             />
           </Link>
         </div>
+        <br />
+        <h3 className="landing-page-header">Personal Training Client Management, Simplified</h3>
+        <div className="landing-page-subheader">
+          <h3 className="landing-page-col">Schedule Workouts</h3>
+          <h3 className="landing-page-col">Log Exercises</h3>
+          <h3 className="landing-page-col">Share with your network</h3>
+        </div>
+        <span className="footer">Copyright &copy; 2018 BoostPT. All Rights Reserved.</span>
       </div>
     )
   }

@@ -23,6 +23,36 @@
   margin-top: 1.5em;
 }
 
+.landing-page-header {
+  font-family: Lato;
+  font-size: 1.6em;
+  color: #49525d;
+  margin-top: 4em;
+  margin-bottom: 2em;
+  text-align: center;
+}
 
+.landing-page-subheader {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: white;
+  height: 24em;
+}
 
-/*#343F4B*/
+.landing-page-col {
+  text-align: center;
+  font-family: Lato;
+  font-size: 1.2em;
+  color: #49525d;
+  margin-top: 3em;
+}
+
+.footer {
+  position: absolute;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  bottom: 0;
+  right: 0;
+  float: right;
+  color: #49525d;
+}
