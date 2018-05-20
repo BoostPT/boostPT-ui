@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
+import CalendarIcon from 'material-ui/svg-icons/action/date-range';
+import Bullets from 'material-ui/svg-icons/editor/format-list-bulleted';
+import DashIcon from 'material-ui/svg-icons/action/dashboard';
 import * as colors from 'material-ui/styles/colors';
 
 const authBtnLabelStyle = {
@@ -14,6 +17,13 @@ const authBtnStyle = {
   height: '2.4em',
   width: '6.4em',
   margin: '1.2em'
+};
+
+const iconStyle = {
+  width: '6em',
+  height: '6em',
+  color: '#49525d',
+  opacity: 0.65
 };
 
 class LandingPage extends Component {
@@ -53,9 +63,21 @@ class LandingPage extends Component {
         <br />
         <h3 className="landing-page-header">Personal Training Client Management, Simplified</h3>
         <div className="landing-page-subheader">
-          <h3 className="landing-page-col">Schedule Workouts</h3>
-          <h3 className="landing-page-col">Log Exercises</h3>
-          <h3 className="landing-page-col">Share with your network</h3>
+          <div className="landing-page-col-grid">
+            <div className="landing-page-col">
+              <h3>Schedule Workouts</h3>
+              <CalendarIcon className="landing-page-icon" style={iconStyle} />
+              <p className="landing-page-txt"></p>
+            </div>
+            <div className="landing-page-col">
+              <h3>Log Exercises</h3>
+              <Bullets className="landing-page-icon" style={iconStyle} />
+            </div>
+            <div className="landing-page-col">
+              <h3>Organize Client Programs</h3>
+              <DashIcon className="landing-page-icon" style={iconStyle} />
+            </div>
+          </div>
         </div>
         <span className="footer">Copyright &copy; 2018 BoostPT. All Rights Reserved.</span>
       </div>

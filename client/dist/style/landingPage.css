@@ -30,21 +30,36 @@
   margin-top: 4em;
   margin-bottom: 2em;
   text-align: center;
+  clear: both;
 }
 
 .landing-page-subheader {
+  background-color: white;
+  height: 16em;
+}
+
+.landing-page-col-grid {
+  width: 80%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background-color: white;
-  height: 24em;
+
 }
 
 .landing-page-col {
   text-align: center;
   font-family: Lato;
-  font-size: 1.2em;
   color: #49525d;
   margin-top: 3em;
+}
+
+.landing-page-icon {
+  margin-top: 0.8em;
+}
+
+.landing-page-txt {
+  font-size: 0.64em;
+  opacity: 0.8;
 }
 
 .footer {
