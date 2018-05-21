@@ -5,7 +5,8 @@ import {
   getAllTrainersList,
   selectedWorkout,
   logOutUser,
-  deleteTrainerRequest
+  deleteTrainerRequest,
+  addTrainerClientConnection
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
@@ -29,6 +30,7 @@ class NavbarContainer extends Component {
     this.handleTitleClick = this.handleTitleClick.bind(this);
     this.handleRequestsClick = this.handleRequestsClick.bind(this);
     this.handleRequestOptionNoClick = this.handleRequestOptionNoClick.bind(this);
+    this.handleRequestOptionYesClick = this.handleRequestOptionYesClick.bind(this);
   }
 
   handleTitleClick(){
@@ -94,13 +96,17 @@ class NavbarContainer extends Component {
     this.setState({ showRequests: !this.state.showRequests });
   }
 
-  handleRequestOptionYesClick(e) {
-    console.log('yes clicked~', e.target.dataset.id)
+  async handleRequestOptionYesClick(e) {
+    e.persist();
+    // add trainer and client to trainerclientuser table
+    await this.props.addTrainerClientConnection(e.target.dataset.id, this.props.user.id, this.props.clients);
+    // remove trainer client from trainerRequests table
+    await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
-  handleRequestOptionNoClick(e) {
+  async handleRequestOptionNoClick(e) {
     // remove that client from list of requests
-    this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
+    await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
   filterTrainers() {
@@ -146,7 +152,8 @@ const mapStateToProps = (state) => {
     user: state.auth.user,
     userWorkouts: state.workoutsReducer.workouts,
     trainers: state.client.trainers,
-    requestsIn: state.client.requestsIn
+    requestsIn: state.client.requestsIn,
+    clients: state.trainer.clients
   };
 };
 
@@ -155,5 +162,6 @@ export default connect(mapStateToProps, {
   getAllTrainersList,
   selectedWorkout,
   logOutUser,
-  deleteTrainerRequest
+  deleteTrainerRequest,
+  addTrainerClientConnection
 })(NavbarContainer);

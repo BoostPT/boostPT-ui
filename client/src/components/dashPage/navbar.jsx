@@ -55,7 +55,7 @@ class Navbar extends Component{
             }
             {
               this.props.showRequests ?
-                !Array.isArray(this.props.requestsIn) ? 
+                !Array.isArray(this.props.requestsIn) ?
                   <p>No requests</p>
                   :
                   this.props.requestsIn.map(request => {

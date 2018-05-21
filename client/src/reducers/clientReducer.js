@@ -14,7 +14,7 @@ export default function (state = {}, action) {
     case FETCH_REQUESTS_OUT:
       return Object.assign({}, state, { requestsOut: action.payload });
     case DELETE_REQUEST:
-    return Object.assign({}, state, { requestsIn: action.payload });
+      return Object.assign({}, state, { requestsIn: action.payload });
   }
   return state;
 }
