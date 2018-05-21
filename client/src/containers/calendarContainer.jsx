@@ -32,7 +32,7 @@ class CalendarContainer extends Component {
           end: new Date(event.year, event.month, event.day, event.end_hour, event.end_minute, event.second),
           desc: event.description
         }
-        console.log(calendarEvent);
+
         this.state.events.push(calendarEvent);
       });
     } catch (err) {

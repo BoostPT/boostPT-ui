@@ -103,10 +103,9 @@ class ScheduleModalContainer extends Component{
 
   render() {
     return(
-      // <div>
       <ScheduleModal 
         scheduleModalVisible={this.props.scheduleModalVisible}
-        clients={this.props.clients} // for selecting which client 
+        clients={this.props.clients} // for selecting which client feature
         workoutName={this.props.workoutName}
         workoutId={this.props.workoutId}
         toggleModal={this.props.toggleModal}
@@ -115,8 +114,6 @@ class ScheduleModalContainer extends Component{
         handleEndTimeChange={this.handleEndTimeChange.bind(this)}
         handleDateChange={this.handleDateChange.bind(this)}
       />
-      // {console.log("schedule modal",this.props.workoutId, this.props.workoutName)}
-      // </div>
     );
   }
 }
