@@ -4,7 +4,8 @@ import {
   getWorkoutsList,
   getAllTrainersList,
   selectedWorkout,
-  logOutUser
+  logOutUser,
+  deleteTrainerRequest
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
@@ -17,6 +18,7 @@ class NavbarContainer extends Component {
       searchText: '',
       showDropdown: false,
       filteredTrainers: [],
+      showRequests: false
     };
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
     this.handleUserNameClick = this.handleUserNameClick.bind(this);
@@ -25,6 +27,8 @@ class NavbarContainer extends Component {
     this.showDropdownClick = this.showDropdownClick.bind(this);
     this.handleSearchItemClick = this.handleSearchItemClick.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
+    this.handleRequestsClick = this.handleRequestsClick.bind(this);
+    this.handleRequestOptionNoClick = this.handleRequestOptionNoClick.bind(this);
   }
 
   handleTitleClick(){
@@ -86,6 +90,19 @@ class NavbarContainer extends Component {
     }    
   }
 
+  handleRequestsClick() {
+    this.setState({ showRequests: !this.state.showRequests });
+  }
+
+  handleRequestOptionYesClick(e) {
+    console.log('yes clicked~', e.target.dataset.id)
+  }
+
+  handleRequestOptionNoClick(e) {
+    // remove that client from list of requests
+    this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
+  }
+
   filterTrainers() {
     let filteredTrainers = this.props.trainers.filter(trainer => {
       if (this.state.searchText !== '') {
@@ -114,17 +131,29 @@ class NavbarContainer extends Component {
       showDropdown={this.state.showDropdown}
       showDropdownClick={this.showDropdownClick}
       handleSearchItemClick={this.handleSearchItemClick}
+      showRequests={this.state.showRequests}
+      handleRequestsClick={this.handleRequestsClick}
+      requestsIn={this.props.requestsIn}
+      handleRequestOptionYesClick={this.handleRequestOptionYesClick}
+      handleRequestOptionNoClick={this.handleRequestOptionNoClick}
       />
     );
   }
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     userWorkouts: state.workoutsReducer.workouts,
-    trainers: state.client.trainers
+    trainers: state.client.trainers,
+    requestsIn: state.client.requestsIn
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout, logOutUser })(NavbarContainer);
+export default connect(mapStateToProps, { 
+  getWorkoutsList,
+  getAllTrainersList,
+  selectedWorkout,
+  logOutUser,
+  deleteTrainerRequest
+})(NavbarContainer);

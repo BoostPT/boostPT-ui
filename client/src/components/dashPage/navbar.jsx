@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SearchItem from './searchItem.jsx';
+// import RequestListContainer from '../../containers/requestListContainer.jsx';
+import RequestListItem from './requestListItem.jsx';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
@@ -31,10 +33,42 @@ class Navbar extends Component{
             {
               this.props.showDropdown ?
                 <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
-                  {this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} id={trainer.id}/>)}
+                  {this.props.filteredTrainers.map(trainer => {
+                    return <SearchItem 
+                            key={trainer.id}
+                            username={trainer.username}
+                            id={trainer.id}
+                            picture={trainer.picture} 
+                           />
+                    })}
                 </div>
                 :
                 null
+            }
+          </div>
+          <div className="request-btn">
+            {
+              this.props.user.istrainer ?
+                  <button onClick={this.props.handleRequestsClick}>Requests</button>
+                :
+                null
+            }
+            {
+              this.props.showRequests ?
+                !Array.isArray(this.props.requestsIn) ? 
+                  <p>No requests</p>
+                  :
+                  this.props.requestsIn.map(request => {
+                    return <RequestListItem
+                            picture={request.picture}
+                            id={request.id}
+                            username={request.username}
+                            handleRequestOptionYesClick={this.props.handleRequestOptionYesClick}
+                            handleRequestOptionNoClick={this.props.handleRequestOptionNoClick}
+                          />
+                  })
+                  :
+                  null
             }
           </div>
           <FontAwesomeIcon icon={faBell} />

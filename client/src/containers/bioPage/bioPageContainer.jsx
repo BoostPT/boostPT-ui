@@ -72,6 +72,7 @@ class BioPageContainer extends Component {
           handleOnDrop={this.handleOnDrop.bind(this)}
           history={this.props.history}
           user={this.props.history.location.state}
+          loggedInUserId={this.props.user.id}
           handleRequestClick={this.handleRequestClick.bind(this)}
           requestsOut={this.props.requests.requestsOut}
         />

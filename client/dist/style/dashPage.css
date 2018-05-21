@@ -137,3 +137,15 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+.request-dropdown {
+  margin: 0 10px;
+  display: block;
+}
+
+.request-btn {
+  position: relative;
+  height: 30px;
+  width: 75px;
+  margin-right: 15px;
+}
