@@ -12,17 +12,12 @@ import {
   FETCH_STARRED_EXERCISES,
   FETCH_TRAINERS,
   USER_CHANNEL_LIST,
-<<<<<<< HEAD
   SCHEDULE_EVENT,
   FETCH_EVENTS,
   FETCH_REQUESTS_OUT,
   FETCH_REQUESTS_IN,
   DELETE_REQUEST,
   ADD_CONNECTION
-=======
-  FETCH_REQUESTS_OUT,
-  FETCH_REQUESTS_IN
->>>>>>> Request a trainer option hidden if request pending
 } from './types';
 
 
@@ -389,6 +384,31 @@ export const fetchTrainerRequestsOut = async (clientId) => {
     return {
       type: FETCH_REQUESTS_OUT,
       payload: requestsOut.data
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const deleteTrainerRequest = async (clientId, trainerId, requestsIn) => {
+  try {
+    await axios.delete(`http://localhost:8000/api/users/request-delete/${clientId}/${trainerId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const newRequestsIn = [];
+    let i = 0;
+    while (i < requestsIn.length) {
+      if (requestsIn[i].id !== parseInt(clientId)) {
+        newRequestsIn.push(requestsIn[i]);
+      }
+      i++;
+    }
+    console.log('NEW REQUSTS ARRAY', newRequestsIn)
+    return {
+      type: DELETE_REQUEST,
+      payload: newRequestsIn
     }
   } catch (err) {
     return err;
