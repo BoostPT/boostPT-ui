@@ -21,7 +21,6 @@ class ScheduleModal extends Component {
   render(){
     return(
       <div className="scheduleModal">
-      {console.log(this.props)}
         {this.props.scheduleModalVisible ? 
           <div className="modal-workout">
             <div className="scheduleModalContent">
@@ -31,8 +30,12 @@ class ScheduleModal extends Component {
               >
                 <Clear/>
               </IconButton>
+              <span> date: </span>
               <DatePicker onChange={this.props.handleDateChange}/>
-              <TimePicker onChange={this.props.handleTimeChange}/>
+              <span> start: </span>
+              <TimePicker onChange={this.props.handleStartTimeChange}/>
+              <span> end: </span>
+              <TimePicker onChange={this.props.handleEndTimeChange}/>
               <FlatButton 
                 label="Save" 
                 backgroundColor="#5A6978" 

@@ -11,8 +11,10 @@ class ScheduleModalContainer extends Component{
       day: null,
       month: null,
       year: null,
-      hour: null,
-      minute: null,
+      startHour: null,
+      startMinute: null,
+      endHour: null,
+      endMinute: null,
       seconds: 0,
       scheduledClient: null,
       desc: null
@@ -30,13 +32,15 @@ class ScheduleModalContainer extends Component{
     }
   }// used to fetch loggedInTrainer's Clients while on Modal view
 
-  async handleSaveButtonClick() {
+  async handleSaveButtonClick(e) {
     const payload = {
       month: this.state.month,
       day: this.state.day,
       year: this.state.year,
-      hour: this.state.hour,
-      minute: this.state.minute,
+      startHour: this.state.startHour,
+      startMinute: this.state.startMinute,
+      endHour: this.state.endHour,
+      endMinute: this.state.endMinute,
       second: this.state.seconds,
       userId: !this.state.scheduledClient? this.props.userInfo.id : this.state.scheduledClient,
       workoutId: this.props.workoutId,
@@ -44,20 +48,36 @@ class ScheduleModalContainer extends Component{
       desc: this.state.desc
     }
     try {
-      await this.props.scheduleEvent('workout', payload);
+      const result = await this.props.scheduleEvent('workout', payload);
+      
+      this.props.toggleModal(e, 'schedule');
     } catch (err) {
       console.log(err);
       return(err);
     }
   }
 
-  async handleTimeChange(e, date) {
+  async handleStartTimeChange(e, date) {
     const hour = date.getHours();
     const minute = date.getMinutes();
     try {
       await this.setState({
-        hour,
-        minute
+        startHour: hour,
+        startMinute: minute
+      });
+    } catch (err) {
+      console.log(err);
+      return (err);
+    }
+  }
+
+  async handleEndTimeChange(e, date) {
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    try {
+      await this.setState({
+        endHour: hour,
+        endMinute: minute
       });
     } catch (err) {
       console.log(err);
@@ -68,7 +88,7 @@ class ScheduleModalContainer extends Component{
   async handleDateChange(e, date) {
     const day = date.getDate();
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
+    const month = date.getMonth();
     try {
       await this.setState({
         day,
@@ -91,7 +111,8 @@ class ScheduleModalContainer extends Component{
         workoutId={this.props.workoutId}
         toggleModal={this.props.toggleModal}
         handleSaveButtonClick={this.handleSaveButtonClick.bind(this)}
-        handleTimeChange={this.handleTimeChange.bind(this)}
+        handleStartTimeChange={this.handleStartTimeChange.bind(this)}
+        handleEndTimeChange={this.handleEndTimeChange.bind(this)}
         handleDateChange={this.handleDateChange.bind(this)}
       />
       // {console.log("schedule modal",this.props.workoutId, this.props.workoutName)}

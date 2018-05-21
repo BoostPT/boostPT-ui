@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
+import { fetchEvents } from '../actions/index.js';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -16,6 +18,26 @@ class CalendarContainer extends Component {
     this.state = {
       events: []
     };
+  }
+
+  async componentDidMount(){
+    try{
+      await this.props.fetchEvents(this.props.userInfo.id);
+      await this.props.events.forEach((event) => {
+        // console.log("inside calendar container", event);
+        const calendarEvent = {
+          id: event.id,
+          title: event.title,
+          start: new Date(event.year, event.month, event.day, event.start_hour, event.start_minute, event.second),
+          end: new Date(event.year, event.month, event.day, event.end_hour, event.end_minute, event.second),
+          desc: event.description
+        }
+        console.log(calendarEvent);
+        this.state.events.push(calendarEvent);
+      });
+    } catch (err) {
+
+    }
   }
 
   moveEvent({ event, start, end }) {
@@ -63,4 +85,13 @@ class CalendarContainer extends Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(CalendarContainer);
+CalendarContainer = DragDropContext(HTML5Backend)(CalendarContainer);
+
+const mapStateToProps = function(state) {
+  return {
+    userInfo: state.auth.user,
+    events: state.events.events
+  };
+}; 
+
+export default connect(mapStateToProps, { fetchEvents })(CalendarContainer);

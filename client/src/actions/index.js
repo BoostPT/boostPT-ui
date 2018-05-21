@@ -12,7 +12,8 @@ import {
   FETCH_STARRED_EXERCISES,
   FETCH_TRAINERS,
   USER_CHANNEL_LIST,
-  SCHEDULE_EVENT
+  SCHEDULE_EVENT,
+  FETCH_EVENTS
 } from './types';
 
 
@@ -165,7 +166,6 @@ export const getUserPublicWorkoutsList = async(userId) =>{
   try{
     const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userId}`, {headers: { Authorization: `${document.cookie}`}});
 
-    // console.log("")
     if(Array.isArray(publicWorkouts.data)){
       for(let publicWorkout of publicWorkouts.data){
         let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${publicWorkout.id}`, {headers: { Authorization: `${document.cookie}`}});
@@ -242,11 +242,10 @@ export const channelList = async (username) => {
 export const scheduleEvent = async (type, payload) => {
   try {
     if(type === 'workout') {
-      const result = await axios.post('http://localhost:8000/api/events/workout', payload,{headers: { Authorization: `${document.cookie}`}});
+      const result = await axios.post('http://localhost:8000/api/events/workout', payload,{ headers: { Authorization: `${document.cookie}`}});
 
-      
     } else if(type === 'client') {
-      const result = await axios.post('http://localhost:8000/api/events/client', payload,{headers: { Authorization: `${document.cookie}`}})
+      const result = await axios.post('http://localhost:8000/api/events/client', payload, { headers: { Authorization: `${document.cookie}`}});
     } // Scheduling a client for an in-person 1 on 1 session
 
     return {
@@ -260,10 +259,12 @@ export const scheduleEvent = async (type, payload) => {
 
 export const fetchEvents = async (userId) => {
   try {
+    const result = await axios.get(`http://localhost:8000/api/events/${userId}`,{ headers: { Authorization: `${document.cookie}`}});
 
+    console.log(result);
     return {
       type: FETCH_EVENTS,
-      payload: {}
+      payload: result.data
     };
   } catch (err) {
     return (err);
