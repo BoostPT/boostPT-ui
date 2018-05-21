@@ -31,8 +31,8 @@ class ScheduleModal extends Component {
               >
                 <Clear/>
               </IconButton>
-              <DatePicker />
-              <TimePicker />
+              <DatePicker onChange={this.props.handleDateChange}/>
+              <TimePicker onChange={this.props.handleTimeChange}/>
               <FlatButton 
                 label="Save" 
                 backgroundColor="#5A6978" 

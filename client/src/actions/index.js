@@ -242,10 +242,12 @@ export const channelList = async (username) => {
 export const scheduleEvent = async (type, payload) => {
   try {
     if(type === 'workout') {
-      const result = await axios.post('http://localhost:8000/api/users/events/workout')
+      const result = await axios.post('http://localhost:8000/api/events/workout', payload,{headers: { Authorization: `${document.cookie}`}});
+
+      
     } else if(type === 'client') {
-      const result = await axios.post('http://localhost:8000/api/users/events/client')
-    }
+      const result = await axios.post('http://localhost:8000/api/events/client', payload,{headers: { Authorization: `${document.cookie}`}})
+    } // Scheduling a client for an in-person 1 on 1 session
 
     return {
       type: SCHEDULE_EVENT,
