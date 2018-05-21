@@ -12,12 +12,17 @@ import {
   FETCH_STARRED_EXERCISES,
   FETCH_TRAINERS,
   USER_CHANNEL_LIST,
+<<<<<<< HEAD
   SCHEDULE_EVENT,
   FETCH_EVENTS,
   FETCH_REQUESTS_OUT,
   FETCH_REQUESTS_IN,
   DELETE_REQUEST,
   ADD_CONNECTION
+=======
+  FETCH_REQUESTS_OUT,
+  FETCH_REQUESTS_IN
+>>>>>>> Request a trainer option hidden if request pending
 } from './types';
 
 
@@ -327,18 +332,50 @@ export const deleteTrainerRequest = async (clientId, trainerId, requestsIn) => {
   }
 };
 
+
 export const addTrainerClientConnection = async (clientId, trainerId, clients) => {
   try {
     await axios.post('http://localhost:8000/api/users/add-connection', {
       client_id: clientId,
       trainer_id: trainerId
-    },
-    {
+    }, {
       headers: {
         Authorization: `${document.cookie}`
       }
     });
     const addedClient = await axios.get(`http://localhost:8000/api/users/fetch-client/${clientId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: ADD_CONNECTION,
+      payload: clients
+    }
+  } catch (err) {
+    return err;
+  }
+};    
+     
+export const fetchTrainerRequestsIn = async (trainerId) => {
+  try {
+    const requestsIn = await axios.get(`http://localhost:8000/api/users/request-in/${trainerId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_REQUESTS_IN,
+      payload: requestsIn.data
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const fetchTrainerRequestsOut = async (clientId) => {
+  try {
+    const requestsOut = await axios.get(`http://localhost:8000/api/users/request-out/${clientId}`, {
       headers: {
         Authorization: `${document.cookie}`
       }
@@ -350,8 +387,8 @@ export const addTrainerClientConnection = async (clientId, trainerId, clients) =
       clients.push(addedClient.data[0]);
     }
     return {
-      type: ADD_CONNECTION,
-      payload: clients
+      type: FETCH_REQUESTS_OUT,
+      payload: requestsOut.data
     }
   } catch (err) {
     return err;
