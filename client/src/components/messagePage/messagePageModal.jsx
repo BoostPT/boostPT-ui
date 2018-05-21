@@ -10,7 +10,8 @@ class MessagePageModal extends Component {
       toggleExistsMessage: false
     }
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
-    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this)
+    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
+    this.escFunction = this.escFunction.bind(this);
   };
 
   handleInputValueChange(e) {
@@ -25,8 +26,18 @@ class MessagePageModal extends Component {
     this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this)
   };
 
-  handleInputValueChange(e) {
-    this.setState({inputValue: e.target.value});
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+
+  escFunction(e) {
+    if (e.keyCode === 27) {
+      this.props.toggleAddChatModal();
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
   }
 
   async handleSubmitButtonClick() {
