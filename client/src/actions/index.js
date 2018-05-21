@@ -261,7 +261,6 @@ export const fetchEvents = async (userId) => {
   try {
     const result = await axios.get(`http://localhost:8000/api/events/${userId}`,{ headers: { Authorization: `${document.cookie}`}});
 
-    console.log(result);
     return {
       type: FETCH_EVENTS,
       payload: result.data
