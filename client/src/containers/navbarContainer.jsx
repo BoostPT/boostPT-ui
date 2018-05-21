@@ -104,9 +104,9 @@ class NavbarContainer extends Component {
     await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
-  handleRequestOptionNoClick(e) {
+  async handleRequestOptionNoClick(e) {
     // remove that client from list of requests
-    this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
+    await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
   filterTrainers() {

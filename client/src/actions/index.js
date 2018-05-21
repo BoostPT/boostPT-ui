@@ -405,10 +405,40 @@ export const deleteTrainerRequest = async (clientId, trainerId, requestsIn) => {
       }
       i++;
     }
-    console.log('NEW REQUSTS ARRAY', newRequestsIn)
     return {
       type: DELETE_REQUEST,
       payload: newRequestsIn
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const addTrainerClientConnection = async (clientId, trainerId, clients) => {
+  try {
+    await axios.post('http://localhost:8000/api/users/add-connection', {
+      client_id: clientId,
+      trainer_id: trainerId
+    },
+    {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const addedClient = await axios.get(`http://localhost:8000/api/users/fetch-client/${clientId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    if (Array.isArray(clients)) {
+      clients.push(addedClient.data[0]);
+    } else {
+      clients = [];
+      clients.push(addedClient.data[0]);
+    }
+    return {
+      type: ADD_CONNECTION,
+      payload: clients
     }
   } catch (err) {
     return err;
