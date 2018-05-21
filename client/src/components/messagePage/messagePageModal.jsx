@@ -12,6 +12,7 @@ class MessagePageModal extends Component {
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
     this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
     this.escFunction = this.escFunction.bind(this);
+    this.overlayClick = this.overlayClick.bind(this);
   };
 
   handleInputValueChange(e) {
@@ -38,6 +39,12 @@ class MessagePageModal extends Component {
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.escFunction, false);
+  }
+
+  overlayClick(e) {
+    if (e.target.className === 'messageModal') {
+      this.props.toggleAddChatModal();
+    }
   }
 
   async handleSubmitButtonClick() {
@@ -76,9 +83,9 @@ class MessagePageModal extends Component {
   render() {
     return (
       <div>{
-        <div className="messageModal">
-          <div className="messageModal-content">
-            <div id="messageModal-title" >Start a New Channel</div>
+        <div className="messageModal" onClick={this.overlayClick}>
+          <div className="messageModal-content" >
+            <div id="messageModal-title">Start a New Channel</div>
             <div id="messagetModal-subtitle" >Enter a username here
             </div>
             <label>

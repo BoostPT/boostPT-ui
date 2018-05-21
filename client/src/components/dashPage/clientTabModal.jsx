@@ -9,6 +9,7 @@ class Modal extends Component {
     }
     this.handleUnregClientFormChange = this.handleUnregClientFormChange.bind(this);
     this.escFunction = this.escFunction.bind(this);
+    this.overlayClick = this.overlayClick.bind(this);
   }
   
   handleButtonClick() {
@@ -39,10 +40,17 @@ class Modal extends Component {
     document.removeEventListener("keydown", this.escFunction, false);
   }
 
+  overlayClick(e) {
+    if (e.target.className === 'addNewClientModal') {
+      this.props.toggleModal();
+    }
+  }
+
+
   render() {
     return (
       <div>{
-        <div className="addNewClientModal">
+        <div className="addNewClientModal" onClick={this.overlayClick}>
           <div className="addNewClientModal-content">
             <div id="addNewClientModal-title" >Add Client</div>
             <div id="addNewClientModal-subtitle" >Name
