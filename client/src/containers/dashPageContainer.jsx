@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { 
   getWorkoutsList,
   getAllTrainersList,
-  selectedWorkout
+  fetchTrainerRequestsIn,
+  fetchTrainerRequestsOut
  } from '../actions/index.js';
 import debounce from 'lodash/debounce';
 // import axios from 'axios';
@@ -52,6 +53,8 @@ class DashPageContainer extends Component {
 
   componentWillMount() {
     this.props.getAllTrainersList();
+    this.props.fetchTrainerRequestsIn(this.props.user.id);
+    this.props.fetchTrainerRequestsOut(this.props.user.id);
     this.hideDropdownClick();
   }
    
@@ -73,4 +76,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, fetchTrainerRequestsIn, fetchTrainerRequestsOut })(DashPageContainer);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BioPage from '../../components/bioPage/index.jsx';
 import { changeUserPicture, selectedWorkout } from '../../actions/index.js';
+import axios from 'axios';
 
 class BioPageContainer extends Component {
   constructor(props){
@@ -14,6 +15,7 @@ class BioPageContainer extends Component {
       phoneNumberEdit: false
     }
   }
+
   handleOnChangeText(e){
     const {value, name} = e.target;
     this.setState({[name]: value});
@@ -30,6 +32,7 @@ class BioPageContainer extends Component {
   editPhoneNumber(){
     this.setState({phoneNumberEdit: true});
   }
+
   async handleOnDrop(files){
     const payload = {
       file: files,
@@ -46,18 +49,31 @@ class BioPageContainer extends Component {
     }
   }
 
+  async handleRequestClick(e) {
+    await axios.post(`http://localhost:8000/api/users/request`, {
+      client_id: this.props.user.id,
+      trainer_id: parseInt(e.target.dataset.id)
+    }, 
+    {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+  }
+
   render(){
     return(
       <div>
         <BioPage
-
           loggedInAsUser={this.props.user}
           handleOnChangeText={this.handleOnChangeText.bind(this)} 
           searchText={this.state.searchText} 
           handleUserNameClick={this.handleUserNameClick.bind(this)}
           handleOnDrop={this.handleOnDrop.bind(this)}
           history={this.props.history}
-          user={this.state.bioPageUserInfo}
+          user={this.props.history.location.state}
+          handleRequestClick={this.handleRequestClick.bind(this)}
+          requestsOut={this.props.requests.requestsOut}
         />
       </div>
     );
@@ -68,7 +84,8 @@ const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
     user: state.auth.user,
-    // changedUserInfo: state.changePictureReducer.user
+    changedUserInfo: state.changePictureReducer.user,
+    requests: { requestsIn: state.client.requestsIn, requestsOut: state.client.requestsOut }
   };
 };
 

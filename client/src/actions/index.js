@@ -13,7 +13,9 @@ import {
   FETCH_TRAINERS,
   USER_CHANNEL_LIST,
   SCHEDULE_EVENT,
-  FETCH_EVENTS
+  FETCH_EVENTS,
+  FETCH_REQUESTS_OUT,
+  FETCH_REQUESTS_IN
 } from './types';
 
 
@@ -239,15 +241,29 @@ export const channelList = async (username) => {
   }
 };
 
+export const fetchTrainerRequestsIn = async (trainerId) => {
+  try {
+    const requestsIn = await axios.get(`http://localhost:8000/api/users/request-in/${trainerId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_REQUESTS_IN,
+      payload: requestsIn.data
+    }
+  } catch (err) {
+    return err;
+  }
+};  
+
 export const scheduleEvent = async (type, payload) => {
   try {
     if(type === 'workout') {
       const result = await axios.post('http://localhost:8000/api/events/workout', payload,{ headers: { Authorization: `${document.cookie}`}});
-
     } else if(type === 'client') {
       const result = await axios.post('http://localhost:8000/api/events/client', payload, { headers: { Authorization: `${document.cookie}`}});
     } // Scheduling a client for an in-person 1 on 1 session
-
     return {
       type: SCHEDULE_EVENT,
       payload: {}
@@ -260,12 +276,27 @@ export const scheduleEvent = async (type, payload) => {
 export const fetchEvents = async (userId) => {
   try {
     const result = await axios.get(`http://localhost:8000/api/events/${userId}`,{ headers: { Authorization: `${document.cookie}`}});
-
     return {
       type: FETCH_EVENTS,
       payload: result.data
     };
   } catch (err) {
     return (err);
+  }
+};
+
+export const fetchTrainerRequestsOut = async (clientId) => {
+  try {
+    const requestsOut = await axios.get(`http://localhost:8000/api/users/request-out/${clientId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_REQUESTS_OUT,
+      payload: requestsOut.data
+    }
+  } catch (err) {
+    return err;
   }
 };

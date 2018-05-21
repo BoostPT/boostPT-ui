@@ -85,3 +85,10 @@
 .publicWorkoutsListContainer{
   display: flex;
 }
+
+.requestAsTrainerButton {
+  position: absolute;
+  margin-bottom: 20%;
+  bottom: 0;
+  align-self: center;
+}

@@ -59,6 +59,16 @@ class BioPage extends Component{
     super(props);
   }
 
+  checkAlreadyRequested() {
+    const requests = this.props.requestsOut;
+    for (let i = 0; i < requests.length; i++) {
+      if (requests[i].trainer_id === this.props.user.id) {
+        return true;
+      }
+      return false;
+    }
+  }
+
   render(){
     return(
       <div className="bioPage">
@@ -108,7 +118,12 @@ class BioPage extends Component{
               {!this.props.user.phoneNumber ? 'Unavailable' : this.props.user.phoneNumber}
             </div>
             <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
-            <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
+            {
+              this.checkAlreadyRequested() ?
+                null
+                :
+                <button onClick={this.props.handleRequestClick} data-id={this.props.user.id} className="requestAsTrainerButton">Request as Trainer</button>
+            }
           </div>
           <div className="bioPageMyPublicWorkouts">
             <PublicWorkouts user={this.props.user} publicWorkouts={this.props.user.publicWorkouts}/>
