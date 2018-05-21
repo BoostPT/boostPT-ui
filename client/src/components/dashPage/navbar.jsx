@@ -20,9 +20,9 @@ class Navbar extends Component{
     return(
       <Toolbar style={toolbarStyle} className="dashPageNavbar">
         <ToolbarGroup firstChild={true}>
-          <div id="dashPageNavbarTitle" onClick={this.props.handleTitleClick}>
-            <span id="boostTitle" className="dashPageNavbarTitleText"> Boost </span>
-            <span id="navbarTitlePT" className="dashPageNavbarTitleText"> PT </span>
+          <div className="dashPageNavbarTitle" onClick={this.props.handleTitleClick}>
+            <span id="boostTitleNav">Boost</span>
+            <span id="boostTitlePTNav">PT</span>
           </div>
         </ToolbarGroup>
         <ToolbarGroup>

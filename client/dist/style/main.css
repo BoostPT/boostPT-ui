@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "landingPage.css";
 @import "auth.css";
 @import "dashPage.css";
 @import "bioPage.css";
@@ -6,3 +7,17 @@
 @import "workoutsView.css";
 @import "clientTab.css";
 @import "messagePage.css";
+
+/*
+
+colors:
+logo blue-grey: #49525d
+logo yellow: #FFEB3B
+light grey: #EEE
+
+standard tab: #C3CAD3
+active tab: #5A6978"
+
+
+
+*/

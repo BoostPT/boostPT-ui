@@ -1,7 +1,6 @@
 .auth-page {
-  background-color: #424242;
-  width: 100%;
-  height: 100%;
+  background-color: #BDBDBD;
+  height: -webkit-fill-available;
 }
 
 .signup-outer {
@@ -31,7 +30,9 @@
 }
 
 .signup-submit-div {
-  padding-top: 30px;
+  margin: 0 auto;
+  padding-top: 2em;
+  width: 9em;
 }
 
 .signup-toggle-trainer {
