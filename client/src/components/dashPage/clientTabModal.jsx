@@ -8,8 +8,9 @@ class Modal extends Component {
       unregClientForm: ''
     }
     this.handleUnregClientFormChange = this.handleUnregClientFormChange.bind(this);
+    this.escFunction = this.escFunction.bind(this);
   }
-
+  
   handleButtonClick() {
     this.props.clickEvent(this.state.unregClientForm, (result) => {
       if (result === 'success') {
@@ -22,6 +23,20 @@ class Modal extends Component {
 
   handleUnregClientFormChange(e) {
     this.setState({unregClientForm: e.target.value});
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+
+  escFunction(e) {
+    if (e.keyCode === 27) {
+      this.props.toggleModal();
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
   }
 
   render() {
