@@ -22,6 +22,10 @@ const incentiveBtnStyle = {
 class StakeEtherMotivation extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showAddIncentiveModal: false
+    };
+    this.toggleAddIncentiveModal = this.toggleAddIncentiveModal.bind(this);
   }
 
   renderIncentives() {
@@ -32,24 +36,55 @@ class StakeEtherMotivation extends Component {
     );
   }
 
+  toggleAddIncentiveModal() {
+    this.setState({
+      showAddIncentiveModal: !this.state.showAddIncentiveModal
+    });
+  }
+
+  renderAddIncentiveModal() {
+    return this.state.showAddIncentiveModal ? (
+      <div className="modal-incentive">
+        <div className="modal-incentive-content">
+          <p className="incentive-list-header">Create an Incentive</p>
+          <FlatButton
+            label="Send to Ethereum Network"
+            backgroundColor={colors.grey600}
+            hoverColor={colors.grey700}
+            rippleColor={colors.yellow500}
+            labelStyle={incentiveBtnLabelStyle}
+            style={incentiveBtnStyle}
+          />
+          <span className="close" onClick={this.toggleAddIncentiveModal}>&times;</span>
+        </div>
+      </div>
+    ) : (
+      null
+    )
+  }
+
   render() {
     return (
-      <Paper className="incentive-list">
-        <img className="eth-logo-left" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
-        <img className="eth-logo-right" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
-        <h3 className="incentive-list-header">Create an incentive by staking Ether</h3>
-        <br />
-        <Divider />
-        {this.renderIncentives()}
-        <FlatButton
-          label="Create an Incentive"
-          backgroundColor={colors.grey600}
-          hoverColor={colors.grey700}
-          rippleColor={colors.yellow500}
-          labelStyle={incentiveBtnLabelStyle}
-          style={incentiveBtnStyle}
-        />
-      </Paper>
+      <Fragment>
+        <Paper className="incentive-list">
+          <img className="eth-logo-left" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
+          <img className="eth-logo-right" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
+          <h3 className="incentive-list-header">Create an incentive by staking Ether</h3>
+          <br />
+          <Divider />
+          {this.renderIncentives()}
+          <FlatButton
+            label="Create an Incentive"
+            backgroundColor={colors.grey600}
+            hoverColor={colors.grey700}
+            rippleColor={colors.yellow500}
+            labelStyle={incentiveBtnLabelStyle}
+            style={incentiveBtnStyle}
+            onClick={this.toggleAddIncentiveModal}
+          />
+        </Paper>
+        {this.renderAddIncentiveModal()}
+      </Fragment>
     )
   }
 }
