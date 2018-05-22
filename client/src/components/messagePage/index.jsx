@@ -92,6 +92,7 @@ class MessagePage extends Component {
       }
     }
     this.setState({activeChannel: channelStr, messages: tempMessagesArr});
+    this.props.fetchChannelsFromStore();
   }
 
   handleMessageInput(e) {
@@ -169,7 +170,7 @@ class MessagePage extends Component {
         <div id="right-middle">
           {
             this.state.messages.map(value => 
-              <div key={shortid.generate()} id="message">
+              <div key={shortid.generate()} id={'messageother'}>
                 <span id="name">
                   {value.user}
                 </span>

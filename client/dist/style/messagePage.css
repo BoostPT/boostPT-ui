@@ -83,7 +83,7 @@
   float: left;
 }
 
-#message:nth-child(odd) {
+#messageother {
   background-color: #FFFFFF;
   font-size: 20px;
   height: 70px;
@@ -170,7 +170,7 @@
 
 .channelName {
   margin-top: 10px;
-  font-size: 35px;
+  font-size: 22px;
   text-align: center;
 }
 
