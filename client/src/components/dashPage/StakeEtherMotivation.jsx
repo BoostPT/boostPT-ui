@@ -41,10 +41,6 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
 class StakeEtherMotivation extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showAddIncentiveModal: false,
-    };
-    this.toggleAddIncentiveModal = this.toggleAddIncentiveModal.bind(this);
   }
 
   renderIncentives() {
@@ -55,21 +51,14 @@ class StakeEtherMotivation extends Component {
     );
   }
 
-  toggleAddIncentiveModal() {
-    this.setState({
-      showAddIncentiveModal: !this.state.showAddIncentiveModal
-    });
-  }
-
   renderAddIncentiveModal() {
-    return this.state.showAddIncentiveModal ? (
+    return this.props.showAddIncentiveModal ? (
       <div className="modal-incentive">
         <div className="modal-incentive-content">
-          <span className="close" onClick={this.toggleAddIncentiveModal}>&times;</span>
+          <span className="close" onClick={this.props.toggleAddIncentiveModal}>&times;</span>
           <p className="incentive-list-header">Create an Incentive</p>
           <br />
           <Divider />
-          {/*{renderTextField(hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1)}*/}
           {renderTextField('What do you want to achieve?', 'Goal', this.props.handleIncentiveFormChange, 'goal', true, 2)}
           <br />
           {renderTextField('0xCbdC7A852494eb6B4BcB44F114D2396AcAe15668', 'Recipient (Ethereum Address)', this.props.handleIncentiveFormChange, 'recipient')}
@@ -97,6 +86,26 @@ class StakeEtherMotivation extends Component {
     )
   }
 
+  renderReceiptModal() {
+    return this.props.showReceiptModal ? (
+      <div className="modal-incentive">
+        <div className="modal-incentive-content incentive-receipt">
+          <span className="close" onClick={this.props.toggleReceiptModal}>&times;</span>
+          <p className="incentive-list-header">Transaction Successful!</p>
+          <p className="incentive-list-subheader">Receipt</p>
+          <br />
+          <Divider />
+          <p className="incentive-receipt-text">Block Hash: <a href={`https://ropsten.etherscan.io/address/${this.props.receipt.blockHash}`} target="_blank">{this.props.receipt.blockHash}</a></p>
+          <p className="incentive-receipt-text">Block Number: {this.props.receipt.blockNumber}</p>
+          <p className="incentive-receipt-text">Gas Used: {this.props.receipt.gasUsed}</p>
+          <p className="incentive-receipt-text">Transaction Hash: <a href={`https://ropsten.etherscan.io/tx/${this.props.receipt.transactionHash}`} target="_blank">{this.props.receipt.transactionHash}</a></p>
+        </div>
+      </div>
+    ) : (
+      null
+    )
+  }
+
   render() {
     return (
       <Fragment>
@@ -114,10 +123,11 @@ class StakeEtherMotivation extends Component {
             rippleColor={colors.yellow500}
             labelStyle={incentiveBtnLabelStyle}
             style={incentiveBtnStyle}
-            onClick={this.toggleAddIncentiveModal}
+            onClick={this.props.toggleAddIncentiveModal}
           />
         </Paper>
         {this.renderAddIncentiveModal()}
+        {this.renderReceiptModal()}
       </Fragment>
     )
   }
@@ -125,8 +135,13 @@ class StakeEtherMotivation extends Component {
 
 StakeEtherMotivation.propTypes = {
   incentives: PropTypes.object,
+  showAddIncentiveModal: PropTypes.bool.isRequired,
+  toggleAddIncentiveModal: PropTypes.func.isRequired,
   handleIncentiveFormChange: PropTypes.func.isRequired,
-  handleIncentiveFormSubmit: PropTypes.func.isRequired
+  handleIncentiveFormSubmit: PropTypes.func.isRequired,
+  showReceiptModal: PropTypes.bool.isRequired,
+  toggleReceiptModal: PropTypes.func.isRequired,
+  receipt: PropTypes.object
 };
 
 export default StakeEtherMotivation;

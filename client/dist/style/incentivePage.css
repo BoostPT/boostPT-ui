@@ -17,6 +17,15 @@
   width: 70%;
 }
 
+.incentive-list-subheader {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 1em;
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 70%;
+}
+
 .eth-logo-left {
   float: left;
   height: 100px;
@@ -49,6 +58,19 @@
   height: auto;
   text-align: center;
   border-radius: 7px;
+}
+
+.incentive-receipt {
+  width: calc(140px + 30em);
+}
+
+.incentive-receipt-text {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 0.8em;
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 70%;
 }
 
 

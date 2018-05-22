@@ -9,15 +9,20 @@ class StakeEtherContainer extends Component {
     super(props);
     this.state = {
       web3: null,
-      stakeEther: null, // contract
+      stakeEther: null, // contract,
+      showAddIncentiveModal: false,
       goal: '',
       recipient: '',
       deadlineDate: '',
       deadlineTime: '',
-      eth: ''
+      eth: '',
+      showReceiptModal: false,
+      receipt: {}
     };
+    this.toggleAddIncentiveModal = this.toggleAddIncentiveModal.bind(this);
     this.handleIncentiveFormChange = this.handleIncentiveFormChange.bind(this);
     this.handleIncentiveFormSubmit = this.handleIncentiveFormSubmit.bind(this);
+    this.toggleReceiptModal = this.toggleReceiptModal.bind(this);
   }
 
   async componentDidMount() {
@@ -28,6 +33,7 @@ class StakeEtherContainer extends Component {
       web3: web3,
       stakeEther: stakeEther
     });
+    // this.fetchIncentives();
   }
 
   getWeb3() {
@@ -47,8 +53,23 @@ class StakeEtherContainer extends Component {
     }
   }
 
-  fetchIncentives() {
-    // this.props.contract
+  toggleAddIncentiveModal() {
+    this.setState({
+      showAddIncentiveModal: !this.state.showAddIncentiveModal
+    });
+  }
+
+  toggleReceiptModal() {
+    this.setState({
+      showReceiptModal: !this.state.showReceiptModal
+    });
+  }
+
+  async fetchIncentives() {
+    const instance = await this.state.stakeEther.deployed();
+    const incentives = await instance.fetchIncentives();
+
+    console.log(incentives);
   }
 
   handleIncentiveFormChange(e) {
@@ -57,22 +78,41 @@ class StakeEtherContainer extends Component {
     });
   }
 
-  handleIncentiveFormSubmit() {
-    const payload = {
-      goal: this.state.goal,
-      recipient: this.state.recipient,
-      deadlineDate: this.state.deadlineDate,
-      deadlineTime: this.state.deadlineTime,
-      eth: this.state.eth
-    };
-    console.log(payload)
+  async handleIncentiveFormSubmit() {
+    // Solidity time is seconds since Jan 1, 1970 00:00
+    const deadline = (+new Date(`${this.state.deadlineDate} ${this.state.deadlineTime}`)) / 1000;
+
+    const instance = await this.state.stakeEther.deployed();
+
+    const { receipt } = await instance.createIncentive(
+      this.state.recipient,
+      this.state.goal,
+      deadline,
+      { from: this.state.web3.eth.accounts[0], value: this.state.web3.toWei(this.state.eth, 'ether'), gas: 250000, gasPrice: 20000000000  });
+    // Default Gas Limit: 250,000
+    // Default Gas Price: 20 Gwei
+
+    if (receipt) {
+      this.setState({
+        showAddIncentiveModal: false,
+        showReceiptModal: true,
+        receipt: receipt
+      });
+    }
+
+    this.fetchIncentives();
   }
 
   render() {
     return (
       <StakeEtherMotivation
+        showAddIncentiveModal={this.state.showAddIncentiveModal}
+        toggleAddIncentiveModal={this.toggleAddIncentiveModal}
         handleIncentiveFormChange={this.handleIncentiveFormChange}
         handleIncentiveFormSubmit={this.handleIncentiveFormSubmit}
+        showReceiptModal={this.state.showReceiptModal}
+        toggleReceiptModal={this.toggleReceiptModal}
+        receipt={this.state.receipt}
       />
     )
   }
