@@ -61,6 +61,9 @@ class StakeEtherContainer extends Component {
   }
 
   toggleReceiptModal() {
+    if (this.state.showReceiptModal) {
+      this.fetchIncentives();
+    }
     this.setState({
       showReceiptModal: !this.state.showReceiptModal
     });
@@ -96,7 +99,7 @@ class StakeEtherContainer extends Component {
         } else if (i === 3) {
           parsedIncentives[j]['goal'] = web3.toAscii(rawIncentives[i][j]);
         } else if (i === 4) {
-          parsedIncentives[j]['deadline'] = rawIncentives[i][j].toNumber() * 1000;
+          parsedIncentives[j]['deadline'] = rawIncentives[i][j].toNumber();
         } else { // i === 5
           parsedIncentives[j]['staked'] = web3.fromWei(rawIncentives[i][j], 'ether').toNumber();
         }
@@ -104,7 +107,7 @@ class StakeEtherContainer extends Component {
     }
 
     this.setState({
-      incentives: incentives
+      incentives: parsedIncentives
     });
   }
 
@@ -135,8 +138,6 @@ class StakeEtherContainer extends Component {
         receipt: receipt
       });
     }
-
-    this.fetchIncentives();
   }
 
   render() {

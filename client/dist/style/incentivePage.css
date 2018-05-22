@@ -22,7 +22,7 @@
   font-family: Lato;
   font-size: 1em;
   margin: 0 auto;
-  margin-top: 1em;
+  margin-top: 2em;
   width: 70%;
 }
 
@@ -73,5 +73,16 @@
   width: 70%;
 }
 
+.incentive-item-outer {
+  width: 80%;
+  margin: 4% auto;
+}
 
-
+.incentive-item-inner {
+  color: #49525d;
+  font-family: Lato;
+  padding: 0.56em;
+  margin: 0 auto;
+  margin-top: 0.2em;
+  border-radius: 7px;
+}

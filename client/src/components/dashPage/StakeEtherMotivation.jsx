@@ -42,6 +42,7 @@ const renderTextField = (hintText, floatingLabelText, handleChange, id, multiLin
 class StakeEtherMotivation extends Component {
   constructor(props) {
     super(props);
+    this.renderIncentives = this.renderIncentives.bind(this);
   }
 
   renderIncentives() {
