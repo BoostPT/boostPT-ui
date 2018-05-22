@@ -1,3 +1,4 @@
+
 .rbc-btn {
   color: inherit;
   font: inherit;
@@ -99,7 +100,7 @@ button.rbc-input::-moz-focus-inner {
   z-index: 4;
 }
 .rbc-today {
-  background-color: #eaf6ff;
+  background-color: #343F4B;
 }
 .rbc-toolbar {
   display: -webkit-flex;
@@ -314,6 +315,7 @@ button.rbc-input::-moz-focus-inner {
   min-width: 0;
   padding-right: 5px;
   text-align: right;
+  color: yellow;
 }
 .rbc-date-cell.rbc-now {
   font-weight: bold;

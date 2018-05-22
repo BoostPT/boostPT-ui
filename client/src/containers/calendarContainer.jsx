@@ -20,7 +20,7 @@ class CalendarContainer extends Component {
     };
   }
 
-  async componentDidMount(){
+  async componentWillMount(){
     try{
       await this.props.fetchEvents(this.props.userInfo.id);
       await this.props.events.forEach((event) => {
@@ -35,12 +35,15 @@ class CalendarContainer extends Component {
 
         this.state.events.push(calendarEvent);
       });
+      this.setState({});
+      console.log(this.state.events);
     } catch (err) {
-
+      return err;
     }
   }
 
   moveEvent({ event, start, end }) {
+    console.log("inside",{ event, start, end });
     const { events } = this.state
 
     const idx = events.indexOf(event)
@@ -48,7 +51,6 @@ class CalendarContainer extends Component {
 
     const nextEvents = [...events]
     nextEvents.splice(idx, 1, updatedEvent);
-
     this.setState({
       events: nextEvents,
     });
@@ -69,16 +71,18 @@ class CalendarContainer extends Component {
   }
 
   render(){
+    console.log(this.state.events);
     return(
       <div className="calendarContainer">
         <DnDCalendar 
           defaultDate={new Date()}
           defaultView="month"
           events={this.state.events}
-          onEventDrop={this.moveEvent}
-          onEventResize={this.onEventResize}
+          onEventDrop={this.moveEvent.bind(this)}
+          onEventResize={this.resizeEvent.bind(this)}
           resizable
-          style={{ height: "100vh" }}
+          style={{ height: "75vh" }}
+          views={['month', 'week', 'day']}
         />
       </div>
     );
