@@ -7,6 +7,7 @@ import ClientTabContainer from '../../containers/clientTabContainer.jsx';
 import WorkoutsTab from './workoutsTab.jsx';
 import MessagePageContainer from '../../containers/messagePageContainer.jsx';
 import CalendarContainer from '../../containers/calendarContainer.jsx';
+import StakeEtherContainer from '../../containers/StakeEtherContainer.jsx';
 
 const tabStyle = {
   standard: {
@@ -41,6 +42,7 @@ class DashPage extends Component {
           )
         }
         <Tab label="Messages" style={tabStyle[tabStyles[messagesTabIndex]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+        <Tab label="Incentives" style={tabStyle[tabStyles[messagesTabIndex + 1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
       </Tabs>
     )
   }
@@ -54,11 +56,13 @@ class DashPage extends Component {
       return <ClientTabContainer />
     } else if (this.props.activeTab === messagesTabIndex) {
       return <MessagePageContainer/>
+    } else if (this.props.activeTab === messagesTabIndex + 1) {
+      return <StakeEtherContainer />
     }
   }
 
   render() {
-    const nTabs = this.props.user.istrainer ? 4 : 3;
+    const nTabs = this.props.user.istrainer ? 5 : 4;
     const messagesTabIndex = this.props.user.istrainer ? 3 : 2;
     return (
         <div className="dashPage">
