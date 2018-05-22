@@ -64,6 +64,7 @@ class MessagePageModal extends Component {
       });
       if (result.status === 200) {
         this.props.toggleAddChatModal(this.state.inputValue);
+        this.props.fetchChannelsFromStore();
         return ('success');
       } else if (result.status === 205) {
         this.setState({toggleExistsMessage: true, toggleFailureMessage: false});
