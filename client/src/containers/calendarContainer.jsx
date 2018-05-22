@@ -81,7 +81,7 @@ class CalendarContainer extends Component {
           onEventDrop={this.moveEvent.bind(this)}
           onEventResize={this.resizeEvent.bind(this)}
           resizable
-          style={{ height: "75vh" }}
+          style={{ height: "75vh", margin: '2%', boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px' }}
           views={['month', 'week', 'day']}
         />
       </div>
