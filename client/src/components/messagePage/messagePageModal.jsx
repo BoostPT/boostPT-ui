@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import RaisedButton from 'material-ui/RaisedButton';
+import * as colors from 'material-ui/styles/colors';
 
 class MessagePageModal extends Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class MessagePageModal extends Component {
     this.state = {
       inputValue : '',
       toggleFailureMessage: false,
-      toggleExistsMessage: false
+      toggleExistsMessage: false,
     }
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
     this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
@@ -85,13 +87,23 @@ class MessagePageModal extends Component {
       <div>{
         <div className="messageModal" onClick={this.overlayClick}>
           <div className="messageModal-content" >
+          <div className="closeWrapper">
+          <div className="close" onClick={this.props.toggleAddChatModal}>&times;</div>
+          </div>
             <div id="messageModal-title">Start a New Channel</div>
             <div id="messagetModal-subtitle" >Enter a username here
             </div>
             <label>
               <span>
                 <input id="messageModal-input" value ={this.state.inputValue} name="channelInput" onChange={this.handleInputValueChange} onKeyPress={(e) => this.handleKeyPress(e)}></input>
-                <button id="createChannelButton" onClick={this.handleSubmitButtonClick} >Submit</button>
+                <RaisedButton id="createChannelButton" 
+                            onClick={this.handleSubmitButtonClick} 
+                            backgroundColor={colors.grey800} 
+                            labelStyle={{ textTransform: 'none'}}
+                            style={{ borderRadius: '10px', marginLeft: '10px'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
+                            buttonStyle={{ borderRadius: '10px'}}
+                            labelColor={colors.yellow500}label="Submit"/>
               </span>
             </label>
             {
@@ -107,9 +119,6 @@ class MessagePageModal extends Component {
               :
               <span></span>
             }
-            </div>
-            <div>
-              <span className="close" onClick={this.props.toggleAddChatModal}>&times;</span>
             </div>
           </div>
         </div>}
