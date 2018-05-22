@@ -28,33 +28,44 @@ class DashPage extends Component {
     this.renderActiveTabPage = this.renderActiveTabPage.bind(this);
   }
 
-  renderActiveTabPage() {
+  renderTabs(nTabs, messagesTabIndex) {
+    const tabStyles = Array(nTabs).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
+    return (
+      <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
+        <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+        <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+        {this.props.user.istrainer ? (
+          <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+          ) : (
+            null
+          )
+        }
+        <Tab label="Messages" style={tabStyle[tabStyles[messagesTabIndex]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
+      </Tabs>
+    )
+  }
+
+  renderActiveTabPage(messagesTabIndex) {
     if (this.props.activeTab === 0) {
       return <CalendarContainer/>
     } else if (this.props.activeTab === 1) {
       return <WorkoutsTab />
-    } else if (this.props.activeTab === 2) {
+    } else if (this.props.user.istrainer && this.props.activeTab === 2) {
       return <ClientTabContainer />
-    } else if (this.props.activeTab === 3) {
+    } else if (this.props.activeTab === messagesTabIndex) {
       return <MessagePageContainer/>
     }
   }
 
   render() {
-
-    const tabStyles = Array(4).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
-
+    const nTabs = this.props.user.istrainer ? 4 : 3;
+    const messagesTabIndex = this.props.user.istrainer ? 3 : 2;
     return (
         <div className="dashPage">
           <NavbarContainer history={this.props.history}/>
           <div className="dashPageBody">
-            <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
-              <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
-              <Tab label="Workouts" style={tabStyle[tabStyles[1]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
-              <Tab label="Clients" style={tabStyle[tabStyles[2]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
-              <Tab label="Messages" style={tabStyle[tabStyles[3]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />
-            </Tabs>
-            {this.renderActiveTabPage()}
+            {this.renderTabs(nTabs, messagesTabIndex)}
+            {this.renderActiveTabPage(messagesTabIndex)}
           </div>
         </div>
     )

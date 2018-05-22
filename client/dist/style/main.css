@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "landingPage.css";
 @import "auth.css";
 @import "dashPage.css";
 @import "bioPage.css";
@@ -8,4 +9,4 @@
 @import "messagePage.css";
 @import "calendar.css";
 @import "scheduleModal.css";
-/* comment for merge */
+

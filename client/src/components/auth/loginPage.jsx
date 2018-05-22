@@ -5,6 +5,19 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import * as colors from "material-ui/styles/colors";
 
+const authBtnLabelStyle = {
+  fontFamily: 'Lato',
+  fontSize: '1.2em',
+  color: 'white',
+  textTransform: 'none'
+};
+
+const authBtnStyle = {
+  height: '2.4em',
+  width: '6.4em',
+  margin: '1.2em'
+};
+
 const renderTextField = (name, hintText, type, onChange, value) => {
   return (
     <TextField
@@ -36,7 +49,12 @@ class LoginPage extends Component {
               <br />
               <FlatButton
                 type="submit"
-                label="Login"
+                label="Log In"
+                backgroundColor={colors.grey600}
+                hoverColor={colors.grey700}
+                rippleColor={colors.yellow500}
+                labelStyle={authBtnLabelStyle}
+                style={authBtnStyle}
                 onClick={this.props.handleLogin}
               />
             </form>

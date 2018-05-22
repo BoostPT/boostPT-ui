@@ -1,0 +1,73 @@
+#landing-page {
+  background-color: #BDBDBD;
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+#boostpt-title {
+  font-family: 'Teko';
+  float: left;
+  margin-left: 0.8em;
+  margin-top: 0.3em;
+  font-size: 4em;
+  color: #49525d;
+}
+
+#pt-title {
+  color: #FFEB3B;
+}
+
+.auth-btns {
+  float: right;
+  margin-right: 2.5em;
+  margin-top: 1.5em;
+}
+
+.landing-page-header {
+  font-family: Lato;
+  font-size: 1.6em;
+  color: #49525d;
+  margin-top: 4em;
+  margin-bottom: 2em;
+  text-align: center;
+  clear: both;
+}
+
+.landing-page-subheader {
+  background-color: white;
+  height: 16em;
+}
+
+.landing-page-col-grid {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+
+.landing-page-col {
+  text-align: center;
+  font-family: Lato;
+  color: #49525d;
+  margin-top: 3em;
+}
+
+.landing-page-icon {
+  margin-top: 0.8em;
+}
+
+.landing-page-txt {
+  font-size: 0.64em;
+  opacity: 0.8;
+}
+
+.footer {
+  position: absolute;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  bottom: 0;
+  right: 0;
+  float: right;
+  color: #49525d;
+}

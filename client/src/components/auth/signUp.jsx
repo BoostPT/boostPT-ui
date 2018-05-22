@@ -3,8 +3,35 @@ import PropTypes from "prop-types";
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from "material-ui/styles/colors";
+
+const authBtnLabelStyle = {
+  fontFamily: 'Lato',
+  fontSize: '1.2em',
+  color: 'white',
+  textTransform: 'none'
+};
+
+const authBtnStyle = {
+  height: '2.4em',
+  width: '6.4em',
+  margin: '1.2em'
+};
+
+const toggleStyle = {
+  thumb: {
+    backgroundColor: colors.yellow700
+  },
+  track: {
+    backgroundColor: colors.yellow300
+  }
+};
+
+const toggleLabelStyle = {
+  color: '#49525d',
+  fontFamily: 'Lato'
+};
 
 const renderTextField = (name, hintText, type, onChange) => {
   return (
@@ -38,13 +65,21 @@ class Signup extends Component {
               <div className="signup-submit-div">
                 <Toggle
                   label="I'm a trainer"
+                  defaultToggled={true}
                   labelPosition="right"
+                  thumbSwitchedStyle={toggleStyle.thumb}
+                  trackSwitchedStyle={toggleStyle.track}
+                  labelStyle={toggleLabelStyle}
                   onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
                   onClick={this.props.handleToggleButtonChange}
                 />
-                <RaisedButton
+                <FlatButton
                   label="Sign Up"
-                  primary={true}
+                  backgroundColor={colors.grey600}
+                  hoverColor={colors.grey700}
+                  rippleColor={colors.yellow500}
+                  labelStyle={authBtnLabelStyle}
+                  style={authBtnStyle}
                   onClick={this.props.handleSignupClick}
                 />
               </div>
