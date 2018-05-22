@@ -17,7 +17,8 @@ class StakeEtherContainer extends Component {
       deadlineTime: '',
       eth: '',
       showReceiptModal: false,
-      receipt: {}
+      receipt: {},
+      incentives: []
     };
     this.toggleAddIncentiveModal = this.toggleAddIncentiveModal.bind(this);
     this.handleIncentiveFormChange = this.handleIncentiveFormChange.bind(this);
@@ -33,7 +34,7 @@ class StakeEtherContainer extends Component {
       web3: web3,
       stakeEther: stakeEther
     });
-    // this.fetchIncentives();
+    this.fetchIncentives();
   }
 
   getWeb3() {
@@ -45,11 +46,11 @@ class StakeEtherContainer extends Component {
       return web3;
     } else {
       // Fallback to localhost if no web3 injection, using Ganache port.
-      const provider = new Web3.providers.HttpProvider('http://localhost:7545');
-      const web3 = new Web3(provider);
-      console.log('No web3 instance injected, using Local web3.');
-      // alert('This feature needs a web3 provider to run. Please install MetaMask at metamask.io or use the Mist browser.');
-      return web3;
+      // const provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      // const web3 = new Web3(provider);
+      // console.log('No web3 instance injected, using Local web3.');
+      alert('This feature needs a web3 provider to run. Please install MetaMask at metamask.io or use the Mist browser.');
+      // return web3;
     }
   }
 
@@ -67,9 +68,44 @@ class StakeEtherContainer extends Component {
 
   async fetchIncentives() {
     const instance = await this.state.stakeEther.deployed();
-    const incentives = await instance.fetchIncentives();
+    const rawIncentives = await instance.fetchIncentives();
+    if (rawIncentives[0].length < 1) return;
 
-    console.log(incentives);
+    // Incentive metadata is deconstructed
+    // Data received from the contract are in the following structure:
+
+    // [
+    //   [incentiveId (bytes32), ...],
+    //   [creatorAddress (address), ...],
+    //   [recipientAddress (address), ...],
+    //   [goal (bytes32), ...], // Needs to be converted to String
+    //   [deadline (uint), ...],  // Needs to be converted from s to ms
+    //   [staked (uint), ...] // Needs to be converted from Wei to Ether
+    // ]
+
+    let parsedIncentives = Array(rawIncentives[0].length).fill({});
+
+    for (let i = 0; i < rawIncentives.length; i++) {
+      for (let j = 0; j < parsedIncentives.length; j++) {
+        if (i === 0) {
+          parsedIncentives[j]['id'] = rawIncentives[i][j];
+        } else if (i === 1) {
+          parsedIncentives[j]['creatorAddress'] = rawIncentives[i][j];
+        } else if (i === 2) {
+          parsedIncentives[j]['recipientAddress'] = rawIncentives[i][j];
+        } else if (i === 3) {
+          parsedIncentives[j]['goal'] = web3.toAscii(rawIncentives[i][j]);
+        } else if (i === 4) {
+          parsedIncentives[j]['deadline'] = rawIncentives[i][j].toNumber() * 1000;
+        } else { // i === 5
+          parsedIncentives[j]['staked'] = web3.fromWei(rawIncentives[i][j], 'ether').toNumber();
+        }
+      }
+    }
+
+    this.setState({
+      incentives: incentives
+    });
   }
 
   handleIncentiveFormChange(e) {
@@ -106,6 +142,7 @@ class StakeEtherContainer extends Component {
   render() {
     return (
       <StakeEtherMotivation
+        incentives={this.state.incentives}
         showAddIncentiveModal={this.state.showAddIncentiveModal}
         toggleAddIncentiveModal={this.toggleAddIncentiveModal}
         handleIncentiveFormChange={this.handleIncentiveFormChange}

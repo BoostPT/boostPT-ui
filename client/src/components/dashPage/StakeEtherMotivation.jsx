@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import IncentiveContainer from '../../containers/IncentiveContainer.jsx';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -45,7 +46,7 @@ class StakeEtherMotivation extends Component {
 
   renderIncentives() {
     return this.props.incentives ? (
-      null // map
+      <IncentiveContainer incentives={this.props.incentives} />
     ) : (
       <h3 className="incentive-list-header">You don't have any ETH incentives</h3>
     );
@@ -134,7 +135,7 @@ class StakeEtherMotivation extends Component {
 }
 
 StakeEtherMotivation.propTypes = {
-  incentives: PropTypes.object,
+  incentives: PropTypes.array,
   showAddIncentiveModal: PropTypes.bool.isRequired,
   toggleAddIncentiveModal: PropTypes.func.isRequired,
   handleIncentiveFormChange: PropTypes.func.isRequired,
