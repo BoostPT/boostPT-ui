@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
   getWorkoutsList,
@@ -50,6 +50,10 @@ class NavbarContainer extends Component {
         pauseOnHover: true
         });
     });
+  }
+
+  componentWillUnmount() {
+    this.socket.removeListener();
   }
 
   handleTitleClick(){
@@ -117,14 +121,11 @@ class NavbarContainer extends Component {
 
   async handleRequestOptionYesClick(e) {
     e.persist();
-    // add trainer and client to trainerclientuser table
     await this.props.addTrainerClientConnection(e.target.dataset.id, this.props.user.id, this.props.clients);
-    // remove trainer client from trainerRequests table
     await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
   async handleRequestOptionNoClick(e) {
-    // remove that client from list of requests
     await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
   }
 
@@ -140,7 +141,7 @@ class NavbarContainer extends Component {
    
   render(){
     return(
-      <div>
+      <Fragment>
         <Navbar 
         user={this.props.user}
         handleOnChangeText={this.handleOnChangeText}
@@ -159,7 +160,7 @@ class NavbarContainer extends Component {
         handleRequestOptionNoClick={this.handleRequestOptionNoClick}
         />
         <ToastContainer />
-      </div>
+      </Fragment>
     );
   }
 }

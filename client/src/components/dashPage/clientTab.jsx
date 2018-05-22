@@ -56,7 +56,7 @@ class ClientTab extends Component {
               <div className="column">
                 <Card className = 'clientCard'>
                   <CardText className ='clientCardText'> 
-                    <div className="name">{cardList[i].client_name}</div>
+                    <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                   </CardText>
                 </Card>
               </div>
@@ -67,7 +67,7 @@ class ClientTab extends Component {
             <div className="column" key={i + 1}>
               <Card className = 'clientCard'>
                 <CardText className ='clientCardText'> 
-                  <div className="name">{cardList[i].client_name}</div>
+                  <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                 </CardText>
               </Card>
           </div>
