@@ -59,6 +59,10 @@ class BioPage extends Component{
     super(props);
     this.state = { showRequestBtn: true }
   }
+  
+  componentDidMount() {
+    this.checkAlreadyRequested();
+  }
 
   hideRequestBtn() {
     this.setState({ showRequestBtn: false });
@@ -69,15 +73,14 @@ class BioPage extends Component{
     if (Array.isArray(requests)) {
       for (let i = 0; i < requests.length; i++) {
         if (requests[i].trainer_id === this.props.user.id || this.props.user.id === this.props.loggedInUserId) {
-          return true;
+          this.hideRequestBtn();
+          return;
         }
-        return false;
       }
     }
   }
 
   render(){
-    console.log('STATE', this.state.showRequestBtn)
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>
@@ -133,7 +136,7 @@ class BioPage extends Component{
                   this.hideRequestBtn();
                 }} data-id={this.props.user.id} className="requestAsTrainerButton">Request as Trainer</button>
                 :
-                <p className="requestAsTrainerButton">Request Sent</p>
+                null
             }
           </div>
           <div className="bioPageMyPublicWorkouts">
