@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?/, 
         include: SRC_DIR,
         loader: 'babel-loader',
         query: {
@@ -47,7 +47,6 @@ module.exports = {
           loader: 'less-loader' // compiles Less to CSS
         }]
       }
-      
     ]
   },
   plugins: [

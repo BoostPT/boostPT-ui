@@ -7,9 +7,6 @@ import {
   fetchTrainerRequestsOut
  } from '../actions/index.js';
 import debounce from 'lodash/debounce';
-import io from 'socket.io-client';
-// import axios from 'axios';
-
 import DashPage from '../components/dashPage/index.jsx';
 
 class DashPageContainer extends Component {
@@ -19,7 +16,6 @@ class DashPageContainer extends Component {
       activeTab: 1,
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
-    this.socket = io('http://localhost:5000');
   }
 
   async componentDidMount() {
@@ -27,10 +23,6 @@ class DashPageContainer extends Component {
     await this.props.fetchTrainerRequestsIn(this.props.user.id);
     await this.props.fetchTrainerRequestsOut(this.props.user.id);
     await this.hideDropdownClick();
-    await this.socket.emit('requestRoom', this.props.user.username);
-    await this.socket.on('request', (data) => {
-      console.log('RECEIVED NOTIFICATION FROM', data)
-    });
   }
 
   handleTabSelect(tab) {
