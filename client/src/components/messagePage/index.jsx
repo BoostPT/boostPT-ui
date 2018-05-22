@@ -34,6 +34,7 @@ class MessagePage extends Component {
   }
 
   componentWillMount() {
+    this.props.fetchChannelsFromStore();
     let channels = this.props.channels;
     let username = this.props.user.username;
     let messages = this.props.channels.messages;
@@ -72,6 +73,7 @@ class MessagePage extends Component {
   }
 
   handleChannelNameClick(channelName) {
+    this.props.fetchChannelsFromStore();
     let tempArr = [channelName, this.props.user.username];
     let newArr = tempArr.sort();
     var channelStr = tempArr[0] + ':' + tempArr[1];
@@ -196,7 +198,7 @@ class MessagePage extends Component {
         </div>
         <div>
           {this.state.toggleAddChatModal ?
-          <MessagePageModal activeUser = {this.props.user.username} toggleAddChatModal={this.toggleAddChatModal.bind(this)}/>
+          <MessagePageModal fetchChannelsFromStore = {this.fetchChannelsFromStore} activeUser = {this.props.user.username} toggleAddChatModal={this.toggleAddChatModal.bind(this)}/>
           :
           <div>
           </div>}
