@@ -46,12 +46,11 @@ class BioPageContainer extends Component {
         bioPageUserInfo: this.props.user
       });
     } catch (err) {
-      console.log(err);
       return (err);
     }
   }
 
-  async handleRequestClick(e) {
+  async handleRequestClick(e, cb) {
     e.persist();
     await axios.post(`http://localhost:8000/api/users/request`, {
       client_id: this.props.user.id,

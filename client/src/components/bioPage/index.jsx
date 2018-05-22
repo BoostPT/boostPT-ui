@@ -57,6 +57,11 @@ const RequestAsTrainerButton = {
 class BioPage extends Component{
   constructor(props){
     super(props);
+    this.state = { showRequestBtn: true }
+  }
+
+  hideRequestBtn() {
+    this.setState({ showRequestBtn: false });
   }
 
   checkAlreadyRequested() {
@@ -72,6 +77,7 @@ class BioPage extends Component{
   }
 
   render(){
+    console.log('STATE', this.state.showRequestBtn)
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>
@@ -121,10 +127,13 @@ class BioPage extends Component{
             </div>
             <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
             {
-              this.checkAlreadyRequested() ?
-                null
+              this.state.showRequestBtn ?
+                <button onClick={(e) => {
+                  this.props.handleRequestClick(e);
+                  this.hideRequestBtn();
+                }} data-id={this.props.user.id} className="requestAsTrainerButton">Request as Trainer</button>
                 :
-                <button onClick={this.props.handleRequestClick} data-id={this.props.user.id} className="requestAsTrainerButton">Request as Trainer</button>
+                <p className="requestAsTrainerButton">Request Sent</p>
             }
           </div>
           <div className="bioPageMyPublicWorkouts">
