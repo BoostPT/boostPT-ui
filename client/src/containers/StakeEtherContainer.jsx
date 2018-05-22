@@ -9,8 +9,15 @@ class StakeEtherContainer extends Component {
     super(props);
     this.state = {
       web3: null,
-      stakeEther: null
+      stakeEther: null, // contract
+      goal: '',
+      recipient: '',
+      deadlineDate: '',
+      deadlineTime: '',
+      eth: ''
     };
+    this.handleIncentiveFormChange = this.handleIncentiveFormChange.bind(this);
+    this.handleIncentiveFormSubmit = this.handleIncentiveFormSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -44,9 +51,29 @@ class StakeEtherContainer extends Component {
     // this.props.contract
   }
 
+  handleIncentiveFormChange(e) {
+    this.setState({
+      [e.target.getAttribute('data')] : e.target.value
+    });
+  }
+
+  handleIncentiveFormSubmit() {
+    const payload = {
+      goal: this.state.goal,
+      recipient: this.state.recipient,
+      deadlineDate: this.state.deadlineDate,
+      deadlineTime: this.state.deadlineTime,
+      eth: this.state.eth
+    };
+    console.log(payload)
+  }
+
   render() {
     return (
-      <StakeEtherMotivation />
+      <StakeEtherMotivation
+        handleIncentiveFormChange={this.handleIncentiveFormChange}
+        handleIncentiveFormSubmit={this.handleIncentiveFormSubmit}
+      />
     )
   }
 }

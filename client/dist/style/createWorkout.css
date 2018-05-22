@@ -106,3 +106,8 @@
 .add-starred-exercise:hover {
   cursor: pointer;
 }
+
+.incentive-form-item {
+  float: left;
+  margin-left: 1em;
+}
