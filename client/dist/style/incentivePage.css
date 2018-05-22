@@ -1,0 +1,33 @@
+.incentive-list {
+  max-height: 75%;
+  width: 500px;
+  margin: 1.44em auto;
+  text-align: center;
+  background-color: #37474F;
+  border-radius: 7px;
+  overflow-y: auto;
+}
+
+.incentive-list-header {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 1.44em;
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 70%;
+}
+
+.eth-logo-left {
+  float: left;
+  height: 100px;
+  opacity: 0.88;
+  display: inline-block;
+}
+
+.eth-logo-right {
+  float: right;
+  height: 100px;
+  opacity: 0.88;
+  display: inline-block;
+}
+
