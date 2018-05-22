@@ -60,6 +60,7 @@ class Navbar extends Component{
                   :
                   this.props.requestsIn.map(request => {
                     return <RequestListItem
+                            key={request.id}
                             picture={request.picture}
                             id={request.id}
                             username={request.username}

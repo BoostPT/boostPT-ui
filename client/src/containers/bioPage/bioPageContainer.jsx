@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BioPage from '../../components/bioPage/index.jsx';
 import { changeUserPicture, selectedWorkout } from '../../actions/index.js';
+import io from 'socket.io-client';
 import axios from 'axios';
 
 class BioPageContainer extends Component {
@@ -14,6 +15,7 @@ class BioPageContainer extends Component {
       aboutMeEdit: false,
       phoneNumberEdit: false
     }
+    this.socket = io('http://localhost:5000');
   }
 
   handleOnChangeText(e){
@@ -50,6 +52,7 @@ class BioPageContainer extends Component {
   }
 
   async handleRequestClick(e) {
+    e.persist();
     await axios.post(`http://localhost:8000/api/users/request`, {
       client_id: this.props.user.id,
       trainer_id: parseInt(e.target.dataset.id)
@@ -59,6 +62,14 @@ class BioPageContainer extends Component {
         Authorization: `${document.cookie}`
       }
     });
+    let trainerUsername;
+    for (let i = 0; i < this.props.trainers.length; i++) {
+      if (this.props.trainers[i].id === parseInt(e.target.dataset.id)) {
+        trainerUsername = this.props.trainers[i].username;
+      }
+    }
+    await this.socket.emit('requestRoom', trainerUsername);
+    await this.socket.emit('request', { room: trainerUsername, user: this.props.user });
   }
 
   render(){
@@ -86,7 +97,8 @@ const mapStateToProps = function(state) {
     authenticated: state.auth.authenticated,
     user: state.auth.user,
     changedUserInfo: state.changePictureReducer.user,
-    requests: { requestsIn: state.client.requestsIn, requestsOut: state.client.requestsOut }
+    requests: { requestsIn: state.client.requestsIn, requestsOut: state.client.requestsOut },
+    trainers: state.client.trainers
   };
 };
 

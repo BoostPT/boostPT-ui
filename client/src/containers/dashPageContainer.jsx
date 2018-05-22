@@ -7,6 +7,7 @@ import {
   fetchTrainerRequestsOut
  } from '../actions/index.js';
 import debounce from 'lodash/debounce';
+import io from 'socket.io-client';
 // import axios from 'axios';
 
 import DashPage from '../components/dashPage/index.jsx';
@@ -18,6 +19,18 @@ class DashPageContainer extends Component {
       activeTab: 1,
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
+    this.socket = io('http://localhost:5000');
+  }
+
+  async componentDidMount() {
+    await this.props.getAllTrainersList();
+    await this.props.fetchTrainerRequestsIn(this.props.user.id);
+    await this.props.fetchTrainerRequestsOut(this.props.user.id);
+    await this.hideDropdownClick();
+    await this.socket.emit('requestRoom', this.props.user.username);
+    await this.socket.on('request', (data) => {
+      console.log('RECEIVED NOTIFICATION FROM', data)
+    });
   }
 
   handleTabSelect(tab) {
@@ -49,13 +62,6 @@ class DashPageContainer extends Component {
       return false;
     });
     this.setState({ filteredTrainers: filteredTrainers });
-  }
-
-  componentWillMount() {
-    this.props.getAllTrainersList();
-    this.props.fetchTrainerRequestsIn(this.props.user.id);
-    this.props.fetchTrainerRequestsOut(this.props.user.id);
-    this.hideDropdownClick();
   }
    
   render(){
