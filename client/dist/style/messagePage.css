@@ -1,5 +1,4 @@
 #left {
-  width: 250px;
   height: 100%;
   position: relative;
   border-right-width: 4px;
@@ -8,7 +7,17 @@
   background: #FFFFFF;
   float: left;
   border-radius: 5px 0px 0px 5px;
+  transition: width 1s;
 }
+
+.animateWidth {
+  width: 0% ;
+}
+
+.staticWidth {
+  width: 250px ;
+}
+
 #right-top {
   height: 60px;
   border-bottom-width: 4px;
@@ -30,17 +39,18 @@
   position: relative;
   margin-top: 50px;
   height: 70vh;
-  width: 85vw;
+  width: 60vw;
   background-color: white;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #left-header {
-  margin-right: 15px;
-  font-size: 30px;
+  font-size: 45px;
   text-align: center;
-  margin-left: 30px;
+  overflow-x: hidden;
 }
 
 #left-header-container {
@@ -50,8 +60,8 @@
 #right-top-header {
   line-height: 60px;
   font-size: 30px;
-  float: left;
   margin-left: 30px;
+  text-align: center;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
@@ -68,6 +78,8 @@
   background: transparent;
   border-bottom: 2px solid black;
   margin-left: 30px;
+  font-size: 30px;
+  margin-top: 30px;
   float: left;
 }
 
@@ -104,9 +116,9 @@
 .messageModal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 35px;
+  padding: 0px 15px 50px 50px;
   border: 1px solid #888;
-  width: 60%;
+  width: 50%;
   border-radius: 7px;
 }
 
@@ -135,12 +147,17 @@
   border-bottom: 1px solid black;
 }
 
+.closeWrapper {
+  width: 100%;
+  height: 60px;
+}
+
 /* The Close Button */
 
 .close {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
+  font-size: 50px;
   font-weight: bold;
 }
 
@@ -153,8 +170,7 @@
 
 .channelName {
   margin-top: 10px;
-  font-size: 50px;
-  height: 55px;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -162,13 +178,43 @@
   cursor: pointer; 
   width:100%;
   height: 100%;
-  background-color: rgb(161, 161, 240);
+  background-color: #343F4B;
+  color: yellow;
   opacity:0.5;
 } 
 
 .channelScrollBox {
   overflow-y: scroll;
   height: 450px;
+}
+
+.animateWidth {
+  width: 0%;
+  transition: width 2s;
+  transition: width 0%;
+}
+
+.add-chat {
+  text-align: center;
+}
+
+.sendButton {
+  margin-top: 30px;
+}
+
+.chatButton {
+  float: none !important;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+.doubleArrow {
+  float: left;
+  font-size:30px;
+}
+
+.doubleArrow:hover {
+  cursor: pointer;
 }
 
 

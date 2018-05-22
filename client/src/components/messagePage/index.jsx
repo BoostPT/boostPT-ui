@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import MessagePageModal from './messagePageModal.jsx';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/fontawesome-free-solid';
+import { faAngleDoubleRight } from '@fortawesome/fontawesome-free-solid';
+import debounce from 'lodash/debounce';
 import io from 'socket.io-client';
 import shortid from 'shortid';
 
@@ -16,13 +19,17 @@ class MessagePage extends Component {
       channelNameList: [],
       activeChannel: '',
       messageInput: '',
-      messages: []
+      messages: [],
+      hideSidebar: false,
+      doubleLeft: false,
     }
+    this.animateSidebar = this.animateSidebar.bind(this);
     this.toggleAddChatModal = this.toggleAddChatModal.bind(this);
     this.handleAddChatButton = this.handleAddChatButton.bind(this);
     this.handleChannelNameClick = this.handleChannelNameClick.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
+    this.flipArrow = debounce(this.flipArrow.bind(this), 1000);
     this.socket = io('http://localhost:5000');
   }
 
@@ -71,7 +78,6 @@ class MessagePage extends Component {
     if (this.state.activeChannel.length > 0) {
       this.socket.emit('unsubscribe', this.state.activeChannel);
     }
-    //subscribe to name of channel
     this.socket.emit('subscribe', channelStr);
     let channels = this.props.channels;
     let tempMessagesArr = [];
@@ -100,16 +106,36 @@ class MessagePage extends Component {
       this.setState({messageInput: ''});
     }
   }
+
+  animateSidebar() {
+    this.state.hideSidebar === false ? this.setState({hideSidebar: true}) : (this.setState({hideSidebar: false}));
+    this.flipArrow();
+  }
+
+  flipArrow() {
+    this.state.doubleLeft ? this.setState({doubleLeft: false}) : this.setState({doubleLeft: true});
+  }
   
   render() {
     return (
       <div className="messageView">
-        <div id="left">
+        <div id="left" className={this.state.hideSidebar? "animateWidth" : "staticWidth"}>
           <div id="left-header-container">
-            <span id="left-header">
+            <div id="left-header">
               Messages
-            </span>
-            <FloatingActionButton onClick={this.handleAddChatButton} className="add-chat" backgroundColor={colors.grey600} mini={true}><ContentAdd /></FloatingActionButton>
+            </div>
+            <div style={{overflow: 'hidden', textAlign: 'center'}}>
+            <div>
+            </div>
+            <RaisedButton className="chatButton" 
+                            onClick={this.handleAddChatButton} 
+                            backgroundColor={colors.grey800} 
+                            labelStyle={{ textTransform: 'none'}}
+                            style={{ borderRadius: '10px', float: 'left', marginLeft: '10px'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
+                            buttonStyle={{ borderRadius: '10px'}}
+                            labelColor={colors.yellow500}label="Add Chat"/>
+            </div>
             <div className="channelScrollBox">
             {
               this.state.channelNameList.map(channelName =>    
@@ -124,15 +150,16 @@ class MessagePage extends Component {
           </div>
         </div>
         <div id="right-top">
+        <FontAwesomeIcon onClick={this.animateSidebar} className={"doubleArrow"} icon={this.state.doubleLeft ? faAngleDoubleRight : faAngleDoubleLeft} />
           <div id="right-top-header">
           {
             this.state.activeChannel.length > 0 ?
             <div>
-              Direct Message with {this.state.activeChannel.replace(this.props.user.username, "").replace(":", "")}
+              {this.state.activeChannel.replace(this.props.user.username, "").replace(":", "")}
             </div>
             :
             <div>
-              No Channel Currently Selected
+              No Channel Selected
             </div>
           }
           </div>
@@ -159,9 +186,9 @@ class MessagePage extends Component {
               <RaisedButton className="sendButton" 
                             onClick={this.sendMessage} 
                             backgroundColor={colors.grey800} 
-                            labelStyle={{ textTransform: 'none'}}
-                            style={{ borderRadius: '10px', float: 'left' }}
-                            buttonStyle={{ borderRadius: '10px' }}
+                            style={{ borderRadius: '10px', float: 'left', marginLeft: '10px'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none'}}
+                            buttonStyle={{ borderRadius: '10px'}}
                             labelColor={colors.yellow500}label="Send"/>
             </div>
           </label>
