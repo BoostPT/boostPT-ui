@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Tabs, Tab} from 'material-ui/Tabs';
+
 import NavbarContainer from '../../containers/navbarContainer.jsx';
 import ClientTabContainer from '../../containers/clientTabContainer.jsx';
-import {Tabs, Tab} from 'material-ui/Tabs';
 import WorkoutsTab from './workoutsTab.jsx';
 import MessagePageContainer from '../../containers/messagePageContainer.jsx';
+import CalendarContainer from '../../containers/calendarContainer.jsx';
 
 const tabStyle = {
   standard: {
@@ -45,8 +47,7 @@ class DashPage extends Component {
 
   renderActiveTabPage(messagesTabIndex) {
     if (this.props.activeTab === 0) {
-      // Schedule Page
-      return null
+      return <CalendarContainer/>
     } else if (this.props.activeTab === 1) {
       return <WorkoutsTab />
     } else if (this.props.user.istrainer && this.props.activeTab === 2) {

@@ -11,9 +11,9 @@ class WorkoutModalContainer extends Component {
     super(props);
   }
 
-  handleYesClick(e, workoutId, workouts) {
-    this.props.deleteWorkout(workoutId, workouts);
-    this.props.toggleModal(e);
+  handleYesClick(e, workoutId, workouts, userId) {
+    this.props.deleteWorkout(workoutId, workouts, userId);
+    this.props.toggleModal(e,'deleteWorkout');
   }
 
   render() {
@@ -26,6 +26,7 @@ class WorkoutModalContainer extends Component {
          workouts={this.props.workouts}
          workoutId={this.props.workoutId}
          workoutName={this.props.workoutName}
+         userId={this.props.userId}
         />
       </div>
     );

@@ -15,11 +15,15 @@ class WorkoutItem extends Component {
   }
 
   renderPublicOrPrivate() {
-    return this.props.clickedWorkout.is_public ? (
-      <Public className="public-private-icon" color={colors.grey400} />
-    ) : (
-      <Private className="public-private-icon" color={colors.grey400} />
-    );
+    if(this.props.clickedWorkout) {
+      return this.props.clickedWorkout.is_public ? (
+        <Public className="public-private-icon" color={colors.grey400} />
+      ) : (
+        <Private className="public-private-icon" color={colors.grey400} />
+      );
+    } else {
+      return null;
+    }
   }
 
   renderStar() {
@@ -41,10 +45,7 @@ class WorkoutItem extends Component {
   render() {
     return ( 
       <div className="workout-container">
-      {!this.props.clickedWorkout ? null :
-        !this.props.clickedWorkout.exercises ?
-          null
-        :
+      {(this.props.clickedWorkout && Array.isArray(this.props.clickedWorkout.exercises))  ?
           <div className="font">
             <div className="hug-left">
               <h2 className="workout-title">
@@ -57,7 +58,23 @@ class WorkoutItem extends Component {
             </div>
             {this.renderClickedWorkout()}
           </div>
+          :
+          this.props.clickedWorkout && Object.keys(this.props.clickedWorkout).length ? 
+          <div className="font">
+            <div className="hug-left">
+              <h2 className="workout-title">
+                {this.props.clickedWorkout.name}
+                {this.renderPublicOrPrivate()}
+                {this.renderStar()}
+                <div className="clear-float"></div>
+              </h2>
+              <p>{!this.props.clickedWorkout ? null : moment(this.props.clickedWorkout.created_at).fromNow()}</p>
+            </div>
+          </div>
+          :
+          null
         }
+        
       </div>
     );
   }

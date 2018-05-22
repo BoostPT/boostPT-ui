@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
-import 'react-big-calendar/lib/addons/dragAndDrop/styles.less';
+import { fetchEvents } from '../actions/index.js';
 
 Calendar.setLocalizer(Calendar.momentLocalizer(moment));
 
@@ -19,7 +20,30 @@ class CalendarContainer extends Component {
     };
   }
 
+  async componentWillMount(){
+    try{
+      await this.props.fetchEvents(this.props.userInfo.id);
+      await this.props.events.forEach((event) => {
+        // console.log("inside calendar container", event);
+        const calendarEvent = {
+          id: event.id,
+          title: event.title,
+          start: new Date(event.year, event.month, event.day, event.start_hour, event.start_minute, event.second),
+          end: new Date(event.year, event.month, event.day, event.end_hour, event.end_minute, event.second),
+          desc: event.description
+        }
+
+        this.state.events.push(calendarEvent);
+      });
+      this.setState({});
+      console.log(this.state.events);
+    } catch (err) {
+      return err;
+    }
+  }
+
   moveEvent({ event, start, end }) {
+    console.log("inside",{ event, start, end });
     const { events } = this.state
 
     const idx = events.indexOf(event)
@@ -27,7 +51,6 @@ class CalendarContainer extends Component {
 
     const nextEvents = [...events]
     nextEvents.splice(idx, 1, updatedEvent);
-
     this.setState({
       events: nextEvents,
     });
@@ -48,20 +71,31 @@ class CalendarContainer extends Component {
   }
 
   render(){
+    console.log(this.state.events);
     return(
       <div className="calendarContainer">
         <DnDCalendar 
           defaultDate={new Date()}
           defaultView="month"
           events={this.state.events}
-          onEventDrop={this.moveEvent}
-          onEventResize={this.onEventResize}
+          onEventDrop={this.moveEvent.bind(this)}
+          onEventResize={this.resizeEvent.bind(this)}
           resizable
-          style={{ height: "100vh" }}
+          style={{ height: "75vh", margin: '2%', boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px' }}
+          views={['month', 'week', 'day']}
         />
       </div>
     );
   }
 }
 
-export default DragDropContext(HTML5Backend)(CalendarContainer);
+CalendarContainer = DragDropContext(HTML5Backend)(CalendarContainer);
+
+const mapStateToProps = function(state) {
+  return {
+    userInfo: state.auth.user,
+    events: state.events.events
+  };
+}; 
+
+export default connect(mapStateToProps, { fetchEvents })(CalendarContainer);

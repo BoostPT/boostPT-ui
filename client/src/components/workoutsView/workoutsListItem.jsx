@@ -10,7 +10,10 @@ import {
 import Public from 'material-ui/svg-icons/social/public';
 import Private from 'material-ui/svg-icons/action/lock';
 import Delete from 'material-ui/svg-icons/action/delete';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from "material-ui/styles/colors";
+
+import ScheduleButton from '../schedule/ScheduleButton.jsx';
 
 class WorkoutsListItem extends Component {
   constructor(props) {
@@ -50,15 +53,24 @@ class WorkoutsListItem extends Component {
           {
             is_public ?
 
-            <Public className="float-right status" color={colors.grey400} />
-            :
-            <Private className="float-right status" color={colors.grey400} />
-          }
-          <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e) => this.props.toggleModal(e)} />
-          <div className="clear-float"></div>
+              <Public className="float-right status" color={colors.grey400} />
+              :
+              <Private className="float-right status" color={colors.grey400} />
+            }
+            {!this.props.isPublic ? 
+              <Delete className="float-left delete-icon" color={colors.grey500} hoverColor={colors.grey700} data-id={this.props.workout.id} data-name={this.props.workout.name} onClick={(e)=> this.props.toggleModal(e,'deleteWorkout',this.props.workout.name,this.props.workout.id)} />
+              : 
+              null
+            }
+            <ScheduleButton 
+              toggleModal={this.props.toggleModal}
+              workout={this.props.workout}
+            />
+            <div className="clear-float"></div>
+          </div>
         </div>
-      </div>
-    );
+    
+      );
   }
 }
 {/* <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> */}

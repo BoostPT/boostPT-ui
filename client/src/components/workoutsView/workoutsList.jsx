@@ -17,6 +17,8 @@ class WorkoutsList extends Component {
                     getEachExerciseCount={this.props.getEachExerciseCount}
                     handleWorkoutClick={this.props.handleWorkoutClick}
                     toggleModal={this.props.toggleModal}
+                    isPublic={this.props.isPublic}
+                    handleScheduleButtonOnClick={this.props.handleScheduleButtonOnClick}
                    />
           })
           :

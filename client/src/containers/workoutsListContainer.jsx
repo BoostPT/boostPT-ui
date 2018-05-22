@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   getWorkoutsList,
-  selectedWorkout
+  selectedWorkout,
+  getUserPublicWorkoutsList
 } from '../actions/index.js';
 import WorkoutsList from '../components/workoutsView/workoutsList.jsx';
 import WorkoutModalContainer from './workoutModalContainer.jsx';
+import ScheduleModalContainer from './scheduleModalContainer.jsx';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Star from 'material-ui/svg-icons/toggle/star';
 import * as colors from 'material-ui/styles/colors';
@@ -38,7 +40,8 @@ class WorkoutsListContainer extends Component {
       modalVisible: false,
       workoutId: null,
       workoutName: null,
-      activeFilterTab: 0
+      activeFilterTab: 0,
+      scheduleModalVisible: false
     };
     this.handleWorkoutClick = this.handleWorkoutClick.bind(this);
     this.handleFilterTabSelect = this.handleFilterTabSelect.bind(this);
@@ -46,6 +49,7 @@ class WorkoutsListContainer extends Component {
 
   componentDidMount() {
     this.props.getWorkoutsList(this.props.userId);
+    // !this.props.isPublic ? this.props.getWorkoutsList(this.props.userId) : this.props.getUserPublicWorkoutsList(this.props.user.id);
   }
 
   getEachExerciseCount(exercises) {
@@ -80,13 +84,21 @@ class WorkoutsListContainer extends Component {
     return [];
   }
   
-  toggleModal(e) {
+  toggleModal(e, type, workoutName, workoutId) {
     e.stopPropagation();
-    this.setState({ 
-      modalVisible: !this.state.modalVisible,
-      workoutId: e.target.dataset.id || null,
-      workoutName: e.target.dataset.name || null
-    });
+    if(type === 'deleteWorkout'){
+      this.setState({ 
+        modalVisible: !this.state.modalVisible,
+        workoutId:  workoutId || null,
+        workoutName: workoutName || null
+      });
+    }else if(type === 'schedule'){
+      this.setState({ 
+        scheduleModalVisible: !this.state.scheduleModalVisible,
+        workoutId: workoutId || null,
+        workoutName: workoutName || null
+      });
+    }
   }
 
   render() {
@@ -94,27 +106,30 @@ class WorkoutsListContainer extends Component {
 
     return (
       <Fragment>
-        <Tabs inkBarStyle={{display: "none"}} className="filter-workout-list-tabs">
-          <Tab
-            label="ALL"
-            style={filterTabStyle[filterTabStyles[0]]}
-            disableTouchRipple={true}
-            onActive={this.handleFilterTabSelect}
-          />
-          <Tab
-            icon={<Star style={starStyle[filterTabStyles[1]]} />}
-            label="STARRED"
-            style={filterTabStyle[filterTabStyles[1]]}
-            disableTouchRipple={true}
-            onActive={this.handleFilterTabSelect}
-          />
-        </Tabs>
+        {this.props.isPublic === true ? null : 
+          <Tabs inkBarStyle={{display: "none"}} className="filter-workout-list-tabs">
+            <Tab
+              label="ALL"
+              style={filterTabStyle[filterTabStyles[0]]}
+              disableTouchRipple={true}
+              onActive={this.handleFilterTabSelect}
+            />
+            <Tab
+              icon={<Star style={starStyle[filterTabStyles[1]]} />}
+              label="STARRED"
+              style={filterTabStyle[filterTabStyles[1]]}
+              disableTouchRipple={true}
+              onActive={this.handleFilterTabSelect}
+            />
+          </Tabs>
+        }
         <WorkoutsList
          userId={this.props.userId}
          workouts={this.filterWorkouts(this.props.isPublic ? this.props.publicWorkouts : this.props.workouts)}
          getEachExerciseCount={this.getEachExerciseCount}
          handleWorkoutClick={this.handleWorkoutClick}
          toggleModal={this.toggleModal.bind(this)}
+         isPublic={this.props.isPublic} 
         />
         <WorkoutModalContainer
          modalVisible={this.state.modalVisible}
@@ -123,6 +138,13 @@ class WorkoutsListContainer extends Component {
          workouts={this.props.workouts}
          workoutId={this.state.workoutId}
          workoutName={this.state.workoutName}
+         userId={this.props.userId}
+        />
+        <ScheduleModalContainer 
+          scheduleModalVisible={this.state.scheduleModalVisible}
+          workoutName={this.state.workoutName}
+          workoutId={this.state.workoutId}
+          toggleModal={this.toggleModal.bind(this)}
         />
       </Fragment>
     );
@@ -132,8 +154,9 @@ class WorkoutsListContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     workouts: state.workoutsReducer.workouts,
-    userId: state.auth.user.id
+    userId: state.auth.user.id,
+    // publicWorkouts: state.workoutsReducer.publicWorkouts
   }
 };
 
-export default connect(mapStateToProps, { selectedWorkout, getWorkoutsList })(WorkoutsListContainer);
+export default connect(mapStateToProps, { selectedWorkout, getWorkoutsList, getUserPublicWorkoutsList })(WorkoutsListContainer);

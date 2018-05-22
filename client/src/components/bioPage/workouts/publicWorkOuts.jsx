@@ -5,13 +5,15 @@ import WorkoutItemContainer from '../../../containers/workoutItemContainer.jsx';
 class PublicWorkouts extends Component{
   constructor(props){
     super(props);
+
   }
+
 
   render(){
     return(
       <div className="myPublicWorkouts">
         <WorkoutsListContainer user={this.props.user} isPublic={true} publicWorkouts={this.props.publicWorkouts} />
-        <WorkoutItemContainer/>
+        <WorkoutItemContainer />
       </div>
     );
   }
