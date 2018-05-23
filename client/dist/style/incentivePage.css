@@ -1,0 +1,93 @@
+.incentive-list {
+  max-height: 75%;
+  width: 500px;
+  margin: 1.44em auto;
+  text-align: center;
+  background-color: #37474F;
+  border-radius: 7px;
+  overflow-y: auto;
+}
+
+.incentive-list-header {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 1.44em;
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 70%;
+}
+
+.incentive-list-subheader {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 1em;
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 70%;
+}
+
+.eth-logo-left {
+  float: left;
+  height: 100px;
+  opacity: 0.88;
+  display: inline-block;
+}
+
+.eth-logo-right {
+  float: right;
+  height: 100px;
+  opacity: 0.88;
+  display: inline-block;
+}
+
+.modal-incentive {
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-incentive-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 1.2em;
+  border: 1px solid #888;
+  width: calc(140px + 20em);
+  height: auto;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.incentive-receipt {
+  width: calc(140px + 30em);
+}
+
+.incentive-receipt-text {
+  color: #49525d;
+  font-family: Lato;
+  font-size: 0.8em;
+  margin: 0 auto;
+  margin-top: 1em;
+  width: 70%;
+}
+
+.incentive-item-outer {
+  width: 80%;
+  margin: 4% auto;
+}
+
+.incentive-item-inner {
+  color: #49525d;
+  font-family: Lato;
+  padding: 0.56em;
+  margin: 0 auto;
+  margin-top: 0.2em;
+  border-radius: 7px;
+}
+
+.incentive-form-item {
+  float: left;
+  margin-left: 1em;
+}
