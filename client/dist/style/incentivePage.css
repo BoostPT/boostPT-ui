@@ -86,3 +86,8 @@
   margin-top: 0.2em;
   border-radius: 7px;
 }
+
+.incentive-form-item {
+  float: left;
+  margin-left: 1em;
+}

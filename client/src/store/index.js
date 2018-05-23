@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import rootReducer from '../reducers';
 import reduxPromise from 'redux-promise';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
 const persistConfig = {
   key: 'root',
@@ -14,7 +14,7 @@ const persistConfig = {
 
 const persistentReducer = persistReducer(persistConfig, rootReducer);
 
-const createStoreWithMiddleware = applyMiddleware(reduxPromise, logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore);
 
 export const store = createStoreWithMiddleware(persistentReducer);
 export const persistor = persistStore(store);

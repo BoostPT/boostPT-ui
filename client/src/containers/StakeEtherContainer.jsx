@@ -86,25 +86,30 @@ class StakeEtherContainer extends Component {
     //   [staked (uint), ...] // Needs to be converted from Wei to Ether
     // ]
 
-    let parsedIncentives = Array(rawIncentives[0].length).fill({});
+    let parsedIncentives = Array(rawIncentives[0].length);
 
-    for (let i = 0; i < rawIncentives.length; i++) {
-      for (let j = 0; j < parsedIncentives.length; j++) {
-        if (i === 0) {
-          parsedIncentives[j]['id'] = rawIncentives[i][j];
-        } else if (i === 1) {
-          parsedIncentives[j]['creatorAddress'] = rawIncentives[i][j];
-        } else if (i === 2) {
-          parsedIncentives[j]['recipientAddress'] = rawIncentives[i][j];
-        } else if (i === 3) {
-          parsedIncentives[j]['goal'] = web3.toAscii(rawIncentives[i][j]);
-        } else if (i === 4) {
-          parsedIncentives[j]['deadline'] = rawIncentives[i][j].toNumber();
-        } else { // i === 5
-          parsedIncentives[j]['staked'] = web3.fromWei(rawIncentives[i][j], 'ether').toNumber();
+    for (let i = 0; i < parsedIncentives.length; i++) {
+      parsedIncentives[i] = {};
+      for (let j = 0; j < rawIncentives.length; j++) {
+        if (j === 0) {
+          parsedIncentives[i]['id'] = rawIncentives[j][i];
+        } else if (j === 1) {
+          parsedIncentives[i]['creatorAddress'] = rawIncentives[j][i];
+        } else if (j === 2) {
+          parsedIncentives[i]['recipientAddress'] = rawIncentives[j][i];
+        } else if (j === 3) {
+          parsedIncentives[i]['goal'] = web3.toAscii(rawIncentives[j][i]);
+        } else if (j === 4) {
+          parsedIncentives[i]['deadline'] = rawIncentives[j][i].toNumber();
+        } else { // j === 5
+          parsedIncentives[i]['staked'] = web3.fromWei(rawIncentives[j][i], 'ether').toNumber();
         }
       }
     }
+
+    // The contract currently keeps mappings to old incentives to save user's money on deletion
+    // Because fetching is free, it's okay for now that we can ignore the null entries
+    parsedIncentives = parsedIncentives.filter(incentive => incentive.deadline !== 0);
 
     this.setState({
       incentives: parsedIncentives
@@ -127,7 +132,11 @@ class StakeEtherContainer extends Component {
       this.state.recipient,
       this.state.goal,
       deadline,
-      { from: this.state.web3.eth.accounts[0], value: this.state.web3.toWei(this.state.eth, 'ether'), gas: 250000, gasPrice: 20000000000  });
+      { from: this.state.web3.eth.accounts[0],
+        value: this.state.web3.toWei(this.state.eth, 'ether'),
+        gas: 250000,
+        gasPrice: 20000000000
+    });
     // Default Gas Limit: 250,000
     // Default Gas Price: 20 Gwei
 
@@ -144,6 +153,7 @@ class StakeEtherContainer extends Component {
     return (
       <StakeEtherMotivation
         incentives={this.state.incentives}
+        stakeEther={this.state.stakeEther}
         showAddIncentiveModal={this.state.showAddIncentiveModal}
         toggleAddIncentiveModal={this.toggleAddIncentiveModal}
         handleIncentiveFormChange={this.handleIncentiveFormChange}
