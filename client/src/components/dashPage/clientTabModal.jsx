@@ -8,8 +8,10 @@ class Modal extends Component {
       unregClientForm: ''
     }
     this.handleUnregClientFormChange = this.handleUnregClientFormChange.bind(this);
+    this.escFunction = this.escFunction.bind(this);
+    this.overlayClick = this.overlayClick.bind(this);
   }
-
+  
   handleButtonClick() {
     this.props.clickEvent(this.state.unregClientForm, (result) => {
       if (result === 'success') {
@@ -24,10 +26,31 @@ class Modal extends Component {
     this.setState({unregClientForm: e.target.value});
   }
 
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+
+  escFunction(e) {
+    if (e.keyCode === 27) {
+      this.props.toggleModal();
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
+  }
+
+  overlayClick(e) {
+    if (e.target.className === 'addNewClientModal') {
+      this.props.toggleModal();
+    }
+  }
+
+
   render() {
     return (
       <div>{
-        <div className="addNewClientModal">
+        <div className="addNewClientModal" onClick={this.overlayClick}>
           <div className="addNewClientModal-content">
             <div id="addNewClientModal-title" >Add Client</div>
             <div id="addNewClientModal-subtitle" >Name
