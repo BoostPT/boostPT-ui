@@ -95,7 +95,6 @@ const mapStateToProps = function(state) {
   return {
     authenticated: state.auth.authenticated,
     user: state.auth.user,
-    changedUserInfo: state.changePictureReducer.user,
     requests: { requestsIn: state.client.requestsIn, requestsOut: state.client.requestsOut },
     trainers: state.client.trainers
   };
