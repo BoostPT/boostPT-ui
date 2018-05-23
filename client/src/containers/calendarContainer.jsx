@@ -76,7 +76,7 @@ class CalendarContainer extends Component {
       <div className="calendarContainer">
         <DnDCalendar 
           defaultDate={new Date()}
-          defaultView="month"
+          defaultView="week"
           events={this.state.events}
           onEventDrop={this.moveEvent.bind(this)}
           onEventResize={this.resizeEvent.bind(this)}
