@@ -40,20 +40,6 @@ const IconButtonStyle = {
   width: '15px'
 };
 
-const sendMessageButton = {
-  position: 'absolute',
-  marginBottom: '35%',
-  bottom: '0px',
-  alignSelf: 'center'
-}
-
-const RequestAsTrainerButton = {
-  position: 'absolute',
-  marginBottom: '20%',
-  bottom: '0px',
-  alignSelf: 'center'
-}
-
 class BioPage extends Component{
   constructor(props){
     super(props);
@@ -128,13 +114,13 @@ class BioPage extends Component{
               <Phone style={email_phone_style}/>
               {!this.props.user.phoneNumber ? 'Unavailable' : this.props.user.phoneNumber}
             </div>
-            <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
+            <a className="sendMessageButton">Send Message</a>
             {
               this.state.showRequestBtn ?
-                <button onClick={(e) => {
+                <a onClick={(e) => {
                   this.props.handleRequestClick(e);
                   this.hideRequestBtn();
-                }} data-id={this.props.user.id} className="requestAsTrainerButton">Request as Trainer</button>
+                }} data-id={this.props.user.id} className="requestAsTrainerButton">Request Training</a>
                 :
                 null
             }

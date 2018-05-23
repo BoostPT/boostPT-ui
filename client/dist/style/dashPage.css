@@ -89,19 +89,17 @@
 .searchbar {
   border-width: 0px;
   position: relative;
-  width: 100%;
+  width: 120%;
   height: 100%;
 }
 
-.searchbar:focus {
-  outline: 3px solid #B8B8B8;
-}
 
 .dropdown-content {
   font-family: Arial;
   font-weight: 500;
   position: absolute;
-  width: 43.2%;
+  /* width: 43.2%; */
+  width: 27%;
   border: 1px solid #ddd;
   cursor: pointer;
   z-index: 1;

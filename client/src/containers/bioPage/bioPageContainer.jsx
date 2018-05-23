@@ -69,6 +69,7 @@ class BioPageContainer extends Component {
     }
     await this.socket.emit('requestRoom', trainerUsername);
     await this.socket.emit('request', { room: trainerUsername, user: this.props.user });
+    await this.socket.emit('leaveRoom', trainerUsername);
   }
 
   render(){

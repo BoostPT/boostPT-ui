@@ -48,7 +48,7 @@ class NavbarContainer extends Component {
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true
-        });
+      });
     });
   }
 
@@ -64,13 +64,10 @@ class NavbarContainer extends Component {
 
   handleUserNameClick(){
     this.props.selectedWorkout({});
-
     const pubWorkouts = this.props.userWorkouts.filter(workout=>{
       return workout.is_public;
     });
-
     const user = Object.assign({}, this.props.user, { publicWorkouts: pubWorkouts});
-
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
   }
 

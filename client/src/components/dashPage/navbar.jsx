@@ -8,9 +8,16 @@ import TextField from 'material-ui/TextField';
 import * as colors from 'material-ui/styles/colors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
+import Mail from 'material-ui/svg-icons/communication/mail-outline';
 
 const toolbarStyle = {
   backgroundColor: colors.grey500
+};
+
+const mailStyle = {
+  marginLeft: 15,
+  marginTop: 4,
+  cursor: 'pointer'
 };
 
 class Navbar extends Component{
@@ -49,7 +56,7 @@ class Navbar extends Component{
           <div className="request-btn">
             {
               this.props.user.istrainer ?
-                  <button onClick={this.props.handleRequestsClick}>Requests</button>
+                  <Mail onClick={this.props.handleRequestsClick} style={mailStyle} />
                 :
                 null
             }
