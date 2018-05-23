@@ -128,8 +128,6 @@ class MessagePage extends Component {
               Messages
             </div>
             <div style={{overflow: 'hidden', textAlign: 'center'}}>
-            <div>
-            </div>
             <RaisedButton className="chatButton" 
                             onClick={this.handleAddChatButton} 
                             backgroundColor={colors.grey800} 
