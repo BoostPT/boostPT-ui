@@ -9,14 +9,26 @@ class IncentiveContainer extends Component {
     this.handleFulfillClick = this.handleFulfillClick.bind(this);
   }
 
-  handleCancelClick(e) {
+  async handleCancelClick(e) {
     const incentiveId = e.currentTarget.getAttribute('data');
-    console.log(incentiveId)
+    const instance = await this.props.stakeEther.deployed();
+    await instance.cancelIncentive(
+      incentiveId,
+      { from: web3.eth.accounts[0],
+        gas: 250000,
+        gasPrice: 20000000000
+    });
   }
 
-  handleFulfillClick(e) {
+  async handleFulfillClick(e) {
     const incentiveId = e.currentTarget.getAttribute('data');
-    console.log(incentiveId)
+    const instance = await this.props.stakeEther.deployed();
+    await instance.fulfillIncentive(
+      incentiveId,
+      { from: web3.eth.accounts[0],
+        gas: 250000,
+        gasPrice: 20000000000
+      });
   }
 
   render() {
@@ -41,7 +53,8 @@ class IncentiveContainer extends Component {
 }
 
 IncentiveContainer.propTypes = {
-  incentives: PropTypes.array
+  incentives: PropTypes.array,
+  stakeEther: PropTypes.func
 };
 
 export default IncentiveContainer;
