@@ -13,7 +13,11 @@ import {
   FETCH_TRAINERS,
   USER_CHANNEL_LIST,
   SCHEDULE_EVENT,
-  FETCH_EVENTS
+  FETCH_EVENTS,
+  FETCH_REQUESTS_OUT,
+  FETCH_REQUESTS_IN,
+  DELETE_REQUEST,
+  ADD_CONNECTION
 } from './types';
 
 
@@ -109,7 +113,7 @@ export const getWorkoutsList = async (userId) => {
   } catch (err) {
     return (err);
   }
-}
+};
 
 export const trainerClientList = async (user, cb) => {
   try {
@@ -125,7 +129,7 @@ export const trainerClientList = async (user, cb) => {
   } catch (err) {
     return (err);
   }
-}
+};
 
 export const selectedWorkout = (workout) => {
   return {
@@ -185,7 +189,7 @@ export const getUserPublicWorkoutsList = async(userId) =>{
   }catch(err){
     return (err);
   }
-}
+};
 
 export const getStarredExercises = async (userId) => {
   const request = await axios.get(`http://localhost:8000/api/workouts/starredexercises/${userId}`, {
@@ -239,15 +243,29 @@ export const channelList = async (username) => {
   }
 };
 
+export const fetchTrainerRequestsIn = async (trainerId) => {
+  try {
+    const requestsIn = await axios.get(`http://localhost:8000/api/users/request-in/${trainerId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_REQUESTS_IN,
+      payload: requestsIn.data
+    }
+  } catch (err) {
+    return err;
+  }
+};  
+
 export const scheduleEvent = async (type, payload) => {
   try {
     if(type === 'workout') {
       const result = await axios.post('http://localhost:8000/api/events/workout', payload,{ headers: { Authorization: `${document.cookie}`}});
-
     } else if(type === 'client') {
       const result = await axios.post('http://localhost:8000/api/events/client', payload, { headers: { Authorization: `${document.cookie}`}});
     } // Scheduling a client for an in-person 1 on 1 session
-
     return {
       type: SCHEDULE_EVENT,
       payload: {}
@@ -260,12 +278,82 @@ export const scheduleEvent = async (type, payload) => {
 export const fetchEvents = async (userId) => {
   try {
     const result = await axios.get(`http://localhost:8000/api/events/${userId}`,{ headers: { Authorization: `${document.cookie}`}});
-
     return {
       type: FETCH_EVENTS,
       payload: result.data
     };
   } catch (err) {
     return (err);
+  }
+};
+
+export const fetchTrainerRequestsOut = async (clientId) => {
+  try {
+    const requestsOut = await axios.get(`http://localhost:8000/api/users/request-out/${clientId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    return {
+      type: FETCH_REQUESTS_OUT,
+      payload: requestsOut.data
+    }
+  } catch (err) {
+    return err;
+  }
+};
+
+export const deleteTrainerRequest = async (clientId, trainerId, requestsIn) => {
+  try {
+    await axios.delete(`http://localhost:8000/api/users/request-delete/${clientId}/${trainerId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const newRequestsIn = [];
+    let i = 0;
+    while (i < requestsIn.length) {
+      if (requestsIn[i].id !== parseInt(clientId)) {
+        newRequestsIn.push(requestsIn[i]);
+      }
+      i++;
+    }
+    return {
+      type: DELETE_REQUEST,
+      payload: newRequestsIn
+    }
+  } catch (err) {
+    return err;
+  }
+};  
+
+export const addTrainerClientConnection = async (clientId, trainerId, clients) => {
+  try {
+    await axios.post('http://localhost:8000/api/users/add-connection', {
+      client_id: clientId,
+      trainer_id: trainerId
+    },
+    {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    const addedClient = await axios.get(`http://localhost:8000/api/users/fetch-client/${clientId}`, {
+      headers: {
+        Authorization: `${document.cookie}`
+      }
+    });
+    if (Array.isArray(clients)) {
+      clients.push(addedClient.data[0]);
+    } else {
+      clients = [];
+      clients.push(addedClient.data[0]);
+    }
+    return {
+      type: ADD_CONNECTION,
+      payload: clients
+    }
+  } catch (err) {
+    return err;
   }
 };

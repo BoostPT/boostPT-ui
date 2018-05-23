@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { 
   getWorkoutsList,
   getAllTrainersList,
-  selectedWorkout
+  fetchTrainerRequestsIn,
+  fetchTrainerRequestsOut
  } from '../actions/index.js';
 import debounce from 'lodash/debounce';
-// import axios from 'axios';
-
 import DashPage from '../components/dashPage/index.jsx';
 
 class DashPageContainer extends Component {
@@ -17,6 +16,13 @@ class DashPageContainer extends Component {
       activeTab: 1,
     };
     this.handleTabSelect = this.handleTabSelect.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.props.getAllTrainersList();
+    await this.props.fetchTrainerRequestsIn(this.props.user.id);
+    await this.props.fetchTrainerRequestsOut(this.props.user.id);
+    await this.hideDropdownClick();
   }
 
   handleTabSelect(tab) {
@@ -49,11 +55,6 @@ class DashPageContainer extends Component {
     });
     this.setState({ filteredTrainers: filteredTrainers });
   }
-
-  componentWillMount() {
-    this.props.getAllTrainersList();
-    this.hideDropdownClick();
-  }
    
   render(){
     return(
@@ -73,4 +74,4 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout })(DashPageContainer);
+export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, fetchTrainerRequestsIn, fetchTrainerRequestsOut })(DashPageContainer);

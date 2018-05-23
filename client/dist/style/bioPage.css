@@ -85,3 +85,23 @@
 .publicWorkoutsListContainer{
   display: flex;
 }
+
+.requestAsTrainerButton, .sendMessageButton {
+  cursor: pointer;
+  border-radius: 2px;
+  margin-top: 2%;
+  color: yellow;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  padding: 3% 4%;
+  background-color: #37474F;
+  position: absolute;
+  margin-bottom: 20%;
+  bottom: 0;
+  align-self: center;
+}
+
+.sendMessageButton {
+  margin-bottom: 35%;
+  padding: 3.5% 6%;
+}

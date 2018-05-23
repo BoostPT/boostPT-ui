@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import SearchItem from './searchItem.jsx';
+// import RequestListContainer from '../../containers/requestListContainer.jsx';
+import RequestListItem from './requestListItem.jsx';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
 import * as colors from 'material-ui/styles/colors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
+import Mail from 'material-ui/svg-icons/communication/mail-outline';
 
 const toolbarStyle = {
   backgroundColor: colors.grey500
+};
+
+const mailStyle = {
+  marginLeft: 15,
+  marginTop: 4,
+  cursor: 'pointer'
 };
 
 class Navbar extends Component{
@@ -31,10 +40,43 @@ class Navbar extends Component{
             {
               this.props.showDropdown ?
                 <div className="dropdown-content" onClick={this.props.handleSearchItemClick}>
-                  {this.props.filteredTrainers.map(trainer => <SearchItem key={trainer.id} trainer={trainer} id={trainer.id}/>)}
+                  {this.props.filteredTrainers.map(trainer => {
+                    return <SearchItem 
+                            key={trainer.id}
+                            username={trainer.username}
+                            id={trainer.id}
+                            picture={trainer.picture} 
+                           />
+                    })}
                 </div>
                 :
                 null
+            }
+          </div>
+          <div className="request-btn">
+            {
+              this.props.user.istrainer ?
+                  <Mail onClick={this.props.handleRequestsClick} style={mailStyle} />
+                :
+                null
+            }
+            {
+              this.props.showRequests ?
+                !Array.isArray(this.props.requestsIn) ?
+                  <p>No requests</p>
+                  :
+                  this.props.requestsIn.map(request => {
+                    return <RequestListItem
+                            key={request.id}
+                            picture={request.picture}
+                            id={request.id}
+                            username={request.username}
+                            handleRequestOptionYesClick={this.props.handleRequestOptionYesClick}
+                            handleRequestOptionNoClick={this.props.handleRequestOptionNoClick}
+                          />
+                  })
+                  :
+                  null
             }
           </div>
           <FontAwesomeIcon icon={faBell} />

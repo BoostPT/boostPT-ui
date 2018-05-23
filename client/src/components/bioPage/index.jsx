@@ -40,23 +40,30 @@ const IconButtonStyle = {
   width: '15px'
 };
 
-const sendMessageButton = {
-  position: 'absolute',
-  marginBottom: '35%',
-  bottom: '0px',
-  alignSelf: 'center'
-}
-
-const RequestAsTrainerButton = {
-  position: 'absolute',
-  marginBottom: '20%',
-  bottom: '0px',
-  alignSelf: 'center'
-}
-
 class BioPage extends Component{
   constructor(props){
     super(props);
+    this.state = { showRequestBtn: true }
+  }
+  
+  componentDidMount() {
+    this.checkAlreadyRequested();
+  }
+
+  hideRequestBtn() {
+    this.setState({ showRequestBtn: false });
+  }
+
+  checkAlreadyRequested() {
+    const requests = this.props.requestsOut;
+    if (Array.isArray(requests)) {
+      for (let i = 0; i < requests.length; i++) {
+        if (requests[i].trainer_id === this.props.user.id || this.props.user.id === this.props.loggedInUserId) {
+          this.hideRequestBtn();
+          return;
+        }
+      }
+    }
   }
 
   render(){
@@ -107,8 +114,16 @@ class BioPage extends Component{
               <Phone style={email_phone_style}/>
               {!this.props.user.phoneNumber ? 'Unavailable' : this.props.user.phoneNumber}
             </div>
-            <RaisedButton label="Send Message" style={sendMessageButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
-            <RaisedButton label="Request As Trainer" style={RequestAsTrainerButton} backgroundColor={blueGrey800} labelColor={yellowA200} />
+            <a className="sendMessageButton">Send Message</a>
+            {
+              this.state.showRequestBtn ?
+                <a onClick={(e) => {
+                  this.props.handleRequestClick(e);
+                  this.hideRequestBtn();
+                }} data-id={this.props.user.id} className="requestAsTrainerButton">Request Training</a>
+                :
+                null
+            }
           </div>
           <div className="bioPageMyPublicWorkouts">
             <PublicWorkouts user={this.props.user} publicWorkouts={this.props.user.publicWorkouts}/>

@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
   getWorkoutsList,
   getAllTrainersList,
   selectedWorkout,
-  logOutUser
+  logOutUser,
+  deleteTrainerRequest,
+  addTrainerClientConnection
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import io from 'socket.io-client';
 import axios from 'axios';
 
 class NavbarContainer extends Component {
@@ -17,7 +22,9 @@ class NavbarContainer extends Component {
       searchText: '',
       showDropdown: false,
       filteredTrainers: [],
+      showRequests: false
     };
+    this.socket = io('http://localhost:5000');
     this.handleOnChangeText = this.handleOnChangeText.bind(this);
     this.handleUserNameClick = this.handleUserNameClick.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -25,6 +32,28 @@ class NavbarContainer extends Component {
     this.showDropdownClick = this.showDropdownClick.bind(this);
     this.handleSearchItemClick = this.handleSearchItemClick.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
+    this.handleRequestsClick = this.handleRequestsClick.bind(this);
+    this.handleRequestOptionNoClick = this.handleRequestOptionNoClick.bind(this);
+    this.handleRequestOptionYesClick = this.handleRequestOptionYesClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getAllTrainersList();
+    this.hideDropdownClick();
+    this.socket.emit('requestRoom', this.props.user.username);
+    this.socket.on('request', (data) => {
+      toast.warn('New Trainer Request!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.socket.removeListener();
   }
 
   handleTitleClick(){
@@ -35,13 +64,10 @@ class NavbarContainer extends Component {
 
   handleUserNameClick(){
     this.props.selectedWorkout({});
-
     const pubWorkouts = this.props.userWorkouts.filter(workout=>{
       return workout.is_public;
     });
-
     const user = Object.assign({}, this.props.user, { publicWorkouts: pubWorkouts});
-
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
   }
 
@@ -86,6 +112,20 @@ class NavbarContainer extends Component {
     }    
   }
 
+  handleRequestsClick() {
+    this.setState({ showRequests: !this.state.showRequests });
+  }
+
+  async handleRequestOptionYesClick(e) {
+    e.persist();
+    await this.props.addTrainerClientConnection(e.target.dataset.id, this.props.user.id, this.props.clients);
+    await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
+  }
+
+  async handleRequestOptionNoClick(e) {
+    await this.props.deleteTrainerRequest(e.target.dataset.id, this.props.user.id, this.props.requestsIn);
+  }
+
   filterTrainers() {
     let filteredTrainers = this.props.trainers.filter(trainer => {
       if (this.state.searchText !== '') {
@@ -95,36 +135,48 @@ class NavbarContainer extends Component {
     });
     this.setState({ filteredTrainers: filteredTrainers });
   }
-
-  componentDidMount() {
-    this.props.getAllTrainersList();
-    this.hideDropdownClick();
-  }
    
   render(){
     return(
-      <Navbar 
-      user={ this.props.user }
-      handleOnChangeText={this.handleOnChangeText}
-      searchText={this.state.searchText}
-      handleUserNameClick={this.handleUserNameClick}
-      handleLogOut={this.handleLogOut}
-      handleTitleClick={this.handleTitleClick}
-      filteredTrainers={this.state.filteredTrainers}
-      showDropdown={this.state.showDropdown}
-      showDropdownClick={this.showDropdownClick}
-      handleSearchItemClick={this.handleSearchItemClick}
-      />
+      <Fragment>
+        <Navbar 
+        user={this.props.user}
+        handleOnChangeText={this.handleOnChangeText}
+        searchText={this.state.searchText}
+        handleUserNameClick={this.handleUserNameClick}
+        handleLogOut={this.handleLogOut}
+        handleTitleClick={this.handleTitleClick}
+        filteredTrainers={this.state.filteredTrainers}
+        showDropdown={this.state.showDropdown}
+        showDropdownClick={this.showDropdownClick}
+        handleSearchItemClick={this.handleSearchItemClick}
+        showRequests={this.state.showRequests}
+        handleRequestsClick={this.handleRequestsClick}
+        requestsIn={this.props.requestsIn}
+        handleRequestOptionYesClick={this.handleRequestOptionYesClick}
+        handleRequestOptionNoClick={this.handleRequestOptionNoClick}
+        />
+        <ToastContainer />
+      </Fragment>
     );
   }
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     userWorkouts: state.workoutsReducer.workouts,
-    trainers: state.client.trainers
+    trainers: state.client.trainers,
+    requestsIn: state.client.requestsIn,
+    clients: state.trainer.clients
   };
 };
 
-export default connect(mapStateToProps, { getWorkoutsList, getAllTrainersList, selectedWorkout, logOutUser })(NavbarContainer);
+export default connect(mapStateToProps, { 
+  getWorkoutsList,
+  getAllTrainersList,
+  selectedWorkout,
+  logOutUser,
+  deleteTrainerRequest,
+  addTrainerClientConnection
+})(NavbarContainer);

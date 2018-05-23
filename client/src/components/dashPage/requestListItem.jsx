@@ -11,10 +11,11 @@ const avatarStyles = {
 
 const listItemStyles = {
   zIndex: 10,
-  paddingBottom: 10
+  paddingBottom: 10,
+  float: 'left'
 };
 
-class SearchItem extends Component {
+class RequestListItem extends Component {
   constructor(props){
     super(props);
   }
@@ -32,7 +33,9 @@ class SearchItem extends Component {
              data-id={this.props.id}
              leftAvatar={<Avatar size={25} style={avatarStyles} data-id={this.props.id}>{this.props.username.slice(0,1)}</Avatar>}
             >
-             <p className="dropdown-name" data-id={this.props.id}>{this.props.username}</p>
+            <p className="dropdown-name" data-id={this.props.id}>{this.props.username}</p>
+            <button onClick={this.props.handleRequestOptionYesClick} data-id={this.props.id}>Accept</button>
+            <button onClick={this.props.handleRequestOptionNoClick} data-id={this.props.id}>Deny</button>
             </ListItem>
         }
       </div>
@@ -40,4 +43,4 @@ class SearchItem extends Component {
   }
 }
 
-export default SearchItem;
+export default RequestListItem;
