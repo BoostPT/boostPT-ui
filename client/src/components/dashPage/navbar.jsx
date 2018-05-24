@@ -63,7 +63,7 @@ class Navbar extends Component{
             {
               this.props.showRequests ?
               !Array.isArray(this.props.requestsIn) ?
-              <div className="dropdown-item">No requests</div>
+              <div className="dropdown-content no-requests">No requests</div>
               :
               <div className="dropdown-content">
                     {this.props.requestsIn.map(request => {

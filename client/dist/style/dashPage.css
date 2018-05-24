@@ -92,8 +92,20 @@
   height: 100%;
 }
 
+.searchbar:focus {
+  border: 1px solid black !important;
+  box-shadow: 0 0 3px black !important;
+  -moz-box-shadow: 0 0 3px black !important;
+  -webkit-box-shadow: 0 0 3px black !important;
+  }
+  
+.searchbar:focus {
+  outline-offset: 0px !important;
+  outline: none !important;
+}
+
 .search-item {
-  width: 100%;
+  width: 108%;
   font-size: 14px;
   font-family: Arial;
   position: absolute;
@@ -106,7 +118,7 @@
   font-weight: 500;
   position: absolute;
   width: 37.5%;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   cursor: pointer;
   z-index: 1;
 }
@@ -122,6 +134,12 @@
   font-size: 14px;
   font-family: Arial;
   z-index: 1;
+  background-color: #F9F9F9;
+}
+
+.no-requests {
+  text-align: center;
+  width: 30%;
   background-color: #F9F9F9;
 }
 
