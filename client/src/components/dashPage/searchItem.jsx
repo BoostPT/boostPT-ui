@@ -21,7 +21,7 @@ class SearchItem extends Component {
 
   render() {
     return(
-      <div className="dropdown-item">
+      <div className="search-item">
         {
             <ListItem
              style={listItemStyles}
