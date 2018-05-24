@@ -48,7 +48,11 @@ class StakeEtherMotivation extends Component {
 
   renderIncentives() {
     return this.props.incentives.length ? (
-      <IncentiveContainer incentives={this.props.incentives} stakeEther={this.props.stakeEther} />
+      <IncentiveContainer
+        incentives={this.props.incentives}
+        stakeEther={this.props.stakeEther}
+        showTxHash={this.props.showTxHash}
+      />
     ) : (
       <h3 className="incentive-list-header">You don't have any ETH incentives</h3>
     );
@@ -93,25 +97,21 @@ class StakeEtherMotivation extends Component {
     if (e.target.className === 'modal-incentive') {
       if (modalType === 'addIncentive') {
         this.props.toggleAddIncentiveModal();
-      } else if (modalType === 'receipt') {
-        this.props.toggleReceiptModal();
+      } else if (modalType === 'txhash') {
+        this.props.toggleTxHashModal();
       }
     }
   }
 
-  renderReceiptModal() {
-    return this.props.showReceiptModal ? (
-      <div className="modal-incentive" onClick={e => this.overlayClick(e, 'receipt')}>
-        <div className="modal-incentive-content incentive-receipt">
-          <span className="close" onClick={this.props.toggleReceiptModal}>&times;</span>
-          <p className="incentive-list-header">Transaction Successful!</p>
-          <p className="incentive-list-subheader">Receipt</p>
+  renderTxHashModal() {
+    return this.props.showTxHashModal ? (
+      <div className="modal-incentive" onClick={e => this.overlayClick(e, 'txhash')}>
+        <div className="modal-incentive-content incentive-txhash">
+          <span className="close" onClick={this.props.toggleTxHashModal}>&times;</span>
+          <p className="incentive-list-header">Transaction Sent!</p>
           <br />
           <Divider />
-          <p className="incentive-receipt-text">Block Hash: <a href={`https://ropsten.etherscan.io/address/${this.props.receipt.blockHash}`} target="_blank">{this.props.receipt.blockHash}</a></p>
-          <p className="incentive-receipt-text">Block Number: {this.props.receipt.blockNumber}</p>
-          <p className="incentive-receipt-text">Gas Used: {this.props.receipt.gasUsed}</p>
-          <p className="incentive-receipt-text">Transaction Hash: <a href={`https://ropsten.etherscan.io/tx/${this.props.receipt.transactionHash}`} target="_blank">{this.props.receipt.transactionHash}</a></p>
+          <p className="incentive-txhash-text">Transaction Hash: <a href={`https://ropsten.etherscan.io/tx/${this.props.txHash}`} target="_blank">{this.props.txHash}</a></p>
         </div>
       </div>
     ) : (
@@ -123,8 +123,16 @@ class StakeEtherMotivation extends Component {
     return (
       <Fragment>
         <Paper className="incentive-list">
-          <img className="eth-logo-left" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
-          <img className="eth-logo-right" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
+          <img
+            className="eth-logo-left"
+            src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png"
+            onClick={this.props.fetchIncentives}
+          />
+          <img
+            className="eth-logo-right"
+            src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png"
+            onClick={this.props.fetchIncentives}
+          />
           <h3 className="incentive-list-header">Create an incentive by staking Ether</h3>
           <br />
           <Divider />
@@ -140,7 +148,7 @@ class StakeEtherMotivation extends Component {
           />
         </Paper>
         {this.renderAddIncentiveModal()}
-        {this.renderReceiptModal()}
+        {this.renderTxHashModal()}
       </Fragment>
     )
   }
@@ -153,9 +161,11 @@ StakeEtherMotivation.propTypes = {
   toggleAddIncentiveModal: PropTypes.func.isRequired,
   handleIncentiveFormChange: PropTypes.func.isRequired,
   handleIncentiveFormSubmit: PropTypes.func.isRequired,
-  showReceiptModal: PropTypes.bool.isRequired,
-  toggleReceiptModal: PropTypes.func.isRequired,
-  receipt: PropTypes.object
+  showTxHashModal: PropTypes.bool.isRequired,
+  toggleTxHashModal: PropTypes.func.isRequired,
+  txHash: PropTypes.string,
+  showTxHash: PropTypes.func,
+  fetchIncentives: PropTypes.func
 };
 
 export default StakeEtherMotivation;

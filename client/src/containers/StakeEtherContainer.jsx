@@ -16,14 +16,16 @@ class StakeEtherContainer extends Component {
       deadlineDate: '',
       deadlineTime: '',
       eth: '',
-      showReceiptModal: false,
-      receipt: {},
+      showTxHashModal: false,
+      txHash: '',
       incentives: []
     };
     this.toggleAddIncentiveModal = this.toggleAddIncentiveModal.bind(this);
     this.handleIncentiveFormChange = this.handleIncentiveFormChange.bind(this);
     this.handleIncentiveFormSubmit = this.handleIncentiveFormSubmit.bind(this);
-    this.toggleReceiptModal = this.toggleReceiptModal.bind(this);
+    this.toggleTxHashModal = this.toggleTxHashModal.bind(this);
+    this.showTxHash = this.showTxHash.bind(this);
+    this.fetchIncentives = this.fetchIncentives.bind(this);
   }
 
   async componentDidMount() {
@@ -60,18 +62,21 @@ class StakeEtherContainer extends Component {
     });
   }
 
-  toggleReceiptModal() {
+  toggleTxHashModal() {
     if (this.state.showReceiptModal) {
       this.fetchIncentives();
     }
     this.setState({
-      showReceiptModal: !this.state.showReceiptModal
+      showTxHashModal: !this.state.showTxHashModal
     });
   }
 
   async fetchIncentives() {
     const instance = await this.state.stakeEther.deployed();
-    const rawIncentives = await instance.fetchIncentives();
+    const rawIncentives = await instance.fetchIncentives({
+      from: this.state.web3.eth.accounts[0]
+    });
+
     if (rawIncentives[0].length < 1) return;
 
     // Incentive metadata is deconstructed
@@ -128,7 +133,7 @@ class StakeEtherContainer extends Component {
 
     const instance = await this.state.stakeEther.deployed();
 
-    const { receipt } = await instance.createIncentive(
+    const txHash = await instance.createIncentive.sendTransaction(
       this.state.recipient,
       this.state.goal,
       deadline,
@@ -140,11 +145,15 @@ class StakeEtherContainer extends Component {
     // Default Gas Limit: 250,000
     // Default Gas Price: 20 Gwei
 
-    if (receipt) {
+    this.showTxHash(txHash);
+  }
+
+  showTxHash(txHash) {
+    if (txHash) {
       this.setState({
         showAddIncentiveModal: false,
-        showReceiptModal: true,
-        receipt: receipt
+        showTxHashModal: true,
+        txHash
       });
     }
   }
@@ -158,9 +167,11 @@ class StakeEtherContainer extends Component {
         toggleAddIncentiveModal={this.toggleAddIncentiveModal}
         handleIncentiveFormChange={this.handleIncentiveFormChange}
         handleIncentiveFormSubmit={this.handleIncentiveFormSubmit}
-        showReceiptModal={this.state.showReceiptModal}
-        toggleReceiptModal={this.toggleReceiptModal}
-        receipt={this.state.receipt}
+        showTxHashModal={this.state.showTxHashModal}
+        toggleTxHashModal={this.toggleTxHashModal}
+        txHash={this.state.txHash}
+        showTxHash={this.showTxHash}
+        fetchIncentives={this.fetchIncentives}
       />
     )
   }
