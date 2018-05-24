@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from './clientTabModal.jsx';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/fontawesome-free-solid';
+import { faCheck } from '@fortawesome/fontawesome-free-solid';
 import debounce from 'lodash/debounce';
 
 class ClientTab extends Component {
@@ -59,6 +62,7 @@ class ClientTab extends Component {
               <div className="column">
                 <Card className = 'clientCard'>
                   <CardText className ='clientCardText'> 
+                    <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                     <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                   </CardText>
                 </Card>
@@ -66,11 +70,11 @@ class ClientTab extends Component {
             </div>
           )
         } else {
-          
           content.push(
             <div className="column" key={i + 1}>
               <Card className = 'clientCard'>
                 <CardText className ='clientCardText'> 
+                <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                   <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                 </CardText>
               </Card>

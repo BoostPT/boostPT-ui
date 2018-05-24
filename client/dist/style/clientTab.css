@@ -161,4 +161,14 @@
   height:300px;
   overflow-y: scroll;
 }
+
+.circle {
+  float: right;
+  color: orange;
+}
+
+.check {
+  float: right;
+  color: green;
+}
   
