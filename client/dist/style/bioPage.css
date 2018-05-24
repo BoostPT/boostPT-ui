@@ -13,10 +13,10 @@
   display: flex;
   flex-direction: column;
   background-color: #EEEEEE;
-  margin-left: 5%;
-  width: 300px;
-  margin-top: 50px;
-  margin-bottom: 100px;
+  margin-left: 10%;
+  width: 20%;
+  margin-top: 4%;
+  margin-bottom: 25%;
   border-radius: 10px;
 }
 
@@ -67,9 +67,9 @@
 
 .bioPageMyPublicWorkouts{
   background-color: #EEEEEE;
-  margin-top: 50px;
-  margin-left: 75px;
-  margin-bottom: 100px;
+  margin-top: 4%;
+  margin-left: 5%;
+  margin-bottom: 8%;
   border-radius: 10px;
 }
 
@@ -91,13 +91,13 @@
   cursor: pointer;
   border-radius: 2px;
   margin-top: 2%;
-  color: yellow;
-  font-family: 'Lato';
-  font-size: 14px;
+  color: white;
+  font-family: Lato;
+  font-size: 1.0em;
   padding: 3% 4%;
-  background-color: #37474F;
+  background-color: #757575;
   position: absolute;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
   bottom: 0;
   align-self: center;
 }
