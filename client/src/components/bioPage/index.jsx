@@ -43,9 +43,15 @@ const IconButtonStyle = {
 class BioPage extends Component{
   constructor(props){
     super(props);
-    this.state = { showRequestBtn: true }
+    this.state = { showRequestBtn: true, photo: this.props.changedPicture.picture,   }
   }
   
+  // componentWillReceiveProps(nextProps){
+  //   console.log("WILL RECEIVE PROPS", nextProps);
+     
+  //   this.setState({ })
+  // }
+
   componentDidMount() {
     this.checkAlreadyRequested();
   }
@@ -69,6 +75,7 @@ class BioPage extends Component{
   }
 
   render(){
+    console.log("props",this.props);
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>
@@ -78,9 +85,9 @@ class BioPage extends Component{
               {this.props.user.username}
             </div>
             <div className="bioPicture">
-              <BioPicture picture={!this.props.changedPicture.picture ? null : this.props.changedPicture.picture} handleOnDrop={this.props.handleOnDrop}/>
+              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.changedPicture.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
             </div>
-            <div className="aboutMe">
+            {/* <div className="aboutMe"> */}
             {/* {this.props.loggedInAsUser.id === this.props.user.id ?
             <IconButton 
               iconStyle={edit_button_style} 
@@ -92,15 +99,15 @@ class BioPage extends Component{
               :
               null
             } */}
-              Contact Me:
+              {/* Contact Me:
               <div className="aboutMeText">
                 {!this.props.user.aboutMe? null : this.props.user.aboutMe }
               </div>
-            </div>
-            <div className="email">
+            </div> */}
+            {/* <div className="email">
               <Email  style={email_phone_style}/>
               {!this.props.user.email ? 'Unavailable' : this.props.user.email}
-            </div>
+            </div> */}
             {/* <div className="phoneNumber">
               {this.props.loggedInAsUser.id === this.props.user.id ? 
               <IconButton 
