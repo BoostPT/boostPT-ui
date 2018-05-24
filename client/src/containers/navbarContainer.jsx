@@ -6,7 +6,8 @@ import {
   selectedWorkout,
   logOutUser,
   deleteTrainerRequest,
-  addTrainerClientConnection
+  addTrainerClientConnection,
+  fetchTrainerRequestsIn
  } from '../actions/index.js';
 import Navbar from '../components/dashPage/navbar.jsx';
 import debounce from 'lodash/debounce';
@@ -41,14 +42,15 @@ class NavbarContainer extends Component {
     this.props.getAllTrainersList();
     this.hideDropdownClick();
     this.socket.emit('requestRoom', this.props.user.username);
-    this.socket.on('request', (data) => {
+    this.socket.on('request', async (data) => {
       toast.warn('New Trainer Request!', {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true
       });
+      await this.props.fetchTrainerRequestsIn(this.props.user.id);
     });
   }
 
@@ -178,5 +180,6 @@ export default connect(mapStateToProps, {
   selectedWorkout,
   logOutUser,
   deleteTrainerRequest,
-  addTrainerClientConnection
+  addTrainerClientConnection,
+  fetchTrainerRequestsIn
 })(NavbarContainer);
