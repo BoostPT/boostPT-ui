@@ -15,8 +15,22 @@ import UpArrow from 'material-ui/svg-icons/navigation/arrow-upward';
 import DownArrow from 'material-ui/svg-icons/navigation/arrow-downward';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 import Checkbox from 'material-ui/Checkbox';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from 'material-ui/styles/colors';
+
+const createWorkoutBtnLabelStyle = {
+  fontFamily: 'Lato',
+  fontSize: '1.2em',
+  textTransform: 'none',
+  color: 'white'
+};
+
+const createWorkoutBtnStyle = {
+  height: '3.2em',
+  width: '12em',
+  margin: '1.2em',
+  justifyContent: 'center'
+};
 
 const renderTextField = (value, hintText, floatingLabelText, handleChange, id, multiLine = false, rowsMax = 1) => {
   // 4th input parameter 'id' is the array index and exerciseForm key separated by comma, e.g. '2,Strength'
@@ -167,15 +181,21 @@ class CreateWorkout extends Component {
           {this.renderAddExerciseButton()}
           <div id="submit-wo-div">
             <Checkbox label="Make Private"
+                      className="make-private"
+                      iconStyle={{ fill: '#49525d' }}
+                      labelStyle={{fontFamily: 'Lato'}}
                       onCheck={this.props.handleMakePrivateCheck}
             />
-            <RaisedButton id="submit-wo-btn"
-                          onClick={this.props.handleFormSubmit}
-                          backgroundColor={colors.grey800}
-                          label="Save Workout"
-                          labelStyle={{ textTransform: 'none'}}
-                          labelColor={colors.yellow500}
-                          className="save-workout-btn"
+            <FlatButton
+              id="submit-wo-btn"
+              className="save-workout-btn"
+              label="Save Workout"
+              backgroundColor={colors.grey600}
+              hoverColor={colors.grey700}
+              rippleColor={colors.yellow500}
+              labelStyle={createWorkoutBtnLabelStyle}
+              style={createWorkoutBtnStyle}
+              onClick={this.props.handleFormSubmit}
             />
           </div>
         </div>

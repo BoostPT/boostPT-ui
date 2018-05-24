@@ -43,6 +43,7 @@ class StakeEtherMotivation extends Component {
   constructor(props) {
     super(props);
     this.renderIncentives = this.renderIncentives.bind(this);
+    this.overlayClick = this.overlayClick.bind(this);
   }
 
   renderIncentives() {
@@ -55,7 +56,7 @@ class StakeEtherMotivation extends Component {
 
   renderAddIncentiveModal() {
     return this.props.showAddIncentiveModal ? (
-      <div className="modal-incentive">
+      <div className="modal-incentive" onClick={e => this.overlayClick(e, 'addIncentive')}>
         <div className="modal-incentive-content">
           <span className="close" onClick={this.props.toggleAddIncentiveModal}>&times;</span>
           <p className="incentive-list-header">Create an Incentive</p>
@@ -88,9 +89,19 @@ class StakeEtherMotivation extends Component {
     )
   }
 
+  overlayClick(e, modalType) {
+    if (e.target.className === 'modal-incentive') {
+      if (modalType === 'addIncentive') {
+        this.props.toggleAddIncentiveModal();
+      } else if (modalType === 'receipt') {
+        this.props.toggleReceiptModal();
+      }
+    }
+  }
+
   renderReceiptModal() {
     return this.props.showReceiptModal ? (
-      <div className="modal-incentive">
+      <div className="modal-incentive" onClick={e => this.overlayClick(e, 'receipt')}>
         <div className="modal-incentive-content incentive-receipt">
           <span className="close" onClick={this.props.toggleReceiptModal}>&times;</span>
           <p className="incentive-list-header">Transaction Successful!</p>
