@@ -74,7 +74,6 @@ class WorkoutItem extends Component {
           :
           null
         }
-        
       </div>
     );
   }

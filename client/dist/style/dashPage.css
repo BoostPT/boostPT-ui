@@ -1,3 +1,7 @@
+body {
+  font-family: 'Lato';
+}
+
 .dashPage{
   display: flex;
   flex-direction: column;
@@ -107,14 +111,14 @@
 .search-item {
   width: 108%;
   font-size: 14px;
-  font-family: Arial;
+  font-family: 'Lato';
   position: absolute;
   z-index: 1;
   background-color: #F9F9F9;
 }
 
 .dropdown-content {
-  font-family: Arial;
+  font-family: 'Lato';
   font-weight: 500;
   position: absolute;
   width: 37.5%;
@@ -132,7 +136,7 @@
 .dropdown-item {
   width: 130%;
   font-size: 14px;
-  font-family: Arial;
+  font-family: 'Lato';
   z-index: 1;
   background-color: #F9F9F9;
 }

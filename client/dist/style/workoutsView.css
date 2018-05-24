@@ -23,7 +23,7 @@
 .font {
     font-size: 10px;
     font-weight: 300;
-    font-family: Arial;
+    font-family: 'Lato';
     color: #546E7A;
 }
 .pad-right {
@@ -125,7 +125,7 @@
       Single Workout
 *************************/
 .workout-container {
-    height: 550px;
+    height: 490px;
     width: 300px;
     margin-left: 450px;
     margin-top: 20px;
@@ -214,7 +214,7 @@
     border-radius: 7px;
 }
 .modal-font {
-    font-family: Arial;
+    font-family: 'Lato';
     color: #546E7A;
     font-size: 20px;
     font-weight: 300;

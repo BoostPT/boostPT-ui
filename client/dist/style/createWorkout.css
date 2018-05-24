@@ -16,7 +16,7 @@
 
 .create-workout-header {
   color: #49525d;
-  font-family: Lato;
+  font-family: 'Lato';
   text-align: center;
   padding-top: 20px;
 }
@@ -97,7 +97,7 @@
   margin-right: 23.5%;
   margin-top: 1.5%;
   float: right;
-  font-family: Arial;
+  font-family: 'Lato';
   color: #546E7A;
   display: inline-block
 }
