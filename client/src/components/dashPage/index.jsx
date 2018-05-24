@@ -53,7 +53,7 @@ class DashPage extends Component {
     } else if (this.props.activeTab === 1) {
       return <WorkoutsTab />
     } else if (this.props.user.istrainer && this.props.activeTab === 2) {
-      return <ClientTabContainer />
+      return <ClientTabContainer history={this.props.history}/>
     } else if (this.props.activeTab === messagesTabIndex) {
       return <MessagePageContainer/>
     } else if (this.props.activeTab === messagesTabIndex + 1) {

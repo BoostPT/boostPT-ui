@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from './clientTabModal.jsx';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/fontawesome-free-solid';
+import { faCheck } from '@fortawesome/fontawesome-free-solid';
 import debounce from 'lodash/debounce';
 
 class ClientTab extends Component {
@@ -34,11 +37,16 @@ class ClientTab extends Component {
   filterCards() {
     const input = this.state.filterInput.toLowerCase();
     const tempArr = this.props.clients;
-    const newArr = tempArr.filter((value) => value.client_name.toLowerCase().startsWith(input));
-    if (input.length > 0) {
-      this.setState({cardList: newArr});
-    } else {
-      this.setState({cardList: this.props.clients});
+    if (Array.isArray(tempArr)) {
+      const newArr = tempArr.filter((value) => {
+        let name = value.client_name || value.username;
+        return name.toLowerCase().startsWith(input);
+      })
+      if (input.length > 0) {
+        this.setState({cardList: newArr});
+      } else {
+        this.setState({cardList: this.props.clients});
+      }
     }
   }
 
@@ -54,8 +62,9 @@ class ClientTab extends Component {
           content.push(
             <div className="row" key={i + 1}>       
               <div className="column">
-                <Card className = 'clientCard'>
+                <Card className = 'clientCard' onClick={() => this.props.handleClientCardClick(cardList[i])}>
                   <CardText className ='clientCardText'> 
+                    <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                     <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                   </CardText>
                 </Card>
@@ -63,11 +72,11 @@ class ClientTab extends Component {
             </div>
           )
         } else {
-          
           content.push(
             <div className="column" key={i + 1}>
-              <Card className = 'clientCard'>
+              <Card className = 'clientCard' onClick={() => this.props.handleClientCardClick(cardList[i])}>
                 <CardText className ='clientCardText'> 
+                <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                   <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                 </CardText>
               </Card>

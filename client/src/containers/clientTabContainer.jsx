@@ -10,6 +10,7 @@ class ClientTabContainer extends Component {
     this.state = {
     };
     this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
+    this.handleClientCardClick = this.handleClientCardClick.bind(this);
   }
 
   componentWillMount() {
@@ -27,6 +28,22 @@ class ClientTabContainer extends Component {
       return (err);
     }
   }
+
+  async handleClientCardClick(userObject) {
+    const publicWorkouts = await axios.get(`http://localhost:8000/api/workouts/public/user/${userObject.id}`, { headers: { Authorization: `${document.cookie}`} });
+    if (Array.isArray(publicWorkouts.data)) {
+      for (let workout of publicWorkouts.data) {
+        let exercises = await axios.get(`http://localhost:8000/api/workouts/exercises/${workout.id}`, { headers: { Authorization: `${document.cookie}`} });
+        workout.exercises = exercises.data;
+      }
+      userObject.publicWorkouts = publicWorkouts.data;
+      this.props.history.push({pathname: `/bio/${userObject.id}`, state: userObject});
+    } else {
+      userObject.publicWorkouts = [];
+      this.props.history.push({pathname: `/bio/${userObject.id}`, state: userObject});
+    }    
+  }
+
 
   async handleSubmitButtonClick(clientName, cb) {
     try {
@@ -53,7 +70,7 @@ class ClientTabContainer extends Component {
       <div>{
         this.props.clients ?
         <div>
-          <ClientTab fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} clients={this.props.clients} userInfo = {this.props.userInfo}/>
+          <ClientTab handleClientCardClick={this.handleClientCardClick} fetchClientsFromStore={this.fetchClientsFromStore.bind(this)} handleSubmitButtonClick={this.handleSubmitButtonClick.bind(this)} clients={this.props.clients} userInfo = {this.props.userInfo}/>
         </div>
         :
         <div>
