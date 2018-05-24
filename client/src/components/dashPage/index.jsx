@@ -31,6 +31,7 @@ class DashPage extends Component {
 
   renderTabs(nTabs, messagesTabIndex) {
     const tabStyles = Array(nTabs).fill('').map((v, i) => this.props.activeTab === i ? 'active' : 'standard');
+    console.log(this.props.user);
     return (
       <Tabs className="tabs" inkBarStyle={{display: "none"}} initialSelectedIndex={1}>
         <Tab label="Schedule" style={tabStyle[tabStyles[0]]} onActive={this.props.handleTabSelect} disableTouchRipple={true} />

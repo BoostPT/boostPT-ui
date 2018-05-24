@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import * as colors from "material-ui/styles/colors";
 
 const scheduleButtonStyle = {
   height: '30px',
@@ -11,8 +12,9 @@ const scheduleButtonStyle = {
 }
 
 const scheduleLabelStyle = {
-  color: "#FFEB3B",
-  fontSize: '13px',
+  fontFamily: 'Lato',
+  color: 'white',
+  fontSize: '1.4em',
   textTransform: "none",
 }
 
@@ -25,7 +27,9 @@ class ScheduleButton extends Component{
     return(
         <FlatButton 
           label="Schedule" 
-          backgroundColor="#5A6978" 
+          backgroundColor={colors.grey600}
+          hoverColor={colors.grey700}
+          rippleColor={colors.yellow500}
           style={scheduleButtonStyle} 
           labelStyle={scheduleLabelStyle} 
           onClick={(e)=>this.props.toggleModal(e,'schedule',this.props.workout.name,this.props.workout.id)}

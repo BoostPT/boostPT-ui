@@ -70,6 +70,7 @@ class NavbarContainer extends Component {
       return workout.is_public;
     });
     const user = Object.assign({}, this.props.user, { publicWorkouts: pubWorkouts});
+    console.log("handle username click",user);
     this.props.history.push({pathname: `/bio/${this.props.user.id}`, state: user});
   }
 

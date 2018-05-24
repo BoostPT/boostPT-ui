@@ -130,12 +130,13 @@ class MessagePage extends Component {
             <div style={{overflow: 'hidden', textAlign: 'center'}}>
             <RaisedButton className="chatButton" 
                             onClick={this.handleAddChatButton} 
-                            backgroundColor={colors.grey800} 
+                            backgroundColor={colors.grey600}
+                            rippleColor={colors.yellow500}
+                            hoverColor={colors.grey700}
                             labelStyle={{ textTransform: 'none'}}
-                            style={{ borderRadius: '10px', float: 'left', marginLeft: '10px'}}
+                            style={{float: 'left', marginLeft: '10px'}}
                             labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
-                            buttonStyle={{ borderRadius: '10px'}}
-                            labelColor={colors.yellow500}label="Add Chat"/>
+                            labelColor={colors.white}label="Add Chat"/>
             </div>
             <div className="channelScrollBox">
             {

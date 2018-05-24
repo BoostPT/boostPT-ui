@@ -68,12 +68,13 @@ export const changeUserPicture = async (payload) => {
       headers: {
         Authorization: `${document.cookie}`
       }});
-
+    
+      console.log("change picture action", result.data); 
     return {
       type: CHANGE_USER_PICTURE,
       payload: { 
         username: payload.user.username, 
-        isTrainer: payload.user.istrainer, 
+        istrainer: payload.user.istrainer, 
         id: payload.user.id, 
         picture: result.data.pictureUrl,
         email: payload.user.email
