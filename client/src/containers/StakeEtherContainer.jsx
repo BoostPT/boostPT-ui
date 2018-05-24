@@ -71,7 +71,10 @@ class StakeEtherContainer extends Component {
 
   async fetchIncentives() {
     const instance = await this.state.stakeEther.deployed();
-    const rawIncentives = await instance.fetchIncentives();
+    const rawIncentives = await instance.fetchIncentives({
+      from: this.state.web3.eth.accounts[0]
+    });
+
     if (rawIncentives[0].length < 1) return;
 
     // Incentive metadata is deconstructed
