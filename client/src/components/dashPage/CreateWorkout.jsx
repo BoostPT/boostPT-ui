@@ -163,7 +163,7 @@ class CreateWorkout extends Component {
 
   render() {
     return (
-      <Paper id="create-workout-outer" zDepth={5}>
+      <Paper id="create-workout-outer" zDepth={5} style={{backgroundColor: '#EEE'}}>
         <div id="create-workout-inner">
           <h2 className="create-workout-header">Create Workout</h2>
           <br />

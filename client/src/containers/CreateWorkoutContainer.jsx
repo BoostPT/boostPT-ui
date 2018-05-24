@@ -275,6 +275,8 @@ class CreateWorkoutContainer extends Component {
           message="Workout saved!"
           autoHideDuration={2400}
           onRequestClose={this.handleWorkoutBarClose}
+          style={{ opacity: '0.8' }}
+          contentStyle={{ color: colors.yellow500, textAlign: 'center' }}
         />
       </Fragment>
     )
