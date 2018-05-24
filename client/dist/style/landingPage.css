@@ -5,7 +5,7 @@
 }
 
 #boostpt-title {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Teko';
   float: left;
   margin-left: 0.8em;
   margin-top: 0.3em;
@@ -24,7 +24,7 @@
 }
 
 .landing-page-header {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato';
   font-size: 1.6em;
   color: #49525d;
   margin-top: 4em;
@@ -48,7 +48,7 @@
 
 .landing-page-col {
   text-align: center;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato';
   color: #49525d;
   margin-top: 3em;
 }
