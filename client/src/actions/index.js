@@ -144,7 +144,7 @@ export const deleteWorkout = async (workoutId, workouts, userId) => {
 
     const newList = [];
     let i = 0;
-    while (i < workouts.length - 1) {
+    while (i < workouts.length) {
       if (workouts[i].id !== workoutId) {
         newList.push(workouts[i]);
       }
