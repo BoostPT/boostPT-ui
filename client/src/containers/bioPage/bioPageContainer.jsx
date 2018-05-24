@@ -40,10 +40,8 @@ class BioPageContainer extends Component {
       file: files,
       user: this.props.user
     }
-    console.log("handle drop", payload.user);
     try {
       const changed = await this.props.changeUserPicture(payload);
-      console.log("inside drop", this.props.user);
       this.props.user.publicWorkouts = this.state.bioPageUserInfo.publicWorkouts;
       await this.setState({
         bioPageUserInfo: this.props.user

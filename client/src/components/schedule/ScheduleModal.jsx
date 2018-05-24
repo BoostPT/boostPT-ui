@@ -67,7 +67,6 @@ class ScheduleModal extends Component {
     // let items = [
     //   { value: 1, primaryText: 'Myself'}
     // ];
-    console.log(this.props.clients);
     return(
       <div className="scheduleModal">
         {this.props.scheduleModalVisible ? 

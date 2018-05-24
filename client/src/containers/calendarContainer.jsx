@@ -24,7 +24,6 @@ class CalendarContainer extends Component {
     try{
       await this.props.fetchEvents(this.props.userInfo.id);
       await this.props.events.forEach((event) => {
-        // console.log("inside calendar container", event);
         const calendarEvent = {
           id: event.id,
           title: event.title,

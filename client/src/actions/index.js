@@ -61,15 +61,14 @@ export const changeUserPicture = async (payload) => {
 
   try{
     const signedUrl = await axios.post('http://localhost:8000/api/aws/s3',picture, {headers: { Authorization: `${document.cookie}`}});
-    console.log("signed url", signedUrl.data);
+    
     await axios.put(signedUrl.data, payload.file[0], options);
-    console.log("after the signedURL put");
+
     const result = await axios.put(`http://localhost:8000/api/users/${payload.user.id}/picture`, body, {
       headers: {
         Authorization: `${document.cookie}`
       }});
     
-      console.log("change picture action", result.data); 
     return {
       type: CHANGE_USER_PICTURE,
       payload: { 

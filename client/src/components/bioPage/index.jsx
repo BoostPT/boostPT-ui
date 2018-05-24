@@ -45,12 +45,6 @@ class BioPage extends Component{
     super(props);
     this.state = { showRequestBtn: true, photo: this.props.changedPicture.picture,   }
   }
-  
-  // componentWillReceiveProps(nextProps){
-  //   console.log("WILL RECEIVE PROPS", nextProps);
-     
-  //   this.setState({ })
-  // }
 
   componentDidMount() {
     this.checkAlreadyRequested();
@@ -75,7 +69,6 @@ class BioPage extends Component{
   }
 
   render(){
-    console.log("props",this.props);
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>

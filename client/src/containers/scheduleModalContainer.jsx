@@ -87,7 +87,7 @@ class ScheduleModalContainer extends Component{
   }
 
   handleDropDownChange (e, index, value ) {
-    console.log("handle drop down", e, index, value);
+
     this.setState({
       dropDownValue: value
       // scheduledClient: value,
