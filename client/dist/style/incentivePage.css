@@ -60,11 +60,11 @@
   border-radius: 7px;
 }
 
-.incentive-receipt {
+.incentive-txhash {
   width: calc(140px + 30em);
 }
 
-.incentive-receipt-text {
+.incentive-txhash-text {
   color: #49525d;
   font-family: Lato;
   font-size: 0.8em;
