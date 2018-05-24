@@ -51,7 +51,6 @@ class BioPage extends Component{
   }
 
   hideRequestBtn() {
-    console.log('HIDE RUNNIG?')
     this.setState({ showRequestBtn: false });
   }
 
