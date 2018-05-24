@@ -6,24 +6,35 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import FlatButton from 'material-ui/FlatButton';
-import { yellow500, white } from 'material-ui/styles/colors';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import * as colors from "material-ui/styles/colors";
 
 const saveButtonLabelStyle = {
-  color: "#FFEB3B",
-  fontSize: '13px',
-  textTransform: "none",
+  fontFamily: 'Lato',
+  fontSize: '1.2em',
+  color: 'white',
+  textTransform: 'none',
+}
+
+const saveButtonStyle = {
+  width: '12vh',
+  alignSelf: 'center',
+  marginTop: '8%'
 }
 
 const pickerButtons = {
-  // textColor: white,
-  primaryTextColor: white,
-  color: '#343F4B',
-  textTransform: "none"
+  primaryTextColor: colors.white,
+  color: colors.grey600,
+  textTransform: "none",
+  rippleColor: colors.yellow500,
+  fontFamily: 'Lato',
+  fontSize: '1.0em',
 }
 
 const datePickerTheme = getMuiTheme({
   datePicker: {
-    selectColor: yellow500,
+    selectColor: colors.yellow500,
     headerColor: '#343F4B',
     selectTextColor: '#212121'
   },
@@ -34,7 +45,7 @@ const datePickerTheme = getMuiTheme({
 const timePickerTheme = getMuiTheme({
   timePicker: {
     headerColor: '#343F4B',
-    accentColor: yellow500,
+    accentColor: colors.yellow500,
     clockCircleColor: 'rgb(195, 202, 211)',
     selectTextColor: '#212121',
   },
@@ -42,6 +53,10 @@ const timePickerTheme = getMuiTheme({
   flatButton: pickerButtons
 });
 
+const pickerInputStyle = {
+  fontFamily: 'Lato',
+  textAlign: 'center'
+}
 class ScheduleModal extends Component {
   constructor(props){
     super(props);
@@ -49,6 +64,10 @@ class ScheduleModal extends Component {
   }
 
   render(){
+    // let items = [
+    //   { value: 1, primaryText: 'Myself'}
+    // ];
+    console.log(this.props.clients);
     return(
       <div className="scheduleModal">
         {this.props.scheduleModalVisible ? 
@@ -62,25 +81,31 @@ class ScheduleModal extends Component {
                   <Clear/>
                 </IconButton>
               </div>
-              <span> Date: </span>
-              <MuiThemeProvider muiTheme={datePickerTheme}>
-                <DatePicker onChange={this.props.handleDateChange} okLabel="Save" disableYearSelection={true}/>
-              </MuiThemeProvider>
-              <div className="timeSelectors">
-                <span> Start Time: </span>
-                <MuiThemeProvider muiTheme={timePickerTheme}>
-                  <TimePicker onChange={this.props.handleStartTimeChange}/>
+              <div className="selectors">
+                <span className="scheduleModalSpan"> Date: </span>
+                <MuiThemeProvider muiTheme={datePickerTheme}>
+                  <DatePicker className="picker" onChange={this.props.handleDateChange} okLabel="Save" disableYearSelection={true} inputStyle={pickerInputStyle}/>
                 </MuiThemeProvider>
-                <span> End Time: </span>
+                <span className="scheduleModalSpan"> Start Time: </span>
                 <MuiThemeProvider muiTheme={timePickerTheme}>
-                  <TimePicker onChange={this.props.handleEndTimeChange}/>
+                  <TimePicker className="picker" onChange={this.props.handleStartTimeChange} inputStyle={pickerInputStyle}/>
+                </MuiThemeProvider>
+                <span className="scheduleModalSpan"> End Time: </span>
+                <MuiThemeProvider muiTheme={timePickerTheme}>
+                  <TimePicker className="picker" onChange={this.props.handleEndTimeChange} inputStyle={pickerInputStyle}/>
                 </MuiThemeProvider>
               </div>
+              {/* <DropDownMenu value={this.props.dropDownValue}>
+                <MenuItem/>
+              </DropDownMenu> */}
               <FlatButton 
                 label="Save" 
-                backgroundColor="#5A6978" 
+                backgroundColor={colors.grey600}
+                hoverColor={colors.grey700}
+                rippleColor={colors.yellow500}
                 labelStyle={saveButtonLabelStyle} 
                 onClick={this.props.handleSaveButtonClick}
+                style={saveButtonStyle}
               />
             </div>
 

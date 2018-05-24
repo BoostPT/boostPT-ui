@@ -17,7 +17,8 @@ class ScheduleModalContainer extends Component{
       endMinute: null,
       seconds: 0,
       scheduledClient: null,
-      desc: null
+      desc: null,
+      dropDownValue: 1
     }
   }
 
@@ -42,10 +43,10 @@ class ScheduleModalContainer extends Component{
       endHour: this.state.endHour,
       endMinute: this.state.endMinute,
       second: this.state.seconds,
-      userId: !this.state.scheduledClient? this.props.userInfo.id : this.state.scheduledClient,
+      userId: !this.state.scheduledClient ? this.props.userInfo.id : this.state.scheduledClient,
       workoutId: this.props.workoutId,
       workoutName: this.props.workoutName,
-      desc: this.state.desc
+      desc: this.state.desc,
     }
     try {
       const result = await this.props.scheduleEvent('workout', payload);
@@ -85,6 +86,15 @@ class ScheduleModalContainer extends Component{
     }
   }
 
+  handleDropDownChange (e, index, value ) {
+    console.log("handle drop down", e, index, value);
+    this.setState({
+      dropDownValue: value
+      // scheduledClient: value,
+      
+    });
+  }
+
   async handleDateChange(e, date) {
     const day = date.getDate();
     const year = date.getFullYear();
@@ -109,10 +119,13 @@ class ScheduleModalContainer extends Component{
         workoutName={this.props.workoutName}
         workoutId={this.props.workoutId}
         toggleModal={this.props.toggleModal}
+        // dropDownValue={this.state.dropDownValue}
+        // scheduledClient={this.state.scheduledClient}
         handleSaveButtonClick={this.handleSaveButtonClick.bind(this)}
         handleStartTimeChange={this.handleStartTimeChange.bind(this)}
         handleEndTimeChange={this.handleEndTimeChange.bind(this)}
         handleDateChange={this.handleDateChange.bind(this)}
+        handleDropDownChange={this.handleDropDownChange.bind(this)}
       />
     );
   }
