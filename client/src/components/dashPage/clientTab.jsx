@@ -48,7 +48,6 @@ class ClientTab extends Component {
 
   renderCards(cardList) {
     let content = [];
-    console.log("this is cardlist", cardList);
     if (Array.isArray(cardList)) {
       cardList.forEach((card, i) => {
         if((i+1) % 3 === 0) {
@@ -154,7 +153,6 @@ class ClientTab extends Component {
   render() {
     return (
       <div>
-        {console.log(this.state.cardList)}
         {this.renderCards(this.state.cardList)}     
       </div>    
     );
