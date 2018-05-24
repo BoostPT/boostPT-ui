@@ -141,6 +141,7 @@ button.rbc-input::-moz-focus-inner {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   background-color: #e6e6e6;
   border-color: #212121;
+  color: #373a3c;
 }
 .rbc-toolbar button:active:hover,
 .rbc-toolbar button.rbc-active:hover,

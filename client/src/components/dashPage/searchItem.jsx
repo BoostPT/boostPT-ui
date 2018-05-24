@@ -23,9 +23,6 @@ class SearchItem extends Component {
     return(
       <div className="dropdown-item">
         {
-          this.props.picture ?
-            <img className="avatar-styles" data-id={this.props.id} src={require(`${this.props.picture}`)} />
-            :
             <ListItem
              style={listItemStyles}
              disabled={true}
