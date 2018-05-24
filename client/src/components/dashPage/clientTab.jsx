@@ -48,6 +48,7 @@ class ClientTab extends Component {
 
   renderCards(cardList) {
     let content = [];
+    console.log("this is cardlist", cardList);
     if (Array.isArray(cardList)) {
       cardList.forEach((card, i) => {
         if((i+1) % 3 === 0) {
@@ -63,6 +64,7 @@ class ClientTab extends Component {
             </div>
           )
         } else {
+          
           content.push(
             <div className="column" key={i + 1}>
               <Card className = 'clientCard'>
@@ -70,10 +72,10 @@ class ClientTab extends Component {
                   <div className="name">{cardList[i].client_name || cardList[i].username}</div>
                 </CardText>
               </Card>
-          </div>
+            </div>
           );
-        }
-      });
+          }
+        });
       return (
         <div>
           <div className='wrapper'>
@@ -110,11 +112,49 @@ class ClientTab extends Component {
       </div>
     </div>    
     );
+  } else {
+    return(
+      <div>
+      <div className='wrapper'>
+        <div className='outerContainer'>
+          <div className='innerContainer'>
+            <div>
+            <div className="row" key={0}>
+              <div className="column">
+                <form className="filter">
+                  <input type="text" className="textbox" placeholder="Filter" onChange={this.filterInputChange} value={this.state.filterInput}></input>
+                </form>
+              </div>
+            <div className="column">
+              <button className="addClientButton" onClick={this.toggleModal}>Add a Client</button>
+            </div>
+            <div className="column">
+              <div id="cardPlaceHolder">
+              </div>
+            </div>
+          </div>    
+          <div className="scrollBox">
+            {content}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    {this.state.toggleModal ?
+    <Modal clickEvent={this.props.handleSubmitButtonClick} toggleModal={this.toggleModal}/>
+    :
+    <div>
+    </div>}
+  </div>
+</div>   
+    );
   }
 }
   render() {
     return (
       <div>
+        {console.log(this.state.cardList)}
         {this.renderCards(this.state.cardList)}     
       </div>    
     );

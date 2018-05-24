@@ -49,6 +49,7 @@ class ClientTabContainer extends Component {
   }
 
   render() {
+    console.log(this.props.clients);
     return(
       <div>{
         this.props.clients ?
