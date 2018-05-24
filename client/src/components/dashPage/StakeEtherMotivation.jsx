@@ -48,7 +48,11 @@ class StakeEtherMotivation extends Component {
 
   renderIncentives() {
     return this.props.incentives.length ? (
-      <IncentiveContainer incentives={this.props.incentives} stakeEther={this.props.stakeEther} />
+      <IncentiveContainer
+        incentives={this.props.incentives}
+        stakeEther={this.props.stakeEther}
+        showTxHash={this.props.showTxHash}
+      />
     ) : (
       <h3 className="incentive-list-header">You don't have any ETH incentives</h3>
     );
@@ -151,7 +155,8 @@ StakeEtherMotivation.propTypes = {
   handleIncentiveFormSubmit: PropTypes.func.isRequired,
   showTxHashModal: PropTypes.bool.isRequired,
   toggleTxHashModal: PropTypes.func.isRequired,
-  txHash: PropTypes.string
+  txHash: PropTypes.string,
+  showTxHash: PropTypes.func
 };
 
 export default StakeEtherMotivation;

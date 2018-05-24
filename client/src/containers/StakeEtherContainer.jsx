@@ -24,6 +24,7 @@ class StakeEtherContainer extends Component {
     this.handleIncentiveFormChange = this.handleIncentiveFormChange.bind(this);
     this.handleIncentiveFormSubmit = this.handleIncentiveFormSubmit.bind(this);
     this.toggleTxHashModal = this.toggleTxHashModal.bind(this);
+    this.showTxHash = this.showTxHash.bind(this);
   }
 
   async componentDidMount() {
@@ -143,6 +144,10 @@ class StakeEtherContainer extends Component {
     // Default Gas Limit: 250,000
     // Default Gas Price: 20 Gwei
 
+    this.showTxHash(txHash);
+  }
+
+  showTxHash(txHash) {
     if (txHash) {
       this.setState({
         showAddIncentiveModal: false,
@@ -164,6 +169,7 @@ class StakeEtherContainer extends Component {
         showTxHashModal={this.state.showTxHashModal}
         toggleTxHashModal={this.toggleTxHashModal}
         txHash={this.state.txHash}
+        showTxHash={this.showTxHash}
       />
     )
   }
