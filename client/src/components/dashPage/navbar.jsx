@@ -11,7 +11,7 @@ import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
 import Mail from 'material-ui/svg-icons/communication/mail-outline';
 
 const toolbarStyle = {
-  backgroundColor: colors.grey500
+  backgroundColor: '#969FAA'
 };
 
 const mailStyle = {

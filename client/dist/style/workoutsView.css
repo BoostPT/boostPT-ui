@@ -23,7 +23,7 @@
 .font {
     font-size: 10px;
     font-weight: 300;
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     color: #546E7A;
 }
 .pad-right {
@@ -214,7 +214,7 @@
     border-radius: 7px;
 }
 .modal-font {
-    font-family: Arial;
+    font-family: 'Lato', sans-serif;
     color: #546E7A;
     font-size: 20px;
     font-weight: 300;

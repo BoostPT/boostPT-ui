@@ -10,7 +10,7 @@
 
 .incentive-list-header {
   color: #49525d;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   font-size: 1.44em;
   margin: 0 auto;
   margin-top: 1em;
@@ -19,7 +19,7 @@
 
 .incentive-list-subheader {
   color: #49525d;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   font-size: 1em;
   margin: 0 auto;
   margin-top: 2em;
@@ -74,7 +74,7 @@
 
 .incentive-txhash-text {
   color: #49525d;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   font-size: 0.8em;
   margin: 0 auto;
   margin-top: 1em;
@@ -88,7 +88,7 @@
 
 .incentive-item-inner {
   color: #49525d;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   padding: 0.56em;
   margin: 0 auto;
   margin-top: 0.2em;
