@@ -36,14 +36,12 @@ class CalendarContainer extends Component {
         this.state.events.push(calendarEvent);
       });
       this.setState({});
-      console.log(this.state.events);
     } catch (err) {
       return err;
     }
   }
 
   moveEvent({ event, start, end }) {
-    console.log("inside",{ event, start, end });
     const { events } = this.state
 
     const idx = events.indexOf(event)
@@ -71,7 +69,6 @@ class CalendarContainer extends Component {
   }
 
   render(){
-    console.log(this.state.events);
     return(
       <div className="calendarContainer">
         <DnDCalendar 

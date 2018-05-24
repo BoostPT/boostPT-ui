@@ -48,13 +48,11 @@ class DashPage extends Component {
   }
 
   renderActiveTabPage(messagesTabIndex) {
-    console.log('here1',this.props.activeTab)
     if (this.props.activeTab === 0) {
       return <CalendarContainer/>
     } else if (this.props.activeTab === 1) {
       return <WorkoutsTab />
     } else if (this.props.user.istrainer && this.props.activeTab === 2) {
-      console.log('here2')
       return <ClientTabContainer />
     } else if (this.props.activeTab === messagesTabIndex) {
       return <MessagePageContainer/>
