@@ -54,7 +54,7 @@ class MessagePageModal extends Component {
     let activeUser = this.props.activeUser;
     let tempArr = [newUser, activeUser];
     let newArr = tempArr.sort();
-    let channelStr = tempArr[0] + ':' + tempArr[1];
+    let channelStr = newArr[0] + ':' + newArr[1];
     let payload = {channelStr: channelStr, newUser: newUser}
     try {
       const result = await axios.post('http://localhost:8000/api/messages/getchannels/addchannel', payload, {
