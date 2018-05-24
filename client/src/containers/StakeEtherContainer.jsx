@@ -25,6 +25,7 @@ class StakeEtherContainer extends Component {
     this.handleIncentiveFormSubmit = this.handleIncentiveFormSubmit.bind(this);
     this.toggleTxHashModal = this.toggleTxHashModal.bind(this);
     this.showTxHash = this.showTxHash.bind(this);
+    this.fetchIncentives = this.fetchIncentives.bind(this);
   }
 
   async componentDidMount() {
@@ -170,6 +171,7 @@ class StakeEtherContainer extends Component {
         toggleTxHashModal={this.toggleTxHashModal}
         txHash={this.state.txHash}
         showTxHash={this.showTxHash}
+        fetchIncentives={this.fetchIncentives}
       />
     )
   }

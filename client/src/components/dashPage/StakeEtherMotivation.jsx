@@ -123,8 +123,16 @@ class StakeEtherMotivation extends Component {
     return (
       <Fragment>
         <Paper className="incentive-list">
-          <img className="eth-logo-left" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
-          <img className="eth-logo-right" src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
+          <img
+            className="eth-logo-left"
+            src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png"
+            onClick={this.props.fetchIncentives}
+          />
+          <img
+            className="eth-logo-right"
+            src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png"
+            onClick={this.props.fetchIncentives}
+          />
           <h3 className="incentive-list-header">Create an incentive by staking Ether</h3>
           <br />
           <Divider />
@@ -156,7 +164,8 @@ StakeEtherMotivation.propTypes = {
   showTxHashModal: PropTypes.bool.isRequired,
   toggleTxHashModal: PropTypes.func.isRequired,
   txHash: PropTypes.string,
-  showTxHash: PropTypes.func
+  showTxHash: PropTypes.func,
+  fetchIncentives: PropTypes.func
 };
 
 export default StakeEtherMotivation;

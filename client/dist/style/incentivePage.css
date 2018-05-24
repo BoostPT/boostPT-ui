@@ -40,6 +40,14 @@
   display: inline-block;
 }
 
+.eth-logo-left:hover {
+  cursor: pointer;
+}
+
+.eth-logo-right:hover {
+  cursor: pointer;
+}
+
 .modal-incentive {
   position: fixed;
   height: 100%;
