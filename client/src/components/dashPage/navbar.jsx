@@ -53,33 +53,34 @@ class Navbar extends Component{
                 null
             }
           </div>
-          <div className="request-btn">
+          <div className="dashPageNavRequest">
             {
               this.props.user.istrainer ?
-                  <Mail onClick={this.props.handleRequestsClick} style={mailStyle} />
+                <Mail className="request-btn" onClick={this.props.handleRequestsClick} style={mailStyle} />
                 :
                 null
             }
             {
               this.props.showRequests ?
-                !Array.isArray(this.props.requestsIn) ?
-                  <p>No requests</p>
-                  :
-                  this.props.requestsIn.map(request => {
-                    return <RequestListItem
-                            key={request.id}
-                            picture={request.picture}
-                            id={request.id}
-                            username={request.username}
-                            handleRequestOptionYesClick={this.props.handleRequestOptionYesClick}
-                            handleRequestOptionNoClick={this.props.handleRequestOptionNoClick}
-                          />
-                  })
+              !Array.isArray(this.props.requestsIn) ?
+              <div className="dropdown-item">No requests</div>
+              :
+              <div className="dropdown-content">
+                    {this.props.requestsIn.map(request => {
+                      return <RequestListItem
+                      key={request.id}
+                      picture={request.picture}
+                      id={request.id}
+                      username={request.username}
+                      handleRequestOptionYesClick={this.props.handleRequestOptionYesClick}
+                      handleRequestOptionNoClick={this.props.handleRequestOptionNoClick}
+                      />
+                    })}
+                  </div>
                   :
                   null
-            }
+                }
           </div>
-          <FontAwesomeIcon icon={faBell} />
           <div className="navbarUser" onClick={this.props.handleUserNameClick}>
             {!this.props.user.picture ?
               <Avatar className="avatarPicture" size={30} icon={<FontAwesomeIcon icon={faUser}/>}/>

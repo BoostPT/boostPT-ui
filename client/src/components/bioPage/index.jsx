@@ -51,11 +51,13 @@ class BioPage extends Component{
   }
 
   hideRequestBtn() {
+    console.log('HIDE RUNNIG?')
     this.setState({ showRequestBtn: false });
   }
 
   checkAlreadyRequested() {
     const requests = this.props.requestsOut;
+    this.props.user.id === this.props.loggedInUserId ? this.hideRequestBtn() : null;
     if (Array.isArray(requests)) {
       for (let i = 0; i < requests.length; i++) {
         if (requests[i].trainer_id === this.props.user.id || this.props.user.id === this.props.loggedInUserId) {

@@ -11,7 +11,7 @@ class SignupContainer extends Component {
         username: '',
         email: '',
         password: '',
-        isTrainer: false,
+        isTrainer: true,
         errorMessage: ''
     };
 
@@ -25,7 +25,8 @@ class SignupContainer extends Component {
   }
 
   handleToggleButtonChange(isChecked) {
-    this.setState({ isTrainer: isChecked });
+    // this.setState({ isTrainer: isChecked });
+    this.setState({ isTrainer: !this.state.isTrainer });
   }
 
   async handleSignupClick(e) {
@@ -57,7 +58,7 @@ class SignupContainer extends Component {
       <Signup
         handleSignupClick={this.handleSignupClick}
         handleChange={this.handleChange}
-        handleToggleButtonChange={this.handleToggleButtonChange}
+        handleToggleButtonChange={this.handleToggleButtonChange.bind(this)}
         errorMessage={this.state.errorMessage}
       />
     );

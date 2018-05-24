@@ -70,8 +70,8 @@ class Signup extends Component {
                   thumbSwitchedStyle={toggleStyle.thumb}
                   trackSwitchedStyle={toggleStyle.track}
                   labelStyle={toggleLabelStyle}
-                  onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
                   onClick={this.props.handleToggleButtonChange}
+                  // onToggle={(e, isChecked) => this.props.handleToggleButtonChange(isChecked)}
                 />
                 <FlatButton
                   label="Sign Up"
