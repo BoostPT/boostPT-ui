@@ -52,6 +52,7 @@ class Modal extends Component {
       <div>{
         <div className="addNewClientModal" onClick={this.overlayClick}>
           <div className="addNewClientModal-content">
+            <span className="close" onClick={this.props.toggleModal}>&times;</span>
             <div id="addNewClientModal-title" >Add Client</div>
             <div id="addNewClientModal-subtitle" >Name
             </div>
@@ -67,9 +68,6 @@ class Modal extends Component {
               : 
               <span></span>
             }
-            <div>
-              <span className="close" onClick={this.props.toggleModal}>&times;</span>
-            </div>
           </div>
         </div>}
       </div>
