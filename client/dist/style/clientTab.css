@@ -29,6 +29,10 @@
   margin-right: 10px;
 }
 
+.clientCard:hover {
+  cursor: pointer;
+}
+
 .clientCardText {
   margin-top: 5px;
   margin-left: 5px;

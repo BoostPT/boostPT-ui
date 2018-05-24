@@ -60,7 +60,7 @@ class ClientTab extends Component {
           content.push(
             <div className="row" key={i + 1}>       
               <div className="column">
-                <Card className = 'clientCard'>
+                <Card className = 'clientCard' onClick={() => this.props.handleClientCardClick(cardList[i])}>
                   <CardText className ='clientCardText'> 
                     <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                     <div className="name">{cardList[i].client_name || cardList[i].username}</div>
@@ -72,7 +72,7 @@ class ClientTab extends Component {
         } else {
           content.push(
             <div className="column" key={i + 1}>
-              <Card className = 'clientCard'>
+              <Card className = 'clientCard' onClick={() => this.props.handleClientCardClick(cardList[i])}>
                 <CardText className ='clientCardText'> 
                 <FontAwesomeIcon className={cardList[i].client_name ? "circle" : "check"} icon={cardList[i].client_name ? faCircle : faCheck} />
                   <div className="name">{cardList[i].client_name || cardList[i].username}</div>
