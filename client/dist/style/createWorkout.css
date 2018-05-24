@@ -15,6 +15,8 @@
 }
 
 .create-workout-header {
+  color: #49525d;
+  font-family: Lato;
   text-align: center;
   padding-top: 20px;
 }
@@ -60,23 +62,24 @@
 
 .exercise-form {
   list-style-type: none;
-  padding-left: 40px;
-  padding-bottom: 15px;
+  padding-left: 3em;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 1em;
 }
 
 .odd-greyed {
   background-color: #F5F5F5;
 }
-  
-.exercise-form {
-  padding-left: 40px;
-}
 
 #submit-wo-div {
-  float: bottom;
   margin: 0 auto;
-  width: 160px;
-  font-size: 12px;
+  width: 14em;
+  font-size: 0.8em;
+}
+
+.make-private {
+  padding-left: 2.2em;
 }
 
 .save-workout-btn {
