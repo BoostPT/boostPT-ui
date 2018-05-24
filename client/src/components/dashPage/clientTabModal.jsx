@@ -46,6 +46,11 @@ class Modal extends Component {
     }
   }
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleButtonClick();
+    }
+  }
 
   render() {
     return (
@@ -58,7 +63,7 @@ class Modal extends Component {
             </div>
             <label>
               <span>
-                <input id="addNewClientModal-input" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange}></input>
+                <input id="addNewClientModal-input" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange} onKeyPress={(e) => this.handleKeyPress(e)}></input>
                 <button id="createUserButton" onClick={this.handleButtonClick.bind(this)}>Submit</button>
               </span>
             </label>

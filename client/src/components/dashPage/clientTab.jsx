@@ -37,14 +37,16 @@ class ClientTab extends Component {
   filterCards() {
     const input = this.state.filterInput.toLowerCase();
     const tempArr = this.props.clients;
-    const newArr = tempArr.filter((value) => {
-      let name = value.client_name || value.username;
-      return name.toLowerCase().startsWith(input);
-    })
-    if (input.length > 0) {
-      this.setState({cardList: newArr});
-    } else {
-      this.setState({cardList: this.props.clients});
+    if (Array.isArray(tempArr)) {
+      const newArr = tempArr.filter((value) => {
+        let name = value.client_name || value.username;
+        return name.toLowerCase().startsWith(input);
+      })
+      if (input.length > 0) {
+        this.setState({cardList: newArr});
+      } else {
+        this.setState({cardList: this.props.clients});
+      }
     }
   }
 
