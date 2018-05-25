@@ -77,6 +77,10 @@ class LandingPage extends Component {
               <h3>Organize Client Programs</h3>
               <DashIcon className="landing-page-icon" style={iconStyle} />
             </div>
+            <div className="landing-page-col">
+              <h3>Create incentives, Stake ETH</h3>
+              <img className="landing-page-icon" style={iconStyle} src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
+            </div>
           </div>
         </div>
         <span className="footer">Copyright &copy; 2018 BoostPT. All Rights Reserved.</span>
