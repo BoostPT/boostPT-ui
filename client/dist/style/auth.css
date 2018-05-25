@@ -1,5 +1,5 @@
 .auth-page {
-  background-color: #BDBDBD;
+  background-color: #FFF;
   height: -webkit-fill-available;
 }
 
@@ -23,6 +23,7 @@
   margin: 0 auto;
   text-align: center;
   padding-top: 30px;
+  background-color: #EEE;
 }
 
 .auth-form {
