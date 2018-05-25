@@ -97,11 +97,11 @@ class ScheduleModal extends Component {
                 </MuiThemeProvider>
                 <span className="scheduleModalSpan"> Start Time: </span>
                 <MuiThemeProvider muiTheme={timePickerTheme}>
-                  <TimePicker className="picker" onChange={this.props.handleStartTimeChange} inputStyle={pickerInputStyle}/>
+                  <TimePicker className="picker" onChange={this.props.handleStartTimeChange} inputStyle={pickerInputStyle} minutesStep={5}/>
                 </MuiThemeProvider>
                 <span className="scheduleModalSpan"> End Time: </span>
                 <MuiThemeProvider muiTheme={timePickerTheme}>
-                  <TimePicker className="picker" onChange={this.props.handleEndTimeChange} inputStyle={pickerInputStyle}/>
+                  <TimePicker className="picker" onChange={this.props.handleEndTimeChange} inputStyle={pickerInputStyle} minutesStep={5}/>
                 </MuiThemeProvider>
               </div>
               {/* <DropDownMenu value={this.props.dropDownValue}>
