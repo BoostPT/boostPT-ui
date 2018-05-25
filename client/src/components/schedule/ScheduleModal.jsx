@@ -86,7 +86,6 @@ class ScheduleModal extends Component {
       });
     }
 
-    // console.log(this.props, items);
     return(
       <div className="scheduleModal">
         {this.props.scheduleModalVisible ? 

@@ -69,7 +69,6 @@ class BioPage extends Component{
   }
 
   render(){
-    console.log(this.props);
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>

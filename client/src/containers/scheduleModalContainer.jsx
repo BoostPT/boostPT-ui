@@ -145,12 +145,11 @@ class ScheduleModalContainer extends Component{
       <ScheduleModal 
         scheduleModalVisible={this.props.scheduleModalVisible}
         user={this.props.userInfo}
-        clients={this.props.clients} // for selecting which client feature
+        clients={this.props.clients}
         workoutName={this.props.workoutName}
         workoutId={this.props.workoutId}
         toggleModal={this.props.toggleModal}
         dropDownValue={this.state.dropDownValue}
-        // scheduledClient={this.state.scheduledClient}
         handleSaveButtonClick={this.handleSaveButtonClick.bind(this)}
         handleStartTimeChange={this.handleStartTimeChange.bind(this)}
         handleEndTimeChange={this.handleEndTimeChange.bind(this)}
