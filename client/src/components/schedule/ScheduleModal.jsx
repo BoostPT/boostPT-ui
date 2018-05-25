@@ -74,9 +74,19 @@ class ScheduleModal extends Component {
   }
 
   render(){
-    // let items = [
-    //   { value: 1, primaryText: 'Myself'}
-    // ];
+    let items = [
+      {key: 0, value: 1, primaryText: 'None'}
+    ];
+
+    for(let i = 0; i < this.props.clients.length; i++){
+      items.push({
+        key: this.props.clients[i].id, 
+        value: i+2, 
+        primaryText: !this.props.clients[i].client_name ? this.props.clients[i].username : this.props.clients[i].client_name
+      });
+    }
+
+    // console.log(this.props, items);
     return(
       <div className="scheduleModal">
         {this.props.scheduleModalVisible ? 
@@ -91,6 +101,16 @@ class ScheduleModal extends Component {
                 </IconButton>
               </div>
               <div className="selectors">
+                {!this.props.user.istrainer ? null : 
+                  <span className="scheduleModalSpan"> Client: </span>
+                }
+                {!this.props.user.istrainer ? null :         
+                  <DropDownMenu value={this.props.dropDownValue} onChange={this.props.handleDropDownChange}>
+                    {items.map(item =>
+                      <MenuItem {...item} />
+                    )}
+                  </DropDownMenu>
+                }
                 <span className="scheduleModalSpan"> Date: </span>
                 <MuiThemeProvider muiTheme={datePickerTheme}>
                   <DatePicker className="picker" onChange={this.props.handleDateChange} okLabel="Save" disableYearSelection={true} inputStyle={pickerInputStyle}/>
@@ -104,9 +124,6 @@ class ScheduleModal extends Component {
                   <TimePicker className="picker" onChange={this.props.handleEndTimeChange} inputStyle={pickerInputStyle} minutesStep={5}/>
                 </MuiThemeProvider>
               </div>
-              {/* <DropDownMenu value={this.props.dropDownValue}>
-                <MenuItem/>
-              </DropDownMenu> */}
               <FlatButton 
                 label="Save" 
                 backgroundColor={colors.grey600}
