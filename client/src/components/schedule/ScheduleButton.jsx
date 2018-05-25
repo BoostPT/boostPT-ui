@@ -9,14 +9,14 @@ const scheduleButtonStyle = {
   marginLeft: '90px',
   marginBottom: '5px',
   marginTop: '5px',
-}
+};
 
 const scheduleLabelStyle = {
   fontFamily: 'Lato',
-  color: 'white',
+  color: '#EEE',
   fontSize: '1.4em',
   textTransform: "none",
-}
+};
 
 class ScheduleButton extends Component{
   constructor(props){

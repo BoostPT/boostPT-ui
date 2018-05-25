@@ -9,7 +9,7 @@ const incentiveBtnLabelStyle = {
   fontFamily: 'Lato',
   fontSize: '1.2em',
   textTransform: 'none',
-  color: 'white'
+  color: '#EEE'
 };
 
 const incentiveBtnStyle = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
-import RaisedButton from 'material-ui/RaisedButton';
 import Edit from 'material-ui/svg-icons/image/edit';
 import Email from 'material-ui/svg-icons/communication/email';
 import Phone from 'material-ui/svg-icons/communication/phone';

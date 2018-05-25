@@ -13,24 +13,24 @@ import * as colors from "material-ui/styles/colors";
 const saveButtonLabelStyle = {
   fontFamily: 'Lato',
   fontSize: '1.2em',
-  color: 'white',
+  color: '#EEE',
   textTransform: 'none',
-}
+};
 
 const saveButtonStyle = {
   width: '12vh',
   alignSelf: 'center',
   marginTop: '8%'
-}
+};
 
 const pickerButtons = {
-  primaryTextColor: colors.white,
+  primaryTextColor: '#EEE',
   color: colors.grey600,
   textTransform: "none",
   rippleColor: colors.yellow500,
   fontFamily: 'Lato',
   fontSize: '1.0em',
-}
+};
 
 const datePickerTheme = getMuiTheme({
   datePicker: {

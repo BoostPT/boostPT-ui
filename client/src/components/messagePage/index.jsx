@@ -130,10 +130,10 @@ class MessagePage extends Component {
                             backgroundColor={colors.grey600}
                             rippleColor={colors.yellow500}
                             hoverColor={colors.grey700}
-                            labelStyle={{ fontFamily: 'Lato', color: 'white',
+                            labelStyle={{ fontFamily: 'Lato', color: '#EEE',
                             fontSize: '1.4em', textTransform: 'none'}}
                             style={{marginTop: '0.8em'}}
-                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden', color: 'white'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden', color: '#EEE'}}
                             label="Add Chat"/>
             </div>
             <div className="channelScrollBox">
@@ -189,7 +189,7 @@ class MessagePage extends Component {
                             hoverColor={colors.grey700}
                             rippleColor={colors.yellow500}
                             style={{ float: 'left', marginLeft: '10px', marginTop: '1.8em'}}
-                            labelStyle={{fontSize: '20px', textTransform: 'none', color: 'white'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', color: '#EEE'}}
                             label="Send"/>
             </div>
           </label>

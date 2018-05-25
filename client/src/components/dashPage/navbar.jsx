@@ -4,8 +4,6 @@ import SearchItem from './searchItem.jsx';
 import RequestListItem from './requestListItem.jsx';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import Avatar from 'material-ui/Avatar';
-import TextField from 'material-ui/TextField';
-import * as colors from 'material-ui/styles/colors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/fontawesome-free-solid';
 import Mail from 'material-ui/svg-icons/communication/mail-outline';
