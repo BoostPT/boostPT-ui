@@ -61,6 +61,9 @@
     border-radius: 7px;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-left: 250px;
+    margin-top: 50px;
+
 }
 .full-width {
     width: 100%;
@@ -119,6 +122,8 @@
   margin: 10px 0 28px 34px;
   height: 34px;
   width: 272px;
+  margin-left: 263px;
+  margin-top: 39px;
 }
 
 /*************************
@@ -127,8 +132,8 @@
 .workout-container {
     height: 490px;
     width: 300px;
-    margin-left: 450px;
-    margin-top: 20px;
+    margin-left: 650px;
+    margin-top: 50px;
     text-align: center;
     display: inline-block;
     border-radius: 7px;
