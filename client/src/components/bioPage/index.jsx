@@ -43,7 +43,7 @@ const IconButtonStyle = {
 class BioPage extends Component{
   constructor(props){
     super(props);
-    this.state = { showRequestBtn: true, photo: this.props.changedPicture.picture,   }
+    this.state = { showRequestBtn: true }
   }
 
   componentDidMount() {

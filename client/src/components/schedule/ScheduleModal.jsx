@@ -63,6 +63,16 @@ class ScheduleModal extends Component {
 
   }
 
+  componentDidMount() {
+    document.addEventListener("keydown", this.escFunction.bind(this), false);
+  }
+
+  escFunction(e) {
+    if (e.keyCode === 27) {
+      this.props.toggleModal(e, 'schedule');
+    }
+  }
+
   render(){
     // let items = [
     //   { value: 1, primaryText: 'Myself'}

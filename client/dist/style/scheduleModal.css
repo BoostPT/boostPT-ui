@@ -1,8 +1,8 @@
 .scheduleModalContent {
   background-color: #fefefe;
   border: 1px solid #888;
-  width: 40%;
-  height: 50%;
+  width: 43%;
+  height: 60%;
   border-radius: 7px;
   margin-left: 30%;
   margin-top: 10%;
@@ -18,8 +18,8 @@
 
 .scheduleModalTitle p{
   margin-left: 28%;
-  margin-top: 1%;
-  font-size: 30px;
+  margin-top: 1%; 
+  font-size: 1.8em;
   font-family: Lato;
   font-weight: bold;
 }
