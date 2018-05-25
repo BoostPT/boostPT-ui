@@ -5,12 +5,18 @@ class WorkoutModal extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode === 27) { this.props.toggleModal(e,'deleteWorkout') }
+    }, false);
+  }
+
   render() {
     return (
       <div className="modal-font">
         {
           this.props.modalVisible ? 
-            <div className="modal-workout">
+            <div className="modal-workout" onClick={(e)=>this.props.toggleModal(e,'deleteWorkout')}>
               <div className="modal-workout-content">
                 <p>Delete {this.props.workoutName}?</p>
                 <a className="float-left modal-btn pointer" onClick={(e) => this.props.handleYesClick(e, this.props.workoutId, this.props.workouts, this.props.userId)}>Yes</a>
