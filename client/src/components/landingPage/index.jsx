@@ -38,32 +38,36 @@ class LandingPage extends Component {
   render() {
     return (
       <div id="landing-page">
-        <h2 id="boostpt-title">Boost<span id="pt-title">PT</span></h2>
-        <div className="auth-btns">
-          <Link to="/signup">
-            <FlatButton
-              label="Sign Up"
-              backgroundColor={colors.grey600}
-              hoverColor={colors.grey700}
-              rippleColor={colors.yellow500}
-              labelStyle={authBtnLabelStyle}
-              style={authBtnStyle}
-            />
-          </Link>
-          <Link to='/login'>
-            <FlatButton
-              label="Log In"
-              backgroundColor={colors.grey600}
-              hoverColor={colors.grey700}
-              rippleColor={colors.yellow500}
-              labelStyle={authBtnLabelStyle}
-              style={authBtnStyle}
-            />
-          </Link>
+        <div>
+          <h2 id="boostpt-title">Boost<span id="pt-title">PT</span></h2>
+          <div className="auth-btns">
+            <Link to="/signup">
+              <FlatButton
+                label="Sign Up"
+                backgroundColor={colors.grey600}
+                hoverColor={colors.grey700}
+                rippleColor={colors.yellow500}
+                labelStyle={authBtnLabelStyle}
+                style={authBtnStyle}
+              />
+            </Link>
+            <Link to='/login'>
+              <FlatButton
+                label="Log In"
+                backgroundColor={colors.grey600}
+                hoverColor={colors.grey700}
+                rippleColor={colors.yellow500}
+                labelStyle={authBtnLabelStyle}
+                style={authBtnStyle}
+              />
+            </Link>
+          </div>
         </div>
-        <br />
-        <h3 className="landing-page-header">Personal Training Client Management, Simplified</h3>
-        <h2 className="landing-page-header" id="landing-page-subheader">For the professional trainer, or the dedicated athlete</h2>
+        <div className="image-headers">
+          <img src="/images/trx-landing-page.jpg" width="100%" />
+          <div className="landing-page-header">Personal Training Client Management, Simplified</div>
+          <div className="landing-page-header" id="landing-page-subheader">For the professional trainer, or the dedicated athlete</div>
+        </div>
         <div className="landing-page-feature-list">
           <div className="landing-page-subheader-grid">
             <div className="landing-page-col">
@@ -83,9 +87,6 @@ class LandingPage extends Component {
               <img className="landing-page-icon" style={iconStyle} src="https://www.ethereum.org/images/logos/ETHEREUM-ICON_Black_small.png" />
             </div>
           </div>
-        </div>
-        <div className="landing-page-image">
-          {/*<img src="FILL IN WITH PHOTO" />*/}
         </div>
         {/*CALENDAR PREVIEW*/}
         <div className="landing-page-preview">
