@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as colors from 'material-ui/styles/colors';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import MessagePageModal from './messagePageModal.jsx';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft } from '@fortawesome/fontawesome-free-solid';
@@ -22,7 +20,7 @@ class MessagePage extends Component {
       messages: [],
       hideSidebar: false,
       doubleLeft: false,
-    }
+    };
     this.animateSidebar = this.animateSidebar.bind(this);
     this.toggleAddChatModal = this.toggleAddChatModal.bind(this);
     this.handleAddChatButton = this.handleAddChatButton.bind(this);
@@ -37,7 +35,6 @@ class MessagePage extends Component {
     this.props.fetchChannelsFromStore();
     let channels = this.props.channels;
     let username = this.props.user.username;
-    let messages = this.props.channels.messages;
     let tempArr = [];
     for (let i = 0; i < channels.length; i++) {
       let str = channels[i].participants.replace(username, "").replace(":", "");
@@ -76,7 +73,7 @@ class MessagePage extends Component {
     this.props.fetchChannelsFromStore();
     let tempArr = [channelName, this.props.user.username];
     let newArr = tempArr.sort();
-    var channelStr = tempArr[0] + ':' + tempArr[1];
+    var channelStr = newArr[0] + ':' + newArr[1];
     if (this.state.activeChannel.length > 0) {
       this.socket.emit('unsubscribe', this.state.activeChannel);
     }
