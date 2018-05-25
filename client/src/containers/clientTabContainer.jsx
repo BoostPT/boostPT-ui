@@ -47,7 +47,6 @@ class ClientTabContainer extends Component {
 
   async handleSubmitButtonClick(clientName, cb) {
     try {
-      console.log(clientName);
       var payload = {client_name: clientName, trainer_id: this.props.userInfo.id};
       const result = await axios.post('http://localhost:8000/api/users/addnonuserclient', payload, {
         headers: {
