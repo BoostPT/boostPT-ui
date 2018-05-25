@@ -43,7 +43,7 @@ const IconButtonStyle = {
 class BioPage extends Component{
   constructor(props){
     super(props);
-    this.state = { showRequestBtn: true, photo: this.props.changedPicture.picture,   }
+    this.state = { showRequestBtn: true }
   }
 
   componentDidMount() {
@@ -78,7 +78,7 @@ class BioPage extends Component{
               {this.props.user.username}
             </div>
             <div className="bioPicture">
-              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.changedPicture.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
+              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.loggedInAsUser.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
             </div>
             {/* <div className="aboutMe"> */}
             {/* {this.props.loggedInAsUser.id === this.props.user.id ?

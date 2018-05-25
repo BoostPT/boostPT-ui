@@ -16,10 +16,14 @@ class ScheduleModalContainer extends Component{
       endHour: null,
       endMinute: null,
       seconds: 0,
-      scheduledClient: null,
+      scheduledClient: this.props.userInfo.id,
       desc: null,
-      dropDownValue: 1
+      dropDownValue: 1,
+
     }
+
+    this.registered = false;
+    this.dropDownValueText = null;
   }
 
   async componentDidMount() {
@@ -34,6 +38,9 @@ class ScheduleModalContainer extends Component{
   }// used to fetch loggedInTrainer's Clients while on Modal view
 
   async handleSaveButtonClick(e) {
+    if(!this.dropDownValueText){
+      this.dropDownValueText = this.props.userInfo.username;
+    } 
     const payload = {
       month: this.state.month,
       day: this.state.day,
@@ -43,13 +50,20 @@ class ScheduleModalContainer extends Component{
       endHour: this.state.endHour,
       endMinute: this.state.endMinute,
       second: this.state.seconds,
-      userId: !this.state.scheduledClient ? this.props.userInfo.id : this.state.scheduledClient,
+      userId: this.state.scheduledClient,
       workoutId: this.props.workoutId,
-      workoutName: this.props.workoutName,
+      workoutName: this.props.workoutName + ' - ' + this.dropDownValueText,
       desc: this.state.desc,
     }
     try {
-      const result = await this.props.scheduleEvent('workout', payload);
+      if(this.registered && this.dropDownValueText !== this.props.userInfo.username) { 
+        const client = await this.props.scheduleEvent('workout', payload);
+        payload.userId = this.props.userInfo.id
+        const trainer = await this.props.scheduleEvent('workout', payload);
+
+      } else {
+        const client = await this.props.scheduleEvent('workout', payload);
+      }
       
       this.props.toggleModal(e, 'schedule');
     } catch (err) {
@@ -86,13 +100,28 @@ class ScheduleModalContainer extends Component{
     }
   }
 
-  handleDropDownChange (e, index, value ) {
-
-    this.setState({
-      dropDownValue: value
-      // scheduledClient: value,
-      
-    });
+  async handleDropDownChange (e, index, value ) {
+    index === 0 || this.props.clients[index - 1].username ? this.registered = true : this.registered = false;
+    
+    if(this.registered) {
+      if(index === 0) {
+        this.dropDownValueText = this.props.userInfo.username;
+        await this.setState({
+          dropDownValue: value
+        });
+      } else {
+        this.dropDownValueText = this.props.clients[index - 1].username;
+        await this.setState({
+          dropDownValue: value,
+          scheduledClient: this.props.clients[index - 1].id
+        });
+      }
+    }else {
+      this.dropDownValueText = this.props.clients[index - 1].client_name;
+      await this.setState({
+        dropDownValue: value
+      });
+    }
   }
 
   async handleDateChange(e, date) {
@@ -115,12 +144,12 @@ class ScheduleModalContainer extends Component{
     return(
       <ScheduleModal 
         scheduleModalVisible={this.props.scheduleModalVisible}
-        clients={this.props.clients} // for selecting which client feature
+        user={this.props.userInfo}
+        clients={this.props.clients}
         workoutName={this.props.workoutName}
         workoutId={this.props.workoutId}
         toggleModal={this.props.toggleModal}
-        // dropDownValue={this.state.dropDownValue}
-        // scheduledClient={this.state.scheduledClient}
+        dropDownValue={this.state.dropDownValue}
         handleSaveButtonClick={this.handleSaveButtonClick.bind(this)}
         handleStartTimeChange={this.handleStartTimeChange.bind(this)}
         handleEndTimeChange={this.handleEndTimeChange.bind(this)}

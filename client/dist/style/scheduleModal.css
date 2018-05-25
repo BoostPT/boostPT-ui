@@ -1,11 +1,11 @@
 .scheduleModalContent {
   background-color: #fefefe;
   border: 1px solid #888;
-  width: 40%;
-  height: 50%;
+  width: 43%;
+  height: 70%;
   border-radius: 7px;
   margin-left: 30%;
-  margin-top: 10%;
+  margin-top: 8%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -18,8 +18,8 @@
 
 .scheduleModalTitle p{
   margin-left: 28%;
-  margin-top: 1%;
-  font-size: 30px;
+  margin-top: 1%; 
+  font-size: 4.0vh;
   font-family: Lato;
   font-weight: bold;
 }
@@ -42,3 +42,4 @@
 .picker{
   margin-left: 1%;
 }
+
