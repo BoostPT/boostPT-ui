@@ -4,7 +4,7 @@
   border-right-width: 4px;
   border-right-style: solid;
   border-right-color: #343F4B;
-  background: #FFFFFF;
+  background: #EEE;
   float: left;
   border-radius: 5px 0px 0px 5px;
   transition: width 1s;
@@ -40,7 +40,7 @@
   margin-top: 50px;
   height: 70vh;
   width: 60vw;
-  background-color: white;
+  background-color: #EEE;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
   margin-left: auto;
@@ -84,7 +84,7 @@
 }
 
 #messageother {
-  background-color: #FFFFFF;
+  background-color: #EEE;
   font-size: 20px;
   height: 70px;
 }

@@ -99,12 +99,14 @@ class MessagePageModal extends Component {
                 <input id="messageModal-input" value ={this.state.inputValue} name="channelInput" onChange={this.handleInputValueChange} onKeyPress={(e) => this.handleKeyPress(e)}></input>
                 <RaisedButton id="createChannelButton" 
                             onClick={this.handleSubmitButtonClick} 
-                            backgroundColor={colors.grey800} 
-                            labelStyle={{ textTransform: 'none'}}
+                            backgroundColor={colors.grey600} 
+                            rippleColor={colors.yellow600}
+                            hoverColor={colors.grey700}
+                            labelStyle={{ fontFamily: 'Lato', color: 'white'}}
                             style={{ borderRadius: '10px', marginLeft: '10px'}}
                             labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
-                            buttonStyle={{ borderRadius: '10px'}}
-                            labelColor={colors.yellow500}label="Submit"/>
+                            buttonStyle={{ borderRadius: '2px'}}
+                            labelColor={colors.white}label="Submit"/>
               </span>
             </label>
             {
