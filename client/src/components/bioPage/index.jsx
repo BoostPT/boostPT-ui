@@ -69,6 +69,7 @@ class BioPage extends Component{
   }
 
   render(){
+    console.log(this.props);
     return(
       <div className="bioPage">
         <NavbarContainer history={this.props.history} changedUser={this.props.user}/>
@@ -78,7 +79,7 @@ class BioPage extends Component{
               {this.props.user.username}
             </div>
             <div className="bioPicture">
-              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.changedPicture.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
+              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.loggedInAsUser.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
             </div>
             {/* <div className="aboutMe"> */}
             {/* {this.props.loggedInAsUser.id === this.props.user.id ?
