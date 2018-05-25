@@ -10,9 +10,11 @@ const buttonLabelStyle = {
 };
 
 const buttonStyle = {
+  display: 'block',
   height: '2.4em',
   width: '6.4em',
-  margin: '.5em'
+  margin: 'auto',
+  marginTop: '1em'
 };
 
 class WorkoutModal extends Component {
@@ -52,8 +54,6 @@ class WorkoutModal extends Component {
                  labelStyle={buttonLabelStyle}
                  style={buttonStyle}
                 />
-                {/* <a className="float-left modal-btn pointer" onClick={(e) => this.props.handleYesClick(e, this.props.workoutId, this.props.workouts, this.props.userId)}>Yes</a>
-                <a className="float-left modal-btn pointer" onClick={(e)=>this.props.toggleModal(e,'deleteWorkout')}>No</a> */}
               </div>
             </div>
             :
