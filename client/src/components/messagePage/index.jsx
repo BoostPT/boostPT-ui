@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from 'material-ui/styles/colors';
 import MessagePageModal from './messagePageModal.jsx';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -125,16 +125,16 @@ class MessagePage extends Component {
               Messages
             </div>
             <div style={{overflow: 'hidden', textAlign: 'center'}}>
-            <RaisedButton className="chatButton" 
+            <FlatButton className="chatButton"
                             onClick={this.handleAddChatButton} 
                             backgroundColor={colors.grey600}
                             rippleColor={colors.yellow500}
                             hoverColor={colors.grey700}
                             labelStyle={{ fontFamily: 'Lato', color: 'white',
                             fontSize: '1.4em', textTransform: 'none'}}
-                            style={{float: 'left', marginLeft: '10px'}}
-                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
-                            labelColor={colors.white}label="Add Chat"/>
+                            style={{marginTop: '0.8em'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden', color: 'white'}}
+                            label="Add Chat"/>
             </div>
             <div className="channelScrollBox">
             {
@@ -183,14 +183,14 @@ class MessagePage extends Component {
           <label>
             <input id="messageInput" type="text" value={this.state.messageInput} onChange={this.handleMessageInput} onKeyPress={(e) => this.handleKeyPress(e)}/>
             <div>
-              <RaisedButton className="sendButton" 
+              <FlatButton className="sendButton"
                             onClick={this.sendMessage} 
                             backgroundColor={colors.grey600}
                             hoverColor={colors.grey700}
                             rippleColor={colors.yellow500}
-                            style={{ float: 'left', marginLeft: '10px'}}
-                            labelStyle={{fontSize: '20px', textTransform: 'none'}}
-                            labelColor={colors.white}label="Send"/>
+                            style={{ float: 'left', marginLeft: '10px', marginTop: '1.8em'}}
+                            labelStyle={{fontSize: '20px', textTransform: 'none', color: 'white'}}
+                            label="Send"/>
             </div>
           </label>
         </div>
