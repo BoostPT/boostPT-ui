@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import * as colors from 'material-ui/styles/colors';
 
 class Modal extends Component {
@@ -66,16 +66,14 @@ class Modal extends Component {
             <label>
               <span>
                 <input id="addNewClientModal-input" name="unregUserInput" value={this.state.unregClientForm} onChange={this.handleUnregClientFormChange} onKeyPress={(e) => this.handleKeyPress(e)}></input>
-                <RaisedButton id="createUserButton" 
+                <FlatButton id="createUserButton" 
                             onClick={this.handleButtonClick.bind(this)}
                             backgroundColor={colors.grey600} 
-                            rippleColor={colors.yellow600}
+                            rippleColor={colors.yellow500}
                             hoverColor={colors.grey700}
-                            labelStyle={{ fontFamily: 'Lato', color: 'white'}}
                             style={{ borderRadius: '10px', marginLeft: '10px'}}
-                            labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
-                            buttonStyle={{ borderRadius: '2px'}}
-                            labelColor={colors.white}label="Submit"/>
+                            labelStyle={{fontSize: '20px', textTransform: 'none', fontFamily: 'Lato', color: '#EEE'}}
+                            label="Submit"/>
               </span>
             </label>
             {
