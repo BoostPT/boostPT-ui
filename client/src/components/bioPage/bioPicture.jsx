@@ -15,11 +15,11 @@ class BioPicture extends Component{
 
         {!this.props.picture ? 
           <Dropzone multiple accept="image/*" style={{borderStyle: "none"}} onDrop={this.props.handleOnDrop}>
-            <Avatar className="bioPageAvatarPicture" size={100} icon={<FontAwesomeIcon icon={faUser}/>}/> 
+            <Avatar className="bioPageAvatarPicture" style={{ borderRadius: 0 }} size={150} icon={<FontAwesomeIcon icon={faUser}/>}/> 
           </Dropzone>
         :
           <Dropzone multiple accept="image/*" style={{borderStyle: "none"}} onDrop={this.props.handleOnDrop}>
-            <Avatar className="bioPageAvatarPicture" size={100} src={this.props.picture}/>
+            <Avatar className="bioPageAvatarPicture" style={{ borderRadius: 0 }} size={150} src={this.props.picture} />
           </Dropzone>
         }
         

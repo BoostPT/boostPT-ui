@@ -130,12 +130,14 @@ class MessagePage extends Component {
             <div style={{overflow: 'hidden', textAlign: 'center'}}>
             <RaisedButton className="chatButton" 
                             onClick={this.handleAddChatButton} 
-                            backgroundColor={colors.grey800} 
-                            labelStyle={{ textTransform: 'none'}}
-                            style={{ borderRadius: '10px', float: 'left', marginLeft: '10px'}}
+                            backgroundColor={colors.grey600}
+                            rippleColor={colors.yellow500}
+                            hoverColor={colors.grey700}
+                            labelStyle={{ fontFamily: 'Lato', color: 'white',
+                            fontSize: '1.4em', textTransform: 'none'}}
+                            style={{float: 'left', marginLeft: '10px'}}
                             labelStyle={{fontSize: '20px', textTransform: 'none', overflowX: 'hidden'}}
-                            buttonStyle={{ borderRadius: '10px'}}
-                            labelColor={colors.yellow500}label="Add Chat"/>
+                            labelColor={colors.white}label="Add Chat"/>
             </div>
             <div className="channelScrollBox">
             {
@@ -186,11 +188,12 @@ class MessagePage extends Component {
             <div>
               <RaisedButton className="sendButton" 
                             onClick={this.sendMessage} 
-                            backgroundColor={colors.grey800} 
-                            style={{ borderRadius: '10px', float: 'left', marginLeft: '10px'}}
+                            backgroundColor={colors.grey600}
+                            hoverColor={colors.grey700}
+                            rippleColor={colors.yellow500}
+                            style={{ float: 'left', marginLeft: '10px'}}
                             labelStyle={{fontSize: '20px', textTransform: 'none'}}
-                            buttonStyle={{ borderRadius: '10px'}}
-                            labelColor={colors.yellow500}label="Send"/>
+                            labelColor={colors.white}label="Send"/>
             </div>
           </label>
         </div>

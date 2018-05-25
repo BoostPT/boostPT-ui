@@ -58,7 +58,7 @@ class DashPageContainer extends Component {
    
   render(){
     return(
-      <DashPage user={!this.state.UserfromBioPageChange ?this.props.user : this.state.UserfromBioPageChange} 
+      <DashPage user={this.props.user} 
                 activeTab={this.state.activeTab}
                 handleTabSelect={this.handleTabSelect}
                 history={this.props.history}

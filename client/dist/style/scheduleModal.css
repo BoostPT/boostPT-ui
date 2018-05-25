@@ -12,12 +12,33 @@
 }
 
 .scheduleModalTitle{
-  display: flex;
+  display: flex;  
   justify-content: space-between;
 }
 
 .scheduleModalTitle p{
-  margin-left: 25%;
+  margin-left: 28%;
   margin-top: 1%;
   font-size: 30px;
+  font-family: Lato;
+  font-weight: bold;
+}
+
+.scheduleModalSpan{
+  font-family: Lato;
+  font-weight: bold;
+}
+
+.selectors{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectors span{
+  margin-top: 2%;
+}
+
+.picker{
+  margin-left: 1%;
 }

@@ -43,9 +43,9 @@ const IconButtonStyle = {
 class BioPage extends Component{
   constructor(props){
     super(props);
-    this.state = { showRequestBtn: true }
+    this.state = { showRequestBtn: true, photo: this.props.changedPicture.picture,   }
   }
-  
+
   componentDidMount() {
     this.checkAlreadyRequested();
   }
@@ -78,10 +78,10 @@ class BioPage extends Component{
               {this.props.user.username}
             </div>
             <div className="bioPicture">
-              <BioPicture picture={!this.props.user.picture ? null : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
+              <BioPicture picture={this.props.user.id === this.props.loggedInAsUser.id ? this.props.changedPicture.picture : this.props.user.picture} handleOnDrop={this.props.handleOnDrop}/>
             </div>
-            <div className="aboutMe">
-            {this.props.loggedInAsUser.id === this.props.user.id ?
+            {/* <div className="aboutMe"> */}
+            {/* {this.props.loggedInAsUser.id === this.props.user.id ?
             <IconButton 
               iconStyle={edit_button_style} 
               style={edit_button_style}
@@ -91,17 +91,17 @@ class BioPage extends Component{
             </IconButton>
               :
               null
-            }
-              About Me:
+            } */}
+              {/* Contact Me:
               <div className="aboutMeText">
                 {!this.props.user.aboutMe? null : this.props.user.aboutMe }
               </div>
-            </div>
-            <div className="email">
+            </div> */}
+            {/* <div className="email">
               <Email  style={email_phone_style}/>
               {!this.props.user.email ? 'Unavailable' : this.props.user.email}
-            </div>
-            <div className="phoneNumber">
+            </div> */}
+            {/* <div className="phoneNumber">
               {this.props.loggedInAsUser.id === this.props.user.id ? 
               <IconButton 
                 iconStyle={IconButtonStyle} 
@@ -116,7 +116,7 @@ class BioPage extends Component{
               <Phone style={email_phone_style}/>
               {!this.props.user.phoneNumber ? 'Unavailable' : this.props.user.phoneNumber}
             </div>
-            <a className="sendMessageButton">Send Message</a>
+            <a className="sendMessageButton">Send Message</a> */}
             {
               this.state.showRequestBtn ?
                 <a onClick={(e) => {

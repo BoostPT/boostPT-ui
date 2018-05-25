@@ -42,6 +42,7 @@ class BioPageContainer extends Component {
     }
     try {
       const changed = await this.props.changeUserPicture(payload);
+      this.props.user.publicWorkouts = this.state.bioPageUserInfo.publicWorkouts;
       await this.setState({
         bioPageUserInfo: this.props.user
       });
@@ -83,6 +84,7 @@ class BioPageContainer extends Component {
           handleOnDrop={this.handleOnDrop.bind(this)}
           history={this.props.history}
           user={this.props.history.location.state}
+          changedPicture={this.state.bioPageUserInfo}
           loggedInUserId={this.props.user.id}
           handleRequestClick={this.handleRequestClick.bind(this)}
           requestsOut={this.props.requests.requestsOut}

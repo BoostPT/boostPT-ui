@@ -24,7 +24,6 @@ class CalendarContainer extends Component {
     try{
       await this.props.fetchEvents(this.props.userInfo.id);
       await this.props.events.forEach((event) => {
-        // console.log("inside calendar container", event);
         const calendarEvent = {
           id: event.id,
           title: event.title,
@@ -80,6 +79,7 @@ class CalendarContainer extends Component {
           resizable
           style={{ height: "75vh", margin: '2%', boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 60px, rgba(0, 0, 0, 0.22) 0px 15px 20px' }}
           views={['month', 'week', 'day']}
+          scrollToTime={new Date()}
         />
       </div>
     );
