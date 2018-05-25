@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import AddExercise from 'material-ui/svg-icons/av/library-add';
 import * as colors from "material-ui/styles/colors";
 
 import {
@@ -48,6 +49,21 @@ class ExerciseItem extends Component {
     )
   }
 
+  renderAddExerciseToWorkout() {
+    if (this.props.onCreateTab) {
+      return (
+        <AddExercise
+          className="add-starred-exercise"
+          color={colors.grey500}
+          hoverColor={colors.grey700}
+          onClick={this.props.handleAddStarredExercise}
+        />
+      )
+    } else {
+      return null
+    }
+  }
+
   render() {
     const exercise = this.props.exercise;
     return (
@@ -75,6 +91,7 @@ class ExerciseItem extends Component {
               </div>
           }
         </div>
+        {this.renderAddExerciseToWorkout()}
       </div>
     );
   }
@@ -82,7 +99,9 @@ class ExerciseItem extends Component {
 
 ExerciseItem.propTypes = {
   exercise: PropTypes.object.isRequired,
-  handleStarExerciseClick: PropTypes.func
+  handleStarExerciseClick: PropTypes.func,
+  onCreateTab: PropTypes.bool,
+  handleAddStarredExercise: PropTypes.func
 };
 
 export default ExerciseItem;

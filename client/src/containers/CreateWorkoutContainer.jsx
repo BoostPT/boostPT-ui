@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import CreateWorkout from '../components/dashPage/CreateWorkout.jsx';
 import ExerciseItem from '../components/workoutsView/exerciseItem.jsx';
-import AddExercise from 'material-ui/svg-icons/av/library-add';
 import {
   deleteFromStarredExercises,
   updateWorkoutsWithStar
@@ -239,10 +238,13 @@ class CreateWorkoutContainer extends Component {
     if (this.props.starredExercises.length) {
       return this.props.starredExercises.map(exercise => {
         return (
-          <Fragment key={exercise.id}>
-            <ExerciseItem exercise={exercise} handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)} />
-            <AddExercise className="add-starred-exercise" color={colors.grey500} hoverColor={colors.grey700} onClick={this.handleAddStarredExercise.bind(this, exercise)} />
-          </Fragment>
+          <ExerciseItem
+            key={shortid.generate()}
+            exercise={exercise}
+            handleStarExerciseClick={this.handleDeleteStarExercise.bind(this, exercise)}
+            handleAddStarredExercise={this.handleAddStarredExercise.bind(this, exercise)}
+            onCreateTab={true}
+          />
         )
       });
     } else {
