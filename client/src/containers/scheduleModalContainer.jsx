@@ -38,6 +38,9 @@ class ScheduleModalContainer extends Component{
   }// used to fetch loggedInTrainer's Clients while on Modal view
 
   async handleSaveButtonClick(e) {
+    if(!this.dropDownValueText){
+      this.dropDownValueText = this.props.userInfo.username;
+    } 
     const payload = {
       month: this.state.month,
       day: this.state.day,
