@@ -25,25 +25,29 @@
 
 .landing-page-header {
   font-family: 'Lato';
-  font-size: 1.6em;
+  font-size: 1.9em;
   color: #49525d;
-  margin-top: 4em;
+  margin-top: 6em;
   margin-bottom: 2em;
   text-align: center;
   clear: both;
 }
 
-.landing-page-subheader {
-  background-color: white;
+#landing-page-subheader {
+  font-size: 1.2em;
+  margin-bottom: 4em;
+}
+
+.landing-page-feature-list {
+  background-color: #EEE;
   height: 16em;
 }
 
-.landing-page-col-grid {
+.landing-page-subheader-grid {
   width: 80%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .landing-page-col {
@@ -53,17 +57,42 @@
   margin-top: 3em;
 }
 
+
+.landing-page-preview {
+  height: 32em;
+}
+
+.landing-page-preview:nth-child(even) {
+  background-color: #BDBDBD;
+}
+
+.landing-page-preview:nth-child(odd) {
+  background-color: #EEE;
+}
+
+.landing-page-splitgrid {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .landing-page-icon {
   margin-top: 0.8em;
 }
 
-.landing-page-txt {
-  font-size: 0.64em;
-  opacity: 0.8;
+.landing-page-col-text {
+  margin-top: 11em;
 }
 
-.footer {
-  position: absolute;
+.landing-page-txt {
+  width: 22em;
+  font-size: 1.44em;
+  opacity: 0.9;
+  margin: 0 auto;
+}
+
+.landing-page-footer {
   margin-bottom: 5px;
   margin-right: 5px;
   bottom: 0;

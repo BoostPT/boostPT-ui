@@ -9,7 +9,7 @@ import * as colors from "material-ui/styles/colors";
 const authBtnLabelStyle = {
   fontFamily: 'Lato',
   fontSize: '1.2em',
-  color: 'white',
+  color: '#EEE',
   textTransform: 'none'
 };
 

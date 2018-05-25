@@ -6,7 +6,7 @@ class Modal extends Component {
     this.state = {
       toggleFailureMessage: false,     
       unregClientForm: ''
-    }
+    };
     this.handleUnregClientFormChange = this.handleUnregClientFormChange.bind(this);
     this.escFunction = this.escFunction.bind(this);
     this.overlayClick = this.overlayClick.bind(this);

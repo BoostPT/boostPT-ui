@@ -22,7 +22,7 @@ const createWorkoutBtnLabelStyle = {
   fontFamily: 'Lato',
   fontSize: '1.2em',
   textTransform: 'none',
-  color: 'white'
+  color: '#EEE'
 };
 
 const createWorkoutBtnStyle = {
@@ -107,35 +107,35 @@ class CreateWorkout extends Component {
   }
 
   renderExerciseForms() {
-    const renderFields = (type, index, expanded, form = null) => {
-      if (type === 'Warm-up' && expanded) {
+    const renderFields = (form, index) => {
+      if (form.type === 'Warm-up' && form.expanded) {
         return (
           <Fragment>
             {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
           </Fragment>
         )
-      } else if (type === 'Strength' && expanded) {
+      } else if (form.type === 'Strength' && form.expanded) {
         return (
           <Fragment>
             {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField(form.reps, '', 'Reps', this.props.handleFormInput, `${index},Reps`)}
-            {renderTextField(form.sets, '', 'Sets', this.props.handleFormInput, `${index},Sets`)}
+            {renderTextField(form['Reps'], '', 'Reps', this.props.handleFormInput, `${index},Reps`)}
+            {renderTextField(form['Sets'], '', 'Sets', this.props.handleFormInput, `${index},Sets`)}
           </Fragment>
         )
-      } else if (type === 'Cardio' && expanded) {
+      } else if (form.type === 'Cardio' && form.expanded) {
         return (
           <Fragment>
             {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField(form.distance, '', 'Distance', this.props.handleFormInput, `${index},Distance`)}
-            {renderTextField(form.pace, '', 'Pace', this.props.handleFormInput, `${index},Pace`)}
-            {renderTextField(form.goaltime, '', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
+            {renderTextField(form['Distance'], '', 'Distance', this.props.handleFormInput, `${index},Distance`)}
+            {renderTextField(form['Pace'], '', 'Pace', this.props.handleFormInput, `${index},Pace`)}
+            {renderTextField(form['Goal Time'], '', 'Goal Time', this.props.handleFormInput, `${index},Goal Time`)}
           </Fragment>
         )
-      } else if (type === 'Stretch' && expanded) {
+      } else if (form.type === 'Stretch' && form.expanded) {
         return (
           <Fragment>
             {renderTextField(form.description, '', 'Description', this.props.handleFormInput, `${index},description`, true, 4)}
-            {renderTextField(form.goaltime, '', 'Duration', this.props.handleFormInput, `${index},Goal Time`)}
+            {renderTextField(form['Goal Time'], '', 'Duration', this.props.handleFormInput, `${index},Goal Time`)}
           </Fragment>
         );
       } else return null;
@@ -155,7 +155,7 @@ class CreateWorkout extends Component {
                         onClick={this.props.handleDeleteExercise} />
           {this.renderExpandIcon(exerciseForm.expanded, exerciseForm.renderId)}
           {this.renderSwapArrows(exerciseForm.renderId, i, this.props.exerciseForms.length)}
-          {renderFields(exerciseForm.type, i, exerciseForm.expanded, exerciseForm)}
+          {renderFields(exerciseForm, i)}
         </li>
       )
     });

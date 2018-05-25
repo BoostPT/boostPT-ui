@@ -9,10 +9,14 @@ import * as colors from "material-ui/styles/colors";
 
 const workoutTabListStyle = {
   standard: {
-    backgroundColor: colors.grey300
+    backgroundColor: '#EEE',
+    color: '#49525d',
+    fontFamily: 'Lato'
   },
   active: {
-    backgroundColor: colors.grey600
+    backgroundColor: colors.grey600,
+    color: '#FFEB3B',
+    fontFamily: 'Lato'
   }
 };
 

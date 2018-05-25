@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Modal from './clientTabModal.jsx';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -15,7 +13,7 @@ class ClientTab extends Component {
       toggleModal: false,
       filterInput: '',
       cardList: []
-    }
+    };
     this.toggleModal = this.toggleModal.bind(this);
     this.filterInputChange = this.filterInputChange.bind(this);
     this.filterCards = debounce(this.filterCards.bind(this), 250);
@@ -41,7 +39,7 @@ class ClientTab extends Component {
       const newArr = tempArr.filter((value) => {
         let name = value.client_name || value.username;
         return name.toLowerCase().startsWith(input);
-      })
+      });
       if (input.length > 0) {
         this.setState({cardList: newArr});
       } else {

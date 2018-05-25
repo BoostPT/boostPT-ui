@@ -30,7 +30,7 @@ class CalendarContainer extends Component {
           start: new Date(event.year, event.month, event.day, event.start_hour, event.start_minute, event.second),
           end: new Date(event.year, event.month, event.day, event.end_hour, event.end_minute, event.second),
           desc: event.description
-        }
+        };
 
         this.state.events.push(calendarEvent);
       });
