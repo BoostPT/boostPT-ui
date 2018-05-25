@@ -12,7 +12,6 @@ import { swapArrayElements } from '../../lib/utils';
 import axios from 'axios';
 import omit from 'lodash/omit';
 import shortid from 'shortid';
-import PropTypes from "prop-types";
 import * as colors from "material-ui/styles/colors";
 
 // Change where we load this from later?
@@ -284,10 +283,6 @@ class CreateWorkoutContainer extends Component {
     )
   }
 }
-
-CreateWorkoutContainer.propTypes = {
-  handleCreateWorkoutSuccess: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state) => {
   return {
