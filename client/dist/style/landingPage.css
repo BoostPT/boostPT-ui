@@ -13,6 +13,13 @@
   color: #49525d;
 }
 
+.landing-page-nav {
+  position: absolute;
+  width: 100%;
+  background-color: #BDBDBD;
+  z-index: 1;
+}
+
 #pt-title {
   color: #FFEB3B;
 }
@@ -23,19 +30,26 @@
   margin-top: 1.5em;
 }
 
-.landing-page-header {
-  font-family: 'Lato';
-  font-size: 1.9em;
-  color: #49525d;
-  margin-top: 6em;
-  margin-bottom: 2em;
+.image-headers {
+  position: relative;
   text-align: center;
-  clear: both;
+}
+
+.landing-page-header {
+  position: absolute;
+  font-size: 2.4em;
+  font-family: 'Lato';
+  color: white;
+  top: 38%;
+  left: 50%;
+  width: 60vw;
+  -webkit-transform: translate(-50%, 0);
 }
 
 #landing-page-subheader {
-  font-size: 1.2em;
-  margin-bottom: 4em;
+  font-size: 1.6em;
+  left: 50%;
+  top: 53%;
 }
 
 .landing-page-feature-list {
