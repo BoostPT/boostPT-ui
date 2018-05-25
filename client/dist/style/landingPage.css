@@ -13,6 +13,13 @@
   color: #49525d;
 }
 
+.landing-page-nav {
+  position: absolute;
+  width: 100%;
+  background-color: #BDBDBD;
+  z-index: 1;
+}
+
 #pt-title {
   color: #FFEB3B;
 }

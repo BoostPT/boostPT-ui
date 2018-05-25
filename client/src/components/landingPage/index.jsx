@@ -38,7 +38,7 @@ class LandingPage extends Component {
   render() {
     return (
       <div id="landing-page">
-        <div>
+        <div className="landing-page-nav">
           <h2 id="boostpt-title">Boost<span id="pt-title">PT</span></h2>
           <div className="auth-btns">
             <Link to="/signup">
