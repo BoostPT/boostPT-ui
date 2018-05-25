@@ -39,7 +39,7 @@
   position: absolute;
   font-size: 2.4em;
   font-family: 'Lato';
-  color: #EEE;
+  color: white;
   top: 38%;
   left: 50%;
   width: 60vw;
@@ -49,7 +49,7 @@
 #landing-page-subheader {
   font-size: 1.6em;
   left: 50%;
-  top: 57%;
+  top: 53%;
 }
 
 .landing-page-feature-list {
